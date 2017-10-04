@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eoss-brain.iml" filepath="$PROJECT_DIR$/.idea/modules/eoss-brain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eoss-brain_main.iml" filepath="$PROJECT_DIR$/.idea/modules/eoss-brain_main.iml" group="eoss-brain" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eoss-brain_test.iml" filepath="$PROJECT_DIR$/.idea/modules/eoss-brain_test.iml" group="eoss-brain" />
+    </modules>
+  </component>
+</project>
