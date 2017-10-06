@@ -102,7 +102,7 @@ public class TalkCommandNode extends CommandNode {
 
         } else if (confidenceRate <= 0.75f) {
 
-            responseText += "?";
+            responseText += " ?";
 
         } else if (confidenceRate > 1) {
             //Super Confidence
