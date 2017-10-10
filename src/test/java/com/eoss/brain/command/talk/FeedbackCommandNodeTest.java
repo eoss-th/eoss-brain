@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -17,6 +18,8 @@ public class FeedbackCommandNodeTest {
 
     @Test
     public void testFeedbackCommand() {
+        Context.setLocale(new Locale("th", "TH"));
+
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new MemoryContext("test").admin(adminIdList);
 
@@ -87,7 +90,7 @@ public class FeedbackCommandNodeTest {
 
         assertTrue(feedbackCommandNode.matched(MessageObject.build("ผิด")));
 
-        assertEquals("แล้วจะให้ตอบว่า?", feedbackCommandNode.execute(MessageObject.build("ผิด")));
+        assertEquals("สวัสดี ?", feedbackCommandNode.execute(MessageObject.build("ผิด")));
 
         assertTrue(session.hasProblem());
 

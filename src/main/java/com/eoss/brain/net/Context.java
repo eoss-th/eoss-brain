@@ -16,6 +16,8 @@ public abstract class Context {
 
     public static final String SUFFIX = ".context";
 
+    private static Locale locale = Locale.getDefault();
+
     public final String name;
 
     public String domain;
@@ -305,11 +307,15 @@ public abstract class Context {
         return node;
     }
 
+    public static void setLocale(Locale locale) {
+        Context.locale = locale;
+    }
+
     public static List<String> splitToList(String input) {
 
         List<String> result = new ArrayList<>();
 
-        BreakIterator breakIterator = BreakIterator.getWordInstance(Locale.getDefault());
+        BreakIterator breakIterator = BreakIterator.getWordInstance(locale);
         breakIterator.setText(input);
 
         int wordBoundaryIndex = breakIterator.first();

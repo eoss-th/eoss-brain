@@ -5,12 +5,15 @@ import com.eoss.brain.net.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
 
+import java.util.Locale;
+
 import static org.junit.Assert.*;
 
 public class SessionTest {
 
     @Test
     public void testRelatedEntry() {
+        Context.setLocale(new Locale("th", "TH"));
 
         Context context = new MemoryContext("test");
         Session session = new Session(context);
@@ -27,7 +30,7 @@ public class SessionTest {
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("ไม่ว่าไง")));
 
         assertEquals("ว่าไง", session.parse(MessageObject.build("ทักทาย ว่าไง")));
-        assertEquals("แล้วจะให้ตอบว่า?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("ทักทาย ว่าไง ?", session.parse(MessageObject.build("ไม่")));
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("สบายดี")));
 
         /**

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -19,6 +20,7 @@ public class ImportRawDataCommandNodeTest {
 
     @Test
     public void execute() throws Exception {
+        Context.setLocale(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new MemoryContext("test").admin(adminIdList);

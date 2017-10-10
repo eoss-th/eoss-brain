@@ -18,8 +18,6 @@ public class MessageObject {
         else
             this.attributes = attributes;
 
-        if (this.attributes.get("text")!=null)
-            wordCount = Context.splitToList(this.attributes.get("text").toString().trim()).size();
     }
 
     public static MessageObject build() {
@@ -31,7 +29,10 @@ public class MessageObject {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("text", text);
 
-        return new MessageObject(attributes);
+        MessageObject newMessageObject = new MessageObject(attributes);
+        newMessageObject.wordCount = Context.splitToList(text).size();
+
+        return newMessageObject;
     }
 
     public static MessageObject build(Map<String, Object> attributes) {

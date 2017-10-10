@@ -1,6 +1,7 @@
 group 'com.eoss.brain'
-version '0.1.1'
+version '0.1.1.4'
 
+apply plugin: 'findbugs'
 apply plugin: 'java'
 
 repositories {

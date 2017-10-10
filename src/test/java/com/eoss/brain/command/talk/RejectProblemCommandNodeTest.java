@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -17,6 +18,7 @@ public class RejectProblemCommandNodeTest {
 
     @Test
     public void testRejectProblemCommand() {
+        Context.setLocale(new Locale("th", "TH"));
 
         List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "ไม่", "ก็แล้วแต่");
 
@@ -47,7 +49,7 @@ public class RejectProblemCommandNodeTest {
 
         assertEquals("ช่วยบอกให้ละเอียดหน่อย", session.parse(MessageObject.build("ไม่")));
 
-        assertEquals("แล้วจะให้ตอบว่า?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("นายครับ ?", session.parse(MessageObject.build("ไม่")));
 
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("ดีครับ")));
 

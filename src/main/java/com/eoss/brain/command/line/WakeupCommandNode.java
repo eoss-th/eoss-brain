@@ -14,7 +14,6 @@ import com.eoss.brain.net.Node;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -31,8 +30,6 @@ public class WakeupCommandNode extends CommandNode {
 
     @Override
     public String execute(MessageObject messageObject) {
-
-        Locale.setDefault(new Locale("th", "TH"));
 
         try {
             session.context.load();

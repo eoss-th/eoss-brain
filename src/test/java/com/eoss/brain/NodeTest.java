@@ -1,12 +1,10 @@
 package com.eoss.brain;
 
+import com.eoss.brain.net.Context;
 import com.eoss.brain.net.Node;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -14,6 +12,8 @@ public class NodeTest {
 
     @Test
     public void testClone() {
+        Context.setLocale(new Locale("th", "TH"));
+
         Node a = new Node(new String[]{"ดี"}, new String[]{"ครับ"}, Node.Mode.MatchWhole);
         Node b = a.copy();
         Node c = b.copy();

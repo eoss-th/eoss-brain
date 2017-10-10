@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -15,6 +16,7 @@ public class TalkCommandNodeTest {
 
     @Test
     public void testDataCommand() {
+        Context.setLocale(new Locale("th", "TH"));
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "พอ", "ก็แล้วแต่", "คือ?");
 

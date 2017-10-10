@@ -11,6 +11,7 @@ import java.util.*;
 public class ContextTestCase {
 
     public static void main(String[]args) throws Exception {
+        Context.setLocale(new Locale("th", "TH"));
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
