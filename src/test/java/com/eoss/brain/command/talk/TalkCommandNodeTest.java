@@ -16,7 +16,7 @@ public class TalkCommandNodeTest {
 
     @Test
     public void testDataCommand() {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "พอ", "ก็แล้วแต่", "คือ?");
 

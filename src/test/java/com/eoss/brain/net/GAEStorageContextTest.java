@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class GAEStorageContextTest {
     @Test
     public void testSaveWebNodeDAO() throws Exception {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         String contextName = "test";

@@ -320,6 +320,15 @@ public class Node {
 
     public void feed(MessageObject messageObject, float score) {
 
+        int wordCount;
+        if (messageObject.attributes.get("wordCount")!=null) {
+            wordCount = (Integer) messageObject.attributes.get("wordCount");
+        } else if (!messageObject.toString().trim().isEmpty()) {
+            wordCount = 1;
+        } else {
+            wordCount = 0;
+        }
+
         int matchedCount = 0;
         for (Hook hook:hookMap.values()) {
             if (hook.matched(messageObject)) {
@@ -336,7 +345,7 @@ public class Node {
                 totalResponseActive += entry.getKey().active * entry.getValue();
             }
 
-            response.active += totalResponseActive / (hookMap.size() + messageObject.wordCount() - matchedCount);
+            response.active += totalResponseActive / (hookMap.size() + wordCount - matchedCount);
         }
 
         for (Hook hook:hookMap.values()) {

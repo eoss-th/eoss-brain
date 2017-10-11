@@ -49,7 +49,7 @@ public class ImportRawDataFromWebCommandNode extends CommandNode {
             String text, lastText;
             for (String sentence:sentences) {
                 text = sentence.trim();
-//            if (Context.splitToList(text).size() > 5) {
+//            if (session.context.splitToList(text).size() > 5) {
                 if (text.length() > 20) {
                     sentenceList.add(text);
                 } else if (!sentenceList.isEmpty()) {
@@ -80,7 +80,7 @@ public class ImportRawDataFromWebCommandNode extends CommandNode {
                     context.add(newNode);
                 }
 
-                newNode = new Node(Context.splitToList(sentence).toArray(new String[0]), null);
+                newNode = new Node(session.context.splitToList(sentence).toArray(new String[0]), null);
             }
 
             context.save();

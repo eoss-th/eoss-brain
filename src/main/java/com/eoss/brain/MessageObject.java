@@ -9,8 +9,6 @@ public class MessageObject {
 
     public final Map<String, Object> attributes;
 
-    private int wordCount;
-
     private MessageObject(Map<String, Object> attributes) {
 
         if (attributes==null)
@@ -29,10 +27,7 @@ public class MessageObject {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("text", text);
 
-        MessageObject newMessageObject = new MessageObject(attributes);
-        newMessageObject.wordCount = Context.splitToList(text).size();
-
-        return newMessageObject;
+        return new MessageObject(attributes);
     }
 
     public static MessageObject build(Map<String, Object> attributes) {
@@ -57,7 +52,4 @@ public class MessageObject {
         return text!=null?text.toString():"";
     }
 
-    public int wordCount() {
-        return wordCount;
-    }
 }

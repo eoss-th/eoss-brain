@@ -74,7 +74,7 @@ public class ImportRawDataCommandNode extends CommandNode {
                     session.context.add(newNode);
                 }
 
-                newNode = new Node(Context.splitToList(sentence).toArray(new String[0]), null);
+                newNode = new Node(session.context.splitToList(sentence).toArray(new String[0]), null);
             }
 
         } finally {

@@ -66,7 +66,7 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
 
         if (cancelReason!=null) return cancelReason;
 
-        Node newNode = Context.build(problemEntry.messageObject);
+        Node newNode = session.context.build(problemEntry.messageObject);
 
         if (newNode.sameHooks(problemEntry.response.owner())) {
             newNode = problemEntry.response.owner();

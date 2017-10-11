@@ -17,7 +17,7 @@ public class LowConfidenceProblemCommandNodeTest {
 
     @Test
     public void testInputProblemCommand() {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ไม่", "ไม่ก็ไม่");
 

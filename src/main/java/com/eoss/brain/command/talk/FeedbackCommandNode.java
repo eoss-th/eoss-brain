@@ -59,7 +59,7 @@ public class FeedbackCommandNode extends CommandNode {
 
             Node lastActiveNode = lastActiveEntry.response.owner();
 
-            Node newNode = Context.build(lastActiveEntry.messageObject);
+            Node newNode = session.context.build(lastActiveEntry.messageObject);
 
             if (!lastActiveNode.coverHooks(newNode)) {
                 lastActiveNode.addHook(newNode);

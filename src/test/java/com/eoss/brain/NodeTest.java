@@ -12,7 +12,7 @@ public class NodeTest {
 
     @Test
     public void testClone() {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         Node a = new Node(new String[]{"ดี"}, new String[]{"ครับ"}, Node.Mode.MatchWhole);
         Node b = a.copy();
@@ -234,28 +234,33 @@ public class NodeTest {
         MessageObject messageObject;
 
         messageObject = MessageObject.build("กิน");
+        messageObject.attributes.put("wordCount", 1);
         node.feed(messageObject);
-        assertEquals(Node.Mode.MatchHead.initWeight / (node.hookMap.size() + messageObject.wordCount() - 1), node.maxActiveResponse.active, delta);
+        assertEquals(Node.Mode.MatchHead.initWeight / (node.hookMap.size() + 1 - 1), node.maxActiveResponse.active, delta);
 
         node.clear();
         messageObject = MessageObject.build("กินข้าว");
+        messageObject.attributes.put("wordCount", 2);
         node.feed(messageObject);
-        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight) / (node.hookMap.size() + messageObject.wordCount() - 2), node.maxActiveResponse.active, delta);
+        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight) / (node.hookMap.size() + 2 - 2), node.maxActiveResponse.active, delta);
 
         node.clear();
         messageObject = MessageObject.build("กินข้าวที่");
+        messageObject.attributes.put("wordCount", 3);
         node.feed(messageObject);
-        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight) / (node.hookMap.size() + messageObject.wordCount() - 3), node.maxActiveResponse.active, delta);
+        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight) / (node.hookMap.size() + 3 - 3), node.maxActiveResponse.active, delta);
 
         node.clear();
         messageObject = MessageObject.build("กินข้าวที่ไหน");
+        messageObject.attributes.put("wordCount", 4);
         node.feed(messageObject);
-        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight) / (node.hookMap.size() + messageObject.wordCount() - 4), node.maxActiveResponse.active, delta);
+        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight) / (node.hookMap.size() + 4 - 4), node.maxActiveResponse.active, delta);
 
         node.clear();
         messageObject = MessageObject.build("กินข้าวที่ไหนดี");
+        messageObject.attributes.put("wordCount", 5);
         node.feed(messageObject);
-        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchTail.initWeight) / (node.hookMap.size() + messageObject.wordCount() - 5), node.maxActiveResponse.active, delta);
+        assertEquals((Node.Mode.MatchHead.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchBody.initWeight + Node.Mode.MatchTail.initWeight) / (node.hookMap.size() + 5 - 5), node.maxActiveResponse.active, delta);
 
     }
 
@@ -275,12 +280,13 @@ public class NodeTest {
         node.clear();
         messageObject = MessageObject.build(messageObject, "");
         node.feed(messageObject);
-        assertEquals(Node.Mode.MatchMode.initWeight / (node.hookMap.size() + messageObject.wordCount() - 1), node.maxActiveResponse.active, delta);
+        assertEquals(Node.Mode.MatchMode.initWeight / (node.hookMap.size() + 0 - 1), node.maxActiveResponse.active, delta);
 
         node.clear();
         messageObject = MessageObject.build(messageObject, "กินดี");
+        messageObject.attributes.put("wordCount", 2);
         node.feed(messageObject);
-        assertEquals((Node.Mode.MatchMode.initWeight + Node.Mode.MatchHead.initWeight + Node.Mode.MatchTail.initWeight) / (node.hookMap.size() + messageObject.wordCount() - 3), node.maxActiveResponse.active, delta);
+        assertEquals((Node.Mode.MatchMode.initWeight + Node.Mode.MatchHead.initWeight + Node.Mode.MatchTail.initWeight) / (node.hookMap.size() + 2 - 3), node.maxActiveResponse.active, delta);
     }
 
 }

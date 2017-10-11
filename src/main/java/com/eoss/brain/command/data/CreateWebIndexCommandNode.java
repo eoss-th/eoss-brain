@@ -84,7 +84,7 @@ public class CreateWebIndexCommandNode extends CommandNode {
                 }
 
                 if (!innerText.isEmpty()) {
-                    newNode = new Node(Context.splitToList(innerText).toArray(new String[0]), null);
+                    newNode = new Node(session.context.splitToList(innerText).toArray(new String[0]), null);
                     newNode.addResponse(linkResponse);
                     context.add(newNode);
                 }

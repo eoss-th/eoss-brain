@@ -27,7 +27,7 @@ public class WebContext extends Context {
         String text, lastText;
         for (String sentence:sentences) {
             text = sentence.trim();
-//            if (Context.splitToList(text).size() > 5) {
+//            if (session.context.splitToList(text).size() > 5) {
             if (text.length() > 20) {
                 sentenceList.add(text);
             } else if (!sentenceList.isEmpty()) {

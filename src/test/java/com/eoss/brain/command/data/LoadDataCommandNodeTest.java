@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class LoadDataCommandNodeTest {
     @Test
     public void execute() throws Exception {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new GAEStorageContext("test", null);

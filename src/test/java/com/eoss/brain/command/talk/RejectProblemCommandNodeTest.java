@@ -18,7 +18,7 @@ public class RejectProblemCommandNodeTest {
 
     @Test
     public void testRejectProblemCommand() {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "ไม่", "ก็แล้วแต่");
 

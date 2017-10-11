@@ -16,7 +16,7 @@ public abstract class Context {
 
     public static final String SUFFIX = ".context";
 
-    private static Locale locale = Locale.getDefault();
+    private Locale locale = Locale.getDefault();
 
     public final String name;
 
@@ -47,6 +47,11 @@ public abstract class Context {
 
     public Context domain(String domain) {
         this.domain = domain;
+        return this;
+    }
+
+    public Context locale(Locale locale) {
+        this.locale = locale;
         return this;
     }
 
@@ -281,7 +286,7 @@ public abstract class Context {
         return matched;
     }
 
-    public static Node build(MessageObject messageObject) {
+    public Node build(MessageObject messageObject) {
 
         String input = messageObject.toString();
 
@@ -307,11 +312,7 @@ public abstract class Context {
         return node;
     }
 
-    public static void setLocale(Locale locale) {
-        Context.locale = locale;
-    }
-
-    public static List<String> splitToList(String input) {
+    public List<String> splitToList(String input) {
 
         List<String> result = new ArrayList<>();
 

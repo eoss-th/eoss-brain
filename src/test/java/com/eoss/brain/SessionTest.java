@@ -13,7 +13,7 @@ public class SessionTest {
 
     @Test
     public void testRelatedEntry() {
-        Context.setLocale(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("th", "TH"));
 
         Context context = new MemoryContext("test");
         Session session = new Session(context);

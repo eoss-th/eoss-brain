@@ -50,6 +50,8 @@ public class BizTalkCommandNode extends CommandNode {
     @Override
     public String execute(final MessageObject messageObject) {
 
+        messageObject.attributes.put("wordCount", session.context.splitToList(messageObject.toString()).size());
+
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
         }
