@@ -63,7 +63,7 @@ public class BizWakeupCommandNode extends CommandNode {
         session.commandList.add(new AdminCommandNode(new EnableTeacherCommandNode(session, new String[]{"เปิดโหมดผู้ช่วยสอน"})));
         session.commandList.add(new AdminCommandNode(new DisableTeacherCommandNode(session, new String[]{"ปิดโหมดผู้ช่วยสอน"})));
 
-        List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "พอ", "ก็แล้วแต่");
+        List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "ไม่", "ก็แล้วแต่");
 
         //Negative Feedback
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"ผิด", "ไม่ใช่", "ม่าย", "หืม"}, "กำ", -0.2f));
@@ -74,7 +74,7 @@ public class BizWakeupCommandNode extends CommandNode {
 
         //Positive Feedback
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"เชร้ด", "เยี่ยม", "แจ่ม", "แจ๋ว", "ใช่เลย", "ถูกต้อง", "เก่งมาก", "ดีมาก", "555", "ขอบคุณ"}, "เขิลลล", 0.2f));
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"ใช่ ถูก เออ ช่าย เก่ง 55 ขอบใจ"}, "อิอิ", 0.1f));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"ใช่", "ถูก", "เออ", "ช่าย", "เก่ง", "55", "ขอบใจ"}, "อิอิ", 0.1f));
 
         session.commandList.add(new ForwardCommandNode(session, new String[]{"แล้ว", "ยังไง", "เหรอ", "ต่อต่อ"}));
         session.commandList.add(new LeaveCommandNode(session, new String[]{"อีดอก", "ควย", "เหี้ย", "สัส", "สัด", "แสด", "เหียก", "สัตว์", "พ่อง", "เย็ด", "แม่ง", "หี", "แสรด", "แตด", "ไป๊", "ออกไป๊", "ไสหัวไป", "ไปซะ", "มึงออกไป", "ออกไป"}, "ใจร้ายย เผ่นดีกว่า\nกดตรงนี้เพื่อเป็นเพื่อนกับเราน้า\n"));
