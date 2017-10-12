@@ -1,5 +1,5 @@
 group 'com.eoss.brain'
-version '0.1.1.4'
+version '0.1.1.6'
 
 apply plugin: 'findbugs'
 apply plugin: 'java'
