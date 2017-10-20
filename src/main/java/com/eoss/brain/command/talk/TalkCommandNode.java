@@ -37,7 +37,7 @@ public class TalkCommandNode extends CommandNode {
 
     @Override
     public String execute(final MessageObject messageObject) {
-
+        messageObject.attributes.put("wordCount", session.context.splitToList(messageObject.toString()).size());
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
         }
@@ -84,7 +84,7 @@ public class TalkCommandNode extends CommandNode {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
             }
         }
-
+        System.out.println("ค่าความมั่นใจ --------" + confidenceRate);
         final float MIN_LOW = 0.05f;
         if (confidenceRate <= MIN_LOW) {
 

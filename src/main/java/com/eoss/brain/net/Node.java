@@ -338,6 +338,7 @@ public class Node {
         }
 
         float totalResponseActive;
+        System.out.println(wordCount);
         for (Response response:responseSet) {
 
             totalResponseActive = 0;
