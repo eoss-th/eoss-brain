@@ -139,12 +139,21 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = multiResponse.replace(System.lineSeparator(), " ");
             }
         }
-        /*
+
         else if (confidenceRate <= 0.75f) {
 
             //responseText += "?";
-
-        } else if (confidenceRate > 1) {
+            session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
+            String multiResponse;
+            responseText = maxActiveNode.hooksString();
+            multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
+            if (session.context.listener!=null) {
+                session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
+                responseText = "";
+            } else {
+                responseText = multiResponse.replace(System.lineSeparator(), " ");
+            }
+        } /*else if (confidenceRate > 1) {
             //Super Confidence
 
         }
