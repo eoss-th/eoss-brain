@@ -79,8 +79,8 @@ public class BizTalkCommandNode extends CommandNode {
             });
         }
 
-        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.90f);
-
+        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.50f);
+        System.out.println("maxActiveNode -----> "+maxActiveNodeList);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -89,6 +89,7 @@ public class BizTalkCommandNode extends CommandNode {
             confidenceRate = 0.0f;
             responseText = "";
         } else {
+
             maxActiveNode = maxActiveNodeList.get(0);
             responseText = maxActiveNode.maxActiveResponseText();
 
@@ -101,6 +102,7 @@ public class BizTalkCommandNode extends CommandNode {
 
         final float MIN_LOW = 0.05f;
         if (confidenceRate <= MIN_LOW) {
+            System.out.println(messageObject.toString()+"3");
 
             if (session.learning) {
                 session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
@@ -115,26 +117,31 @@ public class BizTalkCommandNode extends CommandNode {
             }
 
         } else if (confidenceRate < 0.5f) {
-
+/*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
                 responseList.add(node.maxActiveResponse);
-            }
+            }*/
 
-            session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), responseList, confirmKeys, cancelKeys, cancelMsg));
+            session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
 
             String multiResponse;
-            if (maxActiveNodeList.size()>1) {
+/*            if (maxActiveNodeList.size()>1) {
+                System.out.println(messageObject.toString()+"2.1");
                 String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
                 multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
-            } else {
-                multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(2);
-            }
+            } else {*/
+                System.out.println(messageObject.toString()+"2.2");
+                responseText = maxActiveNode.hooksString();
+                multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
+           /* }*/
 
             if (session.context.listener!=null) {
+                System.out.println(messageObject.toString()+"2.3");
                 session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
                 responseText = "";
             } else {
+                System.out.println(messageObject.toString()+"2.4");
                 responseText = multiResponse.replace(System.lineSeparator(), " ");
             }
         }
@@ -149,6 +156,7 @@ public class BizTalkCommandNode extends CommandNode {
         }
         */
         if (confidenceRate > MIN_LOW) {
+
             session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
             maxActiveNode.maxActiveResponse.clear();
         }

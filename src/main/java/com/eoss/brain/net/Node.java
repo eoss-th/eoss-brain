@@ -3,6 +3,8 @@ package com.eoss.brain.net;
 import com.eoss.brain.MessageObject;
 import java.util.*;
 
+
+
 /**
  * Created by eossth on 7/14/2017 AD.
  */
@@ -191,7 +193,7 @@ public class Node {
     }
 
     private Node(Node node) {
-        hookMap = new HashMap<>(node.hookMap);
+        hookMap = new LinkedHashMap<>(node.hookMap);
         responseSet = new HashSet<>();
         Response newResponse;
         for (Response response:node.responseSet) {
@@ -208,7 +210,7 @@ public class Node {
 
     public Node(String [] hooks, String [] responses, Mode mode) {
 
-        hookMap = new HashMap<>();
+        hookMap = new LinkedHashMap<>();
 
         if (hooks!=null) {
 
@@ -364,6 +366,7 @@ public class Node {
     }
 
     public String maxActiveResponseText() {
+
         if (maxActiveResponse!=null)
             return Node.decode(maxActiveResponse.text);
         return null;
@@ -510,4 +513,14 @@ public class Node {
         return new Node(this);
     }
 
+    public String hooksString(){
+
+        StringBuilder sb = new StringBuilder();
+                Set<String> hookSet = hookMap.keySet();
+                for (String h:hookSet) {
+                    sb.append(h);
+                }
+        return sb.toString().trim().replace("*", "");
+
+    }
 }

@@ -6,6 +6,8 @@ import com.eoss.brain.net.Node;
 import com.eoss.brain.NodeEvent;
 import com.eoss.brain.net.Context;
 
+import java.util.List;
+
 /**
  * Created by eossth on 7/31/2017 AD.
  */
@@ -19,11 +21,12 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
 
     public final String cancelMsg;
 
+
     String cancelReason;
 
     Session.Entry problemEntry;
 
-    RejectProblemCommandNode(Session session, Session.Entry problemEntry, String key, String successMsg, String cancelKey, String cancelMsg) {
+    RejectProblemCommandNode(Session session, Session.Entry problemEntry, String key, String successMsg, String cancelKey, String cancelMsg ) {
 
         super(session);
         this.problemEntry = problemEntry;
@@ -31,6 +34,7 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
         this.successMsg = successMsg;
         this.cancelKey = cancelKey;
         this.cancelMsg = cancelMsg;
+
     }
 
     @Override

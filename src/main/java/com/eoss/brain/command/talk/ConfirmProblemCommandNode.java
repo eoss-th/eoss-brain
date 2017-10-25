@@ -18,19 +18,29 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
 
     public final String cancelMsg;
 
+    public List<Node> maxActive;
+
+    public List<String> confirmMsg;
+
+    public List<String> lowConfidenceKeys;
+
+
     String cancelReason;
 
     MessageObject problemMessageObject;
 
-    List<Response> responseList;
+/*    List<Response> responseList;*/
 
-    public ConfirmProblemCommandNode(Session session, MessageObject problemMessageObject, List<Response> responseList, List<String> keys, List<String> cancelKeys, String cancelMsg) {
+    public ConfirmProblemCommandNode(Session session, MessageObject problemMessageObject, List<String> keys, List<String> cancelKeys,List<String> confirmMsg, String cancelMsg, List<Node> maxActive, List<String> lowConfidenceKeys) {
         super(session);
         this.problemMessageObject = problemMessageObject;
-        this.responseList = responseList;
+/*        this.responseList = responseList;*/
         this.keys = keys;
         this.cancelKeys = cancelKeys;
         this.cancelMsg = cancelMsg;
+        this.maxActive = maxActive;
+        this.confirmMsg = confirmMsg;
+        this.lowConfidenceKeys = lowConfidenceKeys;
     }
 
     @Override
@@ -73,9 +83,36 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
 
         session.clearPool();
 
-        if (cancelReason!=null) return cancelReason;
+        if (cancelReason!=null) {
 
-        if (responseList.size()==1) {
+            if(!maxActive.isEmpty()){
+                maxActive.remove(0);
+
+                if(!maxActive.isEmpty()){
+                    Node maxActiveNode = maxActive.get(0);
+                    session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), keys, cancelKeys,confirmMsg ,cancelMsg, maxActive,lowConfidenceKeys));
+                    String responseText = maxActiveNode.hooksString();
+                    String multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
+                    return multiResponse;
+                }
+            }
+            if(session.learning){
+                Session.Entry lastEntry = session.lastEntry();
+                session.insert(new LowConfidenceProblemCommandNode(session, lastEntry.messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
+                return lastEntry.messageObject + " " + lowConfidenceKeys.get(3);
+            }
+            return cancelReason;
+
+        }
+        System.out.println(maxActive);
+        if(!maxActive.isEmpty()){
+            maxActive.get(0).feed(session.lastEntry().messageObject);
+            String response =  maxActive.get(0).maxActiveResponseText();
+            maxActive.get(0).maxActiveResponse.clear();
+            return response;
+        }
+        return "!! Empty Response";
+/*        if (responseList.size()==1) {
             Response response = responseList.get(0);
             response.feedback(messageObject, 0.1f);
             session.setLastEntry(problemMessageObject, responseList.get(0));
@@ -91,6 +128,6 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
             }
         }
 
-        return new TalkCommandNode(session).execute(messageObject.copy());
+        return new TalkCommandNode(session).execute(messageObject.copy());*/
     }
 }

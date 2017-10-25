@@ -93,7 +93,7 @@ public class BizWakeupCommandNode extends CommandNode {
         session.commandList.add(new ReadCommandNode(session, new String[]{"อ่าน"}, ""));
         session.commandList.add(new GoogleCommandNode(session, new String[]{"ค้นหา"}, 1));
 
-        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "พอ", "ก็แล้วแต่", "คือ?");
+        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ยกเลิก", "ก็แล้วแต่", "คือ?");
 
         List<String> confirmKeys = Arrays.asList("ใช่", "เออ", "อืม", "อือ");
 

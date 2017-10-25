@@ -214,7 +214,6 @@ public abstract class Context {
 
         Map<Float, Set<Node>> orderedNodeMap = new TreeMap<>();
         Set<Node> maxActiveNodeSet;
-
         float active;
         for (Node activeNode:activeNodeSet) {
             active = activeNode.maxActiveResponse.active;
@@ -233,9 +232,11 @@ public abstract class Context {
         float minScore = orderedNodeList.get(orderedNodeList.size()-1).getKey() * minPercentile;
 
         for (int i=orderedNodeList.size()-1;i>=0;i--) {
+
             if (orderedNodeList.get(i).getKey()<minScore) break;
             result.addAll(new ArrayList<>(orderedNodeList.get(i).getValue()));
         }
+
 
         return result;
     }
