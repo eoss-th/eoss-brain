@@ -59,12 +59,12 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
                 if (session.learning) {
                     cancelReason = cancelMsg;
                 } else {
-                    cancelReason = "";
-                    String query =problemMessageObject.toString().trim();
+                    cancelReason = cancelMsg;
+/*                    String query =problemMessageObject.toString().trim();
                     if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
                         query += " site:" + session.context.domain;
                     }
-                    new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
+                    new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));*/
                 }
                 return true;
             }
@@ -96,15 +96,18 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
                     return multiResponse;
                 }
             }
+
             if(session.learning){
                 Session.Entry lastEntry = session.lastEntry();
                 session.insert(new LowConfidenceProblemCommandNode(session, lastEntry.messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
-                return lastEntry.messageObject + " " + lowConfidenceKeys.get(3);
+                return "Learning mode: " + lastEntry.messageObject + " " + lowConfidenceKeys.get(3);
             }
+
+
             return cancelReason;
 
         }
-        System.out.println(maxActive);
+
         if(!maxActive.isEmpty()){
             maxActive.get(0).feed(session.lastEntry().messageObject);
             String response =  maxActive.get(0).maxActiveResponseText();

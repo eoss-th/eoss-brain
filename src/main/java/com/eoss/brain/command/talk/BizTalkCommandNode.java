@@ -79,8 +79,7 @@ public class BizTalkCommandNode extends CommandNode {
             });
         }
 
-        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.50f);
-        System.out.println("maxActiveNode -----> "+maxActiveNodeList);
+        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.70f);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -102,11 +101,10 @@ public class BizTalkCommandNode extends CommandNode {
 
         final float MIN_LOW = 0.05f;
         if (confidenceRate <= MIN_LOW) {
-            System.out.println(messageObject.toString()+"3");
 
             if (session.learning) {
                 session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
-                responseText = messageObject + " " + lowConfidenceKeys.get(3);
+                responseText = "Learning mode: " + messageObject + " " + lowConfidenceKeys.get(3);
             } else {
                 String query = messageObject.toString().trim();
                 if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
@@ -127,21 +125,17 @@ public class BizTalkCommandNode extends CommandNode {
 
             String multiResponse;
 /*            if (maxActiveNodeList.size()>1) {
-                System.out.println(messageObject.toString()+"2.1");
                 String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
                 multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
             } else {*/
-                System.out.println(messageObject.toString()+"2.2");
                 responseText = maxActiveNode.hooksString();
                 multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
            /* }*/
 
             if (session.context.listener!=null) {
-                System.out.println(messageObject.toString()+"2.3");
                 session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
                 responseText = "";
             } else {
-                System.out.println(messageObject.toString()+"2.4");
                 responseText = multiResponse.replace(System.lineSeparator(), " ");
             }
         }
