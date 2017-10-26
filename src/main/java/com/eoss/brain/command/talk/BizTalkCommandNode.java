@@ -86,7 +86,7 @@ public class BizTalkCommandNode extends CommandNode {
         if (maxActiveNodeList.isEmpty()) {
             maxActiveNode = null;
             confidenceRate = 0.0f;
-            responseText = "";
+            responseText = cancelMsg;
         } else {
 
             maxActiveNode = maxActiveNodeList.get(0);
