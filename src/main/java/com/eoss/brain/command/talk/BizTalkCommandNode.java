@@ -79,7 +79,7 @@ public class BizTalkCommandNode extends CommandNode {
             });
         }
 
-        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.70f);
+        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.90f);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -140,7 +140,7 @@ public class BizTalkCommandNode extends CommandNode {
             }
         }
 
-        else if (confidenceRate <= 0.75f) {
+/*        else if (confidenceRate <= 0.75f) {
 
             //responseText += "?";
             session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
@@ -153,7 +153,7 @@ public class BizTalkCommandNode extends CommandNode {
             } else {
                 responseText = multiResponse.replace(System.lineSeparator(), " ");
             }
-        } /*else if (confidenceRate > 1) {
+        }*/ /*else if (confidenceRate > 1) {
             //Super Confidence
 
         }
