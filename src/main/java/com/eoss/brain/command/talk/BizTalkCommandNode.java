@@ -111,7 +111,7 @@ public class BizTalkCommandNode extends CommandNode {
                     query += " site:" + session.context.domain;
                 }
                 new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
-                responseText = "";
+                responseText = cancelMsg;
             }
 
         } else if (confidenceRate < 0.5f) {
