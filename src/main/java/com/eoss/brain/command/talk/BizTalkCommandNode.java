@@ -114,7 +114,7 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = cancelMsg;
             }
 
-        } else if (confidenceRate < 0.75f) {
+        } else if (confidenceRate < 0.5f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
