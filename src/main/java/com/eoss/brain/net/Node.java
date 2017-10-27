@@ -340,7 +340,7 @@ public class Node {
         }
 
         float totalResponseActive;
-        System.out.println(wordCount);
+
         for (Response response:responseSet) {
 
             totalResponseActive = 0;
@@ -518,9 +518,18 @@ public class Node {
         StringBuilder sb = new StringBuilder();
                 Set<String> hookSet = hookMap.keySet();
                 for (String h:hookSet) {
+                    if(h.matches("^[A-Za-z].*$")){
+                        h = " " + h + " ";
+                    }
                     sb.append(h);
                 }
-        return sb.toString().trim().replace("*", "");
+                String [] tokens = sb.toString().trim().replace("*", "").split("\\s+");
+                sb = new StringBuilder();
+                for (String h:tokens) {
+                    sb.append(h+" ");
+                }
+
+        return sb.toString().trim();
 
     }
 }

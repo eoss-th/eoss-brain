@@ -62,7 +62,11 @@ public class FeedbackCommandNode extends CommandNode {
             Node newNode = session.context.build(lastActiveEntry.messageObject);
 
             if (!lastActiveNode.coverHooks(newNode)) {
-                lastActiveNode.addHook(newNode);
+               lastActiveNode.addHook(newNode);
+/*               lastActiveNode.feed(lastActiveEntry.messageObject);
+               newNode.addResponse(lastActiveNode.maxActiveResponseText());
+               session.context.add(newNode);
+               lastActiveNode.maxActiveResponse.clear();*/
             }
 
         }

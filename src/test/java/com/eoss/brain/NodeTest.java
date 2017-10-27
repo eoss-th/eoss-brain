@@ -173,6 +173,11 @@ public class NodeTest {
 
         assertFalse(node.matched(MessageObject.build("ดีกิน")));
     }
+    @Test
+    public void testHookString(){
+        String hook = "ฟฟhellobot";
+        System.out.println(hook.matches("^[A-Za-z].*$"));
+    }
 /*
     @Test
     public void testFeedNull() {
