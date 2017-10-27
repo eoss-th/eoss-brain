@@ -518,12 +518,14 @@ public class Node {
         StringBuilder sb = new StringBuilder();
                 Set<String> hookSet = hookMap.keySet();
                 for (String h:hookSet) {
+                    h = h.replace("*","");
                     if(h.matches("^[A-Za-z].*$")){
                         h = " " + h + " ";
                     }
                     sb.append(h);
                 }
-                String [] tokens = sb.toString().trim().replace("*", "").split("\\s+");
+
+                String [] tokens = sb.toString().trim().split("\\s+");
                 sb = new StringBuilder();
                 for (String h:tokens) {
                     sb.append(h+" ");

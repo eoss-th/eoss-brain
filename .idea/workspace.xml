@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f7e2990-35cb-4eeb-91b0-4be86b40acc1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ConfirmProblemCommandNode.java" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ConfirmProblemCommandNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/com/eoss/brain/command/talk/ConfirmProblemCommandNode.class" afterPath="$PROJECT_DIR$/out/production/classes/com/eoss/brain/command/talk/ConfirmProblemCommandNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/com/eoss/brain/net/Node.class" afterPath="$PROJECT_DIR$/out/production/classes/com/eoss/brain/net/Node.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newTest.context" afterPath="$PROJECT_DIR$/newTest.context" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -46,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfirmProblemCommandNode.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConfirmProblemCommandNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ConfirmProblemCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
@@ -66,35 +70,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContextTestCase.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ContextTestCase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="91">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
               <folding>
                 <element signature="e#516#1303#0" expanded="true" />
                 <element signature="e#1302#1303#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NodeTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/NodeTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="178" column="55" lean-forward="true" selection-start-line="178" selection-start-column="31" selection-end-line="178" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WakeupCommandNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/line/WakeupCommandNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="97" column="51" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="51" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -122,11 +106,21 @@
       <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="528" column="37" lean-forward="false" selection-start-line="528" selection-start-column="37" selection-end-line="528" selection-end-column="37" />
+            <state relative-caret-position="230">
+              <caret line="524" column="33" lean-forward="false" selection-start-line="524" selection-start-column="33" selection-end-line="524" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newTest.context" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newTest.context">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -520,12 +514,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/line/BizWakeupCommandNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/BizTalkCommandNode.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextTestCase.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/NodeTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java" />
-        <option value="$PROJECT_DIR$/newTest.context" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ConfirmProblemCommandNode.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextTestCase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" />
+        <option value="$PROJECT_DIR$/newTest.context" />
       </list>
     </option>
   </component>
@@ -781,6 +775,31 @@
       <envs />
       <patterns />
     </configuration>
+    <configuration name="NodeTest.testMatchNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.eoss.brain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="eoss-brain_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.eoss.brain" />
+      <option name="MAIN_CLASS_NAME" value="com.eoss.brain.NodeTest" />
+      <option name="METHOD_NAME" value="testMatchNull" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration name="SessionTest.tesGroupEntry" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -887,16 +906,18 @@
       <properties />
       <listeners />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.ContextTestCase" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.SessionTest.tesGroupEntry" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.NodeTest.testHookString" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.NodeTest.testMatchNull" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Application.ContextTestCase" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.NodeTest.testHookString" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SessionTest.tesGroupEntry" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.NodeTest.testMatchNull" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.NodeTest.testHookString" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SessionTest.tesGroupEntry" />
       </list>
     </recent_temporary>
   </component>
@@ -944,8 +965,8 @@
     <history-entry file="NodeTest_testHookString - 2560.10.27 at 10h 35m 17s.xml">
       <configuration name="NodeTest.testHookString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SessionTest_tesGroupEntry - 2560.10.20 at 12h 13m 55s.xml">
-      <configuration name="SessionTest.tesGroupEntry" configurationId="JUnit" />
+    <history-entry file="NodeTest_testMatchNull - 2560.10.27 at 13h 16m 38s.xml">
+      <configuration name="NodeTest.testMatchNull" configurationId="JUnit" />
     </history-entry>
     <history-entry file="SessionTest_tesGroupEntry - 2560.10.20 at 12h 14m 26s.xml">
       <configuration name="SessionTest.tesGroupEntry" configurationId="JUnit" />
@@ -953,7 +974,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -963,7 +983,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35704324" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35843793" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1193,24 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="528" column="37" lean-forward="false" selection-start-line="528" selection-start-column="37" selection-end-line="528" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/NodeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="178" column="55" lean-forward="true" selection-start-line="178" selection-start-column="31" selection-end-line="178" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14">
@@ -1224,25 +1226,6 @@
         <state relative-caret-position="221">
           <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newTest.context">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="e#516#1303#0" expanded="true" />
-            <element signature="e#1302#1303#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1275,6 +1258,43 @@
         <state relative-caret-position="231">
           <caret line="115" column="28" lean-forward="true" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/NodeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="524" column="33" lean-forward="false" selection-start-line="524" selection-start-column="33" selection-end-line="524" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newTest.context">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <folding>
+            <element signature="e#516#1303#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
