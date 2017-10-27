@@ -111,6 +111,7 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
         if(!maxActive.isEmpty()){
             maxActive.get(0).feed(session.lastEntry().messageObject);
             String response =  maxActive.get(0).maxActiveResponseText();
+            session.setLastEntry(session.lastEntry().messageObject, maxActive.get(0).maxActiveResponse);
             maxActive.get(0).maxActiveResponse.clear();
             return response;
         }
