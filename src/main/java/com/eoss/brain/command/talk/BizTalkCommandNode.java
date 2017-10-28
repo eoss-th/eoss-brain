@@ -58,14 +58,16 @@ public class BizTalkCommandNode extends CommandNode {
 
         final Set<Node> activeNodeSet = new HashSet<>();
 
-        session.context.matched(messageObject, session.activeNodePool, new ContextListener() {
+        //Short Term Memory
+/*        session.context.matched(messageObject, session.activeNodePool, new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
                 nodeEvent.node.feed(messageObject);
                 activeNodeSet.add(nodeEvent.node);
             }
-        });
+        });*/
 
+        //Long Term Memory
         if (activeNodeSet.isEmpty()) {
             session.context.matched(messageObject, new ContextListener() {
                 @Override
@@ -79,7 +81,7 @@ public class BizTalkCommandNode extends CommandNode {
             });
         }
 
-        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.90f);
+        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.80f);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -98,8 +100,8 @@ public class BizTalkCommandNode extends CommandNode {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
             }
         }
-
-        final float MIN_LOW = 0.05f;
+        System.out.println("CFR : "+confidenceRate);
+        final float MIN_LOW = 0.20f;
         if (confidenceRate <= MIN_LOW) {
 
             if (session.learning) {
@@ -114,16 +116,27 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = cancelMsg;
             }
 
-        } else if (confidenceRate < 0.5f) {
+        } else if (confidenceRate < 0.90f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
                 responseList.add(node.maxActiveResponse);
             }*/
 
-            session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
+            /**
+             * Input > send me the document
+             * Bot > found tomany choice of word "sen me the document" please explain more..
+             *
+             */
+            if(maxActiveNodeList.size() > 2){
+                return messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อย";
 
-            String multiResponse;
+            }else {
+                System.out.println("CFR2 : "+confidenceRate);
+                System.out.println("size=<2");
+                session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
+
+                String multiResponse;
 /*            if (maxActiveNodeList.size()>1) {
                 String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
                 multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
@@ -132,12 +145,15 @@ public class BizTalkCommandNode extends CommandNode {
                 multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
            /* }*/
 
-            if (session.context.listener!=null) {
-                session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
-                responseText = "";
-            } else {
-                responseText = multiResponse.replace(System.lineSeparator(), " ");
+                if (session.context.listener!=null) {
+                    session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
+                    responseText = "";
+                } else {
+                    responseText = multiResponse.replace(System.lineSeparator(), " ");
+                }
+
             }
+
         }
 
 /*        else if (confidenceRate <= 0.75f) {
@@ -158,8 +174,8 @@ public class BizTalkCommandNode extends CommandNode {
 
         }
         */
+        System.out.println(maxActiveNodeList.size());
         if (confidenceRate > MIN_LOW) {
-
             session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
             maxActiveNode.maxActiveResponse.clear();
         }
