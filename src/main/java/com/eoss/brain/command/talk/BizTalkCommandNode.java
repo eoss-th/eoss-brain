@@ -81,7 +81,7 @@ public class BizTalkCommandNode extends CommandNode {
             });
         }
 
-        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.80f);
+        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.90f);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -101,7 +101,7 @@ public class BizTalkCommandNode extends CommandNode {
             }
         }
         System.out.println("CFR : "+confidenceRate);
-        final float MIN_LOW = 0.20f;
+        final float MIN_LOW = 0.14f;
         if (confidenceRate <= MIN_LOW) {
 
             if (session.learning) {
@@ -116,7 +116,7 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = cancelMsg;
             }
 
-        } else if (confidenceRate < 0.90f) {
+        } else if (confidenceRate < 0.75f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
@@ -129,7 +129,7 @@ public class BizTalkCommandNode extends CommandNode {
              *
              */
             if(maxActiveNodeList.size() > 2){
-                return messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อย";
+                return messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
 
             }else {
                 System.out.println("CFR2 : "+confidenceRate);

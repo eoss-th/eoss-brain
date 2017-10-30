@@ -93,13 +93,13 @@ public class BizWakeupCommandNode extends CommandNode {
         session.commandList.add(new ReadCommandNode(session, new String[]{"อ่าน"}, ""));
         session.commandList.add(new GoogleCommandNode(session, new String[]{"ค้นหา"}, 1));
 
-        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ยกเลิก", "ก็แล้วแต่", "คือ?");
+        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ไม่", "ก็แล้วแต่", "คือ?");
 
         List<String> confirmKeys = Arrays.asList("ใช่", "เออ", "อืม", "อือ");
 
         List<String> cancelKeys = Arrays.asList("ไม่", "ไม่ใช่", "หึ");
 
-        List<String> confirmMsg = Arrays.asList("หมายถึง", "หรือว่า", "รึป่าว?");
+        List<String> confirmMsg = Arrays.asList("หมายถึง", "หรือว่า", "รึป่าวค่ะ?");
 
         session.commandList.add(new BizTalkCommandNode(session, lowConfidenceKeys, confirmKeys, cancelKeys, "หาไม่เจอคำถามที่ถามมาค่ะ ช่วยบอกกรุณาบอกให้ละเอียดิีกครั้งค่ะ", confirmMsg));
         //session.commandList.add(new TalkCommandNode(session, lowConfidenceKeys));
