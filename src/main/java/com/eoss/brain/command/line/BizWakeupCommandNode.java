@@ -101,7 +101,7 @@ public class BizWakeupCommandNode extends CommandNode {
 
         List<String> confirmMsg = Arrays.asList("หมายถึง", "หรือว่า", "รึป่าวค่ะ?");
 
-        session.commandList.add(new BizTalkCommandNode(session, lowConfidenceKeys, confirmKeys, cancelKeys, "หาไม่เจอคำถามที่ถามมาค่ะ ช่วยบอกกรุณาบอกให้ละเอียดิีกครั้งค่ะ", confirmMsg));
+        session.commandList.add(new BizTalkCommandNode(session, lowConfidenceKeys, confirmKeys, cancelKeys, "ไม่เจอคำดังกล่าวค่ะ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", confirmMsg));
         //session.commandList.add(new TalkCommandNode(session, lowConfidenceKeys));
 
         return MessageTemplate.STICKER + "1:405";

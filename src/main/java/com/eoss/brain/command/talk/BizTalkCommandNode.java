@@ -24,7 +24,8 @@ public class BizTalkCommandNode extends CommandNode {
     private final List<String> cancelKeys;
     private final String cancelMsg;
     private final List<String> confirmMsg;
-
+    private float MIN_LOW = 0.05f;
+    private float Percentile = 0.00f;
     public BizTalkCommandNode(Session session, List<String> lowConfidenceKeys, List<String> confirmKeys, List<String> cancelKeys, String cancelMsg, List<String> confirmMsg) {
         super(session);
         if (lowConfidenceKeys ==null|| lowConfidenceKeys.size()!=4) throw new IllegalArgumentException("lowConfidenceKeys must have 4 elements");
@@ -59,13 +60,13 @@ public class BizTalkCommandNode extends CommandNode {
         final Set<Node> activeNodeSet = new HashSet<>();
 
         //Short Term Memory
-/*        session.context.matched(messageObject, session.activeNodePool, new ContextListener() {
+        session.context.matched(messageObject, session.activeNodePool, new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
                 nodeEvent.node.feed(messageObject);
                 activeNodeSet.add(nodeEvent.node);
             }
-        });*/
+        });
 
         //Long Term Memory
         if (activeNodeSet.isEmpty()) {
@@ -80,8 +81,14 @@ public class BizTalkCommandNode extends CommandNode {
                 }
             });
         }
-
-        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, 0.90f);
+        if(session.learning){
+            MIN_LOW = 0.20f;
+            Percentile = 0.90f;
+        }else{
+            MIN_LOW = 0.05f;
+            Percentile = 0.50f;
+        }
+        List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, Percentile);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -101,22 +108,23 @@ public class BizTalkCommandNode extends CommandNode {
             }
         }
         System.out.println("CFR : "+confidenceRate);
-        final float MIN_LOW = 0.14f;
+
+
         if (confidenceRate <= MIN_LOW) {
 
             if (session.learning) {
                 session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
-                responseText = "Learning mode: " + messageObject + " " + lowConfidenceKeys.get(3);
+                responseText = "Learning: " + messageObject + " " + lowConfidenceKeys.get(3);
             } else {
-                String query = messageObject.toString().trim();
+/*                String query = messageObject.toString().trim();
                 if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
                     query += " site:" + session.context.domain;
-                }
-                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
-                responseText = cancelMsg;
+                }*/
+/*                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));*/
+                responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
             }
 
-        } else if (confidenceRate < 0.75f) {
+        } else if (confidenceRate <= 0.5f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
