@@ -96,7 +96,7 @@ public class BizWakeupCommandNode extends CommandNode {
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ไม่", "ก็แล้วแต่", "คือ?");
 
-        List<String> confirmKeys = Arrays.asList("ใช่", "เออ", "อืม", "อือ");
+        List<String> confirmKeys = Arrays.asList("ใช่", "เออ", "อืม", "อือ", "ใช่ค่ะ" , "ใช่ครับ");
 
         List<String> cancelKeys = Arrays.asList("ไม่", "ไม่ใช่", "หึ");
 

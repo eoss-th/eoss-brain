@@ -48,11 +48,11 @@ public class Node {
             if (mode == Mode.MatchWhole)
                 return input.equalsIgnoreCase(text);
             if (mode == Mode.MatchHead)
-                return input.startsWith(text);
+                return input.toLowerCase().startsWith(text.toLowerCase());
             if (mode == Mode.MatchTail)
-                return input.endsWith(text);
+                return input.toLowerCase().endsWith(text.toLowerCase());
             if (mode == Mode.MatchBody)
-                return input.contains(text);
+                return input.toLowerCase().contains(text.toLowerCase());
 
             return modeObject!=null && modeObject.toString().equalsIgnoreCase(text);
         }

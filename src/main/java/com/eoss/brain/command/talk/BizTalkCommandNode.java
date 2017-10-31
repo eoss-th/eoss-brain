@@ -100,12 +100,12 @@ public class BizTalkCommandNode extends CommandNode {
 
             maxActiveNode = maxActiveNodeList.get(0);
             responseText = maxActiveNode.maxActiveResponseText();
-            /*confidenceRate = maxActiveNode.maxActiveResponse.active;*/
-            if (maxActiveNodeList.size()==1) {
+            confidenceRate = maxActiveNode.maxActiveResponse.active;
+/*            if (maxActiveNodeList.size()==1) {
                 confidenceRate = maxActiveNode.maxActiveResponse.active;
             } else {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
-            }
+            }*/
         }
         System.out.println("CFR : "+confidenceRate);
 
