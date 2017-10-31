@@ -56,8 +56,6 @@ public class FeedbackCommandNode extends CommandNode {
             if (session.learning) {
                 session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
                 feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " ?";
-            } else {
-                return "";
             }
 
         } else if (feedback > 0) {
