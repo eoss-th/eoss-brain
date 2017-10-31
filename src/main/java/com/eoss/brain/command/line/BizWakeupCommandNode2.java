@@ -80,7 +80,7 @@ public class BizWakeupCommandNode2 extends CommandNode {
         session.commandList.add(new ForwardCommandNode(session, new String[]{"แล้ว", "ยังไง", "เหรอ", "ต่อต่อ"}));
         session.commandList.add(new LeaveCommandNode(session, new String[]{"อีดอก", "ควย", "เหี้ย", "สัส", "สัด", "แสด", "เหียก", "สัตว์", "พ่อง", "เย็ด", "แม่ง", "หี", "แสรด", "แตด", "ไป๊", "ออกไป๊", "ไสหัวไป", "ไปซะ", "มึงออกไป", "ออกไป"}, "ใจร้ายย เผ่นดีกว่า\nกดตรงนี้เพื่อเป็นเพื่อนกับเราน้า\n"));
 
-        session.commandList.add(new SleepCommandNode(session, new String[]{"หลับ"}, new WakeupCommandNode(session, new String[]{"ตื่น"})));
+        session.commandList.add(new SleepCommandNode(session, new String[]{"หลับ"}, new BizWakeupCommandNode2(session, new String[]{"ตื่น"})));
         session.commandList.add(new SpeakCommandNode(session, new String[]{"พูด"}));
         session.commandList.add(new SilentCommandNode(session, new String[]{"เงียบ"}));
 
