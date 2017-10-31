@@ -43,7 +43,7 @@ public class FeedbackCommandNodeTest {
         */
 
         for (Node.Response response:node.responseSet) {
-            for (Float weight:response.hookWeight.values()) {
+            for (Float weight:response.weightList) {
                 assertEquals(Node.Mode.MatchHead.initWeight, weight, 0.001f);
                 break;
             }
@@ -71,7 +71,7 @@ public class FeedbackCommandNodeTest {
         */
 
         for (Node.Response response:node.responseSet) {
-            for (Float weight:response.hookWeight.values()) {
+            for (Float weight:response.weightList) {
                 assertEquals(Node.Mode.MatchHead.initWeight+Node.Mode.MatchHead.initWeight*positiveFeedback, weight, 0.001f);
                 break;
             }
@@ -105,7 +105,7 @@ public class FeedbackCommandNodeTest {
         */
 
         for (Node.Response response:node.responseSet) {
-            for (Float weight:response.hookWeight.values()) {
+            for (Float weight:response.weightList) {
                 assertEquals((Node.Mode.MatchHead.initWeight+Node.Mode.MatchHead.initWeight*positiveFeedback) + (Node.Mode.MatchHead.initWeight+Node.Mode.MatchHead.initWeight*positiveFeedback)*negativeFeedback, weight, 0.001f);
                 break;
             }
@@ -116,16 +116,16 @@ public class FeedbackCommandNodeTest {
 
         assertFalse(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
 
-        assertEquals("หมายถึง ดีครับ รึป่าว?", session.parse(MessageObject.build("สวัสดีครับ")));
+        assertEquals("หมายถึง สวัสดี รึป่าวคะ?", session.parse(MessageObject.build("สวัสดีครับ")));
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("ใช่")));
 
-        assertFalse(node.hookMap.keySet().contains("ครับ"));
+        assertFalse(node.hookList.contains(new Node.Hook("ครับ", Node.Mode.MatchTail)));
 
         assertEquals("อิอิ", feedbackCommandNode.execute(MessageObject.build("ใช่")));
 
         assertFalse(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
 
-        assertTrue(node.hookMap.keySet().contains("ครับ"));
+        assertTrue(node.hookList.contains(new Node.Hook("ครับ", Node.Mode.MatchTail)));
     }
 }

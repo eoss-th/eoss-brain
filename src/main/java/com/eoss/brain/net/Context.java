@@ -127,7 +127,7 @@ public abstract class Context {
         StringBuilder sb = new StringBuilder();
 
         StringBuilder hooks = new StringBuilder();
-        for (Node.Hook hook:node.hookMap.values()) {
+        for (Node.Hook hook:node.hookList) {
             hooks.append(hook);
             hooks.append(" ");
         }
@@ -153,11 +153,15 @@ public abstract class Context {
         sb.append("\t");
 
         StringBuilder weight = new StringBuilder();
-        for (Map.Entry<Node.Hook, Float> entry:response.hookWeight.entrySet()) {
-            weight.append(entry.getKey());
+        int hookIndex = 0;
+        System.out.println(response.owner().hookList);
+        System.out.println(response.weightList);
+        for (Float w:response.weightList) {
+            weight.append(response.owner().hookList.get(hookIndex).text);
             weight.append("=");
-            weight.append(entry.getValue());
+            weight.append(w);
             weight.append(" ");
+            hookIndex ++;
         }
 
         sb.append(weight.toString().trim());
@@ -201,12 +205,13 @@ public abstract class Context {
     public static void addResponse(Node toNode, String text, String hookWeights) {
         Node.Response response = toNode.new Response(text);
         toNode.responseSet.add(response);
+        response.weightList.clear();
 
         String [] hookWeightArray = hookWeights.split(" ");
         String [] hw;
         for (String hookWeight:hookWeightArray) {
             hw = hookWeight.split("=");
-            response.hookWeight.put(toNode.hookMap.get(hw[0]), Float.parseFloat(hw[1]));
+            response.weightList.add(Float.parseFloat(hw[1]));
         }
     }
 

@@ -45,11 +45,9 @@ public class RejectProblemCommandNodeTest {
 
         assertFalse(session.hasProblem());
 
-        assertEquals("หมายถึง ว่าไง รึป่าว?", session.parse(MessageObject.build("นายครับ")));
+        assertEquals("หมายถึง สวัสดีครับ รึป่าวคะ?", session.parse(MessageObject.build("นายครับ")));
 
-        assertEquals("ช่วยบอกให้ละเอียดหน่อย", session.parse(MessageObject.build("ไม่")));
-
-        assertEquals("นายครับ ?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("Learning mode: นายครับ คือ?", session.parse(MessageObject.build("ไม่")));
 
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("ดีครับ")));
 

@@ -31,11 +31,11 @@ public class Node {
 
         private transient float active;
 
-        Hook(String text) {
+        public Hook(String text) {
             this(text, Mode.MatchBody);
         }
 
-        Hook(String text, Mode mode) {
+        public Hook(String text, Mode mode) {
             this.text = text;
             this.mode = mode;
         }
@@ -91,15 +91,15 @@ public class Node {
 
         public transient float active;
 
-        public final Map<Hook, Float> hookWeight;
+        public final List<Float> weightList;
 
         public Response(String text) {
 
             this.text = Node.encode(text);
 
-            hookWeight = new HashMap<>();
-            for (Map.Entry<String, Hook> entry:hookMap.entrySet()) {
-                hookWeight.put(entry.getValue(), entry.getValue().mode.initWeight);
+            weightList = new ArrayList<>();
+            for (Hook hook:hookList) {
+                weightList.add(hook.mode.initWeight);
             }
 
         }
@@ -107,23 +107,20 @@ public class Node {
         private Response(Response response) {
             text = response.text;
             active = response.active;
-            hookWeight = new HashMap<>(response.hookWeight);
+            weightList = new ArrayList<>(response.weightList);
         }
 
         float totalWeight() {
-
             float totalWeight = 0;
-
-            for (Map.Entry<Hook, Float> entry:hookWeight.entrySet()) {
-                totalWeight += entry.getValue();
+            for (Float weight:weightList) {
+                totalWeight += weight;
             }
-
             return totalWeight;
         }
 
         @Override
         public String toString() {
-            return text + hookWeight + active;
+            return text + weightList + active;
         }
 
         public void clear() {
@@ -136,53 +133,54 @@ public class Node {
 
         public void feedback(MessageObject messageObject, float feedback) {
 
-            List<Hook> matchedHookList = new ArrayList<>();
-            for (Hook hook:hookMap.values()) {
+            List<Integer> matchedHookList = new ArrayList<>();
+            int matchedHookIndex = 0;
+            for (Hook hook:hookList) {
                 if (hook.matched(messageObject)) {
-                    matchedHookList.add(hook);
+                    matchedHookList.add(matchedHookIndex);
                 }
+                matchedHookIndex ++;
             }
 
             float weight;
-            for (Hook hook:matchedHookList) {
-                weight = hookWeight.get(hook);
+            for (Integer index:matchedHookList) {
+                weight = weightList.get(index);
                 weight += feedback*weight;
                 if (weight<0) weight = 0;
-                hookWeight.put(hook, weight);
+                weightList.set(index, weight);
             }
 
         }
 
         private void feedback(float feedback) {
 
-            float weight;
-
-            for (Map.Entry<Hook, Float> entry:hookWeight.entrySet()) {
-                weight = entry.getValue();
+            int index = 0;
+            for (Float weight:weightList) {
                 weight += feedback*weight;
-                if (weight<0) weight = 0;
-                hookWeight.put(entry.getKey(), weight);
+                if (weight<0) weight = 0f;
+                weightList.set(index, weight);
+                index ++;
             }
 
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(text, hookWeight);
+            return Objects.hash(text, weightList);
         }
 
         @Override
         public boolean equals(Object obj) {
             if (obj instanceof Response) {
                 Response another = (Response)obj;
-                return Objects.equals(text, another.text) && Objects.equals(hookWeight, another.hookWeight);
+                return Objects.equals(text, another.text) && Objects.equals(weightList, another.weightList);
             }
             return false;
         }
 
     }
 
-    public final Map<String, Hook> hookMap;
+    public final List<Hook> hookList;
 
     public final Set<Response> responseSet;
 
@@ -193,7 +191,7 @@ public class Node {
     }
 
     private Node(Node node) {
-        hookMap = new LinkedHashMap<>(node.hookMap);
+        hookList = new ArrayList<>(node.hookList);
         responseSet = new HashSet<>();
         Response newResponse;
         for (Response response:node.responseSet) {
@@ -210,7 +208,7 @@ public class Node {
 
     public Node(String [] hooks, String [] responses, Mode mode) {
 
-        hookMap = new LinkedHashMap<>();
+        hookList = new ArrayList<>();
 
         if (hooks!=null) {
 
@@ -220,9 +218,9 @@ public class Node {
                 hook = encode(hooks[0].trim());
                 if (!hook.isEmpty()) {
                     if (mode!=null)
-                        hookMap.put(hook, new Hook(hook, mode));
+                        hookList.add(new Hook(hook, mode));
                     else
-                        hookMap.put(hook, new Hook(hook, Mode.MatchHead));
+                        hookList.add(new Hook(hook, Mode.MatchHead));
                 }
 
             } else {
@@ -231,14 +229,14 @@ public class Node {
                     hook = encode(hooks[i].trim());
                     if (!hook.isEmpty()) {
                         if (mode!=null) {
-                            hookMap.put(hook, new Hook(hook, mode));
+                            hookList.add(new Hook(hook, mode));
                         } else {
                             if (i==0)
-                                hookMap.put(hook, new Hook(hook, Mode.MatchHead));
+                                hookList.add(new Hook(hook, Mode.MatchHead));
                             else if (i==hooks.length-1)
-                                hookMap.put(hook, new Hook(hook, Mode.MatchTail));
+                                hookList.add(new Hook(hook, Mode.MatchTail));
                             else
-                                hookMap.put(hook, new Hook(hook, Mode.MatchBody));
+                                hookList.add(new Hook(hook, Mode.MatchBody));
                         }
                     }
                 }
@@ -257,23 +255,22 @@ public class Node {
     }
 
     public boolean coverHooks(Node fromNode) {
-        Collection<Hook> hookCollection = hookMap.values();
-        return hookCollection.containsAll(fromNode.hookMap.values());
+        return hookList.containsAll(fromNode.hookList);
     }
 
     public boolean sameHooks(Node anotherNode) {
-        boolean result = hookMap.equals(anotherNode.hookMap);
+        boolean result = hookList.equals(anotherNode.hookList);
         return result;
     }
 
     public void addHook(Node fromNode) {
         Hook newHook;
-        for (Map.Entry<String, Hook> fromHook:fromNode.hookMap.entrySet()) {
-            if (!hookMap.keySet().contains(fromHook.getKey())) {
-                newHook = new Hook(fromHook.getKey(), fromHook.getValue().mode);
-                hookMap.put(fromHook.getKey(), newHook);
+        for (Hook fromHook:fromNode.hookList) {
+            if (!hookList.contains(fromHook)) {
+                newHook = new Hook(fromHook.text, fromHook.mode);
+                hookList.add(newHook);
                 for (Response response:responseSet) {
-                    response.hookWeight.put(newHook, newHook.mode.initWeight);
+                    response.weightList.add(newHook.mode.initWeight);
                 }
             }
         }
@@ -281,17 +278,17 @@ public class Node {
 
     public void addHook(String input) {
         Hook newHook = new Hook(input);
-        hookMap.put(newHook.toString(), newHook);
+        hookList.add(newHook);
         for (Response response:responseSet) {
-            response.hookWeight.put(newHook, newHook.mode.initWeight);
+            response.weightList.add(newHook.mode.initWeight);
         }
     }
 
     public void addHook(String input, Mode mode) {
         Hook newHook = new Hook(input, mode);
-        hookMap.put(newHook.toString(), newHook);
+        hookList.add(newHook);
         for (Response response:responseSet) {
-            response.hookWeight.put(newHook, newHook.mode.initWeight);
+            response.weightList.add(newHook.mode.initWeight);
         }
     }
 
@@ -308,7 +305,7 @@ public class Node {
     }
 
     public boolean matched(MessageObject messageObject) {
-        for (Hook hook:hookMap.values()) {
+        for (Hook hook:hookList) {
             if (hook.matched(messageObject)) {
                 return true;
             }
@@ -332,7 +329,7 @@ public class Node {
         }
 
         int matchedCount = 0;
-        for (Hook hook:hookMap.values()) {
+        for (Hook hook:hookList) {
             if (hook.matched(messageObject)) {
                 hook.active+=score;
                 matchedCount ++;
@@ -344,14 +341,17 @@ public class Node {
         for (Response response:responseSet) {
 
             totalResponseActive = 0;
-            for (Map.Entry<Hook, Float> entry:response.hookWeight.entrySet()) {
-                totalResponseActive += entry.getKey().active * entry.getValue();
+
+            int hookIndex = 0;
+            for (Float weight:response.weightList) {
+                totalResponseActive += hookList.get(hookIndex).active * weight;
+                hookIndex ++;
             }
 
-            response.active += totalResponseActive / (hookMap.size() + wordCount - matchedCount);
+            response.active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
         }
 
-        for (Hook hook:hookMap.values()) {
+        for (Hook hook:hookList) {
             hook.active = 0;
         }
 
@@ -408,7 +408,7 @@ public class Node {
 
     public float totalActiveHook() {
         float totalActiveHook = 0;
-        for (Hook hook:hookMap.values()) {
+        for (Hook hook:hookList) {
             totalActiveHook += hook.active;
         }
         return totalActiveHook;
@@ -416,72 +416,31 @@ public class Node {
 
     @Override
     public String toString() {
-        return super.toString() + ":" + hookMap.values() + "=>" + responseSet;
+        return super.toString() + ":" + hookList + "=>" + responseSet;
     }
 
     public String clean(String input) {
         String cleanInput = input;
 
-        for (String hookName:hookMap.keySet()) {
-            hookName = hookName.replace("*", "");
+        String hookName;
+        for (Hook hook:hookList) {
+            hookName = hook.text.replace("*", "");
             cleanInput = cleanInput.replace(hookName, "");
         }
 
         return cleanInput.trim();
     }
 
-    public String shortenHooks() {
-
-        StringBuilder hookString = new StringBuilder();
-        for (Map.Entry<String, Hook> entry:hookMap.entrySet()) {
-            if (entry.getValue().mode==Mode.MatchWhole) {
-                hookString.append(entry.getKey());
-                break;
-            }
-        }
-
-        if (hookString.length()>0) return hookString.toString();
-
-        for (Map.Entry<String, Hook> entry:hookMap.entrySet()) {
-            if (entry.getValue().mode==Mode.MatchHead) {
-                hookString.append(entry.getKey());
-                break;
-            }
-        }
-
-        int maxLen = Integer.MIN_VALUE;
-        String maxLenHook = "";
-        for (Map.Entry<String, Hook> entry:hookMap.entrySet()) {
-            if (entry.getValue().mode==Mode.MatchBody) {
-                if (entry.getKey().length() > maxLen) {
-                    maxLen = entry.getKey().length();
-                    maxLenHook = entry.getKey();
-                }
-            }
-        }
-
-        hookString.append(maxLenHook);
-
-        for (Map.Entry<String, Hook> entry:hookMap.entrySet()) {
-            if (entry.getValue().mode==Mode.MatchTail) {
-                hookString.append(entry.getKey());
-                break;
-            }
-        }
-
-        return hookString.toString().replace("*", "").trim();
-    }
-
     @Override
     public int hashCode() {
-        return Objects.hash(hookMap, responseSet);
+        return Objects.hash(hookList, responseSet);
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Node) {
             Node another = (Node)obj;
-            return Objects.equals(hookMap, another.hookMap) && Objects.equals(responseSet, another.responseSet);
+            return Objects.equals(hookList, another.hookList) && Objects.equals(responseSet, another.responseSet);
         }
         return false;
     }
@@ -513,25 +472,25 @@ public class Node {
         return new Node(this);
     }
 
-    public String hooksString(){
+    public String hooksString() {
 
         StringBuilder sb = new StringBuilder();
-                Set<String> hookSet = hookMap.keySet();
-                for (String h:hookSet) {
-                    h = h.replace("*","");
-                    if(h.matches("^[A-Za-z].*$")){
-                        h = " " + h + " ";
-                    }
-                    sb.append(h);
-                }
+        String h;
+        for (Hook hook:hookList) {
+            if (Mode.MatchMode==hook.mode) continue;
+            h = hook.text.replace("*","");
+            if(h.matches("^[A-Za-z].*$")){
+                h = " " + h + " ";
+            }
+            sb.append(h);
+        }
 
-                String [] tokens = sb.toString().trim().split("\\s+");
-                sb = new StringBuilder();
-                for (String h:tokens) {
-                    sb.append(h+" ");
-                }
+        String [] tokens = sb.toString().trim().split("\\s+");
+        sb = new StringBuilder();
+        for (String t:tokens) {
+            sb.append(t+" ");
+        }
 
         return sb.toString().trim();
-
     }
 }

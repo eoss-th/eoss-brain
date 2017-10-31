@@ -100,12 +100,14 @@ public class BizTalkCommandNode extends CommandNode {
 
             maxActiveNode = maxActiveNodeList.get(0);
             responseText = maxActiveNode.maxActiveResponseText();
-
+            confidenceRate = maxActiveNode.maxActiveResponse.active;
+/*
             if (maxActiveNodeList.size()==1) {
                 confidenceRate = maxActiveNode.maxActiveResponse.active;
             } else {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
             }
+            */
         }
         System.out.println("CFR : "+confidenceRate);
 
@@ -124,7 +126,7 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
             }
 
-        } else if (confidenceRate <= 0.5f) {
+        } else if (confidenceRate < 0.5f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {

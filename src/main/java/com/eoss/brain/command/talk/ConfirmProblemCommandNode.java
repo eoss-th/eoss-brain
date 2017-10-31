@@ -56,16 +56,16 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
 
             if (cancelKeys.contains(messageObject.toString())) {
 
-                if (session.learning) {
-                    cancelReason = cancelMsg;
+                cancelReason = cancelMsg;
+/*                if (session.learning) {
                 } else {
                     cancelReason = cancelMsg;
-/*                    String query =problemMessageObject.toString().trim();
+                    String query =problemMessageObject.toString().trim();
                     if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
                         query += " site:" + session.context.domain;
                     }
-                    new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));*/
-                }
+                    new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
+                }*/
                 return true;
             }
 

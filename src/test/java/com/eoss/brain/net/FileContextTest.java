@@ -40,11 +40,11 @@ public class FileContextTest {
 
         context.clear();
         context.load();
-        assertEquals("หมายถึง ครับ รึป่าว?", session.parse(MessageObject.build("สวัสดี")));
+        assertEquals("หมายถึง สวัสดีสบายดีไหม รึป่าวคะ?", session.parse(MessageObject.build("สวัสดี")));
 
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("mode", "เฮฮา");
-        assertEquals("หมายถึง ครับ รึป่าว?", session.parse(messageObject));
+        assertEquals("หมายถึง สวัสดีสบายดีไหม รึป่าวคะ?", session.parse(messageObject));
 
     }
 
@@ -59,11 +59,11 @@ public class FileContextTest {
         Session session = new Session(context);
         new BizWakeupCommandNode(session).execute(null);
 
-        assertEquals("หมายถึง ครับ รึป่าว?", session.parse(MessageObject.build("สวัสดี")));
+        assertEquals("หมายถึง สวัสดีสบายดีไหม รึป่าวคะ?", session.parse(MessageObject.build("สวัสดี")));
 
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("mode", "เฮฮา");
-        assertEquals("หมายถึง ครับ รึป่าว?", session.parse(messageObject));
+        assertEquals("หมายถึง สวัสดีสบายดีไหม รึป่าวคะ?", session.parse(messageObject));
 
     }
 
