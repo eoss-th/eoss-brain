@@ -86,7 +86,7 @@ public class BizTalkCommandNode extends CommandNode {
             Percentile = 0.90f;
         }else{
             MIN_LOW = 0.05f;
-            Percentile = 0.50f;
+            Percentile = 0.80f;
         }
         List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, Percentile);
         Node maxActiveNode;
