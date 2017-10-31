@@ -1,16 +1,16 @@
 package com.eoss.brain.command.line;
 
-import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.MessageTemplate;
+import com.eoss.brain.Session;
 import com.eoss.brain.command.*;
 import com.eoss.brain.command.data.*;
 import com.eoss.brain.command.http.GetCommandNode;
 import com.eoss.brain.command.http.GoogleCommandNode;
 import com.eoss.brain.command.http.ReadCommandNode;
+import com.eoss.brain.command.talk.BizTalkCommandNode;
 import com.eoss.brain.command.talk.BizTalkCommandNode2;
 import com.eoss.brain.command.talk.FeedbackCommandNode;
-import com.eoss.brain.command.talk.BizTalkCommandNode;
 import com.eoss.brain.net.Node;
 
 import java.util.Arrays;
@@ -19,13 +19,13 @@ import java.util.List;
 /**
  * Created by eossth on 7/31/2017 AD.
  */
-public class BizWakeupCommandNode extends CommandNode {
+public class BizWakeupCommandNode2 extends CommandNode {
 
-    public BizWakeupCommandNode(Session session) {
+    public BizWakeupCommandNode2(Session session) {
         this (session, null);
     }
 
-    public BizWakeupCommandNode(Session session, String [] hooks) {
+    public BizWakeupCommandNode2(Session session, String [] hooks) {
         super(session, hooks);
     }
 
@@ -102,7 +102,7 @@ public class BizWakeupCommandNode extends CommandNode {
 
         List<String> confirmMsg = Arrays.asList("หมายถึง", "หรือว่า", "รึป่าวคะ?");
 
-        session.commandList.add(new BizTalkCommandNode(session, lowConfidenceKeys, confirmKeys, cancelKeys, "ขอโทษจริงๆ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", confirmMsg));
+        session.commandList.add(new BizTalkCommandNode2(session, lowConfidenceKeys, confirmKeys, cancelKeys, "ขอโทษจริงๆ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", confirmMsg));
 
         return MessageTemplate.STICKER + "1:405";
     }

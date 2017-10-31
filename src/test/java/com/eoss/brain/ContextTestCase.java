@@ -13,7 +13,7 @@ public class ContextTestCase {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("newTest")
+        Context context = new GAEWebIndexSupportContext(new GAEStorageContext("tmbbusinesstouch-droid"))
                 .callback(new ContextListener() {
                     @Override
                     public void callback(NodeEvent nodeEvent) {
@@ -41,7 +41,7 @@ public class ContextTestCase {
         MessageObject template = MessageObject.build();
         template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
-        session.learning=true;
+        //session.learning=true;
         while(true) {
             System.out.print("You:>>");
             System.out.println("Bot:>>" + session.parse(MessageObject.build(template, scanner.nextLine())));
