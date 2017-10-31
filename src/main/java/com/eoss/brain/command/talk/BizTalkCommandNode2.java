@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * Created by eossth on 7/31/2017 AD.
  */
-public class BizTalkCommandNode extends CommandNode {
+public class BizTalkCommandNode2 extends CommandNode {
 
     private final List<String> lowConfidenceKeys;
     private final List<String> confirmKeys;
@@ -26,7 +26,7 @@ public class BizTalkCommandNode extends CommandNode {
     private final List<String> confirmMsg;
     private float MIN_LOW = 0.05f;
     private float Percentile = 0.00f;
-    public BizTalkCommandNode(Session session, List<String> lowConfidenceKeys, List<String> confirmKeys, List<String> cancelKeys, String cancelMsg, List<String> confirmMsg) {
+    public BizTalkCommandNode2(Session session, List<String> lowConfidenceKeys, List<String> confirmKeys, List<String> cancelKeys, String cancelMsg, List<String> confirmMsg) {
         super(session);
         if (lowConfidenceKeys ==null|| lowConfidenceKeys.size()!=4) throw new IllegalArgumentException("lowConfidenceKeys must have 4 elements");
         this.lowConfidenceKeys = lowConfidenceKeys;
@@ -100,12 +100,14 @@ public class BizTalkCommandNode extends CommandNode {
 
             maxActiveNode = maxActiveNodeList.get(0);
             responseText = maxActiveNode.maxActiveResponseText();
-            /*confidenceRate = maxActiveNode.maxActiveResponse.active;*/
+            confidenceRate = maxActiveNode.maxActiveResponse.active;
+/*
             if (maxActiveNodeList.size()==1) {
                 confidenceRate = maxActiveNode.maxActiveResponse.active;
             } else {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
             }
+            */
         }
         System.out.println("CFR : "+confidenceRate);
 
@@ -124,7 +126,7 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
             }
 
-        } else if (confidenceRate < 0.50f) {
+        } else if (confidenceRate < 0.5f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
@@ -160,6 +162,27 @@ public class BizTalkCommandNode extends CommandNode {
                     responseText = multiResponse.replace(System.lineSeparator(), " ");
                 }
 
+            }
+
+        } else if (confidenceRate < 0.9f && maxActiveNodeList.size()>1) {
+            System.out.println("CFR2 : "+confidenceRate);
+            System.out.println("size=<2");
+            session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
+
+            String multiResponse;
+/*            if (maxActiveNodeList.size()>1) {
+                String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
+                multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
+            } else {*/
+            responseText = maxActiveNode.hooksString();
+            multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
+           /* }*/
+
+            if (session.context.listener!=null) {
+                session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
+                responseText = "";
+            } else {
+                responseText = multiResponse.replace(System.lineSeparator(), " ");
             }
 
         }

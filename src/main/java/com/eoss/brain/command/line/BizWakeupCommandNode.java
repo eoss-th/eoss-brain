@@ -8,6 +8,7 @@ import com.eoss.brain.command.data.*;
 import com.eoss.brain.command.http.GetCommandNode;
 import com.eoss.brain.command.http.GoogleCommandNode;
 import com.eoss.brain.command.http.ReadCommandNode;
+import com.eoss.brain.command.talk.BizTalkCommandNode2;
 import com.eoss.brain.command.talk.FeedbackCommandNode;
 import com.eoss.brain.command.talk.BizTalkCommandNode;
 import com.eoss.brain.net.Node;
