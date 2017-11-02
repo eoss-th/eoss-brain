@@ -30,11 +30,12 @@ public class ContextTestCase {
                         }
                     }
                 }).admin(adminIdList);
+
         //        .domain("hopidea.com");
 
         Session session = new Session(context);
         //Session session = new Session(new MemoryContext("test"));
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");
 

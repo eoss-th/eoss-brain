@@ -20,7 +20,7 @@ public abstract class Context {
 
     public final String name;
 
-    public String domain;
+    //private String domain;
 
     public ContextListener listener;
 
@@ -45,10 +45,11 @@ public abstract class Context {
         return this;
     }
 
+    /*
     public Context domain(String domain) {
         this.domain = domain;
         return this;
-    }
+    }*/
 
     public Context locale(Locale locale) {
         this.locale = locale;
