@@ -124,7 +124,7 @@ public class BizTalkCommandNode extends CommandNode {
                 responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
             }
 
-        } else if (confidenceRate < 0.50f) {
+        } else if (confidenceRate < 0.90f) {
 /*            System.out.println(messageObject.toString()+"2");
             List<Response> responseList = new ArrayList<>();
             for (Node node:maxActiveNodeList) {
@@ -141,25 +141,33 @@ public class BizTalkCommandNode extends CommandNode {
 
             }else {
                 System.out.println("CFR2 : "+confidenceRate);
-                System.out.println("size=<2");
-                session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
+                System.out.println(maxActiveNodeList.size());
+                /*session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));*/
 
                 String multiResponse;
 /*            if (maxActiveNodeList.size()>1) {
                 String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
                 multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
             } else {*/
-                responseText = maxActiveNode.hooksString();
-                multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
+
+                if(maxActiveNodeList.size() > 1){
+                    Node maxActive = maxActiveNodeList.get(0);
+                    Node maxActive1 = maxActiveNodeList.get(1);
+                    responseText = confirmMsg.get(0) + " " + maxActive.hooksString() + " หรือ " + maxActive1.hooksString() +" คะ?";
+                }else {
+                    responseText = maxActiveNodeList.get(0).maxActiveResponseText();
+                }
+
            /* }*/
 
+           /*
                 if (session.context.listener!=null) {
                     session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
                     responseText = "";
                 } else {
                     responseText = multiResponse.replace(System.lineSeparator(), " ");
                 }
-
+*/
             }
 
         }
@@ -182,13 +190,15 @@ public class BizTalkCommandNode extends CommandNode {
 
         }
         */
-        System.out.println(maxActiveNodeList.size());
-        if (confidenceRate > MIN_LOW) {
-            session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
-            maxActiveNode.maxActiveResponse.clear();
-        }
 
         session.add(activeNodeSet);
+
+        if (confidenceRate > MIN_LOW && maxActiveNodeList.size()==1) {
+            session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
+            maxActiveNode.maxActiveResponse.clear();
+            session.clearPool();
+        }
+
 
         return responseText;
     }

@@ -12,8 +12,8 @@ public class Node {
 
     public enum Mode {
         MatchWhole(1.0f),
-        MatchHead(1.0f),
-        MatchBody(0.9f),
+        MatchHead(1.5f),
+        MatchBody(1.2f),
         MatchTail(0.95f),
         MatchMode(1.0f);
 

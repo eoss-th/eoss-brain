@@ -1,6 +1,7 @@
 package com.eoss.brain;
 
 import com.eoss.brain.net.Context;
+import com.eoss.brain.net.FileContext;
 import com.eoss.brain.net.Node;
 import org.junit.Test;
 
@@ -150,6 +151,19 @@ public class NodeTest {
         messageObject.attributes.put("mode", "สวัสดี");
 
         assertFalse(node.matched(messageObject));
+
+        messageObject.attributes.put("mode", "สวัสดีครับ");
+
+        assertTrue(node.matched(messageObject));
+
+        node.addHook("เอกสาร", Node.Mode.MatchHead);
+        node.addHook("ประชุม", Node.Mode.MatchBody);
+        node.addResponse("meeting.doc");
+
+        Context context = new FileContext("test");
+        context.add(node);
+        context.save();
+
     }
 
     @Test
