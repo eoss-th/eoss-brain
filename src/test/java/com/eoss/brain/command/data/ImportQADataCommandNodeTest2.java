@@ -3,6 +3,7 @@ package com.eoss.brain.command.data;
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.line.BizWakeupCommandNode;
+import com.eoss.brain.command.line.BizWakeupCommandNode2;
 import com.eoss.brain.net.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class ImportQADataCommandNodeTest2 {
         Context context = new MemoryContext("test");
         context.admin(adminIdList);
         Session session = new Session(context);
-        new BizWakeupCommandNode(session).execute(null);
+        new BizWakeupCommandNode2(session).execute(null);
 
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
@@ -123,7 +124,7 @@ public class ImportQADataCommandNodeTest2 {
          */
         assertEquals("หมายถึง หากใช้โทรศัพท์มือถือที่ไม่ใช่สมาร์ทโฟนจะสามารถใช้งานทีเอ็มบีทัชได้หรือไม่? รึป่าวคะ?", session.parse(MessageObject.build("ใช้ในต่างประเทศ")));
         assertEquals("หมายถึง สามารถใช้ทีเอ็มบีทัชและทีเอ็มบีอินเทอร์เน็ตแบงก์กิ้งกับโทรศัพท์มือถือหรือแท็บเล็ตที่ผ่านการเจลเบรค/รูท(การปรับแต่งการใช้งานที่ไม่ได้รับการอนุญาต)ได้หรือไม? รึป่าวคะ?", session.parse(MessageObject.build("ไม่")));
-        assertEquals("ไม่เจอคำดังกล่าวค่ะ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", session.parse(MessageObject.build("ไม่")));
+        assertEquals("ขอโทษจริงๆ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", session.parse(MessageObject.build("ไม่")));
         assertEquals("หมายถึง สามารถใช้ทีเอ็มบีทัชหรือทีเอ็มบีอินเทอร์เน็ตแบงก์กิ้งในต่างประเทศได้หรือไม่? รึป่าวคะ?", session.parse(MessageObject.build("อินเทอร์เน็ตแบงก์กิ้งใช้ในต่างประเทศ")));
         assertEquals("กรณีที่เดินทางไปต่างประเทศ ท่านจะต้องทำการเปิดใช้บริการของ ทีเอ็มบี ทัช หรือ ทีเอ็มบี อินเทอร์เน็ตแบงก์กิ้งของท่านให้เรียบร้อยก่อนเดินทาง โดยขณะใช้งาน ท่านจะต้องเชื่อมต่อสัญญาณอินเทอร์เน็ตผ่าน Wi-Fi หรือ ใช้บริการ Data Roaming จากผู้ให้บริการโทรศัพท์มือถือ ที่ท่านใช้บริการอยู่", session.parse(MessageObject.build("ใช่")));
 

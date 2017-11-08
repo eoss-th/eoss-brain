@@ -43,6 +43,7 @@ public class GAEWebIndexSupportContext extends Context {
     @Override
     public boolean matched(MessageObject messageObject, ContextListener listener) {
 
+        /*
         if (!masterContext.matched(messageObject, listener)) {
             for (Context context: supportContextList) {
                 if (context.matched(messageObject, listener)) return true;
@@ -50,14 +51,15 @@ public class GAEWebIndexSupportContext extends Context {
         }
 
         return false;
-        /*
+        */
+
         boolean matched;
         matched = masterContext.matched(messageObject, listener);
         for (Context context : supportContextList) {
             matched |= context.matched(messageObject, listener);
         }
 
-        return matched;*/
+        return matched;
     }
 
     @Override

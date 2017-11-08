@@ -84,7 +84,7 @@ public class TalkCommandNode extends CommandNode {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
             }
         }
-        System.out.println("ค่าความมั่นใจ --------" + confidenceRate);
+
         final float MIN_LOW = 0.05f;
         if (confidenceRate <= MIN_LOW) {
 
@@ -92,12 +92,14 @@ public class TalkCommandNode extends CommandNode {
                 session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
                 responseText = messageObject + " " + lowConfidenceKeys.get(3);
             } else {
+                /*
                 String query = messageObject.toString().trim();
                 if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
                     query += " site:" + session.context.domain;
                 }
                 new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
-                responseText = "";
+                responseText = "";*/
+                responseText = messageObject + " " + lowConfidenceKeys.get(3);
             }
 
         } else if (confidenceRate <= 0.75f) {

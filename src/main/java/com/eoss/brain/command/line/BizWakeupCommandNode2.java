@@ -1,16 +1,16 @@
 package com.eoss.brain.command.line;
 
-import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.MessageTemplate;
+import com.eoss.brain.Session;
 import com.eoss.brain.command.*;
 import com.eoss.brain.command.data.*;
 import com.eoss.brain.command.http.GetCommandNode;
 import com.eoss.brain.command.http.GoogleCommandNode;
 import com.eoss.brain.command.http.ReadCommandNode;
+import com.eoss.brain.command.talk.BizTalkCommandNode;
 import com.eoss.brain.command.talk.BizTalkCommandNode2;
 import com.eoss.brain.command.talk.FeedbackCommandNode;
-import com.eoss.brain.command.talk.BizTalkCommandNode;
 import com.eoss.brain.net.Node;
 
 import java.util.Arrays;
@@ -19,13 +19,13 @@ import java.util.List;
 /**
  * Created by eossth on 7/31/2017 AD.
  */
-public class BizWakeupCommandNode extends CommandNode {
+public class BizWakeupCommandNode2 extends CommandNode {
 
-    public BizWakeupCommandNode(Session session) {
+    public BizWakeupCommandNode2(Session session) {
         this (session, null);
     }
 
-    public BizWakeupCommandNode(Session session, String [] hooks) {
+    public BizWakeupCommandNode2(Session session, String [] hooks) {
         super(session, hooks);
     }
 
@@ -80,7 +80,7 @@ public class BizWakeupCommandNode extends CommandNode {
         session.commandList.add(new ForwardCommandNode(session, new String[]{"แล้ว", "ยังไง", "เหรอ", "ต่อต่อ"}));
         session.commandList.add(new LeaveCommandNode(session, new String[]{"อีดอก", "ควย", "เหี้ย", "สัส", "สัด", "แสด", "เหียก", "สัตว์", "พ่อง", "เย็ด", "แม่ง", "หี", "แสรด", "แตด", "ไป๊", "ออกไป๊", "ไสหัวไป", "ไปซะ", "มึงออกไป", "ออกไป"}, "ใจร้ายย เผ่นดีกว่า\nกดตรงนี้เพื่อเป็นเพื่อนกับเราน้า\n"));
 
-        session.commandList.add(new SleepCommandNode(session, new String[]{"หลับ"}, new BizWakeupCommandNode(session, new String[]{"ตื่น"})));
+        session.commandList.add(new SleepCommandNode(session, new String[]{"หลับ"}, new BizWakeupCommandNode2(session, new String[]{"ตื่น"})));
         session.commandList.add(new SpeakCommandNode(session, new String[]{"พูด"}));
         session.commandList.add(new SilentCommandNode(session, new String[]{"เงียบ"}));
 
@@ -102,7 +102,7 @@ public class BizWakeupCommandNode extends CommandNode {
 
         List<String> confirmMsg = Arrays.asList("หมายถึง", "หรือว่า", "รึป่าวคะ?");
 
-        session.commandList.add(new BizTalkCommandNode(session, lowConfidenceKeys, confirmKeys, cancelKeys, "ขอโทษจริงๆ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", confirmMsg));
+        session.commandList.add(new BizTalkCommandNode2(session, lowConfidenceKeys, confirmKeys, cancelKeys, "ขอโทษจริงๆ กรุณาบอกให้ละเอียดอีกครั้งค่ะ", confirmMsg));
 
         return MessageTemplate.STICKER + "1:405";
     }
