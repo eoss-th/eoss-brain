@@ -82,8 +82,8 @@ public class BizTalkCommandNode extends CommandNode {
             });
         }
         if(session.learning){
-            MIN_LOW = 0.20f;
-            Percentile = 0.90f;
+            MIN_LOW = 0.60f;
+            Percentile = 0.99f;
         }else{
             MIN_LOW = 0.05f;
             Percentile = 0.80f;
@@ -101,7 +101,7 @@ public class BizTalkCommandNode extends CommandNode {
             maxActiveNode = maxActiveNodeList.get(0);
             responseText = maxActiveNode.maxActiveResponseText();
             confidenceRate = maxActiveNode.maxActiveResponse.active;
-/*            if (maxActiveNodeList.size()==1) {
+            /*if (maxActiveNodeList.size()==1) {
                 confidenceRate = maxActiveNode.maxActiveResponse.active;
             } else {
                 confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
@@ -116,20 +116,10 @@ public class BizTalkCommandNode extends CommandNode {
                 session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
                 responseText = "Learning: " + messageObject + " " + lowConfidenceKeys.get(3);
             } else {
-/*                String query = messageObject.toString().trim();
-                if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
-                    query += " site:" + session.context.domain;
-                }*/
-/*                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));*/
                 responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
             }
 
         } else if (confidenceRate < 0.90f) {
-/*            System.out.println(messageObject.toString()+"2");
-            List<Response> responseList = new ArrayList<>();
-            for (Node node:maxActiveNodeList) {
-                responseList.add(node.maxActiveResponse);
-            }*/
 
             /**
              * Input > send me the document
@@ -142,54 +132,34 @@ public class BizTalkCommandNode extends CommandNode {
             }else {
                 System.out.println("CFR2 : "+confidenceRate);
                 System.out.println(maxActiveNodeList.size());
-                /*session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));*/
 
-                String multiResponse;
-/*            if (maxActiveNodeList.size()>1) {
-                String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
-                multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
-            } else {*/
+                if (session.learning){
+                    session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
+                    String multiResponse;
+                    responseText = maxActiveNode.hooksString();
+                    multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
+                    if (session.context.listener!=null) {
+                        session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
+                        responseText = "";
+                    } else {
+                        responseText = multiResponse.replace(System.lineSeparator(), " ");
+                    }
 
-                if(maxActiveNodeList.size() > 1){
-                    Node maxActive = maxActiveNodeList.get(0);
-                    Node maxActive1 = maxActiveNodeList.get(1);
-                    responseText = confirmMsg.get(0) + " " + maxActive.hooksString() + " หรือ " + maxActive1.hooksString() +" คะ?";
                 }else {
-                    responseText = maxActiveNodeList.get(0).maxActiveResponseText();
+
+                    if(maxActiveNodeList.size() > 1){
+                        Node maxActive = maxActiveNodeList.get(0);
+                        Node maxActive1 = maxActiveNodeList.get(1);
+                        responseText = confirmMsg.get(0) + " " + maxActive.hooksString() + " หรือ " + maxActive1.hooksString() +" คะ?";
+                    }else {
+                        responseText = maxActiveNodeList.get(0).maxActiveResponseText();
+                    }
+
                 }
 
-           /* }*/
-
-           /*
-                if (session.context.listener!=null) {
-                    session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
-                    responseText = "";
-                } else {
-                    responseText = multiResponse.replace(System.lineSeparator(), " ");
-                }
-*/
             }
 
         }
-
-/*        else if (confidenceRate <= 0.75f) {
-
-            //responseText += "?";
-            session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
-            String multiResponse;
-            responseText = maxActiveNode.hooksString();
-            multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
-            if (session.context.listener!=null) {
-                session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
-                responseText = "";
-            } else {
-                responseText = multiResponse.replace(System.lineSeparator(), " ");
-            }
-        }*/ /*else if (confidenceRate > 1) {
-            //Super Confidence
-
-        }
-        */
 
         session.add(activeNodeSet);
 

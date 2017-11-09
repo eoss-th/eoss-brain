@@ -6,14 +6,14 @@ import com.eoss.brain.net.*;
 
 import java.util.*;
 
-public class ContextTestCase {
+public class ContextTestCaseNoom {
 
     public static void main(String[]args) throws Exception {
         Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new GAEWebIndexSupportContext(new GAEStorageContext("tmbbusinesstouch-droid"))
+        Context context = new FileContext("newTest")
                 .callback(new ContextListener() {
                     @Override
                     public void callback(NodeEvent nodeEvent) {
@@ -35,14 +35,14 @@ public class ContextTestCase {
 
         Session session = new Session(context);
         //Session session = new Session(new MemoryContext("test"));
-        new WakeupCommandNode(session).execute(null);
+        new BizWakeupCommandNode(session).execute(null);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");
 
         MessageObject template = MessageObject.build();
         template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
-        //session.learning=true;
+        session.learning=true;
         while(true) {
             System.out.print("You:>>");
             System.out.println("Bot:>>" + session.parse(MessageObject.build(template, scanner.nextLine())));
