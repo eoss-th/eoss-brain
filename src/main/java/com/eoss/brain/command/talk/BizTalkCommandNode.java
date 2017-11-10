@@ -153,6 +153,10 @@ public class BizTalkCommandNode extends CommandNode {
                         responseText = confirmMsg.get(0) + " " + maxActive.hooksString() + " หรือ " + maxActive1.hooksString() +" คะ?";
                     }else {
                         responseText = maxActiveNodeList.get(0).maxActiveResponseText();
+                        if(confidenceRate < 0.50f){
+                            responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
+                        }
+
                     }
 
                 }
