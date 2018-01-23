@@ -4,6 +4,7 @@ import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.line.BizWakeupCommandNode;
 import com.eoss.brain.net.FileContext;
+import com.eoss.brain.net.GAEStorageContext;
 import com.eoss.brain.net.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class ImportQADataCommandNodeTest {
         Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("test");
+        Context context = new GAEStorageContext("test");
         context.admin(adminIdList);
         Session session = new Session(context);
         new BizWakeupCommandNode(session).execute(null);
