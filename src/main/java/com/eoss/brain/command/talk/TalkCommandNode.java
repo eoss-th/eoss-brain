@@ -99,12 +99,14 @@ public class TalkCommandNode extends CommandNode {
                 }
                 new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
                 responseText = "";*/
-                responseText = messageObject + " " + lowConfidenceKeys.get(3);
+                responseText = "ช่วยอธิบายให้ระเอียดอีกหน่อยได้ไหมคะ";
             }
 
         } else if (confidenceRate <= 0.75f) {
 
-            responseText += " ?";
+            if (session.learning && lowConfidenceKeys!=null) {
+                responseText += " ?";
+            }
 
         } else if (confidenceRate > 1) {
             //Super Confidence
