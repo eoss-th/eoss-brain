@@ -2,9 +2,9 @@ package com.eoss.brain.command.talk;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.line.BizWakeupCommandNode;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.net.Context;
-import com.eoss.brain.net.MemoryContext;
+import com.eoss.brain.context.MemoryContext;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class LowConfidenceProblemCommandNodeTest {
         Context context = new MemoryContext("test");
         context.admin(adminIdList);
         Session session = new Session(context);
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
         LowConfidenceProblemCommandNode lowConfidenceProblemCommandNode = new LowConfidenceProblemCommandNode(session,
                 MessageObject.build("สวัสดี"), lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2));

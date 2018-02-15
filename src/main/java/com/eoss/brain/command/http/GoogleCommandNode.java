@@ -5,6 +5,7 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import com.eoss.brain.command.CommandNode;
 
+import com.eoss.brain.net.Hook;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -157,7 +158,7 @@ public class GoogleCommandNode extends CommandNode {
     }
 
     public GoogleCommandNode(Session session, String [] hooks, String googleURL, int limit) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
         this.googleURL = googleURL;
         this.limit = limit;
     }

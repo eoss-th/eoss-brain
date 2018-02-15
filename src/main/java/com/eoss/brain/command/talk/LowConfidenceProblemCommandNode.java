@@ -4,7 +4,6 @@ import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.NodeEvent;
-import com.eoss.brain.net.Context;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -41,8 +40,8 @@ public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
                 for (Node protectedFromNode: session.protectedList) {
                     if (protectedFromNode.matched(messageObject)) {
                         protectedFromNode.feed(messageObject);
-                        cancelReason = protectedFromNode.maxActiveResponseText();
-                        protectedFromNode.clear();
+                        cancelReason = protectedFromNode.response();
+                        protectedFromNode.release();
                         if (session.context.listener !=null) {
                             session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.ReservedWords));
                         }
@@ -66,7 +65,8 @@ public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
 
         session.context.add(newNode);
 
-        session.setLastEntry(problemMessage, newNode.addResponse(messageObject.toString()));
+        newNode.setResponse(messageObject.toString());
+        session.setLastEntry(problemMessage, newNode);
 
         return successMsg;
     }

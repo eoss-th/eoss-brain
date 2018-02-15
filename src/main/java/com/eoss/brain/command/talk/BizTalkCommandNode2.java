@@ -5,11 +5,10 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.CommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.NodeEvent;
-import com.eoss.brain.command.http.GoogleCommandNode;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +50,7 @@ public class BizTalkCommandNode2 extends CommandNode {
     @Override
     public String execute(final MessageObject messageObject) {
 
-        messageObject.attributes.put("wordCount", session.context.splitToList(messageObject.toString()).size());
+        messageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
 
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
@@ -99,8 +98,8 @@ public class BizTalkCommandNode2 extends CommandNode {
         } else {
 
             maxActiveNode = maxActiveNodeList.get(0);
-            responseText = maxActiveNode.maxActiveResponseText();
-            confidenceRate = maxActiveNode.maxActiveResponse.active;
+            responseText = maxActiveNode.response();
+            confidenceRate = maxActiveNode.active();
 /*
             if (maxActiveNodeList.size()==1) {
                 confidenceRate = maxActiveNode.maxActiveResponse.active;
@@ -148,10 +147,10 @@ public class BizTalkCommandNode2 extends CommandNode {
 
                 String multiResponse;
 /*            if (maxActiveNodeList.size()>1) {
-                String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
+                String responseText2 = maxActiveNodeList.get(1).response().split("\\s+", 2)[0];
                 multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
             } else {*/
-                responseText = maxActiveNode.hooksString();
+                responseText = Hook.toString(maxActiveNode.hookList());
                 multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
            /* }*/
 
@@ -171,10 +170,10 @@ public class BizTalkCommandNode2 extends CommandNode {
 
             String multiResponse;
 /*            if (maxActiveNodeList.size()>1) {
-                String responseText2 = maxActiveNodeList.get(1).maxActiveResponseText().split("\\s+", 2)[0];
+                String responseText2 = maxActiveNodeList.get(1).response().split("\\s+", 2)[0];
                 multiResponse = confirmMsg.get(0) + System.lineSeparator() + responseText.split("\\s+", 2)[0] + System.lineSeparator() + confirmMsg.get(1) + System.lineSeparator() + responseText2;
             } else {*/
-            responseText = maxActiveNode.hooksString();
+            responseText = Hook.toString(maxActiveNode.hookList());
             multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
            /* }*/
 
@@ -207,8 +206,8 @@ public class BizTalkCommandNode2 extends CommandNode {
         */
         System.out.println(maxActiveNodeList.size());
         if (confidenceRate > MIN_LOW) {
-            session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
-            maxActiveNode.maxActiveResponse.clear();
+            session.setLastEntry(messageObject, maxActiveNode);
+            maxActiveNode.release();
         }
 
         session.add(activeNodeSet);

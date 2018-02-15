@@ -2,6 +2,7 @@ package com.eoss.brain.command;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
 /**
@@ -16,11 +17,11 @@ public abstract class CommandNode extends Node {
     }
 
     public CommandNode(Session session, String [] hooks) {
-        this(session, hooks, Mode.MatchWhole);
+        this(session, hooks, Hook.Match.All);
     }
 
-    public CommandNode(Session session, String [] hooks, Mode mode) {
-        super(hooks, mode);
+    public CommandNode(Session session, String [] hooks, Hook.Match match) {
+        super(Hook.build(hooks, match));
         this.session = session;
     }
 

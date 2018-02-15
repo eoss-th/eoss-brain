@@ -2,7 +2,7 @@ package com.eoss.brain.command.talk;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.http.GoogleCommandNode;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
 import java.util.List;
@@ -91,7 +91,7 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
                 if(!maxActive.isEmpty()){
                     Node maxActiveNode = maxActive.get(0);
                     session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), keys, cancelKeys,confirmMsg ,cancelMsg, maxActive,lowConfidenceKeys));
-                    String responseText = maxActiveNode.hooksString();
+                    String responseText = Hook.toString(maxActiveNode.hookList());
                     String multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
                     return multiResponse;
                 }
@@ -100,7 +100,7 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
             if(session.learning){
                 Session.Entry lastEntry = session.lastEntry();
                 session.insert(new LowConfidenceProblemCommandNode(session, lastEntry.messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
-                return "Learning mode: " + lastEntry.messageObject + " " + lowConfidenceKeys.get(3);
+                return "Learning match: " + lastEntry.messageObject + " " + lowConfidenceKeys.get(3);
             }
 
 
@@ -110,9 +110,9 @@ public class ConfirmProblemCommandNode extends ProblemCommandNode {
 
         if(!maxActive.isEmpty()){
             maxActive.get(0).feed(session.lastEntry().messageObject);
-            String response =  maxActive.get(0).maxActiveResponseText();
-            session.setLastEntry(session.lastEntry().messageObject, maxActive.get(0).maxActiveResponse);
-            maxActive.get(0).maxActiveResponse.clear();
+            String response =  maxActive.get(0).response();
+            session.setLastEntry(session.lastEntry().messageObject, maxActive.get(0));
+            maxActive.get(0).release();
             return response;
         }
         return "!! Empty Response";

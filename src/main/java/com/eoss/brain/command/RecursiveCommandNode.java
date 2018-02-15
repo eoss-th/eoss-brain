@@ -56,7 +56,7 @@ public class RecursiveCommandNode extends CommandNode {
 
                     recursiveResponse = c.execute(
                             MessageObject.build(messageObject,
-                                    session.lastEntry().response.owner().clean(messageObject.toString())));
+                                    session.lastEntry().node.clean(messageObject.toString())));
                     break;
                 }
             }

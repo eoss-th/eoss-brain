@@ -2,8 +2,9 @@ package com.eoss.brain.command.data;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.line.BizWakeupCommandNode;
-import com.eoss.brain.net.MemoryContext;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.FileContext;
+import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
 
@@ -23,15 +24,15 @@ public class ImportRawDataCommandNodeTest {
         Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("test").admin(adminIdList);
+        Context context = new FileContext("raw").admin(adminIdList);
         Session session = new Session(context);
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลดิบ\n" +
-                "มีให้แค่เท่านี้\n" +
+                "มีให้แค่เท่านั้น\n" +
                 "มีเพียงแค่เท่านี้\n" +
                 "ไม่มีมากมาย\n" +
                 "ดังใครเขามี\n" +
@@ -63,6 +64,8 @@ public class ImportRawDataCommandNodeTest {
         assertEquals("ในสังคมไฮโซ", session.parse(MessageObject.build("แล้ว")));
         assertEquals("และจะเจอพี่ได้", session.parse(MessageObject.build("แล้ว")));
         assertEquals("ก็แค่วงไฮโล", session.parse(MessageObject.build("แล้ว")));
+
+        System.out.println(session.parse(MessageObject.build(messageObject,"ดูข้อมูลดิบ")));
 
     }
 

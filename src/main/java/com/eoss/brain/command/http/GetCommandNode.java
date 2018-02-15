@@ -3,6 +3,7 @@ package com.eoss.brain.command.http;
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.CommandNode;
+import com.eoss.brain.net.Hook;
 
 import java.io.*;
 import java.net.URL;
@@ -16,7 +17,7 @@ public class GetCommandNode extends CommandNode {
     public final String url;
 
     public GetCommandNode(Session session, String [] hooks, String url) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
         this.url = url;
     }
 

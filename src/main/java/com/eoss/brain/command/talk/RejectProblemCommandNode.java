@@ -4,9 +4,6 @@ import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.NodeEvent;
-import com.eoss.brain.net.Context;
-
-import java.util.List;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -48,8 +45,8 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
                 for (Node protectedFromNode: session.protectedList) {
                     if (protectedFromNode.matched(messageObject)) {
                         protectedFromNode.feed(messageObject);
-                        cancelReason = protectedFromNode.maxActiveResponseText();
-                        protectedFromNode.clear();
+                        cancelReason = protectedFromNode.response();
+                        protectedFromNode.release();
                         if (session.context.listener !=null) {
                             session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.ReservedWords));
                         }
@@ -72,13 +69,14 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
 
         Node newNode = session.context.build(problemEntry.messageObject);
 
-        if (newNode.sameHooks(problemEntry.response.owner())) {
-            newNode = problemEntry.response.owner();
+        if (newNode.sameHooks(problemEntry.node)) {
+            newNode = problemEntry.node;
         } else {
             session.context.add(newNode);
         }
 
-        session.setLastEntry(problemEntry.messageObject, newNode.addResponse(messageObject.toString()));
+        newNode.setResponse(messageObject.toString());
+        session.setLastEntry(problemEntry.messageObject, newNode);
 
         return successMsg;
     }

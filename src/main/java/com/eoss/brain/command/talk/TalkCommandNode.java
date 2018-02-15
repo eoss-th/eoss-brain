@@ -4,7 +4,6 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.CommandNode;
-import com.eoss.brain.command.http.GoogleCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
@@ -37,7 +36,7 @@ public class TalkCommandNode extends CommandNode {
 
     @Override
     public String execute(final MessageObject messageObject) {
-        messageObject.attributes.put("wordCount", session.context.splitToList(messageObject.toString()).size());
+        messageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
         }
@@ -76,12 +75,12 @@ public class TalkCommandNode extends CommandNode {
             responseText = "";
         } else {
             maxActiveNode = maxActiveNodeList.get(0);
-            responseText = maxActiveNode.maxActiveResponseText();
+            responseText = maxActiveNode.response();
 
             if (maxActiveNodeList.size()==1) {
-                confidenceRate = maxActiveNode.maxActiveResponse.active;
+                confidenceRate = maxActiveNode.active();
             } else {
-                confidenceRate = maxActiveNode.maxActiveResponse.active / maxActiveNodeList.size();
+                confidenceRate = maxActiveNode.active() / maxActiveNodeList.size();
             }
         }
 
@@ -114,8 +113,8 @@ public class TalkCommandNode extends CommandNode {
         }
 
         if (confidenceRate > MIN_LOW) {
-            session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
-            maxActiveNode.maxActiveResponse.clear();
+            session.setLastEntry(messageObject, maxActiveNode);
+            maxActiveNode.release();
         }
 
         session.add(activeNodeSet);

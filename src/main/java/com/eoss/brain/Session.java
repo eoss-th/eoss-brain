@@ -14,10 +14,10 @@ public class Session {
 
     public static class Entry {
         public final MessageObject messageObject;
-        public final Node.Response response;
-        public Entry(MessageObject messageObject, Node.Response response) {
+        public final Node node;
+        public Entry(MessageObject messageObject, Node node) {
             this.messageObject = messageObject;
-            this.response = response;
+            this.node = node;
         }
     }
 
@@ -81,19 +81,19 @@ public class Session {
                 activeNodePool.remove(newActiveNode);
                 activeNodePool.add(newActiveNode);
             }
-            newActiveNode.maxActiveResponse.active *= 0.25f;
+            newActiveNode.release(0.25f);
         }
     }
 
     public void clearPool() {
         for (Node activeNode: activeNodePool) {
-            activeNode.clear();
+            activeNode.release();
         }
         activeNodePool.clear();
     }
 
-    public void setLastEntry(MessageObject messageObject, Node.Response response) {
-        lastEntry = new Entry(messageObject, response);
+    public void setLastEntry(MessageObject messageObject, Node node) {
+        lastEntry = new Entry(messageObject, node);
     }
 
     public void clearLastEntry() {

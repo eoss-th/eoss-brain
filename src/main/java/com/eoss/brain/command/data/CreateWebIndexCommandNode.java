@@ -2,9 +2,10 @@ package com.eoss.brain.command.data;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.command.CommandNode;
-import com.eoss.brain.net.GAEStorageContext;
+import com.eoss.brain.context.GAEStorageContext;
 import com.eoss.brain.net.Context;
 import com.eoss.util.GAEWebStream;
 
@@ -23,7 +24,7 @@ import java.util.Map;
 public class CreateWebIndexCommandNode extends CommandNode {
 
     public CreateWebIndexCommandNode(Session session, String [] hooks) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
     }
 
     @Override
@@ -84,8 +85,8 @@ public class CreateWebIndexCommandNode extends CommandNode {
                 }
 
                 if (!innerText.isEmpty()) {
-                    newNode = new Node(session.context.splitToList(innerText).toArray(new String[0]), null);
-                    newNode.addResponse(linkResponse);
+                    newNode = new Node(Hook.build(session.context.split(innerText)));
+                    newNode.setResponse(linkResponse);
                     context.add(newNode);
                 }
             }

@@ -1,5 +1,7 @@
-package com.eoss.brain.net;
+package com.eoss.brain.context;
 
+import com.eoss.brain.context.WebContext;
+import com.eoss.brain.net.Context;
 import org.junit.Test;
 
 /**

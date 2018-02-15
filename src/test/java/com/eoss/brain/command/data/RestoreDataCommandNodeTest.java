@@ -2,8 +2,8 @@ package com.eoss.brain.command.data;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.line.BizWakeupCommandNode;
-import com.eoss.brain.net.GAEStorageContext;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.GAEStorageContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
 
@@ -26,18 +26,18 @@ public class RestoreDataCommandNodeTest {
         context.admin(adminIdList);
         Session session = new Session(context);
         session.learning = true;
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject, "กู้ข้อมูล")));
 
-        assertEquals("หมายถึง สวัสดีสบายดีไหม รึป่าวคะ?", session.parse(MessageObject.build("สวัสดี")));
+        assertEquals("โทรศัพท์มือถือที่ไม่ใช่สมาร์ทโฟนจะไม่สามารถใช้งาน ทีเอ็มบี ทัช ได้ ?", session.parse(MessageObject.build("สวัสดี")));
 
         messageObject = MessageObject.build();
         messageObject.attributes.put("mode", "เฮฮา");
-        assertEquals("หมายถึง สวัสดีสบายดีไหม รึป่าวคะ?", session.parse(messageObject));
+        assertEquals(" คือ?", session.parse(messageObject));
     }
 
 }

@@ -2,11 +2,10 @@ package com.eoss.brain.command.data;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.net.FileContext;
-import com.eoss.brain.net.Node;
+import com.eoss.brain.context.FileContext;
+import com.eoss.brain.context.GAEStorageContext;
+import com.eoss.brain.net.*;
 import com.eoss.brain.command.CommandNode;
-import com.eoss.brain.net.Context;
-import com.eoss.brain.net.GAEStorageContext;
 import com.eoss.util.FileStream;
 import com.eoss.util.GAEWebStream;
 import com.eoss.util.Stream;
@@ -30,7 +29,7 @@ public class ImportRawDataFromWebCommandNode extends CommandNode {
     }
 
     public ImportRawDataFromWebCommandNode(Session session, String [] hooks, File dir) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
         this.dir = dir;
     }
 
@@ -49,7 +48,7 @@ public class ImportRawDataFromWebCommandNode extends CommandNode {
             String text, lastText;
             for (String sentence:sentences) {
                 text = sentence.trim();
-//            if (session.context.splitToList(text).size() > 5) {
+//            if (session.context.split(text).size() > 5) {
                 if (text.length() > 20) {
                     sentenceList.add(text);
                 } else if (!sentenceList.isEmpty()) {
@@ -76,11 +75,11 @@ public class ImportRawDataFromWebCommandNode extends CommandNode {
             for (String sentence:sentenceList) {
 
                 if (newNode!=null) {
-                    newNode.addResponse(sentence);
+                    newNode.setResponse(sentence);
                     context.add(newNode);
                 }
 
-                newNode = new Node(session.context.splitToList(sentence).toArray(new String[0]), null);
+                newNode = new Node(Hook.build(session.context.split(sentence)));
             }
 
             context.save();

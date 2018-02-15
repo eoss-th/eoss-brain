@@ -1,8 +1,9 @@
-package com.eoss.brain;
+package com.eoss.brain.net;
 
-import com.eoss.brain.command.line.BizWakeupCommandNode;
-import com.eoss.brain.command.line.WakeupCommandNode;
-import com.eoss.brain.net.MemoryContext;
+import com.eoss.brain.MessageObject;
+import com.eoss.brain.Session;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
 
@@ -38,18 +39,18 @@ public class SessionTest {
         Context context = new MemoryContext("test");
         Session session = new Session(context);
         session.learning = true;
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
-        assertEquals("Learning: หึหึ คือ?", session.parse(MessageObject.build("หึหึ")));
+        assertEquals("หึหึ คือ?", session.parse(MessageObject.build("หึหึ")));
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("หุหุ")));
 
-        assertEquals("Learning: ทักทาย คือ?", session.parse(MessageObject.build("ทักทาย")));
+        assertEquals("ทักทาย คือ?", session.parse(MessageObject.build("ทักทาย")));
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("ว่าไง")));
 
-        assertEquals("Learning: ว่าไง คือ?", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("ว่าไง คือ?", session.parse(MessageObject.build("ว่าไง")));
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("ไม่ว่าไง")));
 
-        assertEquals("ว่าไง", session.parse(MessageObject.build("ทักทาย ว่าไง")));
+        assertEquals("ว่าไง ?", session.parse(MessageObject.build("ทักทาย ว่าไง")));
         assertEquals("ทักทาย ว่าไง ?", session.parse(MessageObject.build("ไม่")));
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("สบายดี")));
 
@@ -57,7 +58,7 @@ public class SessionTest {
          * Related Talking
          */
         assertEquals("ว่าไง", session.parse(MessageObject.build("ทักทาย")));
-        assertEquals("สบายดี", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("สบายดี ?", session.parse(MessageObject.build("ว่าไง")));
 
         /**
          * Reset Stack

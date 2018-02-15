@@ -2,9 +2,9 @@ package com.eoss.brain.command;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.line.BizWakeupCommandNode;
+import com.eoss.brain.command.wakeup.BizWakeupCommandNode;
 import com.eoss.brain.net.Context;
-import com.eoss.brain.net.MemoryContext;
+import com.eoss.brain.context.MemoryContext;
 import org.junit.Test;
 
 import java.util.Arrays;

@@ -1,9 +1,10 @@
 package com.eoss.brain.command.data;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
-import com.eoss.brain.command.line.BizWakeupCommandNode;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.net.Context;
-import com.eoss.brain.net.GAEStorageContext;
+import com.eoss.brain.context.GAEStorageContext;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -25,9 +26,11 @@ public class LoadDataCommandNodeTest {
         context.admin(adminIdList);
         Session session = new Session(context);
 
-        assertEquals(0, context.dataSet.size());
-        new BizWakeupCommandNode(session).execute(null);
-        assertTrue(context.dataSet.size() > 0);
+        assertEquals(0, context.nodeList.size());
+        new WakeupCommandNode(session).execute(null);
+        assertTrue(context.nodeList.size() > 0);
+
+        assertEquals("ทีเอ็มบี ทัช รองรับระบบปฏิบัติการ iOS Version 7.0 ขึ้นไป และ Android 4.0 ขึ้นไปจ้ะ", session.parse(MessageObject.build("รองรับระบบปฏิบัติการ")));
 
     }
 

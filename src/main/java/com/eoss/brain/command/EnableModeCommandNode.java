@@ -2,6 +2,7 @@ package com.eoss.brain.command;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.net.Hook;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -9,7 +10,7 @@ import com.eoss.brain.MessageObject;
 public class EnableModeCommandNode extends CommandNode {
 
     public EnableModeCommandNode(Session session, String [] hooks) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
     }
 
     @Override

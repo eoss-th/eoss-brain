@@ -2,10 +2,11 @@ package com.eoss.brain.command.talk;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.line.BizWakeupCommandNode;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.net.Context;
-import com.eoss.brain.net.MemoryContext;
+import com.eoss.brain.context.MemoryContext;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -27,17 +28,17 @@ public class RejectProblemCommandNodeTest {
         context.admin(adminIdList);
         Session session = new Session(context);
         session.learning = true;
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
-        Node node = new Node(new String[]{"สวัสดี"}, new String[]{"ดีครับ"}, null);
+        Node node = new Node(Hook.build(new String[]{"สวัสดี"}), "ดีครับ");
 
         context.add(node);
 
-        assertTrue(1 == context.dataSet.size());
+        assertTrue(1 == context.nodeList.size());
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดี")));
 
-        assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดีครับ")));
+        assertEquals("ดีครับ ?", session.parse(MessageObject.build("สวัสดีครับ")));
 
         session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
 
@@ -45,9 +46,9 @@ public class RejectProblemCommandNodeTest {
 
         assertFalse(session.hasProblem());
 
-        assertEquals("หมายถึง สวัสดีครับ รึป่าวคะ?", session.parse(MessageObject.build("นายครับ")));
+        assertEquals("ว่าไง ?", session.parse(MessageObject.build("นายครับ")));
 
-        assertEquals("Learning mode: นายครับ คือ?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("นายครับ ?", session.parse(MessageObject.build("ไม่")));
 
         assertEquals("เข้าใจละ", session.parse(MessageObject.build("ดีครับ")));
 

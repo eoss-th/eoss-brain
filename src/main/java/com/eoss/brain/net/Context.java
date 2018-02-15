@@ -1,8 +1,8 @@
 package com.eoss.brain.net;
 
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.MessageTemplate;
 import com.eoss.brain.NodeEvent;
+import org.json.JSONArray;
 
 import java.text.BreakIterator;
 import java.util.*;
@@ -20,15 +20,13 @@ public abstract class Context {
 
     public final String name;
 
-    //private String domain;
-
     public ContextListener listener;
 
     private List<String> adminIdList = new ArrayList<>();
 
     protected ReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public final Set<Node> dataSet = new HashSet<>();
+    public final List<Node> nodeList = new ArrayList<>();
 
     public Context(String name) {
         this.name = name;
@@ -45,15 +43,13 @@ public abstract class Context {
         return this;
     }
 
-    /*
-    public Context domain(String domain) {
-        this.domain = domain;
-        return this;
-    }*/
-
     public Context locale(Locale locale) {
         this.locale = locale;
         return this;
+    }
+
+    public Locale locale() {
+        return locale;
     }
 
     public boolean isAdmin(String userId) {
@@ -62,7 +58,7 @@ public abstract class Context {
 
     protected abstract void doLoad(String name) throws Exception ;
 
-    protected abstract void doSave(String name, Set<Node> dataSet) ;
+    protected abstract void doSave(String name, List<Node> nodeList) ;
 
     public void load() throws Exception {
         load(name);
@@ -84,7 +80,7 @@ public abstract class Context {
     public void save(String name) {
         lock.readLock().lock();
         try {
-            doSave(name, new HashSet<Node>(dataSet));
+            doSave(name, nodeList);
         } finally {
             lock.readLock().unlock();
         }
@@ -93,7 +89,7 @@ public abstract class Context {
     public void add(Node newNode) {
         lock.writeLock().lock();
         try {
-            dataSet.add(newNode);
+            nodeList.add(newNode);
         } finally {
             lock.writeLock().unlock();
         }
@@ -102,7 +98,7 @@ public abstract class Context {
     public void clear() {
         lock.writeLock().lock();
         try {
-            dataSet.clear();
+            nodeList.clear();
         } finally {
             lock.writeLock().unlock();
         }
@@ -113,7 +109,7 @@ public abstract class Context {
         lock.readLock().lock();
         StringBuilder data = new StringBuilder();
         try {
-            for (Node node:dataSet) {
+            for (Node node: nodeList) {
                 data.append(node);
                 data.append(System.lineSeparator());
             }
@@ -123,97 +119,20 @@ public abstract class Context {
         return data.toString();
     }
 
-    public static String toString(Node node) {
-
-        StringBuilder sb = new StringBuilder();
-
-        StringBuilder hooks = new StringBuilder();
-        for (Node.Hook hook:node.hookList) {
-            hooks.append(hook);
-            hooks.append(" ");
+    public static List<Node> build(JSONArray jsonArray) {
+        List<Node> nodeList = new ArrayList<>();
+        for (int i=0;i<jsonArray.length();i++) {
+            nodeList.add(Node.build(jsonArray.getJSONObject(i)));
         }
-
-        sb.append(hooks.toString().trim());
-        sb.append(System.lineSeparator());
-
-        StringBuilder responses = new StringBuilder();
-        for (Node.Response response:node.responseSet) {
-            responses.append(" ");
-            responses.append(toString(response));
-            responses.append(System.lineSeparator());
-        }
-
-        sb.append(responses.toString());
-
-        return sb.toString();
+        return nodeList;
     }
 
-    public static String toString(Node.Response response) {
-
-        StringBuilder sb = new StringBuilder(response.text);
-        sb.append("\t");
-
-        StringBuilder weight = new StringBuilder();
-        int hookIndex = 0;
-        System.out.println(response.owner().hookList);
-        System.out.println(response.weightList);
-        for (Float w:response.weightList) {
-            weight.append(response.owner().hookList.get(hookIndex).text);
-            weight.append("=");
-            weight.append(w);
-            weight.append(" ");
-            hookIndex ++;
+    public static JSONArray json(List<Node> nodeList) {
+        JSONArray jsonArray = new JSONArray();
+        for (Node node:nodeList) {
+            jsonArray.put(Node.json(node));
         }
-
-        sb.append(weight.toString().trim());
-
-        return sb.toString();
-    }
-
-    public static Node parse(String lineHooks) {
-
-        Node node = new Node();
-
-        if (lineHooks!=null) {
-            String [] hookArray = lineHooks.split(" ");
-
-            Node.Mode mode;
-            for (String hook:hookArray) {
-                hook = hook.trim();
-                if (hook.isEmpty()==false) {
-                    if (hook.startsWith("[") && hook.endsWith("]"))
-                        mode = Node.Mode.MatchMode;
-                    else if (hook.startsWith("*") && hook.endsWith("*"))
-                        mode = Node.Mode.MatchBody;
-                    else if (hook.startsWith("*"))
-                        mode = Node.Mode.MatchTail;
-                    else if (hook.endsWith("*"))
-                        mode = Node.Mode.MatchHead;
-                    else
-                        mode = Node.Mode.MatchWhole;
-
-                    hook = hook.replace("*", "");
-                    hook = hook.replace("[", "");
-                    hook = hook.replace("]", "");
-
-                    node.addHook(hook, mode);
-                }
-            }
-        }
-        return node;
-    }
-
-    public static void addResponse(Node toNode, String text, String hookWeights) {
-        Node.Response response = toNode.new Response(text);
-        toNode.responseSet.add(response);
-        response.weightList.clear();
-
-        String [] hookWeightArray = hookWeights.split(" ");
-        String [] hw;
-        for (String hookWeight:hookWeightArray) {
-            hw = hookWeight.split("=");
-            response.weightList.add(Float.parseFloat(hw[1]));
-        }
+        return jsonArray;
     }
 
     public static List<Node> findActiveNodes(Set<Node> activeNodeSet, float minPercentile) {
@@ -222,7 +141,7 @@ public abstract class Context {
         Set<Node> maxActiveNodeSet;
         float active;
         for (Node activeNode:activeNodeSet) {
-            active = activeNode.maxActiveResponse.active;
+            active = activeNode.active();
             maxActiveNodeSet = orderedNodeMap.get(active);
             if (maxActiveNodeSet==null) {
                 maxActiveNodeSet = new HashSet<>();
@@ -254,7 +173,7 @@ public abstract class Context {
     public Set<Node> feed(MessageObject messageObject, float matchedScore) {
         lock.writeLock().lock();
         try {
-            return feed(messageObject, matchedScore, dataSet);
+            return feed(messageObject, matchedScore, new HashSet<>(nodeList));
         } finally {
             lock.writeLock().unlock();
         }
@@ -276,7 +195,7 @@ public abstract class Context {
     public boolean matched(MessageObject messageObject, ContextListener listener) {
         lock.writeLock().lock();
         try {
-            return matched(messageObject, dataSet, listener);
+            return matched(messageObject, new HashSet<>(nodeList), listener);
         } finally {
             lock.writeLock().unlock();
         }
@@ -297,29 +216,18 @@ public abstract class Context {
 
         String input = messageObject.toString();
 
-        Node node;
-        if (input.startsWith(MessageTemplate.STICKER) ||
-                (input.startsWith(MessageTemplate.IMAGE) && input.endsWith(".jpg")) ||
-                (input.startsWith(MessageTemplate.AUDIO) && input.endsWith(".mp4")) ||
-                (input.startsWith(MessageTemplate.VIDEO) && input.endsWith(".mp4"))
-                ) {
-            node = new Node(new String[]{input}, Node.Mode.MatchWhole);
-        } else if (input.startsWith("#")) {
-            node = new Node(new String[]{input.substring(1)}, Node.Mode.MatchWhole);
-        } else {
-            node = new Node(splitToList(input).toArray(new String[0]), null);
-        }
+        Node node = new Node(Hook.build(split(input)));
 
         Object mode = messageObject.attributes.get("mode");
 
         if (mode!=null && !mode.toString().trim().isEmpty()) {
-            node.addHook(mode.toString().trim(), Node.Mode.MatchMode);
+            node.addHook(mode.toString().trim(), Hook.Match.Mode);
         }
 
         return node;
     }
 
-    public List<String> splitToList(String input) {
+    public String [] split(String input) {
 
         List<String> result = new ArrayList<>();
 
@@ -338,13 +246,13 @@ public abstract class Context {
             wordBoundaryIndex = breakIterator.next();
         }
 
-        return result;
+        return result.toArray(new String[result.size()]);
     }
 
     public boolean isEmpty() {
         lock.readLock().lock();
         try {
-            return dataSet.isEmpty();
+            return nodeList.isEmpty();
         } finally {
             lock.readLock().unlock();
         }

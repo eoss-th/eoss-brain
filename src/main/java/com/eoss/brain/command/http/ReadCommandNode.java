@@ -4,6 +4,7 @@ import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.CommandNode;
 
+import com.eoss.brain.net.Hook;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -17,7 +18,7 @@ public class ReadCommandNode extends CommandNode {
     public final String url;
 
     public ReadCommandNode(Session session, String [] hooks, String url) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
         this.url = url;
     }
 

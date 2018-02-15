@@ -1,9 +1,12 @@
-package com.eoss.brain.net;
+package com.eoss.brain.context;
 
-import com.eoss.brain.Session;
+import com.eoss.brain.net.Context;
+import com.eoss.brain.net.Node;
+import org.json.JSONArray;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -43,22 +46,13 @@ public class FileContext extends Context {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(getFile()), StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
             String line;
-            Node node = null;
-            String[] hookWeight;
-            dataSet.clear();
-            while (true) {
-                line = br.readLine();
-                if (line == null) break;
-                if (line.isEmpty()) continue;
-                if (!line.startsWith(" ")) {
-                    node = parse(line);
-                    dataSet.add(node);
-                } else {
-                    hookWeight = line.trim().split("\t");
-                    addResponse(node, hookWeight[0], hookWeight[1]);
-                }
+            while ((line = br.readLine())!=null) {
+                sb.append(line);
             }
+            nodeList.clear();
+            nodeList.addAll(build(new JSONArray(sb.toString())));
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -68,16 +62,12 @@ public class FileContext extends Context {
     }
 
     @Override
-    public void doSave(String name, Set<Node> dataSet) {
+    public void doSave(String name, List<Node> nodeList) {
         OutputStreamWriter out = null;
         try {
-            StringBuilder data = new StringBuilder();
-            for (Node node:dataSet) {
-                data.append(toString(node));
-            }
             out = new OutputStreamWriter(
                     new FileOutputStream(getFile(), false), StandardCharsets.UTF_8);
-            out.write(data.toString().trim());
+            out.write(json(nodeList).toString());
             out.flush();
         } catch (Exception e) {
             e.printStackTrace();

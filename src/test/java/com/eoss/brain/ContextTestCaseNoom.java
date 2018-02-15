@@ -1,7 +1,8 @@
 package com.eoss.brain;
 
-import com.eoss.brain.command.line.BizWakeupCommandNode;
-import com.eoss.brain.command.line.WakeupCommandNode;
+import com.eoss.brain.command.wakeup.BizWakeupCommandNode;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.FileContext;
 import com.eoss.brain.net.*;
 
 import java.util.*;
@@ -13,7 +14,7 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("newTest")
+        Context context = new FileContext("raw")
                 .callback(new ContextListener() {
                     @Override
                     public void callback(NodeEvent nodeEvent) {
@@ -35,7 +36,7 @@ public class ContextTestCaseNoom {
 
         Session session = new Session(context);
         //Session session = new Session(new MemoryContext("test"));
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");
 

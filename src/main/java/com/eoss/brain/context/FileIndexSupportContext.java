@@ -1,6 +1,9 @@
-package com.eoss.brain.net;
+package com.eoss.brain.context;
 
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.net.Context;
+import com.eoss.brain.net.ContextListener;
+import com.eoss.brain.net.Node;
 import com.eoss.util.FileStream;
 
 import java.util.ArrayList;
@@ -56,7 +59,7 @@ public class FileIndexSupportContext extends Context {
     protected void doLoad(String name) throws Exception {}
 
     @Override
-    protected void doSave(String name, Set<Node> dataSet) {}
+    protected void doSave(String name, List<Node> nodeList) {}
 
     @Override
     public void load() throws Exception {

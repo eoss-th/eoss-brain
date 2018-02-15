@@ -1,5 +1,9 @@
-package com.eoss.brain.net;
+package com.eoss.brain.context;
 
+import com.eoss.brain.net.Context;
+import com.eoss.brain.net.Node;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +20,7 @@ public class MemoryContext extends Context {
     }
 
     @Override
-    public void doSave(String name, Set<Node> dataSet) {
+    public void doSave(String name, List<Node> nodeList) {
     }
 
 }

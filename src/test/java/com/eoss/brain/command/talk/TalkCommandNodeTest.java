@@ -2,7 +2,7 @@ package com.eoss.brain.command.talk;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.net.MemoryContext;
+import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
 

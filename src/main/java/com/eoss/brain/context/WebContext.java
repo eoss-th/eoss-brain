@@ -1,5 +1,7 @@
-package com.eoss.brain.net;
+package com.eoss.brain.context;
 
+import com.eoss.brain.net.Context;
+import com.eoss.brain.net.Node;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -27,7 +29,7 @@ public class WebContext extends Context {
         String text, lastText;
         for (String sentence:sentences) {
             text = sentence.trim();
-//            if (session.context.splitToList(text).size() > 5) {
+//            if (session.context.split(text).size() > 5) {
             if (text.length() > 20) {
                 sentenceList.add(text);
             } else if (!sentenceList.isEmpty()) {
@@ -43,7 +45,7 @@ public class WebContext extends Context {
     }
 
     @Override
-    public void doSave(String name, Set<Node> dataSet) {
+    public void doSave(String name, List<Node> nodeList) {
     }
 
 }

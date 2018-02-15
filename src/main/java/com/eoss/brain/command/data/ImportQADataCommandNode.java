@@ -2,13 +2,17 @@ package com.eoss.brain.command.data;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.command.CommandNode;
-import com.eoss.brain.net.Context;
 import com.eoss.util.GAEWebStream;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -20,7 +24,7 @@ public class ImportQADataCommandNode extends CommandNode {
     public final String aKey;
 
     public ImportQADataCommandNode(Session session, String [] hooks, String qKey, String aKey) {
-        super(session, hooks, Mode.MatchHead);
+        super(session, hooks, Hook.Match.Head);
         this.qKey = qKey;
         this.aKey = aKey;
     }
@@ -34,14 +38,8 @@ public class ImportQADataCommandNode extends CommandNode {
 
             if (anotherContextName==null)
                 session.context.save();
-            else {
+            else
                 session.context.save(anotherContextName);
-                GAEWebStream gaeWebStream = new GAEWebStream(session.context.name + ".index");
-                String indexData = gaeWebStream.read();
-                if (!indexData.contains(anotherContextName)) {
-                    gaeWebStream.write(indexData + anotherContextName + System.lineSeparator());
-                }
-            }
 
             return successMsg();
         } catch (Exception e) {
@@ -59,6 +57,7 @@ public class ImportQADataCommandNode extends CommandNode {
             String line;
             StringBuilder sb = new StringBuilder();
             Node newNode = null;
+            List<Node> newNodeList = new ArrayList<>();
             while (true) {
                 line = br.readLine();
                 if (line==null) break;
@@ -70,13 +69,13 @@ public class ImportQADataCommandNode extends CommandNode {
                 if (line.startsWith(qKey)) {
                     if (!sb.toString().trim().isEmpty()) {
                         if (newNode!=null)
-                            newNode.addResponse(sb.toString().trim());
+                            newNode.setResponse(sb.toString().trim());
                     }
                     sb = new StringBuilder(line.replace(qKey, ""));
                 } else if (line.startsWith(aKey)) {
                     if (!sb.toString().trim().isEmpty()) {
-                        newNode = new Node(session.context.splitToList(sb.toString().trim()).toArray(new String[0]), null);
-                        session.context.add(newNode);
+                        newNode = new Node(Hook.build(session.context.split(sb.toString().trim())));
+                        newNodeList.add(newNode);
                     }
                     sb = new StringBuilder(line.replace(aKey, ""));
                 } else {
@@ -86,8 +85,36 @@ public class ImportQADataCommandNode extends CommandNode {
 
             if (!sb.toString().isEmpty()) {
                 if (newNode!=null)
-                    newNode.addResponse(sb.toString().trim());
+                    newNode.setResponse(sb.toString().trim());
             }
+
+            /**
+             * Merge
+             */
+            List<Node> mergedNodeList = new ArrayList<>(session.context.nodeList);
+
+            //Create remove node set
+            Set<Node> removeNodeSet = new HashSet<>();
+            for (Node oldNode:mergedNodeList) {
+                if (!newNodeList.contains(oldNode)) {
+                    removeNodeSet.add(oldNode);
+                }
+            }
+
+            //Remove old node
+            for (Node removeNode:removeNodeSet) {
+                mergedNodeList.remove(removeNode);
+            }
+
+            //Add new node
+            for (Node node:newNodeList) {
+                if (!mergedNodeList.contains(node)) {
+                    mergedNodeList.add(node);
+                }
+            }
+
+            session.context.nodeList.clear();
+            session.context.nodeList.addAll(mergedNodeList);
 
         } finally {
             try { br.close(); } catch (Exception e) {}

@@ -3,9 +3,8 @@ package com.eoss.brain.command.talk;
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.CommandNode;
-import com.eoss.brain.command.http.GoogleCommandNode;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
-import com.eoss.brain.net.Context;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class FeedbackCommandNode extends CommandNode {
     }
 
     public FeedbackCommandNode(Session session, String [] hooks, String feedbackResponse, float feedback, List<String> rejectKeys) {
-        super(session, hooks, Mode.MatchWhole);
+        super(session, hooks, Hook.Match.All);
         this.feedbackResponse = feedbackResponse;
         this.feedback = feedback;
 
@@ -60,21 +59,21 @@ public class FeedbackCommandNode extends CommandNode {
 
         } else if (feedback > 0) {
 
-            Node lastActiveNode = lastActiveEntry.response.owner();
+            Node lastActiveNode = lastActiveEntry.node;
 
             Node newNode = session.context.build(lastActiveEntry.messageObject);
 
             if (!lastActiveNode.coverHooks(newNode)) {
                lastActiveNode.addHook(newNode);
 /*               lastActiveNode.feed(lastActiveEntry.messageObject);
-               newNode.addResponse(lastActiveNode.maxActiveResponseText());
+               newNode.addResponse(lastActiveNode.response());
                session.context.add(newNode);
-               lastActiveNode.maxActiveResponse.clear();*/
+               lastActiveNode.maxActiveResponse.release();*/
             }
 
         }
 
-        lastActiveEntry.response.feedback(lastActiveEntry.messageObject, feedback);
+        lastActiveEntry.node.feedback(lastActiveEntry.messageObject, feedback);
 
         session.clearLastEntry();
 

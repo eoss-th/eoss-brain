@@ -5,11 +5,10 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.CommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.NodeEvent;
-import com.eoss.brain.command.http.GoogleCommandNode;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +50,7 @@ public class BizTalkCommandNode extends CommandNode {
     @Override
     public String execute(final MessageObject messageObject) {
 
-        messageObject.attributes.put("wordCount", session.context.splitToList(messageObject.toString()).size());
+        messageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
 
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
@@ -81,14 +80,19 @@ public class BizTalkCommandNode extends CommandNode {
                 }
             });
         }
+
         if(session.learning){
             MIN_LOW = 0.60f;
-            Percentile = 0.99f;
+            Percentile = 0.5f;
         }else{
             MIN_LOW = 0.05f;
             Percentile = 0.80f;
         }
+
         List<Node> maxActiveNodeList = Context.findActiveNodes(activeNodeSet, Percentile);
+
+        System.out.println("ACTLIST " + activeNodeSet);
+        System.out.println("MAXLIST " + maxActiveNodeList);
         Node maxActiveNode;
         float confidenceRate;
         String responseText;
@@ -99,8 +103,8 @@ public class BizTalkCommandNode extends CommandNode {
         } else {
 
             maxActiveNode = maxActiveNodeList.get(0);
-            responseText = maxActiveNode.maxActiveResponseText();
-            confidenceRate = maxActiveNode.maxActiveResponse.active;
+            responseText = maxActiveNode.response();
+            confidenceRate = maxActiveNode.active();
             /*if (maxActiveNodeList.size()==1) {
                 confidenceRate = maxActiveNode.maxActiveResponse.active;
             } else {
@@ -136,7 +140,7 @@ public class BizTalkCommandNode extends CommandNode {
                 if (session.learning){
                     session.insert(new ConfirmProblemCommandNode(session, messageObject.copy(), confirmKeys,cancelKeys, confirmMsg, cancelMsg, maxActiveNodeList, lowConfidenceKeys));
                     String multiResponse;
-                    responseText = maxActiveNode.hooksString();
+                    responseText = Hook.toString(maxActiveNode.hookList());
                     multiResponse = confirmMsg.get(0) + " " + responseText + " " + confirmMsg.get(2);
                     if (session.context.listener!=null) {
                         session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, multiResponse), NodeEvent.Event.LateReply));
@@ -150,9 +154,9 @@ public class BizTalkCommandNode extends CommandNode {
                     if(maxActiveNodeList.size() > 1){
                         Node maxActive = maxActiveNodeList.get(0);
                         Node maxActive1 = maxActiveNodeList.get(1);
-                        responseText = confirmMsg.get(0) + " " + maxActive.hooksString() + " หรือ " + maxActive1.hooksString() +" คะ?";
+                        responseText = confirmMsg.get(0) + " " + Hook.toString(maxActive.hookList()) + " หรือ " + Hook.toString(maxActive1.hookList()) +" คะ?";
                     }else {
-                        responseText = maxActiveNodeList.get(0).maxActiveResponseText();
+                        responseText = maxActiveNodeList.get(0).response();
                         if(confidenceRate < 0.50f){
                             responseText = messageObject +"? ช่วยอธิบายเพิ่มเติมหน่อยค่ะ";
                         }
@@ -168,8 +172,9 @@ public class BizTalkCommandNode extends CommandNode {
         session.add(activeNodeSet);
 
         if (confidenceRate > MIN_LOW && maxActiveNodeList.size()==1) {
-            session.setLastEntry(messageObject, maxActiveNode.maxActiveResponse);
-            maxActiveNode.maxActiveResponse.clear();
+            System.out.println("Clear!!!");
+            session.setLastEntry(messageObject, maxActiveNode);
+            maxActiveNode.release();
             session.clearPool();
         }
 
