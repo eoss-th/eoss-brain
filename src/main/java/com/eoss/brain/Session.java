@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Session implements Serializable {
 
-    public static class Entry {
+    public static class Entry implements Serializable {
         public final MessageObject messageObject;
         public final Node node;
         public Entry(MessageObject messageObject, Node node) {
