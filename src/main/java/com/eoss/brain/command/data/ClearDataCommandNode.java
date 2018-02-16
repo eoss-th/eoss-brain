@@ -16,6 +16,7 @@ public class ClearDataCommandNode extends CommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
+        session.clearPool();
         session.context.clear();
         session.context.save();
 
