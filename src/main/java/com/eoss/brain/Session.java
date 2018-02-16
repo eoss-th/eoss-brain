@@ -5,12 +5,13 @@ import com.eoss.brain.command.talk.ProblemCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.Node;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by eossth on 7/14/2017 AD.
  */
-public class Session {
+public class Session implements Serializable {
 
     public static class Entry {
         public final MessageObject messageObject;
@@ -21,7 +22,7 @@ public class Session {
         }
     }
 
-    public final Context context;
+    public Context context;
 
     private boolean problemSolved = false;
 
@@ -39,8 +40,17 @@ public class Session {
 
     public final List<CommandNode> commandList = new ArrayList<>();
 
+    public Session() {
+
+    }
+
     public Session(Context context) {
         this.context = context;
+    }
+
+    public Session context(Context context) {
+        this.context = context;
+        return this;
     }
 
     public String parse(MessageObject messageObject) {

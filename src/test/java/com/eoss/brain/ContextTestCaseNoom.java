@@ -5,6 +5,8 @@ import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.context.FileContext;
 import com.eoss.brain.net.*;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class ContextTestCaseNoom {
@@ -37,6 +39,9 @@ public class ContextTestCaseNoom {
         Session session = new Session(context);
         //Session session = new Session(new MemoryContext("test"));
         new WakeupCommandNode(session).execute(null);
+
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("raw.ser"));
+        os.writeObject(session);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");
 

@@ -4,6 +4,7 @@ import com.eoss.brain.MessageObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -11,7 +12,7 @@ import java.util.*;
 /**
  * Created by eossth on 7/14/2017 AD.
  */
-public class Node {
+public class Node implements Serializable {
 
     private List<Hook> hookList;
 

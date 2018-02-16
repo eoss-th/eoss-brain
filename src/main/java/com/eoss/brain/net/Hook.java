@@ -3,6 +3,7 @@ package com.eoss.brain.net;
 import com.eoss.brain.MessageObject;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.Objects;
 /**
  * Created by eossth on 15/2/2018 AD.
  */
-public class Hook {
+public class Hook implements Serializable {
 
     public enum Match {
         All(1.0f),

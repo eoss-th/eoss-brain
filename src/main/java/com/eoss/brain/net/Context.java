@@ -4,6 +4,7 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import org.json.JSONArray;
 
+import java.io.Serializable;
 import java.text.BreakIterator;
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -12,7 +13,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * Created by eoss-th on 8/15/17.
  */
-public abstract class Context {
+public abstract class Context implements Serializable {
 
     public static final String SUFFIX = ".context";
 
