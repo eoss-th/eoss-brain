@@ -2,10 +2,11 @@ package com.eoss.brain;
 
 import com.eoss.brain.net.Context;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MessageObject {
+public class MessageObject implements Serializable {
 
     public final Map<String, Object> attributes;
 
