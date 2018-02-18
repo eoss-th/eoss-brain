@@ -40,9 +40,6 @@ public class ContextTestCaseNoom {
         //Session session = new Session(new MemoryContext("test"));
         new WakeupCommandNode(session).execute(null);
 
-        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("raw.ser"));
-        os.writeObject(session);
-
         Scanner scanner = new Scanner(System.in, "UTF-8");
 
         MessageObject template = MessageObject.build();

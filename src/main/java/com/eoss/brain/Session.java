@@ -38,6 +38,8 @@ public class Session implements Serializable {
 
     public final List<Node> protectedList = new ArrayList<>();
 
+    public final List<AdminCommandNode> adminCommandList = new ArrayList<>();
+
     public final List<CommandNode> commandList = new ArrayList<>();
 
     public Session() {
@@ -55,16 +57,29 @@ public class Session implements Serializable {
 
     public String parse(MessageObject messageObject) {
 
+        boolean isAdminCommandExecuted = false;
         String result = null;
-        for (CommandNode node : commandList) {
+
+        for (AdminCommandNode node : adminCommandList) {
             if (node.matched(messageObject)) {
                 result = node.execute(messageObject);
+                isAdminCommandExecuted = true;
                 break;
             }
         }
 
-        if (problemSolved) {
-            clearProblem();
+        if (!isAdminCommandExecuted) {
+            for (CommandNode node : commandList) {
+                if (node.matched(messageObject)) {
+                    result = node.execute(messageObject);
+                    break;
+                }
+            }
+
+            if (problemSolved) {
+                clearProblem();
+            }
+
         }
 
         return silent||result==null?"":result;
