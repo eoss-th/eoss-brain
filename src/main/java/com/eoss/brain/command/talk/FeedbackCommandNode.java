@@ -42,16 +42,6 @@ public class FeedbackCommandNode extends CommandNode {
 
         if (rejectKeys!=null) {
 
-            /*
-            if (!session.learning) {
-                String query = lastActiveEntry.messageObject.toString().trim();
-                if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
-                    query += " site:" + session.context.domain;
-                }
-                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
-                return "";
-            }*/
-
             if (session.learning) {
                 session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
                 feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " ?";
@@ -65,10 +55,6 @@ public class FeedbackCommandNode extends CommandNode {
 
             if (!lastActiveNode.coverHooks(newNode)) {
                lastActiveNode.addHook(newNode);
-/*               lastActiveNode.feed(lastActiveEntry.messageObject);
-               newNode.addResponse(lastActiveNode.response());
-               session.context.add(newNode);
-               lastActiveNode.maxActiveResponse.release();*/
             }
 
         }
@@ -76,9 +62,7 @@ public class FeedbackCommandNode extends CommandNode {
         lastActiveEntry.node.feedback(lastActiveEntry.messageObject, feedback);
 
         session.clearLastEntry();
-
         session.clearPool();
-
         session.context.save();
 
         return feedbackResponse;

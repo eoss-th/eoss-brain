@@ -3,10 +3,8 @@ package com.eoss.brain.command;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import com.eoss.brain.command.http.GetCommandNode;
-import com.eoss.brain.command.talk.ConfirmProblemCommandNode;
 import com.eoss.brain.command.talk.RejectProblemCommandNode;
 import com.eoss.brain.command.talk.LowConfidenceProblemCommandNode;
-import com.eoss.brain.command.talk.BizTalkCommandNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,8 +22,6 @@ public class RecursiveCommandNode extends CommandNode {
                     RecursiveCommandNode.class,
                     LowConfidenceProblemCommandNode.class,
                     RejectProblemCommandNode.class,
-                    BizTalkCommandNode.class,
-                    ConfirmProblemCommandNode.class,
                     GetCommandNode.class,
                     AdminCommandNode.class));
 

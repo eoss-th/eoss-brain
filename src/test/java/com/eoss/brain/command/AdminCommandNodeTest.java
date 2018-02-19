@@ -2,7 +2,7 @@ package com.eoss.brain.command;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.command.wakeup.BizWakeupCommandNode;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.context.MemoryContext;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class AdminCommandNodeTest {
         Context context = new MemoryContext("test");
         context.admin(adminIdList);
         Session session = new Session(context);
-        new BizWakeupCommandNode(session).execute(null);
+        new WakeupCommandNode(session).execute(null);
 
         CommandNode dummyCommandNode = new CommandNode(session, new String[]{"dummy"}) {
             @Override
