@@ -68,7 +68,13 @@ public class Session implements Serializable {
             }
         }
 
-        if (!isAdminCommandExecuted) {
+        if (isAdminCommandExecuted) {
+
+            clearProblem();
+            clearPool();
+            clearLastEntry();
+
+        } else {
             for (CommandNode node : commandList) {
                 if (node.matched(messageObject)) {
                     result = node.execute(messageObject);
@@ -79,7 +85,6 @@ public class Session implements Serializable {
             if (problemSolved) {
                 clearProblem();
             }
-
         }
 
         return silent||result==null?"":result;
