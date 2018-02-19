@@ -88,17 +88,16 @@ public class TalkCommandNode extends CommandNode {
         if (confidenceRate <= MIN_LOW) {
 
             if (session.learning && lowConfidenceKeys!=null) {
-                session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
+
                 responseText = messageObject + " " + lowConfidenceKeys.get(3);
+                session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
+
             } else {
-                /*
-                String query = messageObject.toString().trim();
-                if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
-                    query += " site:" + session.context.domain;
+
+                responseText = "";
+                if (session.context.listener!=null) {
+                    session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.LowConfidence));
                 }
-                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
-                responseText = "";*/
-                responseText = "ช่วยอธิบายให้ระเอียดอีกหน่อยได้ไหมคะ";
             }
 
         } else if (confidenceRate <= 0.75f) {
@@ -109,7 +108,9 @@ public class TalkCommandNode extends CommandNode {
 
         } else if (confidenceRate > 1) {
             //Super Confidence
-
+            if (session.context.listener!=null) {
+                session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.SuperConfidence));
+            }
         }
 
         if (confidenceRate > MIN_LOW) {
