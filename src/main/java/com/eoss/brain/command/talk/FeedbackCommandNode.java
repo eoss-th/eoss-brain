@@ -57,13 +57,13 @@ public class FeedbackCommandNode extends CommandNode {
                lastActiveNode.addHook(newNode);
             }
 
+            session.context.save();
         }
 
         lastActiveEntry.node.feedback(lastActiveEntry.messageObject, feedback);
 
         session.clearLastEntry();
         session.clearPool();
-        session.context.save();
 
         return feedbackResponse;
     }
