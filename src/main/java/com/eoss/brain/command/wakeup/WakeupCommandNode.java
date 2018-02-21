@@ -65,14 +65,14 @@ public class WakeupCommandNode extends CommandNode {
 
         session.commandList.clear();
         //Positive Feedback
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"ใช่"}, ":)", 0.1f));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"เยี่ยม"}, ":)", 0.1f));
         //Negative Feedback for learning
         List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "ยกเลิก", "ก็แล้วแต่");
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"ไม่"}, "?", 0, rejectKeys));
 
         session.commandList.add(new ForwardCommandNode(session, new String[]{"แล้ว"}));
 
-        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "พอ", "ก็แล้วแต่", "คือ?");
+        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ยกเลิก", "ก็แล้วแต่", "คือ?");
         session.commandList.add(new TalkCommandNode(session, lowConfidenceKeys));
 
         return "...";
