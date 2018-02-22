@@ -30,13 +30,13 @@ public class Hook implements Serializable {
 
     public final Match match;
 
-    public float weight;
+    public double weight;
 
     public Hook(String text, Match match) {
         this(text, match, match.initWeight);
     }
 
-    public Hook(String text, Match match, float weight) {
+    public Hook(String text, Match match, double weight) {
         this.text = text;
         this.match = match;
         this.weight = weight;
@@ -136,7 +136,7 @@ public class Hook implements Serializable {
     public static Hook build(JSONObject jsonObject) {
         String text = jsonObject.getString("text");
         Match match = Match.valueOf(jsonObject.getString("match"));
-        float weight = jsonObject.getFloat("weight");
+        double weight = jsonObject.getDouble("weight");
         return new Hook(text, match, weight);
     }
 
