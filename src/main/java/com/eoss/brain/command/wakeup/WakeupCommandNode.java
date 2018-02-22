@@ -57,22 +57,22 @@ public class WakeupCommandNode extends CommandNode {
         session.adminCommandList.add(new AdminCommandNode(new ImportRawDataFromWebCommandNode(session, new String[]{"ใส่ข้อมูลดิบจากเวป"})));
         session.adminCommandList.add(new AdminCommandNode(new ImportRawDataCommandNode(session, new String[]{"ใส่ข้อมูลดิบ"})));
         session.adminCommandList.add(new AdminCommandNode(new ExportRawDataCommandNode(session, new String[]{"ดูข้อมูลดิบ"})));
-        session.adminCommandList.add(new AdminCommandNode(new ImportQADataCommandNode(session, new String[]{"ใส่ข้อมูลถามตอบ"}, "ถาม:", "ตอบ:")));
-        session.adminCommandList.add(new AdminCommandNode(new ExportQADataCommandNode(session, new String[]{"ดูข้อมูลถามตอบ"}, "ถาม:", "ตอบ:")));
+        session.adminCommandList.add(new AdminCommandNode(new ImportQADataCommandNode(session, new String[]{"ใส่ข้อมูลถามตอบ"}, "Q:", "A:")));
+        session.adminCommandList.add(new AdminCommandNode(new ExportQADataCommandNode(session, new String[]{"ดูข้อมูลถามตอบ"}, "Q:", "A:")));
         session.adminCommandList.add(new AdminCommandNode(new CreateWebIndexCommandNode(session, new String[]{"ใส่ข้อมูลสารบัญจากเวป"})));
         session.adminCommandList.add(new AdminCommandNode(new EnableTeacherCommandNode(session, new String[]{"เปิดโหมดเรียนรู้"})));
         session.adminCommandList.add(new AdminCommandNode(new DisableTeacherCommandNode(session, new String[]{"ปิดโหมดเรียนรู้"})));
 
         session.commandList.clear();
         //Positive Feedback
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"เยี่ยม"}, ":)", 0.1f));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"Great"}, "Thanks", 0.1f));
         //Negative Feedback for learning
-        List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "ยกเลิก", "ก็แล้วแต่");
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"ไม่"}, "?", 0, rejectKeys));
+        List<String> rejectKeys = Arrays.asList("No", "Ok", "Cancel", "Ok");
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"No"}, "?", 0, rejectKeys));
 
-        session.commandList.add(new ForwardCommandNode(session, new String[]{"แล้ว"}));
+        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}));
 
-        List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ยกเลิก", "ก็แล้วแต่", "คือ?");
+        List<String> lowConfidenceKeys = Arrays.asList("Ok", "Cancel", "Ok", "?");
         session.commandList.add(new TalkCommandNode(session, lowConfidenceKeys));
 
         return "...";
