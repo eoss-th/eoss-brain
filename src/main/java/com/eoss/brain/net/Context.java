@@ -3,6 +3,7 @@ package com.eoss.brain.net;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.text.BreakIterator;
@@ -26,6 +27,8 @@ public abstract class Context implements Serializable {
     private List<String> adminIdList = new ArrayList<>();
 
     protected ReadWriteLock lock = new ReentrantReadWriteLock();
+
+    public final Map<String, String> properties = new HashMap();
 
     public final List<Node> nodeList = new ArrayList<>();
 
@@ -85,6 +88,28 @@ public abstract class Context implements Serializable {
         } finally {
             lock.readLock().unlock();
         }
+    }
+
+    protected final void loadJSON(String jsonString) {
+        JSONObject object = new JSONObject(jsonString);
+        Set<String> propertyNames = object.keySet();
+        for (String property:propertyNames) {
+            if (property.equals("nodes")) {
+                nodeList.clear();
+                nodeList.addAll(build(object.getJSONArray(property)));
+            } else {
+                properties.put(property, object.getString(property));
+            }
+        }
+    }
+
+    protected final String toJSONString() {
+        JSONObject object = new JSONObject();
+        for (Map.Entry<String, String> entry:properties.entrySet()) {
+            object.put(entry.getKey(), entry.getValue());
+        }
+        object.put("nodes", json(nodeList));
+        return object.toString();
     }
 
     public void add(Node newNode) {

@@ -51,8 +51,8 @@ public class FileContext extends Context {
             while ((line = br.readLine())!=null) {
                 sb.append(line);
             }
-            nodeList.clear();
-            nodeList.addAll(build(new JSONArray(sb.toString())));
+
+            loadJSON(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -67,7 +67,7 @@ public class FileContext extends Context {
         try {
             out = new OutputStreamWriter(
                     new FileOutputStream(getFile(), false), StandardCharsets.UTF_8);
-            out.write(json(nodeList).toString());
+            out.write(toJSONString());
             out.flush();
         } catch (Exception e) {
             e.printStackTrace();

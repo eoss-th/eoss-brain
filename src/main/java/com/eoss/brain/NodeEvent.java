@@ -13,6 +13,7 @@ public class NodeEvent {
         Recursive,
         Matched,
         Wakeup,
+        NewNodeAdded,
         ReservedWords
     }
 

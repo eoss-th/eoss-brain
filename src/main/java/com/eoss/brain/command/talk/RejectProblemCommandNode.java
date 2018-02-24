@@ -69,13 +69,22 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
 
         Node newNode = session.context.build(problemEntry.messageObject);
 
+        //Same Hook; just change the response
         if (newNode.sameHooks(problemEntry.node)) {
+
             newNode = problemEntry.node;
+            newNode.setResponse(messageObject.toString());
+
         } else {
+
+            newNode.setResponse(messageObject.toString());
             session.context.add(newNode);
+
+            if (session.context.listener!=null) {
+                session.context.listener.callback(new NodeEvent(newNode, problemEntry.messageObject, NodeEvent.Event.NewNodeAdded));
+            }
         }
 
-        newNode.setResponse(messageObject.toString());
         session.setLastEntry(problemEntry.messageObject, newNode);
 
         return successMsg;

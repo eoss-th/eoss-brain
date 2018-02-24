@@ -13,12 +13,12 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("raw")
+        Context context = new FileContext("test")
                 .callback(new ContextListener() {
                     @Override
                     public void callback(NodeEvent nodeEvent) {
-                        if (nodeEvent.event == NodeEvent.Event.Recursive) {
-                            System.out.println(nodeEvent.messageObject);
+                        if (nodeEvent.event == NodeEvent.Event.NewNodeAdded) {
+                            System.out.println("Add new node:" + nodeEvent.node);
                             return;
                         }
                         if (nodeEvent.event == NodeEvent.Event.LateReply) {
@@ -43,6 +43,16 @@ public class ContextTestCaseNoom {
         template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         session.learning=true;
+
+        /*
+        context.properties.put("greeting", "Hello");
+        context.properties.put("unknown", "Sorry?");
+        */
+
+        for (Map.Entry<String, String> entry:context.properties.entrySet()) {
+            System.out.println(entry);
+        }
+
         while(true) {
             System.out.print("You:>>");
             System.out.println("Bot:>>" + session.parse(MessageObject.build(template, scanner.nextLine())));

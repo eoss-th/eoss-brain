@@ -41,8 +41,7 @@ public class GAEStorageContext extends Context {
             while ((line = br.readLine())!=null) {
                 sb.append(line);
             }
-            nodeList.clear();
-            nodeList.addAll(build(new JSONArray(sb.toString())));
+            loadJSON(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -72,7 +71,7 @@ public class GAEStorageContext extends Context {
             HttpsURLConnection connection = (HttpsURLConnection) new URL(dataURL + name + SUFFIX).openConnection();
             connection.setDoOutput(true);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream(), StandardCharsets.UTF_8);
-            out.write(json(nodeList).toString());
+            out.write(toJSONString());
             out.flush();
             out.close();
             InputStream in = connection.getInputStream();
