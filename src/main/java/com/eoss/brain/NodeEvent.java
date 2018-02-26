@@ -14,6 +14,7 @@ public class NodeEvent {
         Matched,
         Wakeup,
         NewNodeAdded,
+        ContextSaved,
         ReservedWords
     }
 

@@ -85,6 +85,8 @@ public abstract class Context implements Serializable {
         lock.readLock().lock();
         try {
             doSave(name, nodeList);
+            if (listener!=null)
+                listener.callback(new NodeEvent(null, MessageObject.build(name), NodeEvent.Event.ContextSaved));
         } finally {
             lock.readLock().unlock();
         }
