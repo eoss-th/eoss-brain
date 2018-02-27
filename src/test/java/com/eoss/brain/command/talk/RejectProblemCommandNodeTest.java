@@ -21,7 +21,7 @@ public class RejectProblemCommandNodeTest {
     public void testRejectProblemCommand() {
         Locale.setDefault(new Locale("th", "TH"));
 
-        List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "ไม่", "ก็แล้วแต่");
+        List<String> rejectKeys = Arrays.asList("No", "Ok", "Cancel", "Ok");
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new MemoryContext("test");
@@ -38,19 +38,19 @@ public class RejectProblemCommandNodeTest {
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดี")));
 
-        assertEquals("ดีครับ ?", session.parse(MessageObject.build("สวัสดีครับ")));
+        assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดีครับ")));
 
         session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
 
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("Ok", session.parse(MessageObject.build("ว่าไง")));
 
         assertFalse(session.hasProblem());
 
-        assertEquals("ว่าไง ?", session.parse(MessageObject.build("นายครับ")));
+        assertEquals("ว่าไง", session.parse(MessageObject.build("นายครับ")));
 
-        assertEquals("นายครับ ?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("นายครับ ?", session.parse(MessageObject.build("No")));
 
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("ดีครับ")));
+        assertEquals("Ok", session.parse(MessageObject.build("ดีครับ")));
 
         assertFalse(session.hasProblem());
 
@@ -58,7 +58,7 @@ public class RejectProblemCommandNodeTest {
 
         session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
 
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("อาฮะ")));
+        assertEquals("Ok", session.parse(MessageObject.build("อาฮะ")));
 
         assertFalse(session.hasProblem());
 

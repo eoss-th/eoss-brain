@@ -40,30 +40,35 @@ public class FeedbackCommandNode extends CommandNode {
 
         Session.Entry lastActiveEntry = session.lastEntry();
 
+        Node targetNode = session.context.get(lastActiveEntry.node.hookList());
+
+        System.out.println(rejectKeys+"\t"+session.learning);
+
         if (rejectKeys!=null) {
 
             if (session.learning) {
                 session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
                 feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " ?";
+            } else {
+                targetNode.feedback(lastActiveEntry.messageObject, feedback);
             }
 
         } else if (feedback > 0) {
 
-            Node lastActiveNode = lastActiveEntry.node;
-
             Node newNode = session.context.build(lastActiveEntry.messageObject);
 
-            if (!lastActiveNode.coverHooks(newNode)) {
-               lastActiveNode.addHook(newNode);
+            if (session.learning && !targetNode.coverHooks(newNode)) {
+                targetNode.addHook(newNode);
+            } else {
+                targetNode.feedback(lastActiveEntry.messageObject, feedback);
             }
 
-            session.context.save();
         }
-
-        lastActiveEntry.node.feedback(lastActiveEntry.messageObject, feedback);
 
         session.clearLastEntry();
         session.clearPool();
+
+        session.context.save();
 
         return feedbackResponse;
     }

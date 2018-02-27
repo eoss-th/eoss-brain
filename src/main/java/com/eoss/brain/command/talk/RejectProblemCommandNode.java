@@ -72,7 +72,7 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
         //Same Hook; just change the response
         if (newNode.sameHooks(problemEntry.node)) {
 
-            newNode = problemEntry.node;
+            newNode = session.context.get(newNode.hookList());
             newNode.setResponse(messageObject.toString());
 
         } else {

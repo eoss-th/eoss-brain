@@ -1,1 +1,1 @@
-{"nodes":[{"response":"ครับ","hooks":[{"match":"Head","weight":1.5,"text":"สวัสดี"},{"match":"Body","weight":1.2000000476837158,"text":"สบาย"},{"match":"Body","weight":1.2000000476837158,"text":"ดี"},{"match":"Tail","weight":0.949999988079071,"text":"ไหม"},{"match":"Mode","weight":1,"text":"เฮฮา"}]}]}
+{"nodes":[{"response":"meeting.doc","hooks":[{"match":"Mode","weight":1,"text":"สวัสดีครับ"},{"match":"Head","weight":1.5,"text":"เอกสาร"},{"match":"Body","weight":1.2000000476837158,"text":"ประชุม"}]}]}

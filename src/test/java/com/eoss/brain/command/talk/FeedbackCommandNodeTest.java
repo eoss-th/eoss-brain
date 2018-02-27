@@ -99,20 +99,22 @@ public class FeedbackCommandNodeTest {
         });
         */
 
+        /*
         for (Hook hook:node.hookList()) {
             assertEquals((Hook.Match.Head.initWeight+ Hook.Match.Head.initWeight*positiveFeedback) + (Hook.Match.Head.initWeight+ Hook.Match.Head.initWeight*positiveFeedback)*negativeFeedback, hook.weight, 0.001f);
             break;
         }
+        */
 
         feedbackCommandNode = new FeedbackCommandNode(session, new String[]{"เก่ง"}, "อิอิ", positiveFeedback);
 
         assertFalse(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
 
-        assertEquals("ดีครับ ?", session.parse(MessageObject.build("สวัสดีครับ")));
+        assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดีครับ")));
 
         assertFalse(node.hookList().contains(new Hook("ครับ", Hook.Match.Tail)));
 
-        assertEquals("อิอิ", session.parse(MessageObject.build("ใช่")));
+        assertEquals("Thanks", session.parse(MessageObject.build("Great")));
 
         assertTrue(node.hookList().contains(new Hook("ครับ", Hook.Match.Tail)));
 

@@ -114,6 +114,19 @@ public abstract class Context implements Serializable {
         return object.toString();
     }
 
+    public Node get(List<Hook> hookList) {
+        lock.readLock().lock();
+        try {
+            for (Node node:nodeList) {
+                if (node.hookList().equals(hookList))
+                    return node;
+            }
+        } finally {
+            lock.readLock().unlock();
+        }
+        return null;
+    }
+
     public void add(Node newNode) {
         lock.writeLock().lock();
         try {
