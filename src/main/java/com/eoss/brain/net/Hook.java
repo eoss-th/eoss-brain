@@ -151,7 +151,7 @@ public class Hook implements Serializable {
     public static String toString(List<Hook> hookList) {
         StringBuilder sb = new StringBuilder();
         for (Hook hook:hookList) {
-            if (Match.Mode ==hook.match) continue;
+            if (Match.Mode==hook.match) continue;
             sb.append(hook.text);
             sb.append(" ");
         }

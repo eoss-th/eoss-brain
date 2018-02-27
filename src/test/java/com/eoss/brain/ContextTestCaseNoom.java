@@ -13,7 +13,7 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("test")
+        Context context = new FileContext("noom")
                 .callback(new ContextListener() {
                     @Override
                     public void callback(NodeEvent nodeEvent) {
@@ -28,13 +28,13 @@ public class ContextTestCaseNoom {
                             }
                             return;
                         }
+                        if (nodeEvent.event == NodeEvent.Event.LowConfidence) {
+                            System.out.println("Low confidence:" + nodeEvent.messageObject);
+                        }
                     }
                 }).admin(adminIdList);
 
-        //        .domain("hopidea.com");
-
         Session session = new Session(context);
-        //Session session = new Session(new MemoryContext("test"));
         new WakeupCommandNode(session).execute(null);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");
@@ -43,15 +43,6 @@ public class ContextTestCaseNoom {
         template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         session.learning=true;
-
-        /*
-        context.properties.put("greeting", "Hello");
-        context.properties.put("unknown", "Sorry?");
-        */
-
-        for (Map.Entry<String, String> entry:context.properties.entrySet()) {
-            System.out.println(entry);
-        }
 
         while(true) {
             System.out.print("You:>>");

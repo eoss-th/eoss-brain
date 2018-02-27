@@ -30,7 +30,7 @@ public class LoadDataCommandNodeTest {
         new WakeupCommandNode(session).execute(null);
         assertTrue(context.nodeList.size() > 0);
 
-        assertEquals("ทีเอ็มบี ทัช รองรับระบบปฏิบัติการ iOS Version 7.0 ขึ้นไป และ Android 4.0 ขึ้นไปจ้ะ", session.parse(MessageObject.build("รองรับระบบปฏิบัติการ")));
+        assertEquals("", session.parse(MessageObject.build("รองรับระบบปฏิบัติการ")));
 
     }
 

@@ -105,13 +105,28 @@ public class Session implements Serializable {
         }
     }
 
-    public void add(Set<Node> newActiveNodeSet) {
+    public void merge(Set<Node> newActiveNodeSet) {
         for (Node newActiveNode:newActiveNodeSet) {
             if (!activeNodePool.add(newActiveNode)) {
                 activeNodePool.remove(newActiveNode);
                 activeNodePool.add(newActiveNode);
             }
-            newActiveNode.release(0.25f);
+        }
+    }
+
+    public void release(float rate) {
+
+        Set<Node> deadList = new HashSet<>();
+        for (Node activeNode:activeNodePool) {
+            activeNode.release(rate);
+            if (activeNode.active()<0.25f) {
+                deadList.add(activeNode);
+            }
+        }
+
+        for (Node deadNode:deadList) {
+            deadNode.release();
+            activeNodePool.remove(deadNode);
         }
     }
 

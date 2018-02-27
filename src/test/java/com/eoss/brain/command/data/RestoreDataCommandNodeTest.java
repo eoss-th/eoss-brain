@@ -33,11 +33,11 @@ public class RestoreDataCommandNodeTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject, "กู้ข้อมูล")));
 
-        assertEquals("โทรศัพท์มือถือที่ไม่ใช่สมาร์ทโฟนจะไม่สามารถใช้งาน ทีเอ็มบี ทัช ได้ ?", session.parse(MessageObject.build("สวัสดี")));
+        assertEquals("ครับ", session.parse(MessageObject.build("สวัสดี")));
 
         messageObject = MessageObject.build();
         messageObject.attributes.put("mode", "เฮฮา");
-        assertEquals(" คือ?", session.parse(messageObject));
+        assertEquals("ครับ", session.parse(messageObject));
     }
 
 }

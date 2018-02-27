@@ -26,6 +26,7 @@ public class Node implements Serializable {
 
     public Node(Node node) {
         this(new ArrayList<>(node.hookList), node.response);
+        this.active = node.active;
     }
 
     public Node(List<Hook> hookList) {
@@ -71,10 +72,6 @@ public class Node implements Serializable {
             }
         }
         return false;
-    }
-
-    public void feed(MessageObject messageObject) {
-        feed(messageObject, 1);
     }
 
     public void feed(MessageObject messageObject, float score) {

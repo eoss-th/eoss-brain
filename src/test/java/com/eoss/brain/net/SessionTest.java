@@ -22,14 +22,14 @@ public class SessionTest {
         session.learning = true;
         new WakeupCommandNode(session).execute(null);
 
-        assertEquals("บัตรประชาชน กี่หลัก คือ?", session.parse(MessageObject.build("บัตรประชาชน กี่หลัก")));
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("10")));
-        assertEquals("10 ?", session.parse(MessageObject.build("บัตรประชาชน คือ")));
+        assertEquals("บัตรประชาชน กี่หลัก ?", session.parse(MessageObject.build("บัตรประชาชน กี่หลัก")));
+        assertEquals("Ok", session.parse(MessageObject.build("10")));
+        assertEquals("10", session.parse(MessageObject.build("บัตรประชาชน คือ")));
 
-        assertEquals("บัตรประชาชน คือ ?", session.parse(MessageObject.build("ไม่")));
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("9")));
+        assertEquals("บัตรประชาชน คือ ?", session.parse(MessageObject.build("No")));
+        assertEquals("Ok", session.parse(MessageObject.build("9")));
 
-        assertEquals("10 ?", session.parse(MessageObject.build("บัตรทดสอบมีกี่หลัก")));
+        assertEquals("10", session.parse(MessageObject.build("บัตรทดสอบมีกี่หลัก")));
 }
 
     @Test
@@ -41,24 +41,24 @@ public class SessionTest {
         session.learning = true;
         new WakeupCommandNode(session).execute(null);
 
-        assertEquals("หึหึ คือ?", session.parse(MessageObject.build("หึหึ")));
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("หุหุ")));
+        assertEquals("หึหึ ?", session.parse(MessageObject.build("หึหึ")));
+        assertEquals("Ok", session.parse(MessageObject.build("หุหุ")));
 
-        assertEquals("ทักทาย คือ?", session.parse(MessageObject.build("ทักทาย")));
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("ทักทาย ?", session.parse(MessageObject.build("ทักทาย")));
+        assertEquals("Ok", session.parse(MessageObject.build("ว่าไง")));
 
-        assertEquals("ว่าไง คือ?", session.parse(MessageObject.build("ว่าไง")));
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("ไม่ว่าไง")));
+        assertEquals("ว่าไง ?", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("Ok", session.parse(MessageObject.build("ไม่ว่าไง")));
 
-        assertEquals("ว่าไง ?", session.parse(MessageObject.build("ทักทาย ว่าไง")));
-        assertEquals("ทักทาย ว่าไง ?", session.parse(MessageObject.build("ไม่")));
-        assertEquals("เข้าใจละ", session.parse(MessageObject.build("สบายดี")));
+        assertEquals("ว่าไง", session.parse(MessageObject.build("ทักทาย ว่าไง")));
+        assertEquals("ทักทาย ว่าไง ?", session.parse(MessageObject.build("No")));
+        assertEquals("Ok", session.parse(MessageObject.build("สบายดี")));
 
         /**
          * Related Talking
          */
         assertEquals("ว่าไง", session.parse(MessageObject.build("ทักทาย")));
-        assertEquals("สบายดี ?", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("สบายดี", session.parse(MessageObject.build("ว่าไง")));
 
         /**
          * Reset Stack

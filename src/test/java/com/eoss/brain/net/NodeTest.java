@@ -21,34 +21,34 @@ public class NodeTest {
         Node b = new Node(a);
         Node c = new Node(b);
 
-        c.feed(MessageObject.build("ดี"));
+        c.feed(MessageObject.build("ดี"), 1);
 
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
-        b.feed(MessageObject.build("ดี"));
+        b.feed(MessageObject.build("ดี"), 1);
 
         assertEquals(b.active(), Hook.Match.All.initWeight, 0.001);
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
-        a.feed(MessageObject.build("ดี"));
+        a.feed(MessageObject.build("ดี"), 1);
 
         assertEquals(a.active(), Hook.Match.All.initWeight, 0.001);
         assertEquals(b.active(), Hook.Match.All.initWeight, 0.001);
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
-        a.feed(MessageObject.build("ดี"));
+        a.feed(MessageObject.build("ดี"), 1);
 
         assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
         assertEquals(b.active(), Hook.Match.All.initWeight, 0.001);
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
-        b.feed(MessageObject.build("ดี"));
+        b.feed(MessageObject.build("ดี"), 1);
 
         assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
         assertEquals(b.active(), Hook.Match.All.initWeight * 2, 0.001);
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
-        c.feed(MessageObject.build("ดี"));
+        c.feed(MessageObject.build("ดี"), 1);
 
         assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
         assertEquals(b.active(), Hook.Match.All.initWeight * 2, 0.001);
@@ -61,7 +61,7 @@ public class NodeTest {
         assertTrue(nodeSet.remove(b));
         assertTrue(nodeSet.add(b));
 
-        b.feed(MessageObject.build("ดี"));
+        b.feed(MessageObject.build("ดี"), 1);
         assertTrue(new ArrayList<>(nodeSet).get(0).active()==b.active());
 
         assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
@@ -253,31 +253,31 @@ public class NodeTest {
 
         messageObject = MessageObject.build("กิน");
         messageObject.attributes.put("wordCount", 1);
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals(Hook.Match.Head.initWeight / (node.hookList().size() + 1 - 1), node.active(), delta);
 
         node.release();
         messageObject = MessageObject.build("กินข้าว");
         messageObject.attributes.put("wordCount", 2);
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight) / (node.hookList().size() + 2 - 2), node.active(), delta);
 
         node.release();
         messageObject = MessageObject.build("กินข้าวที่");
         messageObject.attributes.put("wordCount", 3);
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight) / (node.hookList().size() + 3 - 3), node.active(), delta);
 
         node.release();
         messageObject = MessageObject.build("กินข้าวที่ไหน");
         messageObject.attributes.put("wordCount", 4);
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight) / (node.hookList().size() + 4 - 4), node.active(), delta);
 
         node.release();
         messageObject = MessageObject.build("กินข้าวที่ไหนดี");
         messageObject.attributes.put("wordCount", 5);
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight + Hook.Match.Tail.initWeight) / (node.hookList().size() + 5 - 5), node.active(), delta);
 
     }
@@ -290,20 +290,20 @@ public class NodeTest {
         double delta = 0.001;
 
         MessageObject messageObject = MessageObject.build("");
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertTrue(0 == node.active());
 
         messageObject.attributes.put("mode", "เฮฮา");
 
         node.release();
         messageObject = MessageObject.build(messageObject, "");
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals(Hook.Match.Mode.initWeight / (node.hookList().size() + 0 - 1), node.active(), delta);
 
         node.release();
         messageObject = MessageObject.build(messageObject, "กินดี");
         messageObject.attributes.put("wordCount", 2);
-        node.feed(messageObject);
+        node.feed(messageObject, 1);
         assertEquals((Hook.Match.Mode.initWeight + Hook.Match.Head.initWeight + Hook.Match.Tail.initWeight) / (node.hookList().size() + 2 - 3), node.active(), delta);
     }
 

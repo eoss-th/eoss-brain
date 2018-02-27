@@ -163,35 +163,20 @@ public abstract class Context implements Serializable {
         return jsonArray;
     }
 
-    public static List<Node> findActiveNodes(Set<Node> activeNodeSet, float minPercentile) {
+    public static Node findMaxActiveNode(Set<Node> activeNodeSet) {
+        if (activeNodeSet==null || activeNodeSet.isEmpty()) return null;
 
-        Map<Float, Set<Node>> orderedNodeMap = new TreeMap<>();
-        Set<Node> maxActiveNodeSet;
-        float active;
-        for (Node activeNode:activeNodeSet) {
-            active = activeNode.active();
-            maxActiveNodeSet = orderedNodeMap.get(active);
-            if (maxActiveNodeSet==null) {
-                maxActiveNodeSet = new HashSet<>();
+        float maxActive = Float.MIN_VALUE;
+        Node maxActiveNode = null;
+
+        for (Node node:activeNodeSet) {
+            if (node.active()>maxActive) {
+                maxActive = node.active();
+                maxActiveNode = node;
             }
-            maxActiveNodeSet.add(activeNode);
-            orderedNodeMap.put(active, maxActiveNodeSet);
         }
 
-        if (activeNodeSet.isEmpty()) return new ArrayList<>();
-
-        List<Node> result = new ArrayList<>();
-        List<Map.Entry<Float, Set<Node>>> orderedNodeList = new ArrayList<>(orderedNodeMap.entrySet());
-        float minScore = orderedNodeList.get(orderedNodeList.size()-1).getKey() * minPercentile;
-
-        for (int i=orderedNodeList.size()-1;i>=0;i--) {
-
-            if (orderedNodeList.get(i).getKey()<minScore) break;
-            result.addAll(new ArrayList<>(orderedNodeList.get(i).getValue()));
-        }
-
-
-        return result;
+        return maxActiveNode;
     }
 
     public Set<Node> feed(MessageObject messageObject) {
@@ -233,7 +218,7 @@ public abstract class Context implements Serializable {
         boolean matched = false;
         for (Node node:nodeSet) {
             if (node.matched(messageObject)) {
-                listener.callback(new NodeEvent(node, messageObject.copy(), NodeEvent.Event.Matched));
+                listener.callback(new NodeEvent(new Node(node), messageObject.copy(), NodeEvent.Event.Matched));
                 matched = true;
             }
         }
