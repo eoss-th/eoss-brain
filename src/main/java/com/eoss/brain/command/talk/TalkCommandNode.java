@@ -109,8 +109,11 @@ public class TalkCommandNode extends CommandNode {
 
         }
 
-        maxActiveNode.release();
-        session.setLastEntry(messageObject, maxActiveNode);
+        if (maxActiveNode!=null) {
+            maxActiveNode.release();
+            session.setLastEntry(messageObject, maxActiveNode);
+        }
+
         session.merge(activeNodeSet);
         session.merge(think(MessageObject.build(messageObject, responseText), confidenceRate));
         session.release(0.5f);
