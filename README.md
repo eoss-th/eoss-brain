@@ -34,7 +34,6 @@ dependencies {
 ```
 # Example
 
-You can see the example usage at https://github.com/eoss-th/eoss-brain/blob/master/src/test/java/com/eoss/brain/ContextTestCase.java
 
 ```
 Context context = new FileContext("john");
