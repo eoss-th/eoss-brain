@@ -1,4 +1,4 @@
-# eoss-brain
+# LIMZ
 
 ![alt text](https://lh3.googleusercontent.com/WXb1GJKCf3CIFO9cGE7BKPtCgneFKLoOnJCnQWwfZimo05DmKtTnH_A6CbXQNqoIxQ=w300)
 
