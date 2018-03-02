@@ -1,5 +1,7 @@
 # eoss-brain
 
+![alt text](https://lh3.googleusercontent.com/WXb1GJKCf3CIFO9cGE7BKPtCgneFKLoOnJCnQWwfZimo05DmKtTnH_A6CbXQNqoIxQ=w300)
+
 eoss-brain is the open source general AI with dynamic neural networks written in Java (jdk 7) and distributed under the liberal [MIT license](LICENSE). 
 You can use it to support the chatbot messenging api for facebook and line.
 eoss-brain can run in many environment such as heroku, google appengine (java 7) including Android. 
