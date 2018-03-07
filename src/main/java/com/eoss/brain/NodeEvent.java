@@ -6,6 +6,7 @@ public class NodeEvent {
 
     public enum Event {
         SuperConfidence,
+        HesitateConfidence,
         LowConfidence,
         LateReply,
         Leave,

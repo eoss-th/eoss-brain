@@ -91,20 +91,40 @@ public class TalkCommandNode extends CommandNode {
             responseText = maxActiveNode.response();
         }
 
-        final float MIN_LOW = 0.05f;
+        final float UPPER_BOUND = 0.5f;
+        final float LOWER_BOUND = 0.05f;
 
-        if (session.learning && confidenceRate <= MIN_LOW) {
+        if (session.learning && confidenceRate <= LOWER_BOUND) {
             responseText = messageObject + " " + lowConfidenceKeys.get(3);
             session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
             session.clearPool();
             return responseText;
         }
 
-        if (confidenceRate < MIN_LOW) {
+        //Super Confidence
+        if (confidenceRate >= 1) {
+
+            if (session.context.listener != null) {
+                session.context.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.SuperConfidence));
+            }
+
+        } else if (confidenceRate > UPPER_BOUND) {
+
+            //Nothing TO DO; Just Answer
+
+        } else if (confidenceRate > LOWER_BOUND) {
+
+            //hesitation
+            if (session.context.listener != null) {
+                session.context.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
+            }
+
+        } else {
 
             responseText = "";
             if (session.context.listener!=null) {
-                session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.LowConfidence));
+                //Warning! maxActiveNode may be null
+                session.context.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.LowConfidence));
             }
 
         }
@@ -117,13 +137,6 @@ public class TalkCommandNode extends CommandNode {
         session.merge(activeNodeSet);
         session.merge(think(MessageObject.build(messageObject, responseText), confidenceRate));
         session.release(0.5f);
-
-        //Super Confidence
-        if (confidenceRate >= 1) {
-            if (session.context.listener!=null) {
-                session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.SuperConfidence));
-            }
-        }
 
         return responseText;
     }
