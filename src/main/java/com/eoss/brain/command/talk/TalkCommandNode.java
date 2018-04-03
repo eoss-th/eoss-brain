@@ -130,7 +130,6 @@ public class TalkCommandNode extends CommandNode {
         }
 
         if (maxActiveNode!=null) {
-            maxActiveNode.release();
             session.setLastEntry(messageObject, maxActiveNode);
         }
 

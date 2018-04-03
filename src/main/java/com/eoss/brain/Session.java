@@ -105,6 +105,13 @@ public class Session implements Serializable {
         }
     }
 
+    public void releaseLastActive() {
+        if (lastEntry!=null) {
+            if (lastEntry.node!=null)
+                lastEntry.node.release();
+        }
+    }
+
     public void merge(Set<Node> newActiveNodeSet) {
         for (Node newActiveNode:newActiveNodeSet) {
             if (!activeNodePool.add(newActiveNode)) {
