@@ -124,15 +124,14 @@ public class Session implements Serializable {
     public void release(float rate) {
 
         Set<Node> deadList = new HashSet<>();
-        Set<Node> activeNodes = new HashSet<>(activeNodePool);
-        for (Node activeNode:activeNodes) {
-            activeNode.release(rate);
-            if (activeNode.active()<0.25f) {
-                deadList.add(activeNode);
-            }
-        }
-
         synchronized (activeNodePool) {
+            for (Node activeNode:activeNodePool) {
+                activeNode.release(rate);
+                if (activeNode.active()<0.25f) {
+                    deadList.add(activeNode);
+                }
+            }
+
             for (Node deadNode:deadList) {
                 deadNode.release();
                 activeNodePool.remove(deadNode);
