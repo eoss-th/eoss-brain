@@ -162,7 +162,7 @@ public class Session implements Serializable {
                 activeNodePool.remove(deadNode);
             }
         } finally {
-            lock.readLock().unlock();
+            lock.writeLock().unlock();
         }
     }
 
