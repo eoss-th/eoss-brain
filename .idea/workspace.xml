@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -1011,7 +1010,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524628937174</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary=" Fuckkkkkkk">
+      <created>1524630073638</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1524630073638</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1106,7 +1112,8 @@
     <MESSAGE value="Update Context to support properties and addnode event" />
     <MESSAGE value="Thinkable" />
     <MESSAGE value="Fix Concurrent Again - -&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Concurrent Again - -&quot;" />
+    <MESSAGE value=" Fuckkkkkkk" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Fuckkkkkkk" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
