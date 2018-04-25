@@ -7,6 +7,8 @@ import com.eoss.brain.net.Node;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by eossth on 7/14/2017 AD.
@@ -34,13 +36,15 @@ public class Session implements Serializable {
 
     private Entry lastEntry;
 
-    public final Set<Node> activeNodePool = new HashSet<>();
+    private final Set<Node> activeNodePool = new HashSet<>();
 
     public final List<Node> protectedList = new ArrayList<>();
 
     public final List<AdminCommandNode> adminCommandList = new ArrayList<>();
 
     public final List<CommandNode> commandList = new ArrayList<>();
+
+    protected ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public Session() {
 
@@ -112,38 +116,67 @@ public class Session implements Serializable {
         }
     }
 
+    public Set<Node> activeNodePool() {
+        lock.readLock().lock();
+        try {
+            return new HashSet<>(activeNodePool);
+        } finally {
+            lock.readLock().unlock();
+        }
+    }
+
     public void merge(Set<Node> newActiveNodeSet) {
-        for (Node newActiveNode:newActiveNodeSet) {
-            if (!activeNodePool.add(newActiveNode)) {
-                activeNodePool.remove(newActiveNode);
-                activeNodePool.add(newActiveNode);
+        lock.writeLock().lock();
+        try {
+            for (Node newActiveNode:newActiveNodeSet) {
+                if (!activeNodePool.add(newActiveNode)) {
+                    activeNodePool.remove(newActiveNode);
+                    activeNodePool.add(newActiveNode);
+                }
             }
+        } finally {
+            lock.writeLock().unlock();
         }
     }
 
     public void release(float rate) {
 
         Set<Node> deadList = new HashSet<>();
-        synchronized (activeNodePool) {
+
+        lock.readLock().lock();
+        try {
             for (Node activeNode:activeNodePool) {
                 activeNode.release(rate);
                 if (activeNode.active()<0.25f) {
                     deadList.add(activeNode);
                 }
             }
+        } finally {
+            lock.readLock().unlock();
+        }
 
+        lock.writeLock().lock();
+        try {
             for (Node deadNode:deadList) {
                 deadNode.release();
                 activeNodePool.remove(deadNode);
             }
+        } finally {
+            lock.readLock().unlock();
         }
     }
 
     public void clearPool() {
-        for (Node activeNode: activeNodePool) {
-            activeNode.release();
+        lock.writeLock().lock();
+        try {
+            for (Node activeNode: activeNodePool) {
+                activeNode.release();
+            }
+            activeNodePool.clear();
+        } finally {
+            lock.writeLock().unlock();
         }
-        activeNodePool.clear();
+
     }
 
     public void setLastEntry(MessageObject messageObject, Node node) {

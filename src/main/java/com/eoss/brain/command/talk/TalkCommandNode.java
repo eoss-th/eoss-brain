@@ -41,7 +41,7 @@ public class TalkCommandNode extends CommandNode {
         final Set<Node> activeNodeSet = new HashSet<>();
 
         //Feed Session's nodes
-        session.context.matched(messageObject, new HashSet<>(session.activeNodePool), new ContextListener() {
+        session.context.matched(messageObject, session.activeNodePool(), new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
 
