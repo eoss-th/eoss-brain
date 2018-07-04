@@ -94,6 +94,8 @@ public class TalkCommandNode extends CommandNode {
         final float UPPER_BOUND = 0.5f;
         final float LOWER_BOUND = 0.05f;
 
+        System.out.println(confidenceRate);
+
         if (session.learning && confidenceRate <= LOWER_BOUND) {
             responseText = messageObject + " " + lowConfidenceKeys.get(3);
             session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
@@ -133,9 +135,13 @@ public class TalkCommandNode extends CommandNode {
             session.setLastEntry(messageObject, maxActiveNode);
         }
 
-        session.merge(activeNodeSet);
-        session.merge(think(MessageObject.build(messageObject, responseText), confidenceRate));
-        session.release(0.5f);
+        if (confidenceRate >= 0.75) {
+            session.clearPool();
+        } else {
+            session.merge(activeNodeSet);
+            session.merge(think(MessageObject.build(messageObject, responseText), confidenceRate));
+            session.release(0.5f);
+        }
 
         return responseText;
     }

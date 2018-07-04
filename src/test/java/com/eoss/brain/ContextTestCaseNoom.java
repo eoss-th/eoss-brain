@@ -9,7 +9,8 @@ import java.util.*;
 public class ContextTestCaseNoom {
 
     public static void main(String[]args) throws Exception {
-        Locale.setDefault(new Locale("th", "TH"));
+        //Locale.setDefault(new Locale("th", "TH"));
+        Locale.setDefault(new Locale("en", "EN"));
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
