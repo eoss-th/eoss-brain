@@ -5,13 +5,18 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.talk.TalkCommandNode;
 import com.eoss.brain.net.Hook;
 
+import java.util.List;
+
 /**
  * Created by eossth on 7/31/2017 AD.
  */
 public class ForwardCommandNode extends CommandNode {
 
-    public ForwardCommandNode(Session session, String [] hooks) {
+    List<String> lowConfidenceKeys;
+
+    public ForwardCommandNode(Session session, String [] hooks, List<String> lowConfidenceKeys) {
         super(session, hooks, Hook.Match.All);
+        this.lowConfidenceKeys = lowConfidenceKeys;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class ForwardCommandNode extends CommandNode {
             Session.Entry lastActiveEntry = session.lastEntry();
             response = lastActiveEntry.node.response();
             if (!response.equals("?"))
-                return new TalkCommandNode(session).execute(MessageObject.build(messageObject, response));
+                return new TalkCommandNode(session, lowConfidenceKeys).execute(MessageObject.build(messageObject, response));
         }
 
         return response;

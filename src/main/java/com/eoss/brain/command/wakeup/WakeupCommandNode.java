@@ -70,9 +70,10 @@ public class WakeupCommandNode extends CommandNode {
         List<String> rejectKeys = Arrays.asList("No", "Ok", "Cancel", "Ok");
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"No"}, "?", 0, rejectKeys));
 
-        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}));
-
         List<String> lowConfidenceKeys = Arrays.asList("Ok", "Cancel", "Ok", "?");
+
+        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, lowConfidenceKeys));
+
         session.commandList.add(new TalkCommandNode(session, lowConfidenceKeys));
 
         return "...";

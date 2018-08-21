@@ -19,10 +19,6 @@ public class TalkCommandNode extends CommandNode {
 
     private final List<String> lowConfidenceKeys;
 
-    public TalkCommandNode(Session session) {
-        this(session, null);
-    }
-
     public TalkCommandNode(Session session, List<String> lowConfidenceKeys) {
         super(session);
         if (lowConfidenceKeys!=null && lowConfidenceKeys.size()!=4) throw new IllegalArgumentException("lowConfidenceKeys must have 4 elements");
