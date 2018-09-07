@@ -7,7 +7,7 @@ import com.eoss.brain.MessageObject;
  */
 public class AdminCommandNode extends CommandNode {
 
-    private CommandNode commandNode;
+    protected final CommandNode commandNode;
 
     public AdminCommandNode(CommandNode commandNode) {
 

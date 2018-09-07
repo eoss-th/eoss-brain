@@ -10,24 +10,20 @@ import com.eoss.brain.NodeEvent;
  */
 public class RejectProblemCommandNode extends ProblemCommandNode {
 
-    public final String key;
-
     public final String successMsg;
 
     public final String cancelKey;
 
     public final String cancelMsg;
 
-
     String cancelReason;
 
     Session.Entry problemEntry;
 
-    RejectProblemCommandNode(Session session, Session.Entry problemEntry, String key, String successMsg, String cancelKey, String cancelMsg ) {
+    RejectProblemCommandNode(Session session, Session.Entry problemEntry, String successMsg, String cancelKey, String cancelMsg ) {
 
         super(session);
         this.problemEntry = problemEntry;
-        this.key = key;
         this.successMsg = successMsg;
         this.cancelKey = cancelKey;
         this.cancelMsg = cancelMsg;

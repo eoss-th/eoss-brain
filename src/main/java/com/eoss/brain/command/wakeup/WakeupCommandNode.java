@@ -60,17 +60,27 @@ public class WakeupCommandNode extends CommandNode {
         session.adminCommandList.add(new AdminCommandNode(new ImportQADataCommandNode(session, new String[]{"ใส่ข้อมูลถามตอบ"}, "Q:", "A:")));
         session.adminCommandList.add(new AdminCommandNode(new ExportQADataCommandNode(session, new String[]{"ดูข้อมูลถามตอบ"}, "Q:", "A:")));
         session.adminCommandList.add(new AdminCommandNode(new CreateWebIndexCommandNode(session, new String[]{"ใส่ข้อมูลสารบัญจากเวป"})));
-        session.adminCommandList.add(new AdminCommandNode(new EnableTeacherCommandNode(session, new String[]{"เปิดโหมดเรียนรู้"})));
-        session.adminCommandList.add(new AdminCommandNode(new DisableTeacherCommandNode(session, new String[]{"ปิดโหมดเรียนรู้"})));
+        session.adminCommandList.add(new AdminCommandNode(new EnableTeacherCommandNode(session, new String[]{"เปิดโหมดเรียนรู้"})) {
+            @Override
+            public boolean matched(MessageObject messageObject) {
+                return commandNode.matched(messageObject);
+            }
+        });
+        session.adminCommandList.add(new AdminCommandNode(new DisableTeacherCommandNode(session, new String[]{"ปิดโหมดเรียนรู้"})) {
+            @Override
+            public boolean matched(MessageObject messageObject) {
+                return commandNode.matched(messageObject);
+            }
+        });
 
         session.commandList.clear();
         //Positive Feedback
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"Great"}, "Thanks", 0.1f));
         //Negative Feedback for learning
-        List<String> rejectKeys = Arrays.asList("No", "Ok", "Cancel", "Ok");
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"No"}, "?", 0, rejectKeys));
+        List<String> rejectKeys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"No", "แก้"}, "Sorry", 0, rejectKeys));
 
-        List<String> lowConfidenceKeys = Arrays.asList("Ok", "Cancel", "Ok", "?");
+        List<String> lowConfidenceKeys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
 
         session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, lowConfidenceKeys));
 

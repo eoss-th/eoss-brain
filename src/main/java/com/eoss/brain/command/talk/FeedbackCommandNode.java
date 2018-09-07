@@ -42,13 +42,11 @@ public class FeedbackCommandNode extends CommandNode {
 
         Node targetNode = session.context.get(lastActiveEntry.node.hookList());
 
-        System.out.println(rejectKeys+"\t"+session.learning);
-
         if (rejectKeys!=null) {
 
             if (session.learning) {
-                session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
-                feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " ?";
+                session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2)));
+                feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " " + rejectKeys.get(3);
             } else {
                 targetNode.feedback(lastActiveEntry.messageObject, feedback);
             }

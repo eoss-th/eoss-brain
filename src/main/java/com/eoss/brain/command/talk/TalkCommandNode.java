@@ -90,8 +90,6 @@ public class TalkCommandNode extends CommandNode {
         final float UPPER_BOUND = 0.5f;
         final float LOWER_BOUND = 0.05f;
 
-        System.out.println(confidenceRate);
-
         if (session.learning && confidenceRate <= LOWER_BOUND) {
             responseText = messageObject + " " + lowConfidenceKeys.get(3);
             session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
