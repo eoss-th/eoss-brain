@@ -1,17 +1,11 @@
 package com.eoss.brain.command.wakeup;
 
 import com.eoss.brain.MessageObject;
-import com.eoss.brain.MessageTemplate;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.*;
 import com.eoss.brain.command.data.*;
-import com.eoss.brain.command.http.GetCommandNode;
-import com.eoss.brain.command.http.GoogleCommandNode;
-import com.eoss.brain.command.http.ReadCommandNode;
 import com.eoss.brain.command.talk.FeedbackCommandNode;
 import com.eoss.brain.command.talk.TalkCommandNode;
-import com.eoss.brain.net.Hook;
-import com.eoss.brain.net.Node;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,29 +67,17 @@ public class WakeupCommandNode extends CommandNode {
             }
         });
 
-        List<String> rejectKeys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
-
-        session.adminCommandList.add(new AdminCommandNode(new FeedbackCommandNode(session, new String[]{"Great"}, "Thanks", 0.1f)) {
-            @Override
-            public boolean matched(MessageObject messageObject) {
-                return commandNode.matched(messageObject);
-            }
-        });
-
-        session.adminCommandList.add(new AdminCommandNode(new FeedbackCommandNode(session, new String[]{"No", "แก้"}, "Sorry", 0, rejectKeys)) {
-            @Override
-            public boolean matched(MessageObject messageObject) {
-                return commandNode.matched(messageObject);
-            }
-        });
+        List<String> keys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
 
         session.commandList.clear();
 
-        List<String> lowConfidenceKeys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"Great", "เยี่ยม"}, "Thanks", 0.1f));
 
-        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, lowConfidenceKeys));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"No", "ไม่"}, "Sorry", 0, keys));
 
-        session.commandList.add(new TalkCommandNode(session, lowConfidenceKeys));
+        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, keys));
+
+        session.commandList.add(new TalkCommandNode(session, keys));
 
         return "...";
     }
