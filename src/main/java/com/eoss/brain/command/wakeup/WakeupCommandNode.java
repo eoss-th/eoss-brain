@@ -73,12 +73,23 @@ public class WakeupCommandNode extends CommandNode {
             }
         });
 
-        session.commandList.clear();
-        //Positive Feedback
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"Great"}, "Thanks", 0.1f));
-        //Negative Feedback for learning
         List<String> rejectKeys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"No", "แก้"}, "Sorry", 0, rejectKeys));
+
+        session.adminCommandList.add(new AdminCommandNode(new FeedbackCommandNode(session, new String[]{"Great"}, "Thanks", 0.1f)) {
+            @Override
+            public boolean matched(MessageObject messageObject) {
+                return commandNode.matched(messageObject);
+            }
+        });
+
+        session.adminCommandList.add(new AdminCommandNode(new FeedbackCommandNode(session, new String[]{"No", "แก้"}, "Sorry", 0, rejectKeys)) {
+            @Override
+            public boolean matched(MessageObject messageObject) {
+                return commandNode.matched(messageObject);
+            }
+        });
+
+        session.commandList.clear();
 
         List<String> lowConfidenceKeys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
 
