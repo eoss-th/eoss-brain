@@ -67,7 +67,7 @@ public class WakeupCommandNode extends CommandNode {
             }
         });
 
-        List<String> keys = Arrays.asList("Ok", "Cancel", "Ok", "คืออะไร");
+        List<String> keys = Arrays.asList("Ok", "Cancel", "Ok", "?");
 
         session.commandList.clear();
 

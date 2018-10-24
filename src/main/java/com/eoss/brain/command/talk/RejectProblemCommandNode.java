@@ -81,6 +81,8 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
             }
         }
 
+        session.context.save();
+
         session.setLastEntry(problemEntry.messageObject, newNode);
 
         return successMsg;

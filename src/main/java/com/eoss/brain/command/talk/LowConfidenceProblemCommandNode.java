@@ -64,6 +64,7 @@ public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
         Node newNode = session.context.build(problemMessage);
         newNode.setResponse(messageObject.toString());
         session.context.add(newNode);
+        session.context.save();
 
         if (session.context.listener!=null) {
             session.context.listener.callback(new NodeEvent(newNode, problemMessage, NodeEvent.Event.NewNodeAdded));
