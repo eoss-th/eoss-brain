@@ -17,10 +17,10 @@ public class RegisterAdminCommandNode extends CommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
-        if (session.context.listener !=null) {
+        if (session.listener !=null) {
 
             String displayName = clean(messageObject.toString());
-            session.context.listener.callback(
+            session.listener.callback(
                     new NodeEvent(this,
                             MessageObject.build(messageObject, displayName),
                             NodeEvent.Event.RegisterAdmin));

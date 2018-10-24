@@ -20,8 +20,8 @@ public class LeaveCommandNode extends CommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
-        if (session.context.listener !=null) {
-            session.context.listener.callback(
+        if (session.listener !=null) {
+            session.listener.callback(
                     new NodeEvent(this,
                             MessageObject.build(messageObject,
                                     leaveMsg),

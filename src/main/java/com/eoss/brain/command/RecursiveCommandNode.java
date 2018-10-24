@@ -58,8 +58,8 @@ public class RecursiveCommandNode extends CommandNode {
             }
 
             if (recursiveResponse!=null) {
-                if (session.context.listener !=null) {
-                    session.context.listener.callback(
+                if (session.listener !=null) {
+                    session.listener.callback(
                             new NodeEvent(this,
                                     MessageObject.build(messageObject, recursiveResponse),
                                     NodeEvent.Event.Recursive));

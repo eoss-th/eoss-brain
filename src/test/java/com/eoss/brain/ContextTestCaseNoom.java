@@ -14,33 +14,32 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("test")
-                .callback(new ContextListener() {
-                    @Override
-                    public void callback(NodeEvent nodeEvent) {
-                        if (nodeEvent.event == NodeEvent.Event.NewNodeAdded) {
-                            System.out.println("Add new node:" + nodeEvent.node);
-                            return;
-                        }
-                        if (nodeEvent.event == NodeEvent.Event.LateReply) {
-                            String [] responses = nodeEvent.messageObject.toString().split(System.lineSeparator());
-                            for (String response:responses) {
-                                System.out.println("Bot:>>" + response);
-                            }
-                            return;
-                        }
-                        if (nodeEvent.event == NodeEvent.Event.LowConfidence) {
-                            System.out.println("Low confidence:" + nodeEvent.messageObject);
-                            return;
-                        }
-                        if (nodeEvent.event == NodeEvent.Event.HesitateConfidence) {
-                            System.out.println("Bot:>>" + Hook.toString(nodeEvent.node.hookList()) + "?");
-                            return;
-                        }
-                    }
-                }).admin(adminIdList);
+        Context context = new FileContext("test").admin(adminIdList);
 
-        Session session = new Session(context);
+        Session session = new Session(context).callback(new SessionListener() {
+            @Override
+            public void callback(NodeEvent nodeEvent) {
+                if (nodeEvent.event == NodeEvent.Event.NewNodeAdded) {
+                    System.out.println("Add new node:" + nodeEvent.node);
+                    return;
+                }
+                if (nodeEvent.event == NodeEvent.Event.LateReply) {
+                    String [] responses = nodeEvent.messageObject.toString().split(System.lineSeparator());
+                    for (String response:responses) {
+                        System.out.println("Bot:>>" + response);
+                    }
+                    return;
+                }
+                if (nodeEvent.event == NodeEvent.Event.LowConfidence) {
+                    System.out.println("Low confidence:" + nodeEvent.messageObject);
+                    return;
+                }
+                if (nodeEvent.event == NodeEvent.Event.HesitateConfidence) {
+                    System.out.println("Bot:>>" + Hook.toString(nodeEvent.node.hookList()) + "?");
+                    return;
+                }
+            }
+        });
         new WakeupCommandNode(session).execute(null);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");

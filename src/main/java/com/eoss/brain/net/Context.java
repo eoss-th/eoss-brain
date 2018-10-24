@@ -22,8 +22,6 @@ public abstract class Context implements Serializable {
 
     public final String name;
 
-    public ContextListener listener;
-
     private List<String> adminIdList = new ArrayList<>();
 
     protected ReadWriteLock lock = new ReentrantReadWriteLock();
@@ -32,18 +30,20 @@ public abstract class Context implements Serializable {
 
     public final List<Node> nodeList = new ArrayList<>();
 
+    public ContextListener listener;
+
     public Context(String name) {
         this.name = name;
-    }
-
-    public Context callback(ContextListener callback) {
-        this.listener = callback;
-        return this;
     }
 
     public Context admin(List<String> adminIdList) {
         if (adminIdList!=null)
             this.adminIdList = new ArrayList<>(adminIdList);
+        return this;
+    }
+
+    public Context callback(ContextListener callback) {
+        this.listener = callback;
         return this;
     }
 

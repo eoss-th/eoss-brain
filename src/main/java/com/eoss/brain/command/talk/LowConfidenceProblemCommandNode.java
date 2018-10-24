@@ -42,8 +42,8 @@ public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
                         protectedFromNode.feed(messageObject, 1);
                         cancelReason = protectedFromNode.response();
                         protectedFromNode.release();
-                        if (session.context.listener !=null) {
-                            session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.ReservedWords));
+                        if (session.listener !=null) {
+                            session.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.ReservedWords));
                         }
                         break;
                     }
@@ -67,8 +67,8 @@ public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
         
         session.context.save();
 
-        if (session.context.listener!=null) {
-            session.context.listener.callback(new NodeEvent(newNode, problemMessage, NodeEvent.Event.NewNodeAdded));
+        if (session.listener!=null) {
+            session.listener.callback(new NodeEvent(newNode, problemMessage, NodeEvent.Event.NewNodeAdded));
         }
 
         session.setLastEntry(problemMessage, newNode);

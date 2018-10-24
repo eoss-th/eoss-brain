@@ -43,8 +43,8 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
                         protectedFromNode.feed(messageObject, 1);
                         cancelReason = protectedFromNode.response();
                         protectedFromNode.release();
-                        if (session.context.listener !=null) {
-                            session.context.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.ReservedWords));
+                        if (session.listener !=null) {
+                            session.listener.callback(new NodeEvent(this, messageObject, NodeEvent.Event.ReservedWords));
                         }
                         break;
                     }
@@ -76,8 +76,8 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
             newNode.setResponse(messageObject.toString());
             session.context.add(newNode);
 
-            if (session.context.listener!=null) {
-                session.context.listener.callback(new NodeEvent(newNode, problemEntry.messageObject, NodeEvent.Event.NewNodeAdded));
+            if (session.listener!=null) {
+                session.listener.callback(new NodeEvent(newNode, problemEntry.messageObject, NodeEvent.Event.NewNodeAdded));
             }
         }
 

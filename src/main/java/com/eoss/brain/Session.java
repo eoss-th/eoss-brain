@@ -3,7 +3,9 @@ package com.eoss.brain;
 import com.eoss.brain.command.*;
 import com.eoss.brain.command.talk.ProblemCommandNode;
 import com.eoss.brain.net.Context;
+import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
+import com.eoss.brain.net.SessionListener;
 
 import java.io.Serializable;
 import java.util.*;
@@ -46,9 +48,9 @@ public class Session implements Serializable {
 
     protected ReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public Session() {
+    public SessionListener listener;
 
-    }
+    public Session() { }
 
     public Session(Context context) {
         this.context = context;
@@ -56,6 +58,11 @@ public class Session implements Serializable {
 
     public Session context(Context context) {
         this.context = context;
+        return this;
+    }
+
+    public Session callback(SessionListener callback) {
+        this.listener = callback;
         return this;
     }
 

@@ -100,8 +100,8 @@ public class TalkCommandNode extends CommandNode {
         //Super Confidence
         if (confidenceRate >= 1) {
 
-            if (session.context.listener != null) {
-                session.context.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.SuperConfidence));
+            if (session.listener != null) {
+                session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.SuperConfidence));
             }
 
         } else if (confidenceRate > UPPER_BOUND) {
@@ -111,16 +111,16 @@ public class TalkCommandNode extends CommandNode {
         } else if (confidenceRate > LOWER_BOUND) {
 
             //hesitation
-            if (session.context.listener != null) {
-                session.context.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
+            if (session.listener != null) {
+                session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
             }
 
         } else {
 
             responseText = "";
-            if (session.context.listener!=null) {
+            if (session.listener!=null) {
                 //Warning! maxActiveNode may be null
-                session.context.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.LowConfidence));
+                session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.LowConfidence));
             }
 
         }

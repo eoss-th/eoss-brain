@@ -215,8 +215,8 @@ public class GoogleCommandNode extends CommandNode {
 
             String result = resultText.toString().trim();
             if (!result.isEmpty()) {
-                if (session.context.listener !=null) {
-                    session.context.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, result), NodeEvent.Event.LateReply));
+                if (session.listener !=null) {
+                    session.listener.callback(new NodeEvent(this, MessageObject.build(messageObject, result), NodeEvent.Event.LateReply));
                     return "";
                 }
                 return result;
