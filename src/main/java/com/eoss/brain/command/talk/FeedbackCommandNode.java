@@ -32,13 +32,15 @@ public class FeedbackCommandNode extends CommandNode {
 
     @Override
     public boolean matched(MessageObject messageObject) {
-        return super.matched(messageObject) && session.lastEntry() != null;
+        return super.matched(messageObject);
     }
 
     @Override
     public String execute(MessageObject messageObject) {
 
         Session.Entry lastActiveEntry = session.lastEntry();
+
+        if (lastActiveEntry==null) return messageObject.toString();
 
         Node targetNode = session.context.get(lastActiveEntry.node.hookList());
 
