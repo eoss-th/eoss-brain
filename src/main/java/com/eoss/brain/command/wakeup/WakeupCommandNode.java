@@ -71,9 +71,9 @@ public class WakeupCommandNode extends CommandNode {
 
         session.commandList.clear();
 
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"Great", "เยี่ยม"}, "Thanks", 0.1f));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4D", "เยี่ยม"}, "\uD83D\uDE0A", 0.1f));
 
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"No", "ไม่"}, "Sorry", 0, keys));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4E", "ไม่"}, "\uD83D\uDE1F", -0.1f, keys));
 
         session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, keys));
 
