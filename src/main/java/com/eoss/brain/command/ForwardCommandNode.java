@@ -2,6 +2,7 @@ package com.eoss.brain.command;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.command.talk.Key;
 import com.eoss.brain.command.talk.TalkCommandNode;
 import com.eoss.brain.net.Hook;
 
@@ -12,11 +13,11 @@ import java.util.List;
  */
 public class ForwardCommandNode extends CommandNode {
 
-    List<String> lowConfidenceKeys;
+    public final Key lowConfidenceKey;
 
-    public ForwardCommandNode(Session session, String [] hooks, List<String> lowConfidenceKeys) {
+    public ForwardCommandNode(Session session, String [] hooks, Key lowConfidenceKey) {
         super(session, hooks, Hook.Match.All);
-        this.lowConfidenceKeys = lowConfidenceKeys;
+        this.lowConfidenceKey = lowConfidenceKey;
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ForwardCommandNode extends CommandNode {
             Session.Entry lastActiveEntry = session.lastEntry();
             response = lastActiveEntry.node.response();
             if (!response.equals("?"))
-                return new TalkCommandNode(session, lowConfidenceKeys).execute(MessageObject.build(messageObject, response));
+                return new TalkCommandNode(session, lowConfidenceKey).execute(MessageObject.build(messageObject, response));
         }
 
         return response;

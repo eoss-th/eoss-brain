@@ -17,12 +17,11 @@ import java.util.Set;
  */
 public class TalkCommandNode extends CommandNode {
 
-    private final List<String> lowConfidenceKeys;
+    private final Key lowConfidenceKey;
 
-    public TalkCommandNode(Session session, List<String> lowConfidenceKeys) {
+    public TalkCommandNode(Session session, Key lowConfidenceKey) {
         super(session);
-        if (lowConfidenceKeys!=null && lowConfidenceKeys.size()!=4) throw new IllegalArgumentException("lowConfidenceKeys must have 4 elements");
-        this.lowConfidenceKeys = lowConfidenceKeys;
+        this.lowConfidenceKey = lowConfidenceKey;
     }
 
     @Override
@@ -91,8 +90,8 @@ public class TalkCommandNode extends CommandNode {
         final float LOWER_BOUND = 0.05f;
 
         if (session.learning && confidenceRate <= LOWER_BOUND) {
-            responseText = messageObject + " " + lowConfidenceKeys.get(3);
-            session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
+            responseText = messageObject + " " + lowConfidenceKey.questMsg;
+            session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKey));
             session.clearPool();
             return responseText;
         }

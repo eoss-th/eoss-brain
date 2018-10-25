@@ -5,38 +5,32 @@ import com.eoss.brain.MessageObject;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.NodeEvent;
 
+import java.util.List;
+
 /**
  * Created by eossth on 7/31/2017 AD.
  */
 public class RejectProblemCommandNode extends ProblemCommandNode {
 
-    public final String successMsg;
-
-    public final String cancelKey;
-
-    public final String cancelMsg;
+    public final Key rejectKey;
 
     String cancelReason;
 
     Session.Entry problemEntry;
 
-    RejectProblemCommandNode(Session session, Session.Entry problemEntry, String successMsg, String cancelKey, String cancelMsg ) {
+    RejectProblemCommandNode(Session session, Session.Entry problemEntry, Key rejectKey) {
 
         super(session);
         this.problemEntry = problemEntry;
-        this.successMsg = successMsg;
-        this.cancelKey = cancelKey;
-        this.cancelMsg = cancelMsg;
-
+        this.rejectKey = rejectKey;
     }
 
     @Override
     public boolean matched(MessageObject messageObject) {
 
-        this.cancelReason = null;
         try {
-            if (messageObject.toString().equals(cancelKey)) {
-                cancelReason = cancelMsg;
+            if (rejectKey.cancelKeys.contains(messageObject.toString())) {
+                cancelReason = rejectKey.doneMsg;
             } else {
                 for (Node protectedFromNode: session.protectedList) {
                     if (protectedFromNode.matched(messageObject)) {
@@ -85,6 +79,6 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
 
         session.setLastEntry(problemEntry.messageObject, newNode);
 
-        return successMsg;
+        return rejectKey.doneMsg;
     }
 }

@@ -20,11 +20,13 @@ public class TalkCommandNodeTest {
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "พอ", "ก็แล้วแต่", "คือ?");
 
+        Key lowConfidenceKey = new Key("เข้าใจละ", "คือ?", Arrays.asList("พอ"));
+
         Context context = new MemoryContext("test");
         Session session = new Session(context);
         session.learning = true;
 
-        TalkCommandNode talkCommandNode = new TalkCommandNode(session, lowConfidenceKeys);
+        TalkCommandNode talkCommandNode = new TalkCommandNode(session, lowConfidenceKey);
 
         assertTrue(talkCommandNode.matched(MessageObject.build("dfgsgf")));
 

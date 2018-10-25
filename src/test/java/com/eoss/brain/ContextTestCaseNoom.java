@@ -47,7 +47,7 @@ public class ContextTestCaseNoom {
         MessageObject template = MessageObject.build();
         template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
-        //session.learning=true;
+        session.learning=true;
 
         while(true) {
             System.out.print("You:>>");

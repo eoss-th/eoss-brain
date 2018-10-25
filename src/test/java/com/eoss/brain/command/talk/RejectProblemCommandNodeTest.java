@@ -23,6 +23,8 @@ public class RejectProblemCommandNodeTest {
 
         List<String> rejectKeys = Arrays.asList("Ok", "Cancel", "Ok", "?");
 
+        Key rejectKey = new Key("Ok", "?", Arrays.asList("Cancel"));
+
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new MemoryContext("test");
         context.admin(adminIdList);
@@ -40,7 +42,7 @@ public class RejectProblemCommandNodeTest {
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดีครับ")));
 
-        session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2)));
+        session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKey));
 
         assertEquals("Ok", session.parse(MessageObject.build("ว่าไง")));
 
@@ -56,7 +58,7 @@ public class RejectProblemCommandNodeTest {
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("นายครับ")));
 
-        session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKeys.get(1), rejectKeys.get(2), rejectKeys.get(3)));
+        session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKey));
 
         assertEquals("Ok", session.parse(MessageObject.build("อาฮะ")));
 

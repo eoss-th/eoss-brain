@@ -75,7 +75,9 @@ public class FeedbackCommandNodeTest {
 
         List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "พอ", "ก็แล้วแต่");
 
-        feedbackCommandNode = new FeedbackCommandNode(session, new String[]{"ผิด"}, "แล้วจะให้ตอบว่า?", negativeFeedback, rejectKeys);
+        Key lowConfidenceKey = new Key("เข้าใจละ", "คือ?", Arrays.asList("พอ"));
+
+        feedbackCommandNode = new FeedbackCommandNode(session, new String[]{"ผิด"}, "แล้วจะให้ตอบว่า?", negativeFeedback, lowConfidenceKey);
 
         assertFalse(feedbackCommandNode.matched(MessageObject.build("ผิด")));
 

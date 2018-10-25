@@ -15,19 +15,17 @@ public class FeedbackCommandNode extends CommandNode {
 
     private float feedback;
     private String feedbackResponse;
-    private final List<String> rejectKeys;
+    private final Key rejectKey;
 
     public FeedbackCommandNode(Session session, String [] hooks, String feedbackResponse, float feedback) {
         this(session, hooks, feedbackResponse, feedback, null);
     }
 
-    public FeedbackCommandNode(Session session, String [] hooks, String feedbackResponse, float feedback, List<String> rejectKeys) {
+    public FeedbackCommandNode(Session session, String [] hooks, String feedbackResponse, float feedback, Key rejectKey) {
         super(session, hooks, Hook.Match.All);
         this.feedbackResponse = feedbackResponse;
         this.feedback = feedback;
-
-        if (rejectKeys!=null && rejectKeys.size()!=4) throw new IllegalArgumentException("Reject keys must have 4 elements");
-        this.rejectKeys = rejectKeys;
+        this.rejectKey = rejectKey;
     }
 
     @Override
@@ -44,11 +42,11 @@ public class FeedbackCommandNode extends CommandNode {
 
         Node targetNode = session.context.get(lastActiveEntry.node.hookList());
 
-        if (rejectKeys!=null) {
+        if (rejectKey!=null) {
 
             if (session.learning) {
-                session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKeys.get(0), rejectKeys.get(1), rejectKeys.get(2)));
-                feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " " + rejectKeys.get(3);
+                session.insert(new RejectProblemCommandNode(session, lastActiveEntry, rejectKey));
+                feedbackResponse = lastActiveEntry.messageObject.toString().trim() + " " + rejectKey.questMsg;
             } else {
                 targetNode.feedback(lastActiveEntry.messageObject, feedback);
             }

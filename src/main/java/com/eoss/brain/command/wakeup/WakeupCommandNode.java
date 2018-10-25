@@ -5,10 +5,10 @@ import com.eoss.brain.Session;
 import com.eoss.brain.command.*;
 import com.eoss.brain.command.data.*;
 import com.eoss.brain.command.talk.FeedbackCommandNode;
+import com.eoss.brain.command.talk.Key;
 import com.eoss.brain.command.talk.TalkCommandNode;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -67,17 +67,17 @@ public class WakeupCommandNode extends CommandNode {
             }
         });
 
-        List<String> keys = Arrays.asList("Ok", "Cancel", "Ok", "?");
+        Key key = new Key("\uD83D\uDE0A", "?", Arrays.asList("\uD83D\uDC4D", "\uD83D\uDC4E"));
 
         session.commandList.clear();
 
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4D", "เยี่ยม"}, "\uD83D\uDE0A", 0.1f));
 
-        session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4E", "ไม่"}, "\uD83D\uDE1F", -0.1f, keys));
+        session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4E", "ไม่"}, "\uD83D\uDE1F", -0.1f, key));
 
-        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, keys));
+        session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, key));
 
-        session.commandList.add(new TalkCommandNode(session, keys));
+        session.commandList.add(new TalkCommandNode(session, key));
 
         return "...";
     }

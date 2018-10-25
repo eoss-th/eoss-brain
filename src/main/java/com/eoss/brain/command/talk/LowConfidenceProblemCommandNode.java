@@ -10,32 +10,25 @@ import com.eoss.brain.NodeEvent;
  */
 public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
 
-    public final String successMsg;
-
-    public final String cancelKey;
-
-    public final String cancelMsg;
+    public final Key key;
 
     String cancelReason;
 
     MessageObject problemMessage;
 
-    public LowConfidenceProblemCommandNode(Session session, MessageObject problemMessage, String successMsg, String cancelKey, String cancelMsg) {
+    public LowConfidenceProblemCommandNode(Session session, MessageObject problemMessage, Key key) {
 
         super(session);
         this.problemMessage = problemMessage;
-        this.successMsg = successMsg;
-        this.cancelKey = cancelKey;
-        this.cancelMsg = cancelMsg;
+        this.key = key;
     }
 
     @Override
     public boolean matched(MessageObject messageObject) {
 
-        this.cancelReason = null;
         try {
-            if (messageObject.toString().equals(cancelKey)) {
-                cancelReason = cancelMsg;
+            if (key.cancelKeys.contains(messageObject.toString())) {
+                cancelReason = key.doneMsg;
             } else {
                 for (Node protectedFromNode: session.protectedList) {
                     if (protectedFromNode.matched(messageObject)) {
@@ -73,6 +66,6 @@ public class LowConfidenceProblemCommandNode extends ProblemCommandNode {
 
         session.setLastEntry(problemMessage, newNode);
 
-        return successMsg;
+        return key.doneMsg;
     }
 }

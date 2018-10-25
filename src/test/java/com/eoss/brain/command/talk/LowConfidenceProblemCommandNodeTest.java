@@ -21,6 +21,8 @@ public class LowConfidenceProblemCommandNodeTest {
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "ไม่", "ไม่ก็ไม่");
 
+        Key lowConfidenceKey = new Key("เข้าใจละ", "?", Arrays.asList("ไม่"));
+
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new MemoryContext("test");
         context.admin(adminIdList);
@@ -28,7 +30,7 @@ public class LowConfidenceProblemCommandNodeTest {
         new WakeupCommandNode(session).execute(null);
 
         LowConfidenceProblemCommandNode lowConfidenceProblemCommandNode = new LowConfidenceProblemCommandNode(session,
-                MessageObject.build("สวัสดี"), lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2));
+                MessageObject.build("สวัสดี"), lowConfidenceKey);
 
         assertTrue(lowConfidenceProblemCommandNode.matched(MessageObject.build("ตอบ")));
 
@@ -42,7 +44,7 @@ public class LowConfidenceProblemCommandNodeTest {
 
         session.insert(lowConfidenceProblemCommandNode);
 
-        assertEquals("ไม่ก็ไม่", session.parse(MessageObject.build("ไม่")));
+        assertEquals("เข้าใจละ", session.parse(MessageObject.build("ไม่")));
 
         assertFalse(session.hasProblem());
 
