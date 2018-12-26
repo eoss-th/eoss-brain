@@ -20,7 +20,7 @@ public class GAEStorageContext extends Context {
 
     private final ExecutorService executorService;
 
-    private static final String dataURL = "https://eoss-ai.appspot.com/s/";
+    private static final String dataURL = "https://eoss-wayo-bot.appspot.com/s/";
 
     public GAEStorageContext(String name) {
         this(name, Executors.newFixedThreadPool(1));

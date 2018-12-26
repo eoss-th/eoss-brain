@@ -19,50 +19,43 @@ public class RejectProblemCommandNodeTest {
 
     @Test
     public void testRejectProblemCommand() {
-        Locale.setDefault(new Locale("th", "TH"));
-
-        List<String> rejectKeys = Arrays.asList("Ok", "Cancel", "Ok", "?");
-
-        Key rejectKey = new Key("Ok", "?", Arrays.asList("Cancel"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("test");
+        Context context = new MemoryContext("qa").locale(new Locale("th"));
         context.admin(adminIdList);
         Session session = new Session(context);
         session.learning = true;
+
         new WakeupCommandNode(session).execute(null);
 
-        Node node = new Node(Hook.build(new String[]{"สวัสดี"}), "ดีครับ");
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
 
-        context.add(node);
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q: hello how are you\n" +
+                "A: fine\n"
+        )));
 
-        assertTrue(1 == context.nodeList.size());
-
-        assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดี")));
-
-        assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดีครับ")));
-
-        session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKey));
-
-        assertEquals("Ok", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("fine", session.parse(MessageObject.build("hello")));
 
         assertFalse(session.hasProblem());
 
-        assertEquals("ว่าไง", session.parse(MessageObject.build("นายครับ")));
+        assertEquals("hello ?", session.parse(MessageObject.build("ไม่")));
 
-        assertEquals("นายครับ ?", session.parse(MessageObject.build("No")));
+        assertTrue(session.hasProblem());
 
-        assertEquals("Ok", session.parse(MessageObject.build("ดีครับ")));
-
-        assertFalse(session.hasProblem());
-
-        assertEquals("ดีครับ", session.parse(MessageObject.build("นายครับ")));
-
-        session.insert(new RejectProblemCommandNode(session, session.lastEntry(), rejectKey));
-
-        assertEquals("Ok", session.parse(MessageObject.build("อาฮะ")));
+        //Cancel
+        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("ไม่")));
 
         assertFalse(session.hasProblem());
 
+        //Retry
+        assertEquals("fine", session.parse(MessageObject.build("hello")));
+
+        assertEquals("hello ?", session.parse(MessageObject.build("ไม่")));
+
+        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("hi")));
+
+        assertEquals("hi", session.parse(MessageObject.build("hello")));
     }
 }

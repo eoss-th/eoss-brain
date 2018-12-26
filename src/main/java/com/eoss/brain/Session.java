@@ -28,6 +28,8 @@ public class Session implements Serializable {
 
     public Context context;
 
+    public final Random random = new Random();
+
     private boolean problemSolved = false;
 
     public String mode = null;
@@ -39,6 +41,10 @@ public class Session implements Serializable {
     private Entry lastEntry;
 
     private final Set<Node> activeNodePool = new HashSet<>();
+
+    private final Set<Node> routeSet = new HashSet<>();
+
+    public final Map<String, String> variableMap = new HashMap<>();
 
     public final List<Node> protectedList = new ArrayList<>();
 
@@ -67,6 +73,8 @@ public class Session implements Serializable {
     }
 
     public String parse(MessageObject messageObject) {
+
+        clearRoute();
 
         boolean isAdminCommandExecuted = false;
         String result = null;
@@ -201,6 +209,24 @@ public class Session implements Serializable {
     public void insert(ProblemCommandNode problemCommandNode) {
         commandList.add(0, problemCommandNode);
         problemSolved = false;
+    }
+
+    private void clearRoute() {
+        routeSet.clear();
+    }
+
+    public boolean route(Node node) {
+        return routeSet.add(node);
+    }
+
+    public void setVariable(String name, String value) {
+        variableMap.put(name, value);
+    }
+
+    public String getVariable(String name) {
+        String value = variableMap.get(name);
+        if (value==null) value = "";
+        return value;
     }
 
 }

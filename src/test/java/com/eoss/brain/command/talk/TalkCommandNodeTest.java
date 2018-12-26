@@ -2,6 +2,7 @@ package com.eoss.brain.command.talk;
 
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
@@ -36,5 +37,57 @@ public class TalkCommandNodeTest {
 
         assertEquals("สวีดัส", talkCommandNode.execute(MessageObject.build("สวัสดี")));
     }
+
+    @Test
+    public void testMaxActiveNode() {
+
+        List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
+        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        context.admin(adminIdList);
+        Session session = new Session(context);
+        new WakeupCommandNode(session).execute(null);
+
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q: hello guy\n" +
+                "A: hi\n" +
+                "Q: hello guy\n" +
+                "A: how\n" +
+                "Q: hello\n" +
+                "A: hola\n"
+        )));
+
+        //assertEquals("hi", session.parse(MessageObject.build("hello guy")));
+
+    }
+
+    @Test
+    public void testMathConditionNode() {
+
+        List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
+        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        context.admin(adminIdList);
+        Session session = new Session(context);
+        new WakeupCommandNode(session).execute(null);
+
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q: i am years old\n" +
+                "A: age %1!\n" +
+                "Q: age >=50\n" +
+                "A: you are so old\n" +
+                "Q: age <50\n" +
+                "A: you are so young\n"
+        )));
+
+        assertEquals("you are so young", session.parse(MessageObject.build("i am 20 years old")));
+        assertEquals("you are so old", session.parse(MessageObject.build("i am 70 years old")));
+
+    }
+
 
 }

@@ -52,7 +52,7 @@ public class FeedbackCommandNodeTest {
 
         feedbackCommandNode = new FeedbackCommandNode(session, new String[]{"เก่ง"}, "อิอิ", positiveFeedback);
 
-        assertFalse(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
+        assertTrue(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
 
         session.parse(MessageObject.build("สวัสดี"));
 
@@ -75,11 +75,11 @@ public class FeedbackCommandNodeTest {
 
         List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "พอ", "ก็แล้วแต่");
 
-        Key lowConfidenceKey = new Key("เข้าใจละ", "คือ?", Arrays.asList("พอ"));
+        Key lowConfidenceKey = new Key("เข้าใจละ", "?", Arrays.asList("พอ"));
 
         feedbackCommandNode = new FeedbackCommandNode(session, new String[]{"ผิด"}, "แล้วจะให้ตอบว่า?", negativeFeedback, lowConfidenceKey);
 
-        assertFalse(feedbackCommandNode.matched(MessageObject.build("ผิด")));
+        assertTrue(feedbackCommandNode.matched(MessageObject.build("ผิด")));
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดี")));
 
@@ -110,13 +110,13 @@ public class FeedbackCommandNodeTest {
 
         feedbackCommandNode = new FeedbackCommandNode(session, new String[]{"เก่ง"}, "อิอิ", positiveFeedback);
 
-        assertFalse(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
+        assertTrue(feedbackCommandNode.matched(MessageObject.build("เก่ง")));
 
         assertEquals("ดีครับ", session.parse(MessageObject.build("สวัสดีครับ")));
 
         assertFalse(node.hookList().contains(new Hook("ครับ", Hook.Match.Tail)));
 
-        assertEquals("Thanks", session.parse(MessageObject.build("Great")));
+        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("เยี่ยม")));
 
         assertTrue(node.hookList().contains(new Hook("ครับ", Hook.Match.Tail)));
 

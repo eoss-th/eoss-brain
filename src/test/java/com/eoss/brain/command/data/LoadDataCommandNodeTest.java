@@ -3,6 +3,7 @@ package com.eoss.brain.command.data;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.FileContext;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.context.GAEStorageContext;
 import org.junit.Test;
@@ -22,15 +23,13 @@ public class LoadDataCommandNodeTest {
         Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new GAEStorageContext("test", null);
+        Context context = new FileContext("filetest");
         context.admin(adminIdList);
         Session session = new Session(context);
 
         assertEquals(0, context.nodeList.size());
         new WakeupCommandNode(session).execute(null);
         assertTrue(context.nodeList.size() > 0);
-
-        assertEquals("", session.parse(MessageObject.build("รองรับระบบปฏิบัติการ")));
 
     }
 

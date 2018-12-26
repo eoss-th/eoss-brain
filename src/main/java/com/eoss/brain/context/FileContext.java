@@ -31,7 +31,7 @@ public class FileContext extends Context {
         return null;
     }
 
-    private File getFile() {
+    private File getFile(String name) {
         File file;
         if (dir!=null&&dir.isDirectory()) {
             file = new File(dir, name + SUFFIX);
@@ -45,7 +45,7 @@ public class FileContext extends Context {
     public void doLoad(String name) throws Exception {
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(getFile()), StandardCharsets.UTF_8));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(getFile(name)), StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine())!=null) {
@@ -66,7 +66,7 @@ public class FileContext extends Context {
         OutputStreamWriter out = null;
         try {
             out = new OutputStreamWriter(
-                    new FileOutputStream(getFile(), false), StandardCharsets.UTF_8);
+                    new FileOutputStream(getFile(name), false), StandardCharsets.UTF_8);
             out.write(toJSONString());
             out.flush();
         } catch (Exception e) {

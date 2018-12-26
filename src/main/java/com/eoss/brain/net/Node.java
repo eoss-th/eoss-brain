@@ -93,6 +93,7 @@ public class Node implements Serializable {
                 matchedCount ++;
             }
         }
+        //System.out.println(hookList + ":" + messageObject + ":" + matchedCount);
 
         active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
     }
@@ -137,6 +138,25 @@ public class Node implements Serializable {
             cleanInput = cleanInput.replace(hook.text, "");
         }
         return cleanInput.trim();
+    }
+
+    public String clean(String [] inputs) {
+
+        StringBuilder cleanInput = new StringBuilder();
+        boolean matched;
+        for (String input:inputs) {
+
+            matched = false;
+            for (Hook hook:hookList) {
+                if (hook.text.equals(input)) {
+                    matched = true;
+                    break;
+                }
+            }
+
+            if (!matched) cleanInput.append(input + " ");
+        }
+        return cleanInput.toString().trim();
     }
 
     @Override

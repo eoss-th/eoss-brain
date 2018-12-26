@@ -56,19 +56,14 @@ public class FileContextTest {
     public void testLoadFileNodeDAO() throws Exception {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        String contextName = "test";
+        String contextName = "filetest";
 
         Context context = new FileContext(contextName);
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
 
-        assertEquals("ครับ", session.parse(MessageObject.build("สวัสดี")));
-
-        MessageObject messageObject = MessageObject.build();
-        messageObject.attributes.put("mode", "เฮฮา");
-        assertEquals("ครับ", session.parse(messageObject));
-
+        assertEquals("ครับ", session.parse(MessageObject.build("ว่าไง")));
     }
 
 }

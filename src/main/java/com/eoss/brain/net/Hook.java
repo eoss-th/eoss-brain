@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by eossth on 15/2/2018 AD.
@@ -18,6 +20,10 @@ public class Hook implements Serializable {
         Head(1.5f),
         Body(1.2f),
         Tail(0.95f),
+        GreaterThan(1),
+        GreaterEqualThan(1),
+        LowerThan(1),
+        LowerEqualThan(1),
         Mode(1.0f);
 
         public final float initWeight;
@@ -48,6 +54,21 @@ public class Hook implements Serializable {
             weight = 0;
     }
 
+    private List<Float> numberList(String text) {
+
+        List<Float> numberList = new ArrayList<>();
+        Pattern p = Pattern.compile("-?\\d+");
+        Matcher m = p.matcher(text);
+        while (m.find()) {
+            try {
+                numberList.add(Float.parseFloat(m.group()));
+            } catch (Exception e) {
+
+            }
+        }
+        return numberList;
+    }
+
     boolean matched(MessageObject messageObject) {
 
         String input = messageObject.toString();
@@ -61,6 +82,71 @@ public class Hook implements Serializable {
             return input.toLowerCase().endsWith(text.toLowerCase());
         if (match == Match.Body)
             return input.toLowerCase().contains(text.toLowerCase());
+        if (match == Match.GreaterThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                System.out.println(text);
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(input);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number>targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+        if (match == Match.GreaterEqualThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(input);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number>=targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+        if (match == Match.LowerThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(input);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number<targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+        if (match == Match.LowerEqualThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(input);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number<=targetNumber)
+                    result = true;
+            }
+            return result;
+        }
 
         return modeObject!=null && modeObject.toString().equalsIgnoreCase(text);
     }
@@ -75,6 +161,14 @@ public class Hook implements Serializable {
             return "*"+text;
         if (match == Match.Body)
             return "*"+text+"*";
+        if (match == Match.GreaterThan)
+            return ">"+text;
+        if (match == Match.GreaterEqualThan)
+            return ">="+text;
+        if (match == Match.LowerThan)
+            return "<"+text;
+        if (match == Match.LowerEqualThan)
+            return "<="+text;
 
         //Match
         return "["+text+"]";
@@ -103,7 +197,16 @@ public class Hook implements Serializable {
             for (int i=0; i<hooks.length; i++) {
                 hook = hooks[i].trim();
                 if (!hook.isEmpty()) {
-                    if (i==0)
+
+                    if (hook.startsWith(">="))
+                        hookList.add(new Hook(hook.replace(">=",""), Match.GreaterEqualThan));
+                    else if (hook.startsWith(">"))
+                        hookList.add(new Hook(hook.replace(">", ""), Match.GreaterThan));
+                    else if (hook.startsWith("<="))
+                        hookList.add(new Hook(hook.replace("<=", ""), Match.LowerEqualThan));
+                    else if (hook.startsWith("<"))
+                        hookList.add(new Hook(hook.replace("<", ""), Match.LowerThan));
+                    else if (i==0)
                         hookList.add(new Hook(hook, Match.Head));
                     else if (i==hooks.length-1)
                         hookList.add(new Hook(hook, Match.Tail));

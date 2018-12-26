@@ -10,6 +10,8 @@ import java.text.BreakIterator;
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by eoss-th on 8/15/17.
@@ -194,6 +196,28 @@ public abstract class Context implements Serializable {
         return maxActiveNode;
     }
 
+    public static Node findMaxActiveNode(Set<Node> activeNodeSet, Random random) {
+
+        if (activeNodeSet==null || activeNodeSet.isEmpty()) return null;
+
+        TreeMap<Float, List<Node>> nodeMap = new TreeMap<>();
+
+        Float confidence;
+        List nodeList;
+        for (Node node:activeNodeSet) {
+            confidence = node.active();
+            nodeList = nodeMap.get(confidence);
+            if (nodeList==null) nodeList = new ArrayList();
+            nodeList.add(node);
+            nodeMap.put(confidence, nodeList);
+        }
+
+        Map.Entry<Float, List<Node>> maxActiveEntry = nodeMap.lastEntry();
+        List<Node> maxActiveNodeList = maxActiveEntry.getValue();
+
+        return maxActiveNodeList.get(random.nextInt(maxActiveNodeList.size()));
+    }
+
     public Set<Node> feed(MessageObject messageObject) {
         return feed(messageObject, 1);
     }
@@ -259,8 +283,44 @@ public abstract class Context implements Serializable {
 
         List<String> result = new ArrayList<>();
 
+        /**
+         * Conditional Hooks
+         */
+        List<String> conditionHooks = new ArrayList<>();
+
+        String [] tokens = input.split(" ");
+        String conditionHook;
+        for (String token:tokens) {
+            conditionHook = token.trim();
+            if (token.startsWith(">") ||
+                token.startsWith(">=") ||
+                token.startsWith("<") ||
+                token.startsWith("<=")) {
+                conditionHooks.add(conditionHook);
+                input = input.replace(conditionHook, "");
+            }
+        }
+
+        /**
+         * Object Parameters
+         */
+        List<String> params = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("\\`.*?\\`");
+        Matcher matcher = pattern.matcher(input);
+
+        String param;
+        while (matcher.find()) {
+            param = matcher.group();
+            params.add(param);
+            input = input.replace(param, "");
+        }
+
+        /**
+         * Sentence
+         */
         BreakIterator breakIterator = BreakIterator.getWordInstance(locale);
-        breakIterator.setText(input);
+        breakIterator.setText(input.trim());
 
         int wordBoundaryIndex = breakIterator.first();
         int prevIndex         = 0;
@@ -273,6 +333,9 @@ public abstract class Context implements Serializable {
             prevIndex = wordBoundaryIndex;
             wordBoundaryIndex = breakIterator.next();
         }
+
+        result.addAll(conditionHooks);
+        result.addAll(params);
 
         return result.toArray(new String[result.size()]);
     }

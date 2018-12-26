@@ -3,6 +3,7 @@ package com.eoss.brain.command.data;
 import com.eoss.brain.Session;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.FileContext;
 import com.eoss.brain.context.GAEStorageContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class BackupDataCommandNodeTest {
         Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new GAEStorageContext("test", null);
+        Context context = new FileContext("backuptest");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);

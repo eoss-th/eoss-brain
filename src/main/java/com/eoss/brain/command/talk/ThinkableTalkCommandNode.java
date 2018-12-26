@@ -14,11 +14,12 @@ import java.util.Set;
 /**
  * Created by eossth on 7/31/2017 AD.
  */
-public class TalkCommandNode extends CommandNode {
+@Deprecated
+public class ThinkableTalkCommandNode extends CommandNode {
 
     private final Key lowConfidenceKey;
 
-    public TalkCommandNode(Session session, Key lowConfidenceKey) {
+    public ThinkableTalkCommandNode(Session session, Key lowConfidenceKey) {
         super(session);
         this.lowConfidenceKey = lowConfidenceKey;
     }
@@ -28,26 +29,52 @@ public class TalkCommandNode extends CommandNode {
         return true;
     }
 
-    @Override
-    public String execute(final MessageObject messageObject) {
-
-        if (session.mode!=null && !session.mode.trim().isEmpty()) {
-            messageObject.attributes.put("mode", session.mode.trim());
-        }
+    private Set<Node> think(final MessageObject messageObject, final float score) {
 
         messageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
 
         final Set<Node> activeNodeSet = new HashSet<>();
 
-        session.context.matched(messageObject, new ContextListener() {
+        //Feed Session's nodes
+        session.context.matched(messageObject, session.activeNodePool(), new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
-                nodeEvent.node.feed(messageObject, 1);
-                activeNodeSet.add(nodeEvent.node);
+
+                nodeEvent.node.feed(messageObject, score);
+
+                if (!activeNodeSet.add(nodeEvent.node)) {
+                    activeNodeSet.remove(nodeEvent.node);
+                    activeNodeSet.add(nodeEvent.node);
+                }
             }
         });
 
-        Node maxActiveNode = Context.findMaxActiveNode(activeNodeSet, session.random);
+        //Not found!Fetch from Context
+        if (activeNodeSet.isEmpty()) {
+
+            session.context.matched(messageObject, new ContextListener() {
+                @Override
+                public void callback(NodeEvent nodeEvent) {
+                    nodeEvent.node.feed(messageObject, score);
+                    activeNodeSet.add(nodeEvent.node);
+                }
+            });
+
+        }
+
+        return activeNodeSet;
+    }
+
+    @Override
+    public String execute(MessageObject messageObject) {
+
+        if (session.mode!=null && !session.mode.trim().isEmpty()) {
+            messageObject.attributes.put("mode", session.mode.trim());
+        }
+
+        Set<Node> activeNodeSet = think(messageObject, 1);
+
+        Node maxActiveNode = Context.findMaxActiveNode(activeNodeSet);
 
         final float confidenceRate;
         String responseText;
@@ -63,7 +90,6 @@ public class TalkCommandNode extends CommandNode {
         final float LOWER_BOUND = 0.05f;
 
         if (session.learning && confidenceRate <= LOWER_BOUND) {
-
             responseText = messageObject + " " + lowConfidenceKey.questMsg;
             session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKey));
             session.clearPool();
@@ -96,6 +122,14 @@ public class TalkCommandNode extends CommandNode {
                 session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.LowConfidence));
             }
 
+        }
+
+        if (confidenceRate >= 0.75) {
+            session.clearPool();
+        } else {
+            session.merge(activeNodeSet);
+            session.merge(think(MessageObject.build(messageObject, responseText), confidenceRate));
+            session.release(0.5f);
         }
 
         if (maxActiveNode!=null) {
