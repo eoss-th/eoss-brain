@@ -77,7 +77,7 @@ public class TalkCommandNodeTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
                 "Q: i am years old\n" +
-                "A: age %1!\n" +
+                "A: age #1!\n" +
                 "Q: age >=50\n" +
                 "A: you are so old\n" +
                 "Q: age <50\n" +

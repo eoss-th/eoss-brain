@@ -31,7 +31,7 @@ public class QuestionResponseCommandNodeTest {
                 "Q: hello\n" +
                 "A: what is your name?\n" +
                 "Q: what is your name\n" +
-                "A: hello %%\n"
+                "A: hello ##\n"
         )));
 
         assertEquals("what is your name", session.parse(MessageObject.build("hello")));

@@ -19,7 +19,7 @@ public class VarExpression extends Expression {
         for (String paramValue:params) {
             tokens = paramValue.split("=");
             if (tokens.length!=2) continue;
-            session.setVariable("%" + tokens[0], tokens[1]);
+            session.setVariable("#" + tokens[0], tokens[1]);
         }
         return "";
     }

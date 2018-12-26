@@ -32,7 +32,7 @@ public class ResponseCommandNode extends ProblemCommandNode {
     public String execute(MessageObject messageObject) {
 
         /**
-         * %% %1 %2..
+         * ## #1 #2..
          */
         Map<String, String> paramMap = paramMap(messageObject);
         String parameterizedText = parameterized(paramMap, responseText);
@@ -61,10 +61,10 @@ public class ResponseCommandNode extends ProblemCommandNode {
         String [] params = session.context.split(input);
 
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("%%", input);
+        paramMap.put("##", input);
 
         for (int i=0;i<params.length;i++) {
-            paramMap.put("%" + (i+1), params[i]);
+            paramMap.put("#" + (i+1), params[i]);
         }
 
         return paramMap;
