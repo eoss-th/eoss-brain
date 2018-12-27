@@ -1,4 +1,4 @@
-package com.eoss.brain.command.talk;
+package com.eoss.brain.ext;
 
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
@@ -13,8 +13,7 @@ import java.util.Locale;
 
 import static org.junit.Assert.*;
 
-public class ResponseCommandNodeTest {
-
+public class RegularExpressionTest {
     @Test
     public void execute() {
 
@@ -29,10 +28,12 @@ public class ResponseCommandNodeTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
                 "Q: hello\n" +
-                "A: hi ##\n"
+                "A: hi ##!\n" +
+                "Q: hi\n" +
+                "A: hi `regx://##://\\{.*?\\}`\n"
         )));
 
-        assertEquals("hi wisarut srisawet", session.parse(MessageObject.build("hello wisarut srisawet")));
+        assertEquals("hi { ken }", session.parse(MessageObject.build("hello wisarut {ken} srisawet")));
 
     }
 

@@ -229,4 +229,39 @@ public class Session implements Serializable {
         return value;
     }
 
+    private final Map<String, String> paramMap(String input) {
+
+        String [] params = context.split(input);
+
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("##", input);
+
+        for (int i=0;i<params.length;i++) {
+            paramMap.put("#" + (i+1), params[i]);
+        }
+
+        return paramMap;
+    }
+
+    private final String parameterized(Map<String, String> paramMap, String text) {
+        String output = text;
+        for (Map.Entry<String, String> entry:paramMap.entrySet()) {
+            output = output.replace(entry.getKey(), entry.getValue());
+        }
+        return output;
+    }
+
+    public final String parameterized(String input, String responseText) {
+        /**
+         * ## #1 #2..
+         */
+        String parameterizedText = parameterized(paramMap(input), responseText);
+
+        /**
+         * Session Variables
+         */
+        parameterizedText = parameterized(variableMap, parameterizedText);
+        return parameterizedText.trim();
+    }
+
 }

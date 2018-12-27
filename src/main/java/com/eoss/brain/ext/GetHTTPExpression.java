@@ -15,20 +15,21 @@ public class GetHTTPExpression extends HTTPExpression {
     }
 
     @Override
-    public String execute() {
+    public String execute(String input) {
 
-        if (arguments.length==3) {
+        String [] args = parameterized(input, arguments);
+        if (args.length==3) {
 
-            String url = "https://" + arguments[2];
-            return get(url, createParamMapFromQueryString(arguments[1]));
+            String url = "https://" + args[2];
+            return get(url, createParamMapFromQueryString(args[1]));
 
-        } else if (arguments.length==2) {
+        } else if (args.length==2) {
 
-            String url = "https://" + arguments[1];
+            String url = "https://" + args[1];
             return get(url, null);
         }
 
-        return super.execute();
+        return super.execute(input);
     }
 
     protected final String get(String apiURL, Map<String, String> headerMap) {

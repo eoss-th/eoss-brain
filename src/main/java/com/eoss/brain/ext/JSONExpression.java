@@ -14,14 +14,15 @@ public class JSONExpression extends Expression {
     }
 
     @Override
-    public String execute() {
+    public String execute(String input) {
 
-        if (arguments.length==3) {
-            String jsonString = arguments[1].replace("`", "");
-            return jsonPath(jsonString, arguments[2]);
+        String [] args = parameterized(input, arguments);
+        if (args.length==3) {
+            String jsonString = args[1].replace("`", "");
+            return jsonPath(jsonString, args[2]);
         }
 
-        return super.execute();
+        return super.execute(input);
     }
 
     protected final String jsonPath(String json, String path) {

@@ -284,6 +284,21 @@ public abstract class Context implements Serializable {
         List<String> result = new ArrayList<>();
 
         /**
+         * Object Parameters
+         */
+        List<String> params = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("\\`.*?\\`");
+        Matcher matcher = pattern.matcher(input);
+
+        String param;
+        while (matcher.find()) {
+            param = matcher.group();
+            params.add(param);
+            input = input.replace(param, "");
+        }
+
+        /**
          * Conditional Hooks
          */
         List<String> conditionHooks = new ArrayList<>();
@@ -299,21 +314,6 @@ public abstract class Context implements Serializable {
                 conditionHooks.add(conditionHook);
                 input = input.replace(conditionHook, "");
             }
-        }
-
-        /**
-         * Object Parameters
-         */
-        List<String> params = new ArrayList<>();
-
-        Pattern pattern = Pattern.compile("\\`.*?\\`");
-        Matcher matcher = pattern.matcher(input);
-
-        String param;
-        while (matcher.find()) {
-            param = matcher.group();
-            params.add(param);
-            input = input.replace(param, "");
         }
 
         /**

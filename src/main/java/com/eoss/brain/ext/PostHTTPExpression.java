@@ -15,20 +15,21 @@ public class PostHTTPExpression extends HTTPExpression {
     }
 
     @Override
-    public String execute() {
+    public String execute(String input) {
 
-        if (arguments.length==4) {
+        String [] args = parameterized(input, arguments);
+        if (args.length==4) {
 
-            String url = "https://" + arguments[3];
-            return post(url, createParamMapFromQueryString(arguments[1]), arguments[2]);
+            String url = "https://" + args[3];
+            return post(url, createParamMapFromQueryString(args[1]), args[2]);
 
-        } else if (arguments.length==3) {
+        } else if (args.length==3) {
 
-            String url = "https://" + arguments[2];
-            return post(url, null, arguments[1]);
+            String url = "https://" + args[2];
+            return post(url, null, args[1]);
         }
 
-        return super.execute();
+        return super.execute(input);
     }
 
     protected final String post(String apiURL, Map<String, String> headerMap, String body) {

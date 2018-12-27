@@ -8,8 +8,12 @@ import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -29,7 +33,7 @@ public class TalkCommandNode extends CommandNode {
     }
 
     @Override
-    public String execute(final MessageObject messageObject) {
+    public String execute(MessageObject messageObject) {
 
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
@@ -39,10 +43,25 @@ public class TalkCommandNode extends CommandNode {
 
         final Set<Node> activeNodeSet = new HashSet<>();
 
+        String input = messageObject.toString();
+        List<String> params = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("\\`.*?\\`");
+        Matcher matcher = pattern.matcher(input);
+
+        String param;
+        while (matcher.find()) {
+            param = matcher.group();
+            params.add(param);
+            input = input.replace(param, "");
+        }
+
+        final MessageObject feedMessageObject = MessageObject.build(messageObject, input.trim());
+
         session.context.matched(messageObject, new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
-                nodeEvent.node.feed(messageObject, 1);
+                nodeEvent.node.feed(feedMessageObject, 1);
                 activeNodeSet.add(nodeEvent.node);
             }
         });

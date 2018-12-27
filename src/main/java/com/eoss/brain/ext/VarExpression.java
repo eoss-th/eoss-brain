@@ -9,8 +9,8 @@ public class VarExpression extends Expression {
     }
 
     @Override
-    public String execute() {
-        return var(arguments[0]);
+    public String execute(String input) {
+        return var(parameterized(input, arguments)[0]);
     }
 
     protected final String var(String queryParams) {

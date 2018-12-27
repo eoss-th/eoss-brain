@@ -12,10 +12,20 @@ public class Expression {
         this.arguments = arguments;
     }
 
-    public String execute() {
+    protected final String [] parameterized(String input, String [] args) {
+        if (args==null) return null;
+        String [] result = new String[args.length];
+        for (int i=0;i<result.length;i++) {
+            result[i] = session.parameterized(input, args[i]);
+        }
+        return result;
+    }
+
+    public String execute(String input) {
         StringBuilder sb = new StringBuilder();
-        if (arguments!=null) {
-            for (String arg:arguments) {
+        String [] args = parameterized(input, arguments);
+        if (args!=null) {
+            for (String arg:args) {
                 sb.append(arg);
             }
         }
@@ -25,7 +35,8 @@ public class Expression {
     public static Expression build(Session session, String expression) {
 
         String text = expression;
-        expression = expression.replace("(", "").replace(")", "");
+        //expression = expression.replace("(", "").replace(")", "");
+        expression = expression.substring(1, expression.length()-1);
 
         if (expression.startsWith("get://")) {
 
@@ -71,6 +82,18 @@ public class Expression {
             String [] args = expression.split("://");
 
             return new JSoupExpression(session, args);
+        }
+
+        if (expression.startsWith("regx://")) {
+
+            /**
+             * regx://text://pattern
+             */
+
+            String [] args = expression.split("://");
+
+            return new RegularExpression(session, args);
+
         }
 
         if (expression.startsWith("?")) {

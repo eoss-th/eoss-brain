@@ -12,15 +12,17 @@ public class JSoupExpression extends Expression {
     }
 
     @Override
-    public String execute() {
+    public String execute(String input) {
 
-        if (arguments.length==3) {
+        String [] args = parameterized(input, arguments);
 
-            String dom = arguments[1].replace("`", "");
-            return jsoup(dom, arguments[2]);
+        if (args.length==3) {
+
+            String dom = args[1].replace("`", "");
+            return jsoup(dom, args[2]);
         }
 
-        return super.execute();
+        return super.execute(input);
     }
 
     protected final String jsoup(String dom, String path) {
