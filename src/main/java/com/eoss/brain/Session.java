@@ -124,6 +124,7 @@ public class Session implements Serializable {
         }
     }
 
+    @Deprecated
     public void releaseLastActive() {
         if (lastEntry!=null) {
             if (lastEntry.node!=null)
@@ -131,6 +132,7 @@ public class Session implements Serializable {
         }
     }
 
+    @Deprecated
     public Set<Node> activeNodePool() {
         lock.readLock().lock();
         try {
@@ -140,6 +142,7 @@ public class Session implements Serializable {
         }
     }
 
+    @Deprecated
     public void merge(Set<Node> newActiveNodeSet) {
         lock.writeLock().lock();
         try {
@@ -154,6 +157,7 @@ public class Session implements Serializable {
         }
     }
 
+    @Deprecated
     public void release(float rate) {
 
         Set<Node> deadList = new HashSet<>();
@@ -181,6 +185,7 @@ public class Session implements Serializable {
         }
     }
 
+    @Deprecated
     public void clearPool() {
         lock.writeLock().lock();
         try {

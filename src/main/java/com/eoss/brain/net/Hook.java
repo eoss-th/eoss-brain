@@ -206,8 +206,6 @@ public class Hook implements Serializable {
                         hookList.add(new Hook(hook.replace("<=", ""), Match.LowerEqualThan));
                     else if (hook.startsWith("<"))
                         hookList.add(new Hook(hook.replace("<", ""), Match.LowerThan));
-                    else if (hooks.length==1)
-                        hookList.add(new Hook(hook, Match.Body));
                     else if (i==0)
                         hookList.add(new Hook(hook, Match.Head));
                     else if (i==hooks.length-1)

@@ -90,7 +90,7 @@ public class TalkCommandNode extends CommandNode {
         }
 
         //Super Confidence
-        if (confidenceRate >= 1) {
+        if (confidenceRate > 1) {
 
             if (session.listener != null) {
                 session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.SuperConfidence));

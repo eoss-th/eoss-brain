@@ -112,6 +112,7 @@ public class Node implements Serializable {
         return hookList;
     }
 
+    @Deprecated
     public void release() {
         active = 0;
     }
