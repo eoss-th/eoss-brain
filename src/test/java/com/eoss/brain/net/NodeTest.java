@@ -38,21 +38,21 @@ public class NodeTest {
 
         a.feed(MessageObject.build("ดี"), 1);
 
-        assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
+        assertEquals(a.active(), Hook.Match.All.initWeight * 1, 0.001);
         assertEquals(b.active(), Hook.Match.All.initWeight, 0.001);
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
         b.feed(MessageObject.build("ดี"), 1);
 
-        assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
-        assertEquals(b.active(), Hook.Match.All.initWeight * 2, 0.001);
+        assertEquals(a.active(), Hook.Match.All.initWeight * 1, 0.001);
+        assertEquals(b.active(), Hook.Match.All.initWeight * 1, 0.001);
         assertEquals(c.active(), Hook.Match.All.initWeight, 0.001);
 
         c.feed(MessageObject.build("ดี"), 1);
 
-        assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
-        assertEquals(b.active(), Hook.Match.All.initWeight * 2, 0.001);
-        assertEquals(c.active(), Hook.Match.All.initWeight * 2, 0.001);
+        assertEquals(a.active(), Hook.Match.All.initWeight * 1, 0.001);
+        assertEquals(b.active(), Hook.Match.All.initWeight * 1, 0.001);
+        assertEquals(c.active(), Hook.Match.All.initWeight * 1, 0.001);
 
         Set<Node> nodeSet = new HashSet<>();
         assertTrue(nodeSet.add(a));
@@ -64,8 +64,8 @@ public class NodeTest {
         b.feed(MessageObject.build("ดี"), 1);
         assertTrue(new ArrayList<>(nodeSet).get(0).active()==b.active());
 
-        assertEquals(a.active(), Hook.Match.All.initWeight * 2, 0.001);
-        assertEquals(c.active(), Hook.Match.All.initWeight * 2, 0.001);
+        assertEquals(a.active(), Hook.Match.All.initWeight * 1, 0.001);
+        assertEquals(c.active(), Hook.Match.All.initWeight * 1, 0.001);
     }
 
     @Test

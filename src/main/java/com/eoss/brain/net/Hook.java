@@ -17,13 +17,13 @@ public class Hook implements Serializable {
 
     public enum Match {
         All(1.0f),
-        Head(1.5f),
-        Body(1.2f),
+        Head(1.0f),
+        Body(0.9f),
         Tail(0.95f),
-        GreaterThan(1),
-        GreaterEqualThan(1),
-        LowerThan(1),
-        LowerEqualThan(1),
+        GreaterThan(1.0f),
+        GreaterEqualThan(1.0f),
+        LowerThan(1.0f),
+        LowerEqualThan(1.0f),
         Mode(1.0f);
 
         public final float initWeight;
@@ -206,6 +206,8 @@ public class Hook implements Serializable {
                         hookList.add(new Hook(hook.replace("<=", ""), Match.LowerEqualThan));
                     else if (hook.startsWith("<"))
                         hookList.add(new Hook(hook.replace("<", ""), Match.LowerThan));
+                    else if (hooks.length==1)
+                        hookList.add(new Hook(hook, Match.Body));
                     else if (i==0)
                         hookList.add(new Hook(hook, Match.Head));
                     else if (i==hooks.length-1)

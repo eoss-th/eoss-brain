@@ -94,8 +94,9 @@ public class Node implements Serializable {
             }
         }
         //System.out.println(hookList + ":" + messageObject + ":" + matchedCount);
+        //active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
 
-        active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
+        active = totalResponseActive / (hookList.size() + wordCount - matchedCount);
     }
 
     public void feedback(MessageObject messageObject, float feedback) {

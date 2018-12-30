@@ -28,30 +28,58 @@ public class GetHTTPExpressionTest {
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q:สวัสดี\n" +
+                "A:ดีฮะชื่อไร?\n" +
                 "Q:ฝัน\n" +
                 "A:ฝันว่าอะไร?\n" +
-                "Q:ทำนายฝัน\n" +
-                "A:เลขท้ายสองตัวคือ `jsoup://##://p[class=red_txt]`\n" +
-                "Q:ฝันว่าอะไร\n" +
-                "A:ทำนายฝัน `get://lotto.mthai.com/dream/##.html`!\n" +
+                "Q:ดีฮะชื่อไร\n" +
+                "A:ทักทาย #1!\n" +
+                "Q:ทักทาย\n" +
+                "A:ว่าไง #1\n" +
                 "Q:ดวง\n" +
                 "A:เกิดวันอะไร?\n" +
-                "Q:เกิดวันอะไร เสาร์\n" +
-                "A:ดูดวง เสาร์ `get://horoscope.mthai.com/apps/daily-horo`!\n" +
                 "Q:เกิดวันอะไร ศุกร์\n" +
                 "A:ดูดวง ศุกร์ `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:เกิดวันอะไร เสาร์\n" +
+                "A:ดูดวง เสาร์ `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:ดูดวง อาทิตย์\n" +
+                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(2) p`\n" +
+                "Q:ดูดวง จันทร์\n" +
+                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(3) p`\n" +
+                "Q:ดูดวง อังคาร\n" +
+                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(4) p`\n" +
+                "Q:ดูดวง พุธ\n" +
+                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(5) p`\n" +
+                "Q:ดูดวง พฤหัส\n" +
+                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(6) p`\n" +
+                "Q:ดูดวง ศุกร์\n" +
+                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(7) p`\n" +
                 "Q:ดูดวง เสาร์\n" +
                 "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(8) p`\n" +
-                "Q:ดูดวง ศุกร์\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(7) p`\n"
-        )));
+                "Q:เกิดวันอะไร อาทิตย์\n" +
+                "A:ดูดวง อาทิตย์  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:เกิดวันอะไร จันทร์\n" +
+                "A:ดูดวง จันทร์  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:เกิดวันอะไร อังคาร\n" +
+                "A:ดูดวง อังคาร  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:เกิดวันอะไร พุธ\n" +
+                "A:ดูดวง พุธ  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:เกิดวันอะไร พฤหัส\n" +
+                "A:ดูดวง พฤหัส  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
+                "Q:ไง\n" +
+                "A:งาย\n" +
+                "Q:ทำนายหวย\n" +
+                "A:เลขท้ายสองตัวคือ `jsoup://#1://p[class=red_txt]`\n" +
+                "Q:ฝันว่าอะไร\n" +
+                "A:ทำนายหวย `get://lotto.mthai.com/dream/##.html`!"
+            )));
 
-        assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝัน")));
+        assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));
         assertEquals("เลขท้ายสองตัวคือ 6 7", session.parse(MessageObject.build("ขี้")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันพฤหัสบดีที่ 27 ธันวาคม 2561 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้สะเทือนจิตใจมากด้าน แต่ละอย่างยังคงคั่งค้างคาใจยากแก้ไขไหว เรื่องเก่าปัญหาใหม่ก็ไหลเข้ามาหาปวดขมองทั้งวัน ลาภผลเงินทองก็คล่องทั้งรับและจ่าย ยังคงวุ่นวายจิตใจเรื่องของความรักเสมอนั่น", session.parse(MessageObject.build("เสาร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันอาทิตย์ที่ 30 ธันวาคม 2561 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้เรื่องไม่เป็นเรื่องมีเข้ามาเปลืองและรกสมอง เงินทองก็ต้องจ่ายออกทั้งจำเป็นและจำใจ เรื่องแต่วันก่อนก็ยังย้อนมารุงรังสมองอีกหน สุขภาพกายตนก็ต้องระวังมั่ง ความรักท่านเองไม่วายคิดมากไปเองจัง", session.parse(MessageObject.build("เสาร์")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันพฤหัสบดีที่ 27 ธันวาคม 2561 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้เจอแต่เรื่องยุ่งยากลำบากใจตน เงินทองลาภผลแต่ละจำนวนมีมาสมใจแต่มักเป็นแบบทุกขลาภ เดินทางไปหน้าห่วงหลัง หลายอย่างยังคงสับสนและซ่อนเงื่อน เพื่อนแอบตีท้ายครัวหรือยุแยงให้เรือรั่วเร็วขึ้นน่ะ", session.parse(MessageObject.build("ศุกร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันอาทิตย์ที่ 30 ธันวาคม 2561 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้อาจจำใจต่อรองหรือทนรับปากเขาไป บางเรื่องบางปัญหายังคงปวด ขมองยากแก้ไขไหว เงินสดหากหลุดจากมือไปก็ยากได้คืนมาดั่งเดิม เริ่มต้นรักเขาชอบใครมักเจอคนคิดแข่งหรือเปลี่ยนแปลงแนวทางให้", session.parse(MessageObject.build("ศุกร์")));
 
     }
 

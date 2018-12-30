@@ -44,8 +44,12 @@ public class FeedbackCommandNodeTest {
         */
 
         for (Hook hook:node.hookList()) {
-            assertEquals(Hook.Match.Head.initWeight, hook.weight, 0.001f);
-            break;
+            if (hook.match == Hook.Match.Head)
+                assertEquals(Hook.Match.Head.initWeight, hook.weight, 0.001f);
+            if (hook.match == Hook.Match.Body)
+                assertEquals(Hook.Match.Body.initWeight, hook.weight, 0.001f);
+            if (hook.match == Hook.Match.Tail)
+                assertEquals(Hook.Match.Tail.initWeight, hook.weight, 0.001f);
         }
 
         FeedbackCommandNode feedbackCommandNode;
@@ -69,8 +73,12 @@ public class FeedbackCommandNodeTest {
         */
 
         for (Hook hook:node.hookList()) {
-            assertEquals(Hook.Match.Head.initWeight+ Hook.Match.Head.initWeight*positiveFeedback, hook.weight, 0.001f);
-            break;
+            if (hook.match == Hook.Match.Head)
+                assertEquals(Hook.Match.Head.initWeight+ Hook.Match.Head.initWeight*positiveFeedback, hook.weight, 0.001f);
+            if (hook.match == Hook.Match.Body)
+                assertEquals(Hook.Match.Body.initWeight+ Hook.Match.Body.initWeight*positiveFeedback, hook.weight, 0.001f);
+            if (hook.match == Hook.Match.Tail)
+                assertEquals(Hook.Match.Tail.initWeight+ Hook.Match.Tail.initWeight*positiveFeedback, hook.weight, 0.001f);
         }
 
         List<String> rejectKeys = Arrays.asList("ไม่", "เข้าใจละ", "พอ", "ก็แล้วแต่");
