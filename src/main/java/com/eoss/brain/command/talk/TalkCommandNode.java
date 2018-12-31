@@ -61,7 +61,7 @@ public class TalkCommandNode extends CommandNode {
         session.context.matched(messageObject, new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
-                nodeEvent.node.feed(feedMessageObject, 1);
+                nodeEvent.node.feed(feedMessageObject);
                 activeNodeSet.add(nodeEvent.node);
             }
         });

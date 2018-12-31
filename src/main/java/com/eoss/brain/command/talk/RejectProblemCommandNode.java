@@ -34,7 +34,7 @@ public class RejectProblemCommandNode extends ProblemCommandNode {
             } else {
                 for (Node protectedFromNode: session.protectedList) {
                     if (protectedFromNode.matched(messageObject)) {
-                        protectedFromNode.feed(messageObject, 1);
+                        protectedFromNode.feed(messageObject);
                         cancelReason = protectedFromNode.response();
                         protectedFromNode.release();
                         if (session.listener !=null) {

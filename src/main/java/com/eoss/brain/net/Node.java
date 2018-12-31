@@ -74,7 +74,7 @@ public class Node implements Serializable {
         return false;
     }
 
-    public void feed(MessageObject messageObject, float score) {
+    public void feed(MessageObject messageObject) {
 
         int wordCount;
         if (messageObject.attributes.get("wordCount")!=null) {
@@ -89,7 +89,7 @@ public class Node implements Serializable {
         float totalResponseActive = 0;
         for (Hook hook:hookList) {
             if (hook.matched(messageObject)) {
-                totalResponseActive += score * hook.weight;
+                totalResponseActive += hook.weight;
                 matchedCount ++;
             }
         }

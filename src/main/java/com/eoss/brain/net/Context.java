@@ -236,8 +236,10 @@ public abstract class Context implements Serializable {
 
         for (Node node:nodeSet) {
             if (node.matched(messageObject)) {
-                node.feed(messageObject, matchedScore);
-                activeNodeSet.add(node);
+                node.feed(messageObject);
+                if (node.active()>=matchedScore) {
+                    activeNodeSet.add(node);
+                }
             }
         }
 

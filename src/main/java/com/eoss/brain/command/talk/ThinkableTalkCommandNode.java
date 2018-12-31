@@ -29,7 +29,7 @@ public class ThinkableTalkCommandNode extends CommandNode {
         return true;
     }
 
-    private Set<Node> think(final MessageObject messageObject, final float score) {
+    private Set<Node> think(final MessageObject messageObject) {
 
         messageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
 
@@ -40,7 +40,7 @@ public class ThinkableTalkCommandNode extends CommandNode {
             @Override
             public void callback(NodeEvent nodeEvent) {
 
-                nodeEvent.node.feed(messageObject, score);
+                nodeEvent.node.feed(messageObject);
 
                 if (!activeNodeSet.add(nodeEvent.node)) {
                     activeNodeSet.remove(nodeEvent.node);
@@ -55,7 +55,7 @@ public class ThinkableTalkCommandNode extends CommandNode {
             session.context.matched(messageObject, new ContextListener() {
                 @Override
                 public void callback(NodeEvent nodeEvent) {
-                    nodeEvent.node.feed(messageObject, score);
+                    nodeEvent.node.feed(messageObject);
                     activeNodeSet.add(nodeEvent.node);
                 }
             });
@@ -72,7 +72,7 @@ public class ThinkableTalkCommandNode extends CommandNode {
             messageObject.attributes.put("mode", session.mode.trim());
         }
 
-        Set<Node> activeNodeSet = think(messageObject, 1);
+        Set<Node> activeNodeSet = think(messageObject);
 
         Node maxActiveNode = Context.findMaxActiveNode(activeNodeSet);
 
@@ -128,7 +128,7 @@ public class ThinkableTalkCommandNode extends CommandNode {
             session.clearPool();
         } else {
             session.merge(activeNodeSet);
-            session.merge(think(MessageObject.build(messageObject, responseText), confidenceRate));
+            session.merge(think(MessageObject.build(messageObject, responseText)));
             session.release(0.5f);
         }
 

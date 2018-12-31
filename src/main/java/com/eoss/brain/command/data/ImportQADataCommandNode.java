@@ -90,6 +90,15 @@ public class ImportQADataCommandNode extends CommandNode {
 
             /**
              * Merge
+             *
+             * Current = [A, B]
+             * New = [B, C]
+             * Remove = [A]
+             * Merged = [B]
+             * Merged = [B, C]
+             * Add [B, C]
+             *
+             *
              */
             List<Node> mergedNodeList = new ArrayList<>(session.context.nodeList);
 
