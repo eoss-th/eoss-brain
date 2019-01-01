@@ -54,9 +54,11 @@ public class TalkCommandNode extends CommandNode {
             input = input.replace(param, "");
         }
 
-        final MessageObject feedMessageObject = MessageObject.build(messageObject, input.trim());
+        input = input.trim();
 
-        feedMessageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
+        final MessageObject feedMessageObject = MessageObject.build(messageObject, input);
+
+        feedMessageObject.attributes.put("wordCount", session.context.split(input).length);
 
         session.context.matched(messageObject, new ContextListener() {
             @Override

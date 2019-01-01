@@ -60,8 +60,10 @@ public class ExportMermaidDataCommandNode extends CommandNode {
                     input = input.replace(param, "");
                 }
 
+                input = input.trim();
+
                 msgObject = MessageObject.build(input);
-                msgObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
+                msgObject.attributes.put("wordCount", session.context.split(input).length);
 
                 forwardedNodes = session.context.feed(msgObject);
                 if (!forwardedNodes.isEmpty()) {
