@@ -48,18 +48,24 @@ public class ExportMermaidDataCommandNode extends CommandNode {
 
                 input = input.substring(0, input.length()-1);
 
-                List<String> params = new ArrayList<>();
-
                 Pattern pattern = Pattern.compile("\\`.*?\\`");
                 Matcher matcher = pattern.matcher(input);
 
                 String param;
                 while (matcher.find()) {
                     param = matcher.group();
-                    params.add(param);
                     input = input.replace(param, "");
                 }
 
+                pattern = Pattern.compile("#\\d+");
+                matcher = pattern.matcher(input);
+
+                while (matcher.find()) {
+                    param = matcher.group();
+                    input = input.replace(param, "");
+                }
+
+                input = input.replace("##", "");
                 input = input.trim();
 
                 msgObject = MessageObject.build(input);
