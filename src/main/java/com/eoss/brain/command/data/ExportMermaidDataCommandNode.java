@@ -29,8 +29,9 @@ public class ExportMermaidDataCommandNode extends CommandNode {
         JSONArray arrows = new JSONArray();
 
         JSONObject entity;
-        int nodeId;
+        int nodeId, forwardedCount;
         String input;
+        boolean hasProcessor;
         for (Node node:session.context.nodeList) {
 
             nodeId = node.hashCode();
@@ -48,9 +49,11 @@ public class ExportMermaidDataCommandNode extends CommandNode {
                 Matcher matcher = pattern.matcher(input);
 
                 String param;
+                hasProcessor = false;
                 while (matcher.find()) {
                     param = matcher.group();
                     input = input.replace(param, "");
+                    hasProcessor = true;
                 }
 
                 pattern = Pattern.compile("#\\d+");
@@ -67,11 +70,32 @@ public class ExportMermaidDataCommandNode extends CommandNode {
 
                 input = input.trim();
 
+                forwardedCount = 0;
+
                 for (Node forwardedNode:session.context.nodeList) {
                     if (Hook.toString(forwardedNode.hookList()).startsWith(input)) {
                         arrows.put(nodeId + "-->" + forwardedNode.hashCode());
 //                        arrows.put(Hook.toString(node.hookList()) + ":" +input + "-->" + Hook.toString(forwardedNode.hookList()));
+                        forwardedCount ++;
                     }
+                }
+
+                if (forwardedCount>=2) {
+                    entity.put("type", "decision");
+                } else if (hasProcessor) {
+                    entity.put("type", "processor");
+                } else {
+                    entity.put("type", "end");
+                }
+
+            } else {
+
+                Pattern pattern = Pattern.compile("\\`.*?\\`");
+                Matcher matcher = pattern.matcher(input);
+                if (matcher.find()) {
+                    entity.put("type", "processor");
+                } else {
+                    entity.put("type", "end");
                 }
 
             }
