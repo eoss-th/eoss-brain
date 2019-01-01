@@ -8,9 +8,7 @@ import com.eoss.brain.net.Node;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,10 +29,8 @@ public class ExportMermaidDataCommandNode extends CommandNode {
         JSONArray arrows = new JSONArray();
 
         JSONObject entity;
-        Set<Node> forwardedNodes;
         int nodeId;
         String input;
-        MessageObject msgObject;
         for (Node node:session.context.nodeList) {
 
             nodeId = node.hashCode();
@@ -66,18 +62,18 @@ public class ExportMermaidDataCommandNode extends CommandNode {
                 }
 
                 input = input.replace("##", "");
+
+                input = String.join(" ", session.context.split(input));
+
                 input = input.trim();
 
-                msgObject = MessageObject.build(input);
-                msgObject.attributes.put("wordCount", session.context.split(input).length);
-
-                forwardedNodes = session.context.feed(msgObject, 0.75f);
-                if (!forwardedNodes.isEmpty()) {
-                    for (Node forwardNode:forwardedNodes) {
-                        arrows.put(nodeId + "-->" + forwardNode.hashCode());
-//                        arrows.put(Hook.toString(node.hookList()) + ":" +input + "-->" + Hook.toString(forwardNode.hookList()));
+                for (Node forwardedNode:session.context.nodeList) {
+                    if (Hook.toString(forwardedNode.hookList()).startsWith(input)) {
+                        arrows.put(nodeId + "-->" + forwardedNode.hashCode());
+//                        arrows.put(Hook.toString(node.hookList()) + ":" +input + "-->" + Hook.toString(forwardedNode.hookList()));
                     }
                 }
+
             }
 
             entities.put(entity);
