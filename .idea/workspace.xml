@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="Export to Mermaid (fix again T T)">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="Export to Mermaid (fix remove # response)">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ExportMermaidDataCommandNodeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportMermaidDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportMermaidDataCommandNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -63,11 +65,11 @@
     <session id="2026097572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="38" />
+          <entry key="project.closed" value="39" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.11" value="10" />
-          <entry key="project.open.time.12" value="3" />
+          <entry key="project.open.time.12" value="4" />
           <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.17" value="1" />
@@ -79,7 +81,7 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.opened" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -87,13 +89,13 @@
           <entry key="context" value="11" />
           <entry key="gradle" value="1" />
           <entry key="gradlew" value="1" />
-          <entry key="java" value="191" />
+          <entry key="java" value="194" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="191" />
+          <entry key="JAVA" value="194" />
           <entry key="PLAIN_TEXT" value="12" />
         </counts>
       </usages-collector>
@@ -101,15 +103,15 @@
         <counts>
           <entry key="context" value="4" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="14408" />
-          <entry key="txt" value="168" />
+          <entry key="java" value="14660" />
+          <entry key="txt" value="189" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="14408" />
-          <entry key="PLAIN_TEXT" value="172" />
+          <entry key="JAVA" value="14660" />
+          <entry key="PLAIN_TEXT" value="193" />
         </counts>
       </usages-collector>
     </session>
@@ -119,26 +121,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="98" column="82" selection-start-line="98" selection-start-column="70" selection-end-line="98" selection-end-column="82" />
+            <state relative-caret-position="234">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/LowConfidenceProblemCommandNode.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Hook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/RejectProblemCommandNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="36" column="60" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
+            <state relative-caret-position="334">
+              <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -146,8 +139,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportMermaidDataCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="63" column="40" lean-forward="true" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+            <state relative-caret-position="146">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ExportMermaidDataCommandNodeTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,10 +165,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/WakeupCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="-362">
+              <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#619#620#0" expanded="true" />
+                <element signature="e#655#656#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -172,8 +179,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/TalkCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="44" column="48" lean-forward="true" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+            <state relative-caret-position="405">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
@@ -190,8 +197,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3255">
-              <caret line="238" column="24" selection-start-line="238" selection-start-column="24" selection-end-line="238" selection-end-column="24" />
+            <state relative-caret-position="203">
+              <caret line="238" column="22" lean-forward="true" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
               <folding>
                 <element signature="e#6059#6060#0" expanded="true" />
                 <element signature="e#6104#6105#0" expanded="true" />
@@ -203,11 +210,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/GetHTTPExpressionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="83" lean-forward="true" selection-start-line="21" selection-end-line="83" />
             </state>
           </provider>
         </entry>
@@ -463,7 +467,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6182395807000" />
+        <entry key="$PROJECT_DIR$" value="6182979168000" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
         <entry key="$PROJECT_DIR$/build.gradle" value="2119895695" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="1061797022" />
@@ -575,7 +579,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/RestoreDataCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/RejectProblemCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/LowConfidenceProblemCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/filetest.context" />
@@ -617,7 +620,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/ExpressionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ImportQADataCommandNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/WakeupCommandNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/LowConfidenceProblemCommandNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/RejectProblemCommandNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ThinkableTalkCommandNode.java" />
@@ -625,11 +627,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/GetHTTPExpressionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/TalkCommandNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ExportMermaidDataCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportMermaidDataCommandNode.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="218" />
     <option name="y" value="23" />
     <option name="width" value="1642" />
@@ -641,6 +645,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -648,32 +653,111 @@
               <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
               <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+              <item name="ext" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546308201014" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546326263741" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.eoss.brain.command.data" />
       <recent name="com.eoss.brain.ext" />
       <recent name="com.eoss.brain.net" />
       <recent name="com.eoss.brain" />
       <recent name="com.eoss.brain.command.talk" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.eoss.brain.command" />
-      <recent name="com.eoss.brain.command.talk" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.eoss.brain.command.data" />
@@ -684,6 +768,13 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="E:\Work\newbot\eoss-brain\src\test\java\com\eoss\brain" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.eoss.brain.command" />
+      <recent name="com.eoss.brain.command.talk" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -698,7 +789,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in eoss-brain_test">
+  <component name="RunManager" selected="JUnit.ExportMermaidDataCommandNodeTest.test">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -747,15 +838,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in eoss-brain_test (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="eoss-brain_test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in eoss-brain_test (4)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="eoss-brain_test" />
       <option name="PACKAGE_NAME" value="" />
@@ -769,6 +851,23 @@
       <module name="eoss-brain_test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExportMermaidDataCommandNodeTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eoss-brain_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eoss.brain.command.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.eoss.brain.command.data" />
+      <option name="MAIN_CLASS_NAME" value="com.eoss.brain.command.data.ExportMermaidDataCommandNodeTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -850,18 +949,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.GetHTTPExpressionTest.getTest" />
-      <item itemvalue="JUnit.All in eoss-brain_test (3)" />
       <item itemvalue="JUnit.All in eoss-brain_test (2)" />
       <item itemvalue="JUnit.All in eoss-brain_test (4)" />
       <item itemvalue="JUnit.All in eoss-brain_test" />
+      <item itemvalue="JUnit.ExportMermaidDataCommandNodeTest.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ExportMermaidDataCommandNodeTest.test" />
         <item itemvalue="JUnit.All in eoss-brain_test" />
         <item itemvalue="JUnit.All in eoss-brain_test (4)" />
         <item itemvalue="JUnit.GetHTTPExpressionTest.getTest" />
         <item itemvalue="JUnit.All in eoss-brain_test (2)" />
-        <item itemvalue="JUnit.All in eoss-brain_test (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -1099,39 +1198,46 @@
       <option name="project" value="LOCAL" />
       <updated>1546308187602</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Export to Mermaid (fix remove # response)">
+      <created>1546318717021</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1546318717021</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 37m 16s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 43m 11s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_eoss-brain_test_(2) - 2019.01.01 at 08h 44m 50s.xml">
-      <configuration name="All in eoss-brain_test (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 45m 13s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 45m 52s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 46m 13s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 46m 48s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetHTTPExpressionTest_getTest - 2019.01.01 at 08h 47m 10s.xml">
-      <configuration name="GetHTTPExpressionTest.getTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_eoss-brain_test_(4) - 2019.01.01 at 08h 47m 20s.xml">
-      <configuration name="All in eoss-brain_test (4)" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_eoss-brain_test - 2019.01.01 at 09h 02m 12s.xml">
       <configuration name="All in eoss-brain_test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 43m 37s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 44m 55s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 49m 09s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 50m 05s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 50m 51s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 52m 46s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 53m 18s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 13h 58m 01s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ExportMermaidDataCommandNodeTest_test - 2019.01.01 at 14h 01m 32s.xml">
+      <configuration name="ExportMermaidDataCommandNodeTest.test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -1144,10 +1250,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="218" y="23" width="1642" height="1048" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.229375" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23263328" />
       <window_info id="Structure" order="1" weight="0.24968314" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -1157,7 +1263,7 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.51898736" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31903765" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.318038" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39873418" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1166,7 +1272,7 @@
       <window_info anchor="bottom" id="Application Servers" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3289183" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3211297" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.31962025" />
       <window_info anchor="bottom" id="Build" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1185,7 +1291,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Force Clear Session after AdminCommand executed" />
     <MESSAGE value="Simplify WakeUp" />
     <MESSAGE value="Minor Bug of Wakeup" />
     <MESSAGE value="Change Feedback keyword to EN" />
@@ -1210,14 +1315,14 @@
     <MESSAGE value="Export to Mermaid (fix minorbug)" />
     <MESSAGE value="Export to Mermaid (fix again :P)" />
     <MESSAGE value="Export to Mermaid (fix again T T)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Export to Mermaid (fix again T T)" />
+    <MESSAGE value="Export to Mermaid (fix remove # response)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Export to Mermaid (fix remove # response)" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/SessionTest.java" />
     <entry file="file://$PROJECT_DIR$/filetest.context" />
     <entry file="file://$PROJECT_DIR$/backuptest.context" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/ForwardCommandNode.java">
@@ -1389,13 +1494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Hook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
@@ -1474,13 +1572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="98" column="82" selection-start-line="98" selection-start-column="70" selection-end-line="98" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/LowConfidenceProblemCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -1495,16 +1586,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hot.context">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/WakeupCommandNode.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/TalkCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="405">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/GetHTTPExpressionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="83" lean-forward="true" selection-start-line="21" selection-end-line="83" />
         </state>
       </provider>
     </entry>
@@ -1515,10 +1607,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hot.context">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/WakeupCommandNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-362">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3255">
-          <caret line="238" column="24" selection-start-line="238" selection-start-column="24" selection-end-line="238" selection-end-column="24" />
+        <state relative-caret-position="203">
+          <caret line="238" column="22" lean-forward="true" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
           <folding>
             <element signature="e#6059#6060#0" expanded="true" />
             <element signature="e#6104#6105#0" expanded="true" />
@@ -1526,27 +1633,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/GetHTTPExpressionTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
+        <state relative-caret-position="234">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Hook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ExportMermaidDataCommandNodeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/TalkCommandNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="44" column="48" lean-forward="true" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportMermaidDataCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="63" column="40" lean-forward="true" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+        <state relative-caret-position="146">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
         </state>
       </provider>
     </entry>

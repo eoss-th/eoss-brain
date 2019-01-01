@@ -93,10 +93,14 @@ public class Node implements Serializable {
                 matchedCount ++;
             }
         }
-        //System.out.println(hookList + ":" + messageObject + ":" + matchedCount);
+
         //active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
 
         active = totalResponseActive / (hookList.size() + wordCount - matchedCount);
+
+        if (messageObject.toString().equals("ทักทาย")) {
+            System.out.println(Hook.toString(this.hookList())+":"+matchedCount+":"+active);
+        }
     }
 
     public void feedback(MessageObject messageObject, float feedback) {
