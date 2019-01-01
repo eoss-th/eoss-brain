@@ -74,7 +74,7 @@ public class GetHTTPExpressionTest {
                 "A:ทำนายหวย `get://lotto.mthai.com/dream/##.html`!"
             )));
 
-        //assertEquals("", session.parse(MessageObject.build(messageObject,"ดูข้อมูลกราฟ")));
+        assertEquals("", session.parse(MessageObject.build(messageObject,"ดูข้อมูลกราฟ")));
 
 
         assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));

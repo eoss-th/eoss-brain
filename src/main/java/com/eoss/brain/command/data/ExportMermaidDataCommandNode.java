@@ -8,7 +8,11 @@ import com.eoss.brain.net.Node;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by eossth on 7/31/2017 AD.
@@ -29,16 +33,33 @@ public class ExportMermaidDataCommandNode extends CommandNode {
         JSONObject entity;
         Set<Node> forwardedNodes;
         int nodeId;
+        String input;
         for (Node node:session.context.nodeList) {
 
             nodeId = node.hashCode();
+            input = node.response();
             entity = new JSONObject();
             entity.put("nodeId", nodeId);
             entity.put("hooks", Hook.toString(node.hookList()));
-            entity.put("response", node.response());
+            entity.put("response", input);
 
-            if (node.response().endsWith("!") || node.response().endsWith("?")) {
-                forwardedNodes = session.context.feed(MessageObject.build(node.response().substring(0, node.response().length()-1)));
+            if (input.endsWith("!") || input.endsWith("?")) {
+
+                input = input.substring(0, input.length()-1);
+
+                List<String> params = new ArrayList<>();
+
+                Pattern pattern = Pattern.compile("\\`.*?\\`");
+                Matcher matcher = pattern.matcher(input);
+
+                String param;
+                while (matcher.find()) {
+                    param = matcher.group();
+                    params.add(param);
+                    input = input.replace(param, "");
+                }
+
+                forwardedNodes = session.context.feed(MessageObject.build(input));
                 if (!forwardedNodes.isEmpty()) {
                     for (Node forwardNode:forwardedNodes) {
                         arrows.put(nodeId + "-->" + forwardNode.hashCode());
