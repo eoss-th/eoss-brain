@@ -39,8 +39,6 @@ public class TalkCommandNode extends CommandNode {
             messageObject.attributes.put("mode", session.mode.trim());
         }
 
-        messageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
-
         final Set<Node> activeNodeSet = new HashSet<>();
 
         String input = messageObject.toString();
@@ -57,6 +55,8 @@ public class TalkCommandNode extends CommandNode {
         }
 
         final MessageObject feedMessageObject = MessageObject.build(messageObject, input.trim());
+
+        feedMessageObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
 
         session.context.matched(messageObject, new ContextListener() {
             @Override

@@ -34,6 +34,7 @@ public class ExportMermaidDataCommandNode extends CommandNode {
         Set<Node> forwardedNodes;
         int nodeId;
         String input;
+        MessageObject msgObject;
         for (Node node:session.context.nodeList) {
 
             nodeId = node.hashCode();
@@ -59,7 +60,10 @@ public class ExportMermaidDataCommandNode extends CommandNode {
                     input = input.replace(param, "");
                 }
 
-                forwardedNodes = session.context.feed(MessageObject.build(input));
+                msgObject = MessageObject.build(input);
+                msgObject.attributes.put("wordCount", session.context.split(messageObject.toString()).length);
+
+                forwardedNodes = session.context.feed(msgObject);
                 if (!forwardedNodes.isEmpty()) {
                     for (Node forwardNode:forwardedNodes) {
                         arrows.put(nodeId + "-->" + forwardNode.hashCode());

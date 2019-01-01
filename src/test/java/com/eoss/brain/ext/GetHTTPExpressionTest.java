@@ -3,6 +3,7 @@ package com.eoss.brain.ext;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.context.FileContext;
 import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
 import org.junit.Test;
@@ -74,15 +75,12 @@ public class GetHTTPExpressionTest {
                 "A:ทำนายหวย `get://lotto.mthai.com/dream/##.html`!"
             )));
 
-        assertEquals("", session.parse(MessageObject.build(messageObject,"ดูข้อมูลกราฟ")));
-
-
         assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));
-        assertEquals("เลขท้ายสองตัวคือ 6 7", session.parse(MessageObject.build("ขี้")));
+        assertEquals("เลขท้ายสองตัวคือ 0 1 4 5 6 9", session.parse(MessageObject.build("ขี้")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันจันทร์ที่ 31 ธันวาคม 2561 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้เกิดหวั่นไหวและไม่ค่อยจะแน่ใจตนเท่าใด ทั้งเรื่องของงานการและผู้คนภายในบ้านเรือน บางเรื่องบางอย่างมีคนกำลังดักตีปลาหน้าไซระวังปวดใจเรา ในเชิงของความรักเราเองยังคงคิดมากไปเองเสมอ", session.parse(MessageObject.build("เสาร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันอังคารที่ 01 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ อาจมีเรื่องให้วุ่นวายด้านทรัพย์สิน หรือเงินทองที่เคลียร์ไม่ลงตัว เกี่ยวกับบริวาร หรือเด็กเล็ก การทำพืชไร่ต้องมีการลงทุนมาก ควรศึกษาให้รอบคอบ การศึกษาเรียนรู้เพื่อเพิ่มศักยภาพ ความรักช่วงนี้ยังไม่ค่อยมีเวลาคิด....", session.parse(MessageObject.build("เสาร์")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันจันทร์ที่ 31 ธันวาคม 2561 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้ต้องจำใจฝืนทน หรือต้องอย่าเอาแต่ใจตนทุกอย่างมันกำลังเปลี่ยนไป สุขภาพท้องไส้ก็น่าจะต้องห่วงไว้มั่ง เดินทางทั้งไปและกลับมักเจอปัญหา ลาภผลมีมามักเป็นแบบทุกขลาภน่ะ คนรักก็ยังคงพูดง่ายฟังยากนัก", session.parse(MessageObject.build("ศุกร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันอังคารที่ 01 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้อาจจำใจย้อนศรหรือต้องฝืนใจทนสวนกระแส หากยังขืนปล่อยตามดวงแต่ละโมงยามอาจจมก่อนจอดฝั่ง ทั้งเรื่องงานการของตนเองและเป็นพนักงานใคร สำหรับเรื่องรักปัญหาใคร่ก็ยังไม่วายต้องคิด", session.parse(MessageObject.build("ศุกร์")));
 
     }
 
