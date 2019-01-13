@@ -137,11 +137,7 @@ public class ThinkableTalkCommandNode extends CommandNode {
             session.setLastEntry(messageObject, maxActiveNode);
 
             if (session.route(maxActiveNode)) {
-                //Clean MessageObject
-                String [] inputs = session.context.split(messageObject.toString());
-                MessageObject cleanMessageObject = MessageObject.build(messageObject, maxActiveNode.clean(inputs));
-
-                return ResponseCommandNode.build(session, responseText).execute(cleanMessageObject);
+                //
             }
         }
 

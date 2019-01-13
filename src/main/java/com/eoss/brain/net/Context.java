@@ -3,6 +3,7 @@ package com.eoss.brain.net;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -29,6 +30,8 @@ public abstract class Context implements Serializable {
     protected ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public final Map<String, String> properties = new HashMap();
+
+    public final Map<String, Object> attributes = new HashMap<>();
 
     public final List<Node> nodeList = new ArrayList<>();
 
@@ -89,6 +92,7 @@ public abstract class Context implements Serializable {
         try {
             doSave(name, nodeList);
             saved = true;
+            System.out.println("saved");
         } finally {
             lock.readLock().unlock();
             if (saved && listener!=null)
@@ -96,24 +100,31 @@ public abstract class Context implements Serializable {
         }
     }
 
-    protected final void loadJSON(String jsonString) {
+    public final void loadJSON(String jsonString) {
         JSONObject object = new JSONObject(jsonString);
         Set<String> propertyNames = object.keySet();
         for (String property:propertyNames) {
             if (property.equals("nodes")) {
                 nodeList.clear();
                 nodeList.addAll(build(object.getJSONArray(property)));
+            } else if (property.equals("attr")) {
+                attributes.putAll(object.getJSONObject("attr").toMap());
             } else {
-                properties.put(property, object.getString(property));
+                try {
+                    properties.put(property, object.getString(property));
+                } catch (JSONException e) {
+                    continue;
+                }
             }
         }
     }
 
-    protected final String toJSONString() {
+    public final String toJSONString() {
         JSONObject object = new JSONObject();
         for (Map.Entry<String, String> entry:properties.entrySet()) {
             object.put(entry.getKey(), entry.getValue());
         }
+        object.put("attr", new JSONObject(attributes));
         object.put("nodes", json(nodeList));
         return object.toString();
     }

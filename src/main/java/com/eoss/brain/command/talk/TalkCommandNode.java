@@ -6,6 +6,7 @@ import com.eoss.brain.Session;
 import com.eoss.brain.command.CommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
 import java.util.ArrayList;
@@ -124,11 +125,16 @@ public class TalkCommandNode extends CommandNode {
             session.setLastEntry(messageObject, maxActiveNode);
 
             if (session.route(maxActiveNode)) {
-                //Clean MessageObject
-                String [] inputs = session.context.split(messageObject.toString());
-                MessageObject cleanMessageObject = MessageObject.build(messageObject, maxActiveNode.clean(inputs));
 
-                return ResponseCommandNode.build(session, responseText).execute(cleanMessageObject);
+                //Clean MessageObject
+                StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
+                if (!params.isEmpty()) {
+                    forwardInput.append(" ");
+                    forwardInput.append(String.join(" ", params));
+                }
+
+                MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
+                return ResponseCommandNode.build(session, responseText).execute(forwardMessageObject);
             }
         }
 

@@ -20,6 +20,8 @@ public class Node implements Serializable {
 
     private float active;
 
+    public final Map<String, Object> attributes = new HashMap<>();
+
     public Node() {
         this(new ArrayList<Hook>(), "");
     }
@@ -139,11 +141,14 @@ public class Node implements Serializable {
     }
 
     public String clean(String input) {
-        String cleanInput = input;
+
         for (Hook hook:hookList) {
-            cleanInput = cleanInput.replace(hook.text, "");
+            if (input.startsWith(hook.text)) {
+                input = input.substring(hook.text.length()).trim();
+            }
         }
-        return cleanInput.trim();
+
+        return input.trim();
     }
 
     public String clean(String [] inputs) {
@@ -186,7 +191,13 @@ public class Node implements Serializable {
             hookList.add(Hook.build(jsonArray.getJSONObject(i)));
         }
         String response = jsonObject.getString("response");
-        return new Node(hookList, response);
+
+        Node newNode = new Node(hookList, response);
+        if (jsonObject.has("attr")) {
+            newNode.attributes.putAll(jsonObject.getJSONObject("attr").toMap());
+        }
+
+        return newNode;
     }
 
     public static JSONObject json(Node node) {
@@ -197,6 +208,7 @@ public class Node implements Serializable {
         }
         jsonObject.put("hooks", jsonArray);
         jsonObject.put("response", node.response);
+        jsonObject.put("attr", node.attributes);
         return jsonObject;
     }
 

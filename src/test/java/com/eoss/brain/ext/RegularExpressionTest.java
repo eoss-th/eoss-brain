@@ -33,7 +33,7 @@ public class RegularExpressionTest {
                 "A: hi `regx://##://\\{.*?\\}`\n"
         )));
 
-        assertEquals("hi { ken }", session.parse(MessageObject.build("hello wisarut {ken} srisawet")));
+        assertEquals("hi {ken}", session.parse(MessageObject.build("hello wisarut {ken} srisawet")));
 
     }
 

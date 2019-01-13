@@ -14,7 +14,7 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("noom").admin(adminIdList);
+        Context context = new FileContext("diagram").admin(adminIdList);
 
         Session session = new Session(context).callback(new SessionListener() {
             @Override
@@ -47,24 +47,7 @@ public class ContextTestCaseNoom {
         MessageObject template = MessageObject.build();
         template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
-        session.learning=true;
-
-        /*
-        session.parse(MessageObject.build(template, "ใส่ข้อมูลถามตอบ\n" +
-                "Q: จองโรงแรม\n" +
-                "A: จะไปไหนคะ?\n" +
-                "Q: จะไปไหนคะ\n" +
-                "A: #1!\n" +
-                "Q: ลาว\n" +
-                "A: ไปจังหวัดไรคะ?\n" +
-                "Q: ไปจังหวัดไรคะ\n" +
-                "A: ขอให้ไป ## ให้สนุกนะคะ\n" +
-                "Q: สวัสดี\n" +
-                "A: ดีจ้า #1\n" +
-                "Q: เป็นไงบ้าง\n" +
-                "A: สวัสดี!\n"
-        ));
-        */
+        //session.learning=true;
 
         while(true) {
             System.out.print("You:>>");
