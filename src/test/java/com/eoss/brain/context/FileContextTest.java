@@ -34,6 +34,7 @@ public class FileContextTest {
         Context context = new FileContext(contextName);
         context.admin(adminIdList);
         Session session = new Session(context);
+
         new WakeupCommandNode(session).execute(null);
 
         Node node = new Node(Hook.build(new String[]{"สวัสดี", "สบาย", "ดี", "ไหม"}), "ครับ");
@@ -44,6 +45,7 @@ public class FileContextTest {
 
         context.clear();
         context.load();
+
         assertEquals("ครับ", session.parse(MessageObject.build("สวัสดี")));
 
         MessageObject messageObject = MessageObject.build();

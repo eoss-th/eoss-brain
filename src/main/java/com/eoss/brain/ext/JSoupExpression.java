@@ -1,5 +1,6 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -12,17 +13,15 @@ public class JSoupExpression extends Expression {
     }
 
     @Override
-    public String execute(String input) {
+    public String execute(MessageObject messageObject) {
 
-        String [] args = parameterized(input, arguments);
+        String [] args = parameterized(messageObject, arguments);
 
         if (args.length==3) {
-
-            String dom = args[1].replace("`", "");
-            return jsoup(dom, args[2]);
+            return jsoup(args[1], args[2]);
         }
 
-        return super.execute(input);
+        return super.execute(messageObject);
     }
 
     protected final String jsoup(String dom, String path) {

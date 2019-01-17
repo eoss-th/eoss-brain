@@ -234,7 +234,9 @@ public class Session implements Serializable {
         return value;
     }
 
-    private final Map<String, String> paramMap(String input) {
+    private final Map<String, String> paramMap(MessageObject messageObject) {
+
+        String input = messageObject.toString();
 
         String [] params = context.split(input);
 
@@ -243,6 +245,13 @@ public class Session implements Serializable {
 
         for (int i=0;i<params.length;i++) {
             paramMap.put("#" + (i+1), params[i]);
+        }
+
+        List<String> parameters = (List<String>) messageObject.attributes.get("parameters");
+        if (parameters!=null) {
+            for (int i=0;i<parameters.size();i++) {
+                paramMap.put("%" + (i+1), parameters.get(i));
+            }
         }
 
         return paramMap;
@@ -256,11 +265,11 @@ public class Session implements Serializable {
         return output;
     }
 
-    public final String parameterized(String input, String responseText) {
+    public final String parameterized(MessageObject messageObject, String responseText) {
         /**
          * ## #1 #2..
          */
-        String parameterizedText = parameterized(paramMap(input), responseText);
+        String parameterizedText = parameterized(paramMap(messageObject), responseText);
 
         /**
          * Session Variables

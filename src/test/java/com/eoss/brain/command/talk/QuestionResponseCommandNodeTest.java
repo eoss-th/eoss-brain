@@ -31,10 +31,14 @@ public class QuestionResponseCommandNodeTest {
                 "Q: hello\n" +
                 "A: what is your name?\n" +
                 "Q: what is your name\n" +
-                "A: hello ##\n"
+                "A: hello ##\n" +
+                "Q: hi\n" +
+                "A: what is your real name?,what is your name?\n"
         )));
 
         assertEquals("what is your name", session.parse(MessageObject.build("hello")));
+        assertEquals("hello ken", session.parse(MessageObject.build("ken")));
+        assertEquals("what is your real name?", session.parse(MessageObject.build("hi")));
         assertEquals("hello wisarut srisawet", session.parse(MessageObject.build("wisarut srisawet")));
 
     }

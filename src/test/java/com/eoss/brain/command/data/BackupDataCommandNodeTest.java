@@ -31,7 +31,6 @@ public class BackupDataCommandNodeTest {
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
 
-
         assertEquals("Done!", session.parse(MessageObject.build(messageObject, "สำรองข้อมูล")));
 
     }

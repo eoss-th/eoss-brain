@@ -1,5 +1,6 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 import com.jayway.jsonpath.JsonPath;
 
@@ -14,15 +15,14 @@ public class JSONExpression extends Expression {
     }
 
     @Override
-    public String execute(String input) {
+    public String execute(MessageObject messageObject) {
 
-        String [] args = parameterized(input, arguments);
+        String [] args = parameterized(messageObject, arguments);
         if (args.length==3) {
-            String jsonString = args[1].replace("`", "");
-            return jsonPath(jsonString, args[2]);
+            return jsonPath(args[1], args[2]);
         }
 
-        return super.execute(input);
+        return super.execute(messageObject);
     }
 
     protected final String jsonPath(String json, String path) {

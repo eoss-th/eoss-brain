@@ -43,20 +43,6 @@ public class TalkCommandNode extends CommandNode {
         final Set<Node> activeNodeSet = new HashSet<>();
 
         String input = messageObject.toString();
-        List<String> params = new ArrayList<>();
-
-        Pattern pattern = Pattern.compile("\\`.*?\\`");
-        Matcher matcher = pattern.matcher(input);
-
-        String param;
-        while (matcher.find()) {
-            param = matcher.group();
-            params.add(param);
-            input = input.replace(param, "");
-        }
-
-        input = input.trim();
-
         final MessageObject feedMessageObject = MessageObject.build(messageObject, input);
 
         feedMessageObject.attributes.put("wordCount", session.context.split(input).length);
@@ -128,11 +114,6 @@ public class TalkCommandNode extends CommandNode {
 
                 //Clean MessageObject
                 StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
-                if (!params.isEmpty()) {
-                    forwardInput.append(" ");
-                    forwardInput.append(String.join(" ", params));
-                }
-
                 MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
                 return ResponseCommandNode.build(session, responseText).execute(forwardMessageObject);
             }

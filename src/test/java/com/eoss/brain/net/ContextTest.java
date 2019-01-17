@@ -18,15 +18,12 @@ public class ContextTest {
         Context context = new MemoryContext("qa").locale(new Locale("th"));
         context.admin(adminIdList);
 
-        String [] tokens = context.split("`{\"test\":{['abc']}}`สวัสดีครับคุณครู`{\"test\":{['abc']}}``{\"test\":{['abc']}}`");
-        assertEquals(7, tokens.length);
+        String [] tokens = context.split("สวัสดีครับคุณครู");
+        assertEquals(4, tokens.length);
         assertEquals("สวัสดี", tokens[0]);
         assertEquals("ครับ", tokens[1]);
         assertEquals("คุณ", tokens[2]);
         assertEquals( "ครู", tokens[3]);
-        assertEquals("`{\"test\":{['abc']}}`", tokens[4]);
-        assertEquals("`{\"test\":{['abc']}}`", tokens[5]);
-        assertEquals("`{\"test\":{['abc']}}`", tokens[6]);
 
     }
 

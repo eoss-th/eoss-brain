@@ -1,6 +1,10 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Expression {
 
@@ -12,18 +16,27 @@ public class Expression {
         this.arguments = arguments;
     }
 
-    protected final String [] parameterized(String input, String [] args) {
+    protected final String [] parameterized(MessageObject messageObject, String [] args) {
         if (args==null) return null;
         String [] result = new String[args.length];
         for (int i=0;i<result.length;i++) {
-            result[i] = session.parameterized(input, args[i]);
+            result[i] = session.parameterized(messageObject, args[i]);
         }
         return result;
     }
 
-    public String execute(String input) {
+    protected void updateParameters(MessageObject messageObject, String result) {
+        List<String> parameters = (List<String>) messageObject.attributes.get("parameters");
+        if (parameters==null) {
+            parameters = new ArrayList<>();
+        }
+        parameters.add(result);
+        messageObject.attributes.put("parameters", parameters);
+    }
+
+    public String execute(MessageObject messageObject) {
         StringBuilder sb = new StringBuilder();
-        String [] args = parameterized(input, arguments);
+        String [] args = parameterized(messageObject, arguments);
         if (args!=null) {
             for (String arg:args) {
                 sb.append(arg);

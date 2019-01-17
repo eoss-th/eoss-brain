@@ -1,5 +1,6 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 
 public class VarExpression extends Expression {
@@ -9,8 +10,8 @@ public class VarExpression extends Expression {
     }
 
     @Override
-    public String execute(String input) {
-        return var(parameterized(input, arguments)[0]);
+    public String execute(MessageObject messageObject) {
+        return var(parameterized(messageObject, arguments)[0]);
     }
 
     protected final String var(String queryParams) {

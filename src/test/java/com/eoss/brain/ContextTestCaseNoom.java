@@ -16,6 +16,8 @@ public class ContextTestCaseNoom {
 
         Context context = new FileContext("diagram").admin(adminIdList);
 
+        context.load();
+
         Session session = new Session(context).callback(new SessionListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {

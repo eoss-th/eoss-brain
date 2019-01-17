@@ -44,19 +44,19 @@ public class GetHTTPExpressionTest {
                 "Q:เกิดวันอะไร เสาร์\n" +
                 "A:ดูดวง เสาร์ `get://horoscope.mthai.com/apps/daily-horo`!\n" +
                 "Q:ดูดวง อาทิตย์\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(2) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(2) p`\n" +
                 "Q:ดูดวง จันทร์\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(3) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(3) p`\n" +
                 "Q:ดูดวง อังคาร\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(4) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(4) p`\n" +
                 "Q:ดูดวง พุธ\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(5) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(5) p`\n" +
                 "Q:ดูดวง พฤหัส\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(6) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(6) p`\n" +
                 "Q:ดูดวง ศุกร์\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(7) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(7) p`\n" +
                 "Q:ดูดวง เสาร์\n" +
-                "A:`jsoup://##://#content-inner h4` `jsoup://##://#content-inner div:eq(8) p`\n" +
+                "A:`jsoup://%1://#content-inner h4` `jsoup://%1://#content-inner div:eq(8) p`\n" +
                 "Q:เกิดวันอะไร อาทิตย์\n" +
                 "A:ดูดวง อาทิตย์  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
                 "Q:เกิดวันอะไร จันทร์\n" +
@@ -70,7 +70,7 @@ public class GetHTTPExpressionTest {
                 "Q:ไง\n" +
                 "A:งาย\n" +
                 "Q:ทำนายหวย\n" +
-                "A:เลขท้ายสองตัวคือ `jsoup://##://p[class=red_txt]`\n" +
+                "A:เลขท้ายสองตัวคือ `jsoup://%1://p[class=red_txt]`\n" +
                 "Q:ฝันว่าอะไร\n" +
                 "A:ทำนายหวย `get://lotto.mthai.com/dream/##.html`!"
             )));
@@ -78,9 +78,9 @@ public class GetHTTPExpressionTest {
         assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));
         assertEquals("เลขท้ายสองตัวคือ 2 4 5 8 9", session.parse(MessageObject.build("ทอง")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันอาทิตย์ที่ 13 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้คงเกิดการเปลี่ยน แปลงหลายด้าน ทั้งสายงานและบ้านเรือนความเป็นอยู่ เงินทองต้องฟู่ฟ่าแน่นับแต่ตอนนี้ไป สุขภาพก็ทำท่าจะสดใสเข้มแข็งกว่าเก่ามา สัญญารักทั้งเก่าใหม่ก็สดชื่นแจ่มใสเกินวัยแลฐานะนั่น", session.parse(MessageObject.build("เสาร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันพฤหัสบดีที่ 17 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้อาจเกิดการเข้าใจผิดต่อกันได้ง่าย หรือยังคงเจอกับความวุ่นวายใจตน หลายสิ่งมากอย่างแสนจะสับสนแม้นเพิ่งเริ่มต้นใหม่มา สัญญาด้วยปากก็ เปลี่ยนแปลงไป เรื่องรักปัญหาใคร่วัยแลฐานะก็ต้องเป็นตัวแปร", session.parse(MessageObject.build("เสาร์")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันอาทิตย์ที่ 13 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้ปวดขมองทั้งเรื่องเงินๆทองๆและกิจการงานบางอย่าง และคำพูดคำจาของใครบางคนอีกด้วยหนา ช่วงนี้ทางออกที่ดีพรรณนาปัญหากับองค์พระปฏิมาดีกว่า ในเชิงของความรักท่านเองก็ยังคงคิดมากไปเองน่ะ", session.parse(MessageObject.build("ศุกร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันพฤหัสบดีที่ 17 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้ไม่วายที่ต้องคิดมากและยังคงคำนึงหลายด้านมากมุมหลายด้านเข้ามาสุมสมอง เงินทองก็ยังคงเป็นตัวตั้งสำคัญ เรื่องสุขภาพกายตนก็ต้องระวังบ้างหนา คนรักคู่ครองก็มักเอาแต่ใจหึงหวงไร้พรมแดนเสมอ", session.parse(MessageObject.build("ศุกร์")));
 
     }
 
@@ -100,7 +100,9 @@ public class GetHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: what is your name?\n" +
                 "Q: what is your name\n" +
-                "A: hi `get://wayobot=best&test://wayobot.com/api/#1`\n"
+                "A: hi `get://wayobot=best&test://wayobot.com/api/#1`!\n" +
+                "Q: hi\n" +
+                "A: hi %1\n"
         )));
 
         assertEquals("what is your name", session.parse(MessageObject.build("hello")));
@@ -124,7 +126,7 @@ public class GetHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: hi `get://wayobot.com/api/jsonObject`!\n" +
                 "Q: hi\n" +
-                "A: `json-path://#1://$.hotel.name`"
+                "A: `json-path://%1://$.hotel.name`"
         )));
 
         assertEquals("Tara", session.parse(MessageObject.build("hello")));
@@ -147,7 +149,7 @@ public class GetHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: hi `get://wayobot.com/api/jsonArray`!\n" +
                 "Q: hi\n" +
-                "A: `json-path://#1://$`"
+                "A: `json-path://%1://$`"
         )));
 
         assertEquals("{name=Tara}", session.parse(MessageObject.build("hello")));
@@ -170,7 +172,7 @@ public class GetHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: hi `get://wayobot.com/api/html`!\n" +
                 "Q: hi\n" +
-                "A: `jsoup://#1://h3[id=test]`"
+                "A: `jsoup://%1://h3[id=test]`"
         )));
 
         assertEquals("Test", session.parse(MessageObject.build("hello")));

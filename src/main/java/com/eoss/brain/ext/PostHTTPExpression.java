@@ -1,5 +1,6 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 
 import java.io.BufferedReader;
@@ -15,21 +16,23 @@ public class PostHTTPExpression extends HTTPExpression {
     }
 
     @Override
-    public String execute(String input) {
+    public String execute(MessageObject messageObject) {
 
-        String [] args = parameterized(input, arguments);
+        String [] args = parameterized(messageObject, arguments);
         if (args.length==4) {
 
             String url = "https://" + args[3];
-            return post(url, createParamMapFromQueryString(args[1]), args[2]);
+            super.updateParameters(messageObject, post(url, createParamMapFromQueryString(args[1]), args[2]));
+            return "";
 
         } else if (args.length==3) {
 
             String url = "https://" + args[2];
-            return post(url, null, args[1]);
+            super.updateParameters(messageObject, post(url, null, args[1]));
+            return "";
         }
 
-        return super.execute(input);
+        return super.execute(messageObject);
     }
 
     protected final String post(String apiURL, Map<String, String> headerMap, String body) {
@@ -64,6 +67,6 @@ public class PostHTTPExpression extends HTTPExpression {
         } catch (Exception e) {
             response.append(e.getMessage());
         }
-        return protectHTTPObject(response.toString());
+        return response.toString();
     }
 }

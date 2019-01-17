@@ -35,7 +35,7 @@ public class RestoreDataCommandNodeTest {
         Context context = new FileContext("backuptest");
         context.admin(adminIdList);
         Session session = new Session(context);
-        session.learning = true;
+
         new WakeupCommandNode(session).execute(null);
 
         MessageObject messageObject = MessageObject.build();
@@ -43,7 +43,8 @@ public class RestoreDataCommandNodeTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject, "กู้ข้อมูล")));
 
-        assertEquals("ครับ", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("meeting.doc", session.parse(MessageObject.build("เอกสาร")));
+
     }
 
 }

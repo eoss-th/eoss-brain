@@ -29,8 +29,6 @@ public class ResponseCommandNode extends ProblemCommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
-        String input = messageObject.toString();
-
         Pattern pattern = Pattern.compile("\\`.*?\\`");
         Matcher matcher = pattern.matcher(responseText);
 
@@ -38,10 +36,10 @@ public class ResponseCommandNode extends ProblemCommandNode {
         String expression;
         while (matcher.find()) {
             expression = matcher.group();
-            evaluatedText = evaluatedText.replace(expression, Expression.build(session, expression).execute(input));
+            evaluatedText = evaluatedText.replace(expression, Expression.build(session, expression).execute(messageObject));
         }
 
-        return session.parameterized(input, evaluatedText);
+        return session.parameterized(messageObject, evaluatedText);
     }
 
 }

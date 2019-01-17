@@ -295,22 +295,6 @@ public abstract class Context implements Serializable {
     public String [] split(String input) {
 
         List<String> result = new ArrayList<>();
-
-        /**
-         * Object Parameters
-         */
-        List<String> params = new ArrayList<>();
-
-        Pattern pattern = Pattern.compile("\\`.*?\\`");
-        Matcher matcher = pattern.matcher(input);
-
-        String param;
-        while (matcher.find()) {
-            param = matcher.group();
-            params.add(param);
-            input = input.replace(param, "");
-        }
-
         /**
          * Conditional Hooks
          */
@@ -348,7 +332,6 @@ public abstract class Context implements Serializable {
         }
 
         result.addAll(conditionHooks);
-        result.addAll(params);
 
         return result.toArray(new String[result.size()]);
     }

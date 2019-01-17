@@ -1,5 +1,6 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 
 import java.util.regex.Matcher;
@@ -12,9 +13,9 @@ public class RegularExpression extends Expression {
     }
 
     @Override
-    public String execute(String input) {
+    public String execute(MessageObject messageObject) {
 
-        String [] args = parameterized(input, arguments);
+        String [] args = parameterized(messageObject, arguments);
 
         if (args.length==3) {
 
@@ -22,7 +23,7 @@ public class RegularExpression extends Expression {
             return regx(text, args[2]);
         }
 
-        return super.execute(input);
+        return super.execute(messageObject);
 
     }
 

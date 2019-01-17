@@ -33,10 +33,13 @@ public class ForwardResponseCommandNodeTest {
                 "Q: hi ken\n" +
                 "A: great #1 lee!\n" +
                 "Q: great muay\n" +
-                "A: #1 is great\n"
+                "A: #1 is great\n" +
+                "Q: whatsup\n" +
+                "A: wow, hi #1 muay!\n"
         )));
 
         assertEquals("lee is great", session.parse(MessageObject.build("hello ken")));
+        assertEquals("wow, lee is great", session.parse(MessageObject.build("whatsup ken")));
 
     }
 

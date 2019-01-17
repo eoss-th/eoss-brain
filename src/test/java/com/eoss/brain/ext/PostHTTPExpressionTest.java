@@ -31,7 +31,9 @@ public class PostHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: what is your name?\n" +
                 "Q: what is your name\n" +
-                "A: hi `post://wayobot=best://wayobot.com/api/#1`\n"
+                "A: hi `post://wayobot=best://wayobot.com/api/#1`!\n" +
+                "Q: hi\n" +
+                "A: hi %1\n"
         )));
 
         assertEquals("what is your name", session.parse(MessageObject.build("hello")));
@@ -55,7 +57,9 @@ public class PostHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: what is your name?\n" +
                 "Q: what is your name\n" +
-                "A: hi `post://wayo1=hi&wayo2=hey&test://wayobot=best://wayobot.com/api/#1`\n"
+                "A: hi `post://wayo1=hi&wayo2=hey&test://wayobot=best://wayobot.com/api/#1`!\n" +
+                "Q: hi\n" +
+                "A: hi %1\n"
         )));
 
         assertEquals("what is your name", session.parse(MessageObject.build("hello")));

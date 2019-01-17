@@ -18,7 +18,21 @@ public class ForwardResponseCommandNode extends ResponseCommandNode {
 
     @Override
     public String execute(MessageObject messageObject) {
-        MessageObject forwardMessageObject = MessageObject.build(messageObject, super.execute(messageObject));
-        return new TalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
+
+        String generatedOutput = super.execute(messageObject);
+
+        //Insert Message
+        String forwardMessage = generatedOutput;
+        int lastIndexOfComma = generatedOutput.lastIndexOf(",");
+        if ( lastIndexOfComma!=-1 && lastIndexOfComma<generatedOutput.length()-1 ) {
+            forwardMessage = generatedOutput.substring(lastIndexOfComma + 1).trim();
+            generatedOutput = generatedOutput.substring(0, lastIndexOfComma) + ", ";
+        } else {
+            generatedOutput = "";
+        }
+
+        MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardMessage);
+
+        return generatedOutput + new TalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
     }
 }

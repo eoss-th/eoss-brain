@@ -11,17 +11,6 @@ public abstract class HTTPExpression extends Expression {
         super(session, arguments);
     }
 
-    protected final String protectHTTPObject(String text) {
-        if (
-                (text.startsWith("<") && text.endsWith(">")) || //DOM
-                        (text.startsWith("{") && text.endsWith("}")) || //JSON Object
-                        (text.startsWith("[") && text.endsWith("]")) // JSON Array
-        ) {
-            return "`" + text + "`";
-        }
-        return text;
-    }
-
     protected final Map<String, String> createParamMapFromQueryString(String queryString) {
         Map<String, String> paramMap = new HashMap<>();
         String [] headers = queryString.split("&");
