@@ -18,8 +18,8 @@ public class Hook implements Serializable {
     public enum Match {
         All(1.0f),
         Head(1.0f),
-        Body(0.9f),
-        Tail(0.95f),
+        Body(1.0f),
+        Tail(1.0f),
         GreaterThan(1.0f),
         GreaterEqualThan(1.0f),
         LowerThan(1.0f),

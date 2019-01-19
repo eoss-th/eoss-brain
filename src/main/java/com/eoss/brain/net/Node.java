@@ -98,11 +98,13 @@ public class Node implements Serializable {
 
         //active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
 
-        active = totalResponseActive / (hookList.size() + wordCount - matchedCount);
+        /**
+         * hooks = hello world
+         * words = hello
+         * 1 / (2 + 1 - 1) = 0.5
+         */
 
-        if (messageObject.toString().equals("ทักทาย")) {
-            System.out.println(Hook.toString(this.hookList())+":"+matchedCount+":"+active);
-        }
+        active = totalResponseActive / (hookList.size() + wordCount - matchedCount);
     }
 
     public void feedback(MessageObject messageObject, float feedback) {
