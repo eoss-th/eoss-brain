@@ -57,27 +57,13 @@ public class WakeupCommandNode extends CommandNode {
         session.adminCommandList.add(new AdminCommandNode(new ExportQADataCommandNode(session, new String[]{"ดูข้อมูลถามตอบ"}, "Q:", "A:")));
         session.adminCommandList.add(new AdminCommandNode(new ExportMermaidDataCommandNode(session, new String[]{"ดูข้อมูลกราฟ"})));
         session.adminCommandList.add(new AdminCommandNode(new CreateWebIndexCommandNode(session, new String[]{"ใส่ข้อมูลสารบัญจากเวป"})));
-        session.adminCommandList.add(new AdminCommandNode(new EnableTeacherCommandNode(session, new String[]{"เปิดโหมดเรียนรู้"})) {
-            @Override
-            public boolean matched(MessageObject messageObject) {
-                return commandNode.matched(messageObject);
-            }
-        });
-        session.adminCommandList.add(new AdminCommandNode(new DisableTeacherCommandNode(session, new String[]{"ปิดโหมดเรียนรู้"})) {
-            @Override
-            public boolean matched(MessageObject messageObject) {
-                return commandNode.matched(messageObject);
-            }
-        });
+        session.adminCommandList.add(new AdminCommandNode(new EnableTeacherCommandNode(session, new String[]{"เปิดโหมดเรียนรู้"})));
+        session.adminCommandList.add(new AdminCommandNode(new DisableTeacherCommandNode(session, new String[]{"ปิดโหมดเรียนรู้"})));
 
         session.commandList.clear();
-
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4D", "เยี่ยม"}, "\uD83D\uDE0A", 0.1f));
-
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4E", "ไม่"}, "\uD83D\uDE1F", -0.1f, KEY));
-
         session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, KEY));
-
         session.commandList.add(new TalkCommandNode(session, KEY));
 
         return "...";

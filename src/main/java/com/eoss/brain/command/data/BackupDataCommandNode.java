@@ -22,8 +22,7 @@ public class BackupDataCommandNode extends CommandNode {
 
             return successMsg();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return failMsg();
     }
 }
