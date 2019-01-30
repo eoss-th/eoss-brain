@@ -124,7 +124,7 @@ public class FeedbackCommandNodeTest {
 
         assertFalse(node.hookList().contains(new Hook("ครับ", Hook.Match.Tail)));
 
-        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("เยี่ยม")));
+        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("\uD83D\uDC4D")));
 
         assertTrue(node.hookList().contains(new Hook("ครับ", Hook.Match.Tail)));
 

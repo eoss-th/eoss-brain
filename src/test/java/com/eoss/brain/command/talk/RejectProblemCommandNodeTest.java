@@ -40,19 +40,19 @@ public class RejectProblemCommandNodeTest {
 
         assertFalse(session.hasProblem());
 
-        assertEquals("hello ?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("hello ?", session.parse(MessageObject.build("\uD83D\uDC4E")));
 
         assertTrue(session.hasProblem());
 
         //Cancel
-        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("ไม่")));
+        assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("\uD83D\uDC4E")));
 
         assertFalse(session.hasProblem());
 
         //Retry
         assertEquals("fine", session.parse(MessageObject.build("hello")));
 
-        assertEquals("hello ?", session.parse(MessageObject.build("ไม่")));
+        assertEquals("hello ?", session.parse(MessageObject.build("\uD83D\uDC4E")));
 
         assertEquals("\uD83D\uDE0A", session.parse(MessageObject.build("hi")));
 

@@ -19,7 +19,7 @@ public class Hook implements Serializable {
         All(1.0f),
         Head(1.0f),
         Body(1.0f),
-        Tail(1.0f),
+        Tail(0.95f),
         GreaterThan(1.0f),
         GreaterEqualThan(1.0f),
         LowerThan(1.0f),
@@ -71,17 +71,29 @@ public class Hook implements Serializable {
 
     boolean matched(MessageObject messageObject) {
 
-        String input = messageObject.toString();
+        String input = messageObject.toString().toLowerCase();
         Object modeObject = messageObject.attributes.get("mode");
 
         if (match == Match.All)
             return input.equalsIgnoreCase(text);
         if (match == Match.Head)
-            return input.toLowerCase().startsWith(text.toLowerCase());
+            return input.startsWith(text.toLowerCase());
         if (match == Match.Tail)
-            return input.toLowerCase().endsWith(text.toLowerCase());
-        if (match == Match.Body)
-            return input.toLowerCase().contains(text.toLowerCase());
+            return input.endsWith(text.toLowerCase());
+        if (match == Match.Body) {
+            //For Keywords Match!
+            if (text.contains(",")) {
+                String [] tokens = text.toLowerCase().split(",");
+                for (String token:tokens) {
+                    if (input.contains(token)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            return input.contains(text.toLowerCase());
+        }
         if (match == Match.GreaterThan) {
             Float targetNumber;
             try {

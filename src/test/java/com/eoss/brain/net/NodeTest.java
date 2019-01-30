@@ -85,7 +85,7 @@ public class NodeTest {
     @Test
     public void testMatchBody() {
 
-        Node node = new Node(Hook.build(new String[]{"สวัสดีครับ"}, Hook.Match.Body));
+        Node node = new Node(Hook.build(new String[]{"สวัสดี,ครับ"}, Hook.Match.Body));
 
         assertTrue(node.matched(MessageObject.build("สวัสดีครับ")));
 
@@ -95,7 +95,7 @@ public class NodeTest {
 
         assertTrue(node.matched(MessageObject.build("นายสวัสดีครับนาย")));
 
-        assertFalse(node.matched(MessageObject.build("สวัสดี")));
+        assertFalse(node.matched(MessageObject.build("ดี")));
     }
 
     @Test
