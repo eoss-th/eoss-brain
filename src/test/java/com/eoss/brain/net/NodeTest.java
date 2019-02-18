@@ -96,6 +96,20 @@ public class NodeTest {
         assertTrue(node.matched(MessageObject.build("นายสวัสดีครับนาย")));
 
         assertFalse(node.matched(MessageObject.build("ดี")));
+
+        Node node1 = new Node(Hook.build(new String[]{"ถาม", "ไม่,no"}, Hook.Match.Body));
+        Node node2 = new Node(Hook.build(new String[]{"basic", "ไม่"}, Hook.Match.Body));
+
+        MessageObject msg;
+        msg = MessageObject.build("ถาม ไม่");
+        msg.attributes.put("wordCount", 2);
+
+        node1.feed(msg);
+        System.out.println(node1.active());
+
+        node2.feed(msg);
+
+        System.out.println(node2.active());
     }
 
     @Test

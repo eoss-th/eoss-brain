@@ -224,6 +224,10 @@ public class Session implements Serializable {
         return routeSet.add(node);
     }
 
+    public boolean canRoute(Node node) {
+        return !routeSet.contains(node);
+    }
+
     public void setVariable(String name, String value) {
         variableMap.put(name, value);
     }

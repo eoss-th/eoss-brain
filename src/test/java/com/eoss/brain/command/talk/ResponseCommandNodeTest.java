@@ -33,7 +33,6 @@ public class ResponseCommandNodeTest {
         )));
 
         assertEquals("hi wisarut srisawet", session.parse(MessageObject.build("hello wisarut srisawet")));
-
     }
 
 }

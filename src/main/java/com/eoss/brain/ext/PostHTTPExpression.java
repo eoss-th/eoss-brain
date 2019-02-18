@@ -50,6 +50,10 @@ public class PostHTTPExpression extends HTTPExpression {
                 }
             }
 
+            System.out.println(headerMap);
+
+            System.out.println(body);
+
             OutputStream outputStream = conn.getOutputStream();
             outputStream.write(body.getBytes("UTF-8"));
             outputStream.flush();

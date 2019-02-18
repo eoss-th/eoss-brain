@@ -76,11 +76,11 @@ public class GetHTTPExpressionTest {
             )));
 
         assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));
-        assertEquals("เลขท้ายสองตัวคือ 2 4 5 8 9", session.parse(MessageObject.build("ทอง")));
+        assertEquals("เลขท้ายสองตัวคือ 4 5", session.parse(MessageObject.build("ทอง")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันพุธที่ 30 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้มีคนคอยหงายสิ่งที่คว่ำ หรือเมื่อเจ็บแล้วรู้จักจำก็คงไม่ต้องปวดร้าวใจตนอีกคราว ทั้งในสายงานและเรือนชาน บริวารและญาติก็ยังคงเป็นปัญหาภาระอยู่ คนรักและคู่ครองช่วงนี้เห็นอกเข้าใจอย่างดีรู้บ้าง", session.parse(MessageObject.build("เสาร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันจันทร์ที่ 18 กุมภาพันธ์ 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ ช่วงนี้จิตใจเบิกบาน แต่เรื่องการเงินมีบริวารหรือมิตร จะขอร้องให้ท่านเข้าไปช่วยเหลือ หรือวิ่งเต้นเกี่ยวกับการทำงาน การเรียน การประกวด งานศิลปะระวังการจับจ่ายเกี่ยวกับเพศตรงข้าม เพื่อนฝูง หรือกลับบ้านมืดค่ำ....", session.parse(MessageObject.build("เสาร์")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันพุธที่ 30 มกราคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ อาจเดือดร้อนเพราะบริวารหรือต้องช่วยเหลือคนใกล้ชิด การตัดสินใจปัญหาบางประการ หรือต้องเข้าไปไกล่เกลี่ย ได้งานพิเศษ หรือเงินล่วงเวลา แต่ก็มีรายจ่ายตามมาติดๆเช่นกันมีการเปลี่ยนเครื่องมือเครื่องใช้ใหม่....", session.parse(MessageObject.build("ศุกร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันจันทร์ที่ 18 กุมภาพันธ์ 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ การงานอาชีพคงต้องตั้งใจให้ดี มีโอกาสทำงานผิดพลาดได้ ถ้ามีหุ้นส่วน งานทั่วไปจะเจอคู่แข่ง สำหรับธุรกิจการติดต่อจะติดขัด เจรจาต่อรองไม่ประสบผลสำเร็จ ด้านความรักมีแนวโน้มที่ดี จะรู้สึกสดชื่น มีความสุข ที่คนรักคู่ครองดูแลคุณเป็นอย่างดี การเงิน มีรายได้เข้ามาหลายทาง แต่ควรระวังการใช้จ่ายที่เกิดจากการนำเงินไปลงทุนแล้วไม่ได้รับผลประโยชน์ตอบแทนที่คุ้มค่าเผลอๆอาจขาดทุนก็ได้", session.parse(MessageObject.build("ศุกร์")));
 
     }
 
@@ -100,7 +100,7 @@ public class GetHTTPExpressionTest {
                 "Q: hello\n" +
                 "A: what is your name?\n" +
                 "Q: what is your name\n" +
-                "A: hi `get://wayobot=best&test://wayobot.com/api/#1`!\n" +
+                "A: hi `get://wayobot=best&test://wayobot.com/apiMockup/#1`!\n" +
                 "Q: hi\n" +
                 "A: hi %1\n"
         )));
@@ -124,7 +124,7 @@ public class GetHTTPExpressionTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
                 "Q: hello\n" +
-                "A: hi `get://wayobot.com/api/jsonObject`!\n" +
+                "A: hi `get://wayobot.com/apiMockup/jsonObject`!\n" +
                 "Q: hi\n" +
                 "A: `json-path://%1://$.hotel.name`"
         )));
@@ -147,7 +147,7 @@ public class GetHTTPExpressionTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
                 "Q: hello\n" +
-                "A: hi `get://wayobot.com/api/jsonArray`!\n" +
+                "A: hi `get://wayobot.com/apiMockup/jsonArray`!\n" +
                 "Q: hi\n" +
                 "A: `json-path://%1://$`"
         )));
@@ -170,7 +170,7 @@ public class GetHTTPExpressionTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
                 "Q: hello\n" +
-                "A: hi `get://wayobot.com/api/html`!\n" +
+                "A: hi `get://wayobot.com/apiMockup/html`!\n" +
                 "Q: hi\n" +
                 "A: `jsoup://%1://h3[id=test]`"
         )));

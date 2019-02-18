@@ -14,7 +14,7 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("diagram").admin(adminIdList);
+        Context context = new FileContext("minnie2").admin(adminIdList);
 
         context.load();
 
@@ -47,8 +47,8 @@ public class ContextTestCaseNoom {
         Scanner scanner = new Scanner(System.in, "UTF-8");
 
         MessageObject template = MessageObject.build();
-        template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
-        template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+        //template.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+        //template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         //session.learning=true;
 
         while(true) {

@@ -64,7 +64,30 @@ public class ForwardResponseCommandNodeTest {
                 "A: hello!\n"
         )));
 
-        assertEquals("hi!", session.parse(MessageObject.build("hello")));
+        assertEquals("hello!", session.parse(MessageObject.build("hello")));
     }
+
+    @Test
+    public void cyclicTest() {
+
+        List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
+        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        context.admin(adminIdList);
+        Session session = new Session(context);
+        new WakeupCommandNode(session).execute(null);
+
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q: hello test\n" +
+                "A: test!\n" +
+                "Q: hi test\n" +
+                "A: haha\n"
+        )));
+
+        assertEquals("haha", session.parse(MessageObject.build("hello")));
+    }
+
 
 }

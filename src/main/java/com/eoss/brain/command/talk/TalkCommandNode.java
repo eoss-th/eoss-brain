@@ -47,11 +47,20 @@ public class TalkCommandNode extends CommandNode {
 
         feedMessageObject.attributes.put("wordCount", session.context.split(input).length);
 
+        List<Node> alreadyRoutedNodeList = new ArrayList<>();
+
         session.context.matched(messageObject, new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
-                nodeEvent.node.feed(feedMessageObject);
-                activeNodeSet.add(nodeEvent.node);
+                /**
+                 * Protect from Cyclic Forwarding
+                 */
+                if (session.canRoute(nodeEvent.node)) {
+                    nodeEvent.node.feed(feedMessageObject);
+                    activeNodeSet.add(nodeEvent.node);
+                } else {
+                    alreadyRoutedNodeList.add(nodeEvent.node);
+                }
             }
         });
 
@@ -96,6 +105,10 @@ public class TalkCommandNode extends CommandNode {
                 session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
             }
 
+        } else if (!alreadyRoutedNodeList.isEmpty()) {
+
+            responseText = session.lastEntry().node.response();
+
         } else {
 
             responseText = "";
@@ -110,13 +123,12 @@ public class TalkCommandNode extends CommandNode {
 
             session.setLastEntry(messageObject, maxActiveNode);
 
-            if (session.route(maxActiveNode)) {
+            session.route(maxActiveNode);
 
-                //Clean MessageObject
-                StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
-                MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
-                return ResponseCommandNode.build(session, responseText).execute(forwardMessageObject);
-            }
+            //Clean MessageObject
+            StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
+            MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
+            return ResponseCommandNode.build(session, responseText).execute(forwardMessageObject);
         }
 
         return responseText;

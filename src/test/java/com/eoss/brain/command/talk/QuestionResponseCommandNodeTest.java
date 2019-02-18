@@ -42,4 +42,27 @@ public class QuestionResponseCommandNodeTest {
         assertEquals("hello wisarut srisawet", session.parse(MessageObject.build("wisarut srisawet")));
 
     }
+
+    @Test
+    public void cyclicTest() {
+
+        List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
+        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        context.admin(adminIdList);
+        Session session = new Session(context);
+        new WakeupCommandNode(session).execute(null);
+
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q: hello test\n" +
+                "A: what is your name?\n" +
+                "Q: what is your name\n" +
+                "A: hello ##\n"
+        )));
+
+        assertEquals("what is your name", session.parse(MessageObject.build("hello")));
+        assertEquals("hello test", session.parse(MessageObject.build("test")));
+    }
 }
