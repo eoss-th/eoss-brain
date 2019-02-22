@@ -1,6 +1,7 @@
 package com.eoss.brain;
 
 import com.eoss.brain.command.*;
+import com.eoss.brain.command.talk.AnswerResponseCommandNode;
 import com.eoss.brain.command.talk.ProblemCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
@@ -214,6 +215,13 @@ public class Session implements Serializable {
     public void insert(ProblemCommandNode problemCommandNode) {
         commandList.add(0, problemCommandNode);
         problemSolved = false;
+    }
+
+    public List<String> getChoices() {
+        if (commandList.size()>0 && commandList.get(0) instanceof AnswerResponseCommandNode) {
+            return ((AnswerResponseCommandNode)commandList.get(0)).generateChoices();
+        }
+        return null;
     }
 
     private void clearRoute() {
