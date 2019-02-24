@@ -217,7 +217,7 @@ public class Session implements Serializable {
         problemSolved = false;
     }
 
-    public List<String> getChoices() {
+    public List<AnswerResponseCommandNode.Choice> getChoices() {
         if (commandList.size()>0 && commandList.get(0) instanceof AnswerResponseCommandNode) {
             return ((AnswerResponseCommandNode)commandList.get(0)).generateChoices();
         }
