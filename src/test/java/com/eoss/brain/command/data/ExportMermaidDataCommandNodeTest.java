@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 
 public class ExportMermaidDataCommandNodeTest {
 
-    @Test
     public void test() {
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new FileContext("hot").locale(new Locale("th"));

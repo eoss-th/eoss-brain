@@ -9,10 +9,7 @@ import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,7 +42,9 @@ public class TalkCommandNode extends CommandNode {
         String input = messageObject.toString();
         final MessageObject feedMessageObject = MessageObject.build(messageObject, input);
 
-        feedMessageObject.attributes.put("wordCount", session.context.split(input).length);
+        List<String> wordList = Arrays.asList(session.context.split(input.toLowerCase()));
+        feedMessageObject.attributes.put("wordList", wordList);
+        feedMessageObject.attributes.put("wordCount", wordList.size());
 
         List<Node> alreadyRoutedNodeList = new ArrayList<>();
 

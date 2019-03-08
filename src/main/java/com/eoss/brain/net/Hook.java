@@ -69,7 +69,118 @@ public class Hook implements Serializable {
         return numberList;
     }
 
+    private List<Float> numberList(List<String> wordList) {
+
+        List<Float> numberList = new ArrayList<>();
+        for (String word:wordList) {
+            try {
+                numberList.add(Float.parseFloat(word));
+            } catch (Exception e) {
+
+            }
+        }
+        return numberList;
+    }
+
+
     boolean matched(MessageObject messageObject) {
+
+        List<String> wordList = (List<String>) messageObject.attributes.get("wordList");
+
+        if (wordList==null) return _matched(messageObject);
+
+        Object modeObject = messageObject.attributes.get("mode");
+
+        if (match == Match.All)
+            return wordList.size()==1 && wordList.get(0).equalsIgnoreCase(text);
+        if (match == Match.Head)
+            return !wordList.isEmpty() && wordList.get(0).equalsIgnoreCase(text);
+        if (match == Match.Tail)
+            return !wordList.isEmpty() && wordList.get(wordList.size()-1).equalsIgnoreCase(text);
+        if (match == Match.Body) {
+            //For Keywords Match!
+            if (text.contains(",")) {
+                String [] tokens = text.toLowerCase().split(",");
+                for (String token:tokens) {
+                    if (wordList.contains(token)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            return wordList.contains(text.toLowerCase());
+        }
+        if (match == Match.GreaterThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                System.out.println(text);
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(wordList);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number>targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+        if (match == Match.GreaterEqualThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(wordList);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number>=targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+        if (match == Match.LowerThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(wordList);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number<targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+        if (match == Match.LowerEqualThan) {
+            Float targetNumber;
+            try {
+                targetNumber = Float.parseFloat(text);
+            } catch (Exception e) {
+                targetNumber = 0f;
+            }
+
+            List<Float> inputNumberList = numberList(wordList);
+            boolean result = false;
+            for (Float number:inputNumberList) {
+                if (number<=targetNumber)
+                    result = true;
+            }
+            return result;
+        }
+
+        return modeObject!=null && modeObject.toString().equalsIgnoreCase(text);
+    }
+
+    boolean _matched(MessageObject messageObject) {
 
         String input = messageObject.toString().toLowerCase();
         Object modeObject = messageObject.attributes.get("mode");

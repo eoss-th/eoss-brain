@@ -26,7 +26,7 @@ public class FileContextTest {
         Locale.setDefault(new Locale("th", "TH"));
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        String contextName = "test";
+        String contextName = "filetest";
         File testFile = new File(contextName + Context.SUFFIX);
         if (testFile.exists())
             assertTrue(testFile.delete());
@@ -65,7 +65,7 @@ public class FileContextTest {
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
 
-        assertEquals("ครับ", session.parse(MessageObject.build("ว่าไง")));
+        assertEquals("ครับ", session.parse(MessageObject.build("ดี")));
     }
 
 }
