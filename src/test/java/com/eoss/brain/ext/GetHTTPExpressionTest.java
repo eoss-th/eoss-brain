@@ -76,11 +76,11 @@ public class GetHTTPExpressionTest {
             )));
 
         assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));
-        assertEquals("เลขท้ายสองตัวคือ 4 5", session.parse(MessageObject.build("ทอง")));
+        assertEquals("เลขท้ายสองตัวคือ 5 6 7 9", session.parse(MessageObject.build("ทอง")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันอาทิตย์ที่ 24 กุมภาพันธ์ 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้ไม่เคยที่จะเอาหัวเข่าเช็ดน้ำตาคราวนี้อาจจำใจทนทำ บุญก็ทำกรรมก็สร้างจึงปวดใจตนย้อนหลังมากหลาย ชื่อเสียงก็ยังคงมีคนเอาไปแอบอ้างจัง คนรักคู่ครองชอบหันหลังพูดด้วยน่าเบื่อหน่ายนักนี่", session.parse(MessageObject.build("เสาร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันศุกร์ที่ 08 มีนาคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้ยังคงวุ่นวายทั้งจิตใจและอารมณ์เก่าใหม่ หลายอย่างยังคงไม่ได้มาดั่งใจวาดหวังไว้ แต่ ทุกประการกำลังเบ่งบานเป็นผลพวงแต่ต้องรอเวลาบ้าง ทั้งงาน การลาภผลเงินทอง แม้แต่เรื่องของความรักปัญหาใคร่ด้วยซี", session.parse(MessageObject.build("เสาร์")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันอาทิตย์ที่ 24 กุมภาพันธ์ 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้เจอแต่ความจำเจและซ้ำซากน่าเบื่อหน่าย หลายสิ่งมากอย่างยังคงเป็นมาแบบที่ต้องแก้ไขกันต่อไป ทั้งกิจการท่านเองหรือเป็นพนักงานใครเขาด้วย ลาภผลมีมาบ้างแต่มักเป็นแบบทุกขลาภ ความรักก็แสนจะเปราะบาง", session.parse(MessageObject.build("ศุกร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันศุกร์ที่ 08 มีนาคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้ต้องข่มใจตนเองเอาไว้บ้าง ทุกอย่างมันแสนจะเปราะบาง หรือบางเรื่องก็สิ้นเปลืองไปแบบง่ายดายทั้งจำเป็นและจำใจ สุขภาพกายช่วงนี้ต้องระวังบ้างทั้งหวัดไอ ความรักยังไม่วายต้องคิดมากทั้งใหม่เก่า", session.parse(MessageObject.build("ศุกร์")));
 
     }
 
@@ -177,5 +177,28 @@ public class GetHTTPExpressionTest {
 
         assertEquals("Test", session.parse(MessageObject.build("hello")));
 
+    }
+
+    @Test
+    public void getWebTest() {
+        //
+
+        List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
+        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        context.admin(adminIdList);
+        Session session = new Session(context);
+        new WakeupCommandNode(session).execute(null);
+
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
+                "Q: lotto\n" +
+                "A: check `get://wayobot.com/apiMockup/html`!\n" +
+                "Q: check\n" +
+                "A: %1"
+        )));
+
+        assertEquals("<html><head></head><body><h3>Hello</h3><h3 id=\"test\">Test</h3></body></html>", session.parse(MessageObject.build("lotto")));
     }
 }

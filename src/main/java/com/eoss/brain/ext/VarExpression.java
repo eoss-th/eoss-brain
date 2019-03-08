@@ -17,10 +17,17 @@ public class VarExpression extends Expression {
     protected final String var(String queryParams) {
         String [] params = queryParams.split("&");
         String [] tokens;
+        String name, value;
         for (String paramValue:params) {
             tokens = paramValue.split("=");
+            name = tokens[0].trim();
+            if (paramValue.trim().endsWith("=")) {
+                session.removeVariable("#" + name);
+                continue;
+            }
             if (tokens.length!=2) continue;
-            session.setVariable("#" + tokens[0], tokens[1]);
+            value = tokens[1].trim();
+            session.setVariable("#" + name, value);
         }
         return "";
     }

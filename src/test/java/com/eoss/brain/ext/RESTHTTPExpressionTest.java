@@ -13,7 +13,7 @@ import java.util.Locale;
 
 import static org.junit.Assert.*;
 
-public class PostHTTPExpressionTest {
+public class RESTHTTPExpressionTest {
 
     @Test
     public void postTest() {

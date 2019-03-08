@@ -35,12 +35,17 @@ public class VarExpressionTest {
                 "Q: what is your age?\n" +
                 "A: `?age=#1&test` greeting!\n" +
                 "Q: greeting\n" +
-                "A: hi #name #age\n"
+                "A: hi #name #age\n" +
+                "Q: clear\n" +
+                "A: reset... `?age=&name=`\n"
         )));
 
         assertEquals("what is your name", session.parse(MessageObject.build("hello")));
         assertEquals("what is your age", session.parse(MessageObject.build("ken")));
         assertEquals("hi ken 20", session.parse(MessageObject.build("20")));
+        assertEquals("hi ken 20", session.parse(MessageObject.build("greeting")));
+        assertEquals("reset...", session.parse(MessageObject.build("clear")));
+        assertEquals("hi #name #age", session.parse(MessageObject.build("greeting")));
 
     }
 

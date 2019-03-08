@@ -72,7 +72,31 @@ public class Expression {
 
             String [] args = expression.split("://");
 
-            return new PostHTTPExpression(session, args);
+            return new RESTHTTPExpression("POST", session, args);
+        }
+
+        if (expression.startsWith("put://")) {
+
+            /**
+             * put://<<headers>>://<<body>>://<<url>>
+             * put://<<body>>://<<url>>
+             */
+
+            String [] args = expression.split("://");
+
+            return new RESTHTTPExpression("PUT", session, args);
+        }
+
+        if (expression.startsWith("delete://")) {
+
+            /**
+             * delete://<<headers>>://<<body>>://<<url>>
+             * delete://<<body>>://<<url>>
+             */
+
+            String [] args = expression.split("://");
+
+            return new RESTHTTPExpression("DELETE", session, args);
         }
 
         if (expression.startsWith("json-path://")) {

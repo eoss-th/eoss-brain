@@ -246,6 +246,10 @@ public class Session implements Serializable {
         return value;
     }
 
+    public void removeVariable(String name) {
+        variableMap.remove(name);
+    }
+
     private final Map<String, String> paramMap(MessageObject messageObject) {
 
         String input = messageObject.toString();
