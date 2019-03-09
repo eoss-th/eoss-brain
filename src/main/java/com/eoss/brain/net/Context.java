@@ -293,44 +293,49 @@ public abstract class Context implements Serializable {
 
     public String [] split(String input) {
 
+        BreakIterator breakIterator = BreakIterator.getWordInstance(locale);
         List<String> result = new ArrayList<>();
+
         /**
          * Conditional Hooks
          */
         List<String> conditionHooks = new ArrayList<>();
 
+        List<String> variableHooks = new ArrayList<>();
+
         String [] tokens = input.split(" ");
-        String conditionHook;
+        String hook, subHook;
+        int wordBoundaryIndex, prevIndex;
         for (String token:tokens) {
-            conditionHook = token.trim();
-            if (token.startsWith(">") ||
-                token.startsWith(">=") ||
-                token.startsWith("<") ||
-                token.startsWith("<=")) {
-                conditionHooks.add(conditionHook);
-                input = input.replace(conditionHook, "");
+            hook = token.trim();
+            if (hook.startsWith(">") ||
+                    hook.startsWith(">=") ||
+                    hook.startsWith("<") ||
+                    hook.startsWith("<=")) {
+                conditionHooks.add(hook);
+            } else if (hook.startsWith("#")) {
+                variableHooks.add(hook);
+            } else {
+                /**
+                 * Sentence
+                 */
+                breakIterator.setText(hook);
+
+                wordBoundaryIndex = breakIterator.first();
+                prevIndex         = 0;
+
+                while(wordBoundaryIndex != BreakIterator.DONE) {
+                    subHook = hook.substring(prevIndex, wordBoundaryIndex).trim();
+                    if (!subHook.isEmpty())
+                        result.add(subHook);
+                    prevIndex = wordBoundaryIndex;
+                    wordBoundaryIndex = breakIterator.next();
+                }
             }
         }
 
-        /**
-         * Sentence
-         */
-        BreakIterator breakIterator = BreakIterator.getWordInstance(locale);
-        breakIterator.setText(input.trim());
-
-        int wordBoundaryIndex = breakIterator.first();
-        int prevIndex         = 0;
-
-        String token;
-        while(wordBoundaryIndex != BreakIterator.DONE) {
-            token = input.substring(prevIndex, wordBoundaryIndex).trim();
-            if (!token.isEmpty())
-                result.add(token);
-            prevIndex = wordBoundaryIndex;
-            wordBoundaryIndex = breakIterator.next();
-        }
-
         result.addAll(conditionHooks);
+        result.addAll(variableHooks);
 
         return result.toArray(new String[result.size()]);
     }

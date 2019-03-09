@@ -14,7 +14,7 @@ public class ContextTestCaseNoom {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("HAL").admin(adminIdList);
+        Context context = new FileContext("jook").admin(adminIdList);
 
         context.load();
 
