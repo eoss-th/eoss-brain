@@ -98,10 +98,14 @@ public class Hook implements Serializable {
         if (match == Match.Tail)
             return !wordList.isEmpty() && wordList.get(wordList.size()-1).equalsIgnoreCase(text);
         if (match == Match.Body) {
+
+            if (messageObject.toString().equalsIgnoreCase(text)) {
+                return true;
+            }
             //For Keywords Match!
             if (text.contains(",")) {
-                String [] tokens = text.toLowerCase().split(",");
-                for (String token:tokens) {
+                String[] tokens = text.toLowerCase().split(",");
+                for (String token : tokens) {
                     if (wordList.contains(token)) {
                         return true;
                     }
