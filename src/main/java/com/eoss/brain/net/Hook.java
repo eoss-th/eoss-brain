@@ -99,13 +99,17 @@ public class Hook implements Serializable {
             return !wordList.isEmpty() && wordList.get(wordList.size()-1).equalsIgnoreCase(text);
         if (match == Match.Body) {
 
-            if (messageObject.toString().equalsIgnoreCase(text)) {
+            String input = messageObject.toString();
+            if (input.equalsIgnoreCase(text)) {
                 return true;
             }
             //For Keywords Match!
             if (text.contains(",")) {
                 String[] tokens = text.toLowerCase().split(",");
                 for (String token : tokens) {
+                    if (input.equalsIgnoreCase(token)) {
+                        return true;
+                    }
                     if (wordList.contains(token)) {
                         return true;
                     }
