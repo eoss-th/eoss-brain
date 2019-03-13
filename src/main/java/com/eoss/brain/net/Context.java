@@ -331,6 +331,7 @@ public abstract class Context implements Serializable {
                     prevIndex = wordBoundaryIndex;
                     wordBoundaryIndex = breakIterator.next();
                 }
+
             }
         }
 

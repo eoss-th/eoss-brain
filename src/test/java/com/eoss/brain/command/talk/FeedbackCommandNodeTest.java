@@ -19,10 +19,10 @@ public class FeedbackCommandNodeTest {
 
     @Test
     public void testFeedbackCommand() {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("test").admin(adminIdList);
+        Context context = new MemoryContext("test").admin(adminIdList).locale(new Locale("th"));
 
         Session session = new Session(context);
         session.learning = true;

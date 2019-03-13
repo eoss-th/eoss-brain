@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 public class RestoreDataCommandNodeTest {
     @Test
     public void execute() throws Exception {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         File backupFile = new File("backuptest.context");
         if (backupFile.exists()) {

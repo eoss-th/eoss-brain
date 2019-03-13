@@ -17,7 +17,7 @@ public class TalkCommandNodeTest {
 
     @Test
     public void testDataCommand() {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         List<String> lowConfidenceKeys = Arrays.asList("เข้าใจละ", "พอ", "ก็แล้วแต่", "คือ?");
 
@@ -42,7 +42,7 @@ public class TalkCommandNodeTest {
     public void testMaxActiveNode() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -67,7 +67,7 @@ public class TalkCommandNodeTest {
     public void testMathConditionNode() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);

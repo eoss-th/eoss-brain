@@ -23,7 +23,7 @@ public class FileContextTest {
 
     @Test
     public void testSaveFileNodeDAO() throws Exception {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         String contextName = "filetest";

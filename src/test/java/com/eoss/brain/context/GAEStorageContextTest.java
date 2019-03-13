@@ -20,7 +20,7 @@ public class GAEStorageContextTest {
 /*
     @Test
     public void testSaveWebNodeDAO() throws Exception {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         String contextName = "test";

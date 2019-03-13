@@ -3,6 +3,7 @@ package com.eoss.brain;
 import com.eoss.brain.command.*;
 import com.eoss.brain.command.talk.AnswerResponseCommandNode;
 import com.eoss.brain.command.talk.ProblemCommandNode;
+import com.eoss.brain.command.talk.TalkCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
@@ -95,6 +96,7 @@ public class Session implements Serializable {
             clearLastEntry();
 
         } else {
+
             for (CommandNode node : commandList) {
                 if (node.matched(messageObject)) {
                     result = node.execute(messageObject);
@@ -226,6 +228,10 @@ public class Session implements Serializable {
 
     private void clearRoute() {
         routeSet.clear();
+    }
+
+    public boolean fromParse() {
+        return routeSet.isEmpty() && problemSolved;
     }
 
     public boolean route(Node node) {

@@ -17,7 +17,7 @@ public class ExportMermaidDataCommandNodeTest {
 
     public void test() {
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new FileContext("hot").locale(new Locale("th"));
+        Context context = new FileContext("hot");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);

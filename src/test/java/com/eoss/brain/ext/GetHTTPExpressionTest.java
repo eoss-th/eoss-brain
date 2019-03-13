@@ -20,7 +20,7 @@ public class GetHTTPExpressionTest {
     public void getTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa").locale(Locale.US);
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -69,18 +69,18 @@ public class GetHTTPExpressionTest {
                 "A:ดูดวง พฤหัส  `get://horoscope.mthai.com/apps/daily-horo`!\n" +
                 "Q:ไง\n" +
                 "A:งาย\n" +
-                "Q:ทำนายหวย\n" +
+                "Q:lotto\n" +
                 "A:เลขท้ายสองตัวคือ `jsoup://%1://p[class=red_txt]`\n" +
                 "Q:ฝันว่าอะไร\n" +
-                "A:ทำนายหวย `get://lotto.mthai.com/dream/##.html`!"
+                "A:lotto `get://lotto.mthai.com/dream/##.html`!"
             )));
 
-        assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝันไม่ค่อยดีวันนี้")));
+        assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝัน")));
         assertEquals("เลขท้ายสองตัวคือ 5 6 7 9", session.parse(MessageObject.build("ทอง")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันอังคารที่ 12 มีนาคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้ยังคงต้องตามติดและคิดมากหลายด้าน แต่ละเรื่องแต่ละประการมักเป็นปัญหาปวดขมอง เงินทองเราเองยังคงต้องเต้นไขว่คว้าเอามาเพื่อจ่ายล้างเครดิต เรื่องของความรักวัยและฐานะก็ยังคงเป็นตัวปัญหา", session.parse(MessageObject.build("เสาร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันพุธที่ 13 มีนาคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันเสาร์ วันนี้บางเรื่องบางอย่างมันทำท่าจะเกิดหัวกุดท้ายเน่า หรือเจอปัญหาที่รุมเร้าปวดขมองหนัก เรื่องของสุขภาพกายก็ทำท่าอ่อนล้าไม่ถูกกับยาที่กินอยู่ กับคนรักและคู่ครองท่านเองต้องหนักและอย่าหูเบาจึงอยู่ได้", session.parse(MessageObject.build("เสาร์")));
         assertEquals("เกิดวันอะไร", session.parse(MessageObject.build("ดวง")));
-        assertEquals("ดูดวงชะตารายวัน ประจำวันอังคารที่ 12 มีนาคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้เวลาเงินโอกาสทองกำลังเป็นของท่านแล้วหนา ว่าแต่ว่าจะใจถึงมากน้อยปานใด เดินทางแต่ละหนแห่งต้องสมใจได้สิ่งประสงค์เกินคาด สุขภาพกายก็ยังต้องห่วงไว้มั่ง ความรักยังคงอบอุ่นและแสนสุขสมนี่นา.", session.parse(MessageObject.build("ศุกร์")));
+        assertEquals("ดูดวงชะตารายวัน ประจำวันพุธที่ 13 มีนาคม 2562 ดูดวงรายวัน ผู้ที่เกิดวันศุกร์ วันนี้มากด้านหลายปัญหามีมารุมเร้าท่านเองต้องหนักแน่นจึงเอาตัวรอดได้ เงินทองยังคงเป็นปัจจัยรักน้ำคำและน้ำใจใครต่อใคร เรื่องของสุขภาพพลานามัยก็ต้องห่วงมั่ง คนรักคู่ครองชอบหันหลังพูดด้วยเสมอนั่น", session.parse(MessageObject.build("ศุกร์")));
 
     }
 
@@ -88,7 +88,7 @@ public class GetHTTPExpressionTest {
     public void getWithHeadersTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -114,7 +114,7 @@ public class GetHTTPExpressionTest {
     public void getJSONObjectTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -137,7 +137,7 @@ public class GetHTTPExpressionTest {
     public void getJSONArrayTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -160,7 +160,7 @@ public class GetHTTPExpressionTest {
     public void getDOMTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -184,7 +184,7 @@ public class GetHTTPExpressionTest {
         //
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);

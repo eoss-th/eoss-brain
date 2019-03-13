@@ -21,7 +21,7 @@ public class ImportRawDataCommandNodeTest {
 
     @Test
     public void execute() throws Exception {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
         Context context = new FileContext("raw").admin(adminIdList);
@@ -32,38 +32,15 @@ public class ImportRawDataCommandNodeTest {
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลดิบ\n" +
-                "มีให้แค่เท่านั้น\n" +
-                "มีเพียงแค่เท่านี้\n" +
-                "ไม่มีมากมาย\n" +
-                "ดังใครเขามี\n" +
-                "มีให้เพียงนิดน้อย\n" +
-                "แต่ให้ไปเกินร้อย\n" +
-                "ไม่มีเงินตรา\n" +
-                "มงกุฏชฎาแม่เนื้อกลอย\n" +
-                "ไม่มีรถเก๋ง\n" +
-                "แอร์เย็นอย่างใครเขา\n" +
-                "มีไมตี้เอ็กซ์\n" +
-                "ท่อดังและคันเก่า\n" +
-                "พี่ไร้หน้าตา\n" +
-                "ในสังคมไฮโซ\n" +
-                "และจะเจอพี่ได้\n" +
-                "ก็แค่วงไฮโล")));
+                "Hello\n" +
+                "How\n" +
+                "are\n" +
+                "you"
+        )));
 
-        assertEquals("มีเพียงแค่เท่านี้", session.parse(MessageObject.build("มีให้แค่เท่านั้น")));
-        assertEquals("ไม่มีมากมาย", session.parse(MessageObject.build("Next")));
-        assertEquals("ดังใครเขามี", session.parse(MessageObject.build("Next")));
-        assertEquals("มีให้เพียงนิดน้อย", session.parse(MessageObject.build("Next")));
-        assertEquals("แต่ให้ไปเกินร้อย", session.parse(MessageObject.build("Next")));
-        assertEquals("ไม่มีเงินตรา", session.parse(MessageObject.build("Next")));
-        assertEquals("มงกุฏชฎาแม่เนื้อกลอย", session.parse(MessageObject.build("Next")));
-        assertEquals("ไม่มีรถเก๋ง", session.parse(MessageObject.build("Next")));
-        assertEquals("แอร์เย็นอย่างใครเขา", session.parse(MessageObject.build("Next")));
-        assertEquals("มีไมตี้เอ็กซ์", session.parse(MessageObject.build("Next")));
-        assertEquals("ท่อดังและคันเก่า", session.parse(MessageObject.build("Next")));
-        assertEquals("พี่ไร้หน้าตา", session.parse(MessageObject.build("Next")));
-        assertEquals("ในสังคมไฮโซ", session.parse(MessageObject.build("Next")));
-        assertEquals("และจะเจอพี่ได้", session.parse(MessageObject.build("Next")));
-        assertEquals("ก็แค่วงไฮโล", session.parse(MessageObject.build("Next")));
+        assertEquals("How", session.parse(MessageObject.build("Hello")));
+        assertEquals("are", session.parse(MessageObject.build("Next")));
+        assertEquals("you", session.parse(MessageObject.build("Next")));
 
         System.out.println(session.parse(MessageObject.build(messageObject,"ดูข้อมูลดิบ")));
 

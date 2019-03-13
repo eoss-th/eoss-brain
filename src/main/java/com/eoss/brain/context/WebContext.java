@@ -38,9 +38,11 @@ public class WebContext extends Context {
             }
         }
 
+        /*
         for (String sentence:sentenceList) {
             System.out.println(sentence);
         }
+        */
 
     }
 

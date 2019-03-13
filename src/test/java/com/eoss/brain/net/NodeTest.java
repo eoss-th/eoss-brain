@@ -15,7 +15,7 @@ public class NodeTest {
 
     @Test
     public void testClone() {
-        Locale.setDefault(new Locale("th", "TH"));
+
 
         Node a = new Node(Hook.build(new String[]{"ดี"}, Hook.Match.All), "ครับ");
         Node b = new Node(a);

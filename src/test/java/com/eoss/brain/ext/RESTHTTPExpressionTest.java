@@ -19,7 +19,7 @@ public class RESTHTTPExpressionTest {
     public void postTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);
@@ -45,7 +45,7 @@ public class RESTHTTPExpressionTest {
     public void postWithHeadersTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         new WakeupCommandNode(session).execute(null);

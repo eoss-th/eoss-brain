@@ -37,14 +37,11 @@ public class TalkCommandNode extends CommandNode {
             messageObject.attributes.put("mode", session.mode.trim());
         }
 
+        if (!messageObject.isSplitted()) {
+            messageObject.split(session.context);
+        }
+
         final Set<Node> activeNodeSet = new HashSet<>();
-
-        String input = messageObject.toString();
-        final MessageObject feedMessageObject = MessageObject.build(messageObject, input);
-
-        List<String> wordList = Arrays.asList(session.context.split(input.toLowerCase()));
-        feedMessageObject.attributes.put("wordList", wordList);
-        feedMessageObject.attributes.put("wordCount", wordList.size());
 
         List<Node> alreadyRoutedNodeList = new ArrayList<>();
 
@@ -55,7 +52,7 @@ public class TalkCommandNode extends CommandNode {
                  * Protect from Cyclic Forwarding
                  */
                 if (session.canRoute(nodeEvent.node)) {
-                    nodeEvent.node.feed(feedMessageObject);
+                    nodeEvent.node.feed(messageObject);
                     activeNodeSet.add(nodeEvent.node);
                 } else {
                     alreadyRoutedNodeList.add(nodeEvent.node);
@@ -125,6 +122,7 @@ public class TalkCommandNode extends CommandNode {
             session.route(maxActiveNode);
 
             //Clean MessageObject
+            String input = messageObject.toString();
             StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
             MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
             return ResponseCommandNode.build(session, responseText).execute(forwardMessageObject);

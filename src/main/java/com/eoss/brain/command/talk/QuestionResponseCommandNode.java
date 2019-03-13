@@ -3,6 +3,9 @@ package com.eoss.brain.command.talk;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class QuestionResponseCommandNode extends ResponseCommandNode {
 
     public QuestionResponseCommandNode(Session session, String responseText) {

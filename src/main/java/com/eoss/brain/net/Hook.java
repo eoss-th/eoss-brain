@@ -87,7 +87,7 @@ public class Hook implements Serializable {
 
         List<String> wordList = (List<String>) messageObject.attributes.get("wordList");
 
-        if (wordList==null) return _matched(messageObject);
+        if (wordList==null) return matchedCommand(messageObject);
 
         Object modeObject = messageObject.attributes.get("mode");
 
@@ -103,15 +103,18 @@ public class Hook implements Serializable {
             if (input.equalsIgnoreCase(text)) {
                 return true;
             }
+
             //For Keywords Match!
             if (text.contains(",")) {
                 String[] tokens = text.toLowerCase().split(",");
                 for (String token : tokens) {
-                    if (input.equalsIgnoreCase(token)) {
-                        return true;
-                    }
                     if (wordList.contains(token)) {
                         return true;
+                    }
+                    for (String word:wordList) {
+                        if (token.equalsIgnoreCase(word)) {
+                            return true;
+                        }
                     }
                 }
                 return false;
@@ -124,7 +127,6 @@ public class Hook implements Serializable {
             try {
                 targetNumber = Float.parseFloat(text);
             } catch (Exception e) {
-                System.out.println(text);
                 targetNumber = 0f;
             }
 
@@ -188,7 +190,7 @@ public class Hook implements Serializable {
         return modeObject!=null && modeObject.toString().equalsIgnoreCase(text);
     }
 
-    boolean _matched(MessageObject messageObject) {
+    boolean matchedCommand(MessageObject messageObject) {
 
         String input = messageObject.toString().toLowerCase();
         Object modeObject = messageObject.attributes.get("mode");
@@ -218,7 +220,6 @@ public class Hook implements Serializable {
             try {
                 targetNumber = Float.parseFloat(text);
             } catch (Exception e) {
-                System.out.println(text);
                 targetNumber = 0f;
             }
 

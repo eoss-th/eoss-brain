@@ -21,7 +21,7 @@ public class RejectProblemCommandNodeTest {
     public void testRejectProblemCommand() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session = new Session(context);
         session.learning = true;

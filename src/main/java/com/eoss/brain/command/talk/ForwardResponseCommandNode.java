@@ -32,7 +32,7 @@ public class ForwardResponseCommandNode extends ResponseCommandNode {
         }
 
         MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardMessage);
-
+        forwardMessageObject.split();
         return generatedOutput + new TalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
     }
 }

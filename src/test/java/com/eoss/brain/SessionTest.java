@@ -15,7 +15,7 @@ public class SessionTest {
     public void multiSessionTest() {
 
         List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
-        Context context = new MemoryContext("qa").locale(new Locale("th"));
+        Context context = new MemoryContext("qa");
         context.admin(adminIdList);
         Session session1 = new Session(context);
         Session session2 = new Session(context);
@@ -40,7 +40,9 @@ public class SessionTest {
         assertEquals("hola", session2.parse(MessageObject.build("hello")));
 
         String response1 = session1.parse(MessageObject.build("hello guy"));
-        String response2 = session1.parse(MessageObject.build("hello guy"));
+        String response2 = session2.parse(MessageObject.build("hello guy"));
+
+        System.out.println(response1);
 
         assertTrue(results.contains(response1));
         assertTrue(results.contains(response2));
