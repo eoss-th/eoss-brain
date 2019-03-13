@@ -1,6 +1,7 @@
 package com.eoss.brain.net;
 
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.context.FileContext;
 import com.eoss.brain.net.Hook;
@@ -259,6 +260,7 @@ public class NodeTest {
 */
     @Test
     public void testResponseNull() {
+
         Node node = new Node(Hook.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"}), "หึหึ");
 
         double delta = 0.001;
@@ -266,31 +268,31 @@ public class NodeTest {
         MessageObject messageObject;
 
         messageObject = MessageObject.build("กิน");
-        messageObject.attributes.put("wordCount", 1);
+        messageObject.split();
         node.feed(messageObject);
         assertEquals(Hook.Match.Head.initWeight / (node.hookList().size() + 1 - 1), node.active(), delta);
 
         node.release();
-        messageObject = MessageObject.build("กินข้าว");
-        messageObject.attributes.put("wordCount", 2);
+        messageObject = MessageObject.build("กิน ข้าว");
+        messageObject.split();
         node.feed(messageObject);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight) / (node.hookList().size() + 2 - 2), node.active(), delta);
 
         node.release();
-        messageObject = MessageObject.build("กินข้าวที่");
-        messageObject.attributes.put("wordCount", 3);
+        messageObject = MessageObject.build("กิน ข้าว ที่");
+        messageObject.split();
         node.feed(messageObject);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight) / (node.hookList().size() + 3 - 3), node.active(), delta);
 
         node.release();
-        messageObject = MessageObject.build("กินข้าวที่ไหน");
-        messageObject.attributes.put("wordCount", 4);
+        messageObject = MessageObject.build("กิน ข้าว ที่ ไหน");
+        messageObject.split();
         node.feed(messageObject);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight) / (node.hookList().size() + 4 - 4), node.active(), delta);
 
         node.release();
-        messageObject = MessageObject.build("กินข้าวที่ไหนดี");
-        messageObject.attributes.put("wordCount", 5);
+        messageObject = MessageObject.build("กิน ข้าว ที่ ไหน ดี");
+        messageObject.split();
         node.feed(messageObject);
         assertEquals((Hook.Match.Head.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight + Hook.Match.Body.initWeight + Hook.Match.Tail.initWeight) / (node.hookList().size() + 5 - 5), node.active(), delta);
 
@@ -312,13 +314,14 @@ public class NodeTest {
         node.release();
         messageObject = MessageObject.build(messageObject, "");
         node.feed(messageObject);
-        assertEquals(Hook.Match.Mode.initWeight / (node.hookList().size() + 0 - 1), node.active(), delta);
+        assertEquals(Hook.Match.Mode.initWeight / (node.hookList().size() + 1 - 1), node.active(), delta);
 
         node.release();
-        messageObject = MessageObject.build(messageObject, "กินดี");
-        messageObject.attributes.put("wordCount", 2);
+        messageObject = MessageObject.build(messageObject, "กิน ดี");
+        messageObject.split();
         node.feed(messageObject);
         assertEquals((Hook.Match.Mode.initWeight + Hook.Match.Head.initWeight + Hook.Match.Tail.initWeight) / (node.hookList().size() + 2 - 3), node.active(), delta);
+
     }
 
 }

@@ -83,44 +83,53 @@ public class Hook implements Serializable {
     }
 
 
-    boolean matched(MessageObject messageObject) {
+    Match matched(MessageObject messageObject) {
 
         List<String> wordList = (List<String>) messageObject.attributes.get("wordList");
 
-        if (wordList==null) return matchedCommand(messageObject);
-
-        Object modeObject = messageObject.attributes.get("mode");
-
-        if (match == Match.All)
-            return wordList.size()==1 && wordList.get(0).equalsIgnoreCase(text);
-        if (match == Match.Head)
-            return !wordList.isEmpty() && wordList.get(0).equalsIgnoreCase(text);
-        if (match == Match.Tail)
-            return !wordList.isEmpty() && wordList.get(wordList.size()-1).equalsIgnoreCase(text);
-        if (match == Match.Body) {
-
-            String input = messageObject.toString();
-            if (input.equalsIgnoreCase(text)) {
-                return true;
+        if (wordList==null) {
+            if (matchedCommand(messageObject)) {
+                return Match.All;
             }
+            return null;
+        }
+
+        String input = messageObject.toString();
+
+        if (input.equalsIgnoreCase(text)) return Match.All;
+
+        if (match == Match.All) {
+            if (wordList.size()==1 && wordList.get(0).equalsIgnoreCase(text)) {
+                return Match.All;
+            }
+        }
+        if (match == Match.Head) {
+            if (!wordList.isEmpty() && wordList.get(0).equalsIgnoreCase(text)) {
+                return Match.Head;
+            }
+        }
+        if (match == Match.Tail) {
+            if (!wordList.isEmpty() && wordList.get(wordList.size()-1).equalsIgnoreCase(text)) {
+                return Match.Tail;
+            }
+        }
+        if (match == Match.Body) {
 
             //For Keywords Match!
             if (text.contains(",")) {
                 String[] tokens = text.toLowerCase().split(",");
                 for (String token : tokens) {
-                    if (wordList.contains(token)) {
-                        return true;
+                    if (input.equalsIgnoreCase(token)) {
+                        return Match.All;
                     }
-                    for (String word:wordList) {
-                        if (token.equalsIgnoreCase(word)) {
-                            return true;
-                        }
+                    if (wordList.contains(token)) {
+                        return Match.Body;
                     }
                 }
-                return false;
             }
-
-            return wordList.contains(text.toLowerCase());
+            if (wordList.contains(text.toLowerCase())) {
+                return Match.Body;
+            }
         }
         if (match == Match.GreaterThan) {
             Float targetNumber;
@@ -136,7 +145,9 @@ public class Hook implements Serializable {
                 if (number>targetNumber)
                     result = true;
             }
-            return result;
+            if (result) {
+                return Match.GreaterThan;
+            }
         }
         if (match == Match.GreaterEqualThan) {
             Float targetNumber;
@@ -152,7 +163,9 @@ public class Hook implements Serializable {
                 if (number>=targetNumber)
                     result = true;
             }
-            return result;
+            if (result) {
+                return Match.GreaterEqualThan;
+            }
         }
         if (match == Match.LowerThan) {
             Float targetNumber;
@@ -168,7 +181,9 @@ public class Hook implements Serializable {
                 if (number<targetNumber)
                     result = true;
             }
-            return result;
+            if (result) {
+                return Match.LowerThan;
+            }
         }
         if (match == Match.LowerEqualThan) {
             Float targetNumber;
@@ -184,10 +199,17 @@ public class Hook implements Serializable {
                 if (number<=targetNumber)
                     result = true;
             }
-            return result;
+            if (result) {
+                return Match.LowerEqualThan;
+            }
         }
 
-        return modeObject!=null && modeObject.toString().equalsIgnoreCase(text);
+        Object modeObject = messageObject.attributes.get("mode");
+        if (modeObject!=null && modeObject.toString().equalsIgnoreCase(text)) {
+            return Match.Mode;
+        }
+
+        return null;
     }
 
     boolean matchedCommand(MessageObject messageObject) {

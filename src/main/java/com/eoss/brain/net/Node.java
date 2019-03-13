@@ -69,7 +69,7 @@ public class Node implements Serializable {
 
     public boolean matched(MessageObject messageObject) {
         for (Hook hook:hookList) {
-            if (hook.matched(messageObject)) {
+            if (hook.matched(messageObject)!=null) {
                 return true;
             }
         }
@@ -89,10 +89,17 @@ public class Node implements Serializable {
 
         int matchedCount = 0;
         float totalResponseActive = 0;
+        Hook.Match match;
         for (Hook hook:hookList) {
-            if (hook.matched(messageObject)) {
+            match = hook.matched(messageObject);
+            if (match!=null) {
                 totalResponseActive += hook.weight;
                 matchedCount ++;
+
+                //Reset wordCount to 1 if All Matched
+                if (match==Hook.Match.All) {
+                    wordCount = 1;
+                }
             }
         }
 
@@ -110,7 +117,7 @@ public class Node implements Serializable {
     public void feedback(MessageObject messageObject, float feedback) {
 
         for (Hook hook:hookList) {
-            if (hook.matched(messageObject)) {
+            if (hook.matched(messageObject)!=null) {
                 hook.feedback(feedback);
             }
         }
