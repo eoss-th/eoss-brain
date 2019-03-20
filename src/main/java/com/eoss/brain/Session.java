@@ -230,10 +230,6 @@ public class Session implements Serializable {
         routeSet.clear();
     }
 
-    public boolean fromParse() {
-        return routeSet.isEmpty() && problemSolved;
-    }
-
     public boolean route(Node node) {
         return routeSet.add(node);
     }

@@ -58,12 +58,12 @@ public class AnswerResponseCommandNode extends ResponseCommandNode {
             lock.writeLock().unlock();
         }
 
-        final String input = responseText.toLowerCase();
+        final String input = responseText.toLowerCase().trim();
 
         nodeList.forEach(new Consumer<Node>() {
             @Override
             public void accept(Node node) {
-                if (node.hookList().size()>1 && input.contains(node.hookList().get(0).text.toLowerCase())) {
+                if (node.hookList().size()>1 && input.equals(node.hookList().get(0).text.toLowerCase().trim())) {
 
                     String label = node.hookList().get(1).text;
                     if (label.contains(",")) {

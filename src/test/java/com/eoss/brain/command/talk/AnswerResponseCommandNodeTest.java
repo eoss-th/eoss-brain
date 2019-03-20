@@ -118,4 +118,55 @@ public class AnswerResponseCommandNodeTest {
 
 
     }
+
+    @Test
+    public void similarTypeTest() {
+
+        List<String> adminIdList = Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd");
+        Context context = new MemoryContext("qa");
+        context.admin(adminIdList);
+        Session session = new Session(context);
+        new WakeupCommandNode(session).execute(null);
+
+        MessageObject messageObject = MessageObject.build();
+        messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
+
+        assertEquals("Done!", session.parse(MessageObject.build(messageObject, "ใส่ข้อมูลถามตอบ\n" +
+                "Q: hello\n" +
+                "A: what is your fav web?, rr?\n" +
+                "Q: hi\n" +
+                "A: what is your fav web?, rrr?\n" +
+                "Q: rr Pantip\n" +
+                "A: wow https://www.pantip.com\n" +
+                "Q: rr Manager\n" +
+                "A: https://logo.JPG wow haha ha https://www.manager.com \n" +
+                "Q: rrr Wayobot\n" +
+                "A: https://wayologo.png \n" +
+                "Q: rrr Zoo\n" +
+                "A: https://zoo.jpeg zoolander \n" +
+                "Q: rrr XMen\n" +
+                "A: xmen \n"
+
+        )));
+
+        assertEquals("what is your fav web?", session.parse(MessageObject.build(messageObject, "hello")));
+
+        List<AnswerResponseCommandNode.Choice> choices = session.getChoices();
+
+        assertNotNull(choices);
+
+        assertEquals(2, choices.size());
+
+        session.clearProblem();
+
+        assertEquals("what is your fav web?", session.parse(MessageObject.build(messageObject, "hi")));
+
+        choices = session.getChoices();
+
+        assertNotNull(choices);
+
+        assertEquals(3, choices.size());
+
+    }
+
 }

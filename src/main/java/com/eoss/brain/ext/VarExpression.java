@@ -19,6 +19,7 @@ public class VarExpression extends Expression {
         String [] tokens;
         String name, value;
         for (String paramValue:params) {
+            if (!paramValue.contains("=")) continue;
             tokens = paramValue.split("=");
             name = tokens[0].trim();
             if (paramValue.trim().endsWith("=")) {
