@@ -1,20 +1,19 @@
 package com.eoss.brain;
 
+import com.eoss.brain.command.talk.AnswerResponseCommandNode;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.context.FileContext;
 import com.eoss.brain.net.*;
 
 import java.util.*;
 
-public class ContextTestCaseNoom {
+public class ContextConsole {
 
     public static void main(String[]args) throws Exception {
 
-        //Locale.setDefault(new Locale("en", "EN"));
-
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("eoss-th").admin(adminIdList).locale(new Locale("th"));
+        Context context = new FileContext("joe").admin(adminIdList).locale(new Locale("th"));
 
         context.load();
 
@@ -51,9 +50,18 @@ public class ContextTestCaseNoom {
         //template.attributes.put("senderId", "Uee73cf96d1dbe69a260d46fc03393cfd");
         //session.learning=true;
 
+        String reply;
+        List<AnswerResponseCommandNode.Choice> choiceList;
         while(true) {
             System.out.print("You:>>");
-            System.out.println("Bot:>>" + session.parse(MessageObject.build(template, scanner.nextLine())));
+            reply = session.parse(MessageObject.build(template, scanner.nextLine()));
+            System.out.println("Bot:>>" + reply);
+            choiceList = session.getChoices();
+            if (choiceList!=null && !choiceList.isEmpty()) {
+                for (AnswerResponseCommandNode.Choice choice:choiceList) {
+                    System.out.println(choice.label);
+                }
+            }
         }
 
     }

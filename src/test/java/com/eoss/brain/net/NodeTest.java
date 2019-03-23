@@ -86,7 +86,7 @@ public class NodeTest {
     @Test
     public void testMatchBody() {
 
-        Node node = new Node(Hook.build(new String[]{"สวัสดี,ครับ"}, Hook.Match.Body));
+        Node node = new Node(Hook.build(new String[]{"สวัสดีครับ"}, Hook.Match.Body));
 
         assertTrue(node.matched(MessageObject.build("สวัสดีครับ")));
 
@@ -184,23 +184,26 @@ public class NodeTest {
     @Test
     public void testMatchNull() {
 
-        Node node = new Node(Hook.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"}));
+        Context context = new MemoryContext("test");
+        context.locale(new Locale("th"));
 
-        assertTrue(node.matched(MessageObject.build("กินไหนข้าวที่ดี")));
+        Node node = Node.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"});
 
-        assertTrue(node.matched(MessageObject.build("กินที่ข้าวไหนดี")));
+        assertTrue(node.matched(MessageObject.build("กินไหนข้าวที่ดี").split(context)));
 
-        assertTrue(node.matched(MessageObject.build("กินข้าวไหนที่ดี")));
+        assertTrue(node.matched(MessageObject.build("กินที่ข้าวไหนดี").split(context)));
 
-        assertTrue(node.matched(MessageObject.build("กินข้าวที่ไหนดี")));
+        assertTrue(node.matched(MessageObject.build("กินข้าวไหนที่ดี").split(context)));
 
-        assertTrue(node.matched(MessageObject.build("ข้าวที่ไหนดี")));
+        assertTrue(node.matched(MessageObject.build("กินข้าวที่ไหนดี").split(context)));
 
-        assertTrue(node.matched(MessageObject.build("กินข้าวที่ไหน")));
+        assertTrue(node.matched(MessageObject.build("ข้าวที่ไหนดี").split(context)));
 
-        assertTrue(node.matched(MessageObject.build("กินดี")));
+        assertTrue(node.matched(MessageObject.build("กินข้าวที่ไหน").split(context)));
 
-        assertFalse(node.matched(MessageObject.build("ดีกิน")));
+        assertTrue(node.matched(MessageObject.build("กินดี").split(context)));
+
+        assertTrue(node.matched(MessageObject.build("ดีกิน").split(context)));
     }
     @Test
     public void testHookString(){
@@ -261,7 +264,8 @@ public class NodeTest {
     @Test
     public void testResponseNull() {
 
-        Node node = new Node(Hook.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"}), "หึหึ");
+        Node node = Node.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"});
+        node.setResponse("หึหึ");
 
         double delta = 0.001;
 
@@ -300,7 +304,8 @@ public class NodeTest {
 
     @Test
     public void testResponseMode() {
-        Node node = new Node(Hook.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"}), "หึหึ");
+        Node node = Node.build(new String[]{"กิน", "ข้าว", "ที่", "ไหน", "ดี"});
+        node.setResponse("หึหึ");
         node.addHook("เฮฮา", Hook.Match.Mode);
 
         double delta = 0.001;

@@ -37,7 +37,9 @@ public class FileContextTest {
 
         new WakeupCommandNode(session).execute(null);
 
-        Node node = new Node(Hook.build(new String[]{"สวัสดี", "สบาย", "ดี", "ไหม"}), "ครับ");
+        Node node = Node.build(new String[]{"สวัสดี", "สบาย", "ดี", "ไหม"});
+        node.setResponse("ครับ");
+
         node.addHook("เฮฮา", Hook.Match.Mode);
 
         context.add(node);

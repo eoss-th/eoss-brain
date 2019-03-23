@@ -79,7 +79,7 @@ public class ImportRawDataFromWebCommandNode extends CommandNode {
                     context.add(newNode);
                 }
 
-                newNode = new Node(Hook.build(session.context.split(sentence)));
+                newNode = Node.build(session.context.split(sentence));
             }
 
             context.save();

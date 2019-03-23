@@ -3,12 +3,14 @@ package com.eoss.brain.command.talk;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class AnswerResponseCommandNode extends ResponseCommandNode {
 
@@ -58,17 +60,31 @@ public class AnswerResponseCommandNode extends ResponseCommandNode {
             lock.writeLock().unlock();
         }
 
-        final String input = responseText.toLowerCase().trim();
-
         nodeList.forEach(new Consumer<Node>() {
             @Override
             public void accept(Node node) {
-                if (node.hookList().size()>1 && input.equals(node.hookList().get(0).text.toLowerCase().trim())) {
+                if (node.hookList().size()>1) {
 
-                    String label = node.hookList().get(1).text;
-                    if (label.contains(",")) {
-                        label = label.split(",")[0].trim();
+                    List<Hook> hookList = node.hookList();
+
+                    boolean matched = false;
+                    for (Hook hook:hookList) {
+                        if (hook.text.equals(responseText)) {
+                            matched = true;
+                            break;
+                        }
                     }
+                    if (!matched) return;
+
+                    String label = "";
+                    for (Hook hook:hookList) {
+                        if (hook.text.startsWith("@")||hook.text.contains(",")) {
+                            continue;
+                        }
+                        label += hook.text + " ";
+                    }
+                    label = label.trim();
+                    if (label.isEmpty()) return;
 
                     String [] responses = node.response().split(" ");
 

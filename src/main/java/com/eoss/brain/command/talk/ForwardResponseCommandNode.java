@@ -26,7 +26,8 @@ public class ForwardResponseCommandNode extends ResponseCommandNode {
         int lastIndexOfComma = generatedOutput.lastIndexOf(",");
         if ( lastIndexOfComma!=-1 && lastIndexOfComma<generatedOutput.length()-1 ) {
             forwardMessage = generatedOutput.substring(lastIndexOfComma + 1).trim();
-            generatedOutput = generatedOutput.substring(0, lastIndexOfComma) + ", ";
+            String previousMessage = generatedOutput.substring(0, lastIndexOfComma);
+            generatedOutput = previousMessage.isEmpty()?"":previousMessage + ", ";
         } else {
             generatedOutput = "";
         }

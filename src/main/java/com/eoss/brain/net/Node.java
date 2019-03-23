@@ -1,6 +1,8 @@
 package com.eoss.brain.net;
 
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.hook.KeywordsHook;
+import com.eoss.brain.hook.NumberHook;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -69,7 +71,7 @@ public class Node implements Serializable {
 
     public boolean matched(MessageObject messageObject) {
         for (Hook hook:hookList) {
-            if (hook.matched(messageObject)!=null) {
+            if (hook.matched(messageObject)) {
                 return true;
             }
         }
@@ -87,21 +89,16 @@ public class Node implements Serializable {
             wordCount = 0;
         }
 
+        int hookCount = hookList.size();
         int matchedCount = 0;
         float totalResponseActive = 0;
-        Hook.Match match;
         for (Hook hook:hookList) {
-            match = hook.matched(messageObject);
-            if (match!=null) {
+            if (hook.matched(messageObject)) {
                 totalResponseActive += hook.weight;
                 matchedCount ++;
-
-                //Reset wordCount to 1 if All Matched
-                if (match==Hook.Match.All) {
-                    wordCount = 1;
-                }
             }
         }
+
 
         //active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
 
@@ -111,13 +108,19 @@ public class Node implements Serializable {
          * 1 / (2 + 1 - 1) = 0.5
          */
 
-        active = totalResponseActive / (hookList.size() + wordCount - matchedCount);
+        active = totalResponseActive / (hookCount + wordCount - matchedCount);
+
+        /*
+        if (active>0.2) {
+            System.out.println(hookList + ":" + active + ":" + messageObject.attributes.get("wordList") + ":" + matchedCount);
+        }
+        */
     }
 
     public void feedback(MessageObject messageObject, float feedback) {
 
         for (Hook hook:hookList) {
-            if (hook.matched(messageObject)!=null) {
+            if (hook.matched(messageObject)) {
                 hook.feedback(feedback);
             }
         }
@@ -191,6 +194,32 @@ public class Node implements Serializable {
             return Objects.equals(hookList, another.hookList) && Objects.equals(response, another.response);
         }
         return false;
+    }
+
+    public static Node build(String [] hooks) {
+
+        List<Hook> hookList = new ArrayList<>();
+
+        if (hooks!=null) {
+            String hook;
+            for (int i=0; i<hooks.length; i++) {
+                hook = hooks[i].trim();
+                if (!hook.isEmpty()) {
+                    if (hook.startsWith(">="))
+                        hookList.add(new NumberHook(hook.replace(">=",""), Hook.Match.GreaterEqualThan));
+                    else if (hook.startsWith(">"))
+                        hookList.add(new NumberHook(hook.replace(">", ""), Hook.Match.GreaterThan));
+                    else if (hook.startsWith("<="))
+                        hookList.add(new NumberHook(hook.replace("<=", ""), Hook.Match.LowerEqualThan));
+                    else if (hook.startsWith("<"))
+                        hookList.add(new NumberHook(hook.replace("<", ""), Hook.Match.LowerThan));
+                    else
+                        hookList.add(new KeywordsHook(hook, Hook.Match.Words));
+                }
+            }
+        }
+
+        return new Node(hookList);
     }
 
     public static Node build(JSONObject jsonObject) {

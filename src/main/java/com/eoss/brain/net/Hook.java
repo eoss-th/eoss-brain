@@ -1,6 +1,8 @@
 package com.eoss.brain.net;
 
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.hook.KeywordsHook;
+import com.eoss.brain.hook.NumberHook;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -19,7 +21,8 @@ public class Hook implements Serializable {
         All(1.0f),
         Head(1.0f),
         Body(1.0f),
-        Tail(0.95f),
+        Tail(1.0f),
+        Words(1.0f),
         GreaterThan(1.0f),
         GreaterEqualThan(1.0f),
         LowerThan(1.0f),
@@ -54,168 +57,8 @@ public class Hook implements Serializable {
             weight = 0;
     }
 
-    private List<Float> numberList(String text) {
-
-        List<Float> numberList = new ArrayList<>();
-        Pattern p = Pattern.compile("-?\\d+");
-        Matcher m = p.matcher(text);
-        while (m.find()) {
-            try {
-                numberList.add(Float.parseFloat(m.group()));
-            } catch (Exception e) {
-
-            }
-        }
-        return numberList;
-    }
-
-    private List<Float> numberList(List<String> wordList) {
-
-        List<Float> numberList = new ArrayList<>();
-        for (String word:wordList) {
-            try {
-                numberList.add(Float.parseFloat(word));
-            } catch (Exception e) {
-
-            }
-        }
-        return numberList;
-    }
-
-
-    Match matched(MessageObject messageObject) {
-
-        List<String> wordList = (List<String>) messageObject.attributes.get("wordList");
-
-        if (wordList==null) {
-            if (matchedCommand(messageObject)) {
-                return Match.All;
-            }
-            return null;
-        }
-
-        String input = messageObject.toString();
-
-        if (input.equalsIgnoreCase(text)) return Match.All;
-
-        if (match == Match.All) {
-            if (wordList.size()==1 && wordList.get(0).equalsIgnoreCase(text)) {
-                return Match.All;
-            }
-        }
-        if (match == Match.Head) {
-            if (!wordList.isEmpty() && wordList.get(0).equalsIgnoreCase(text)) {
-                return Match.Head;
-            }
-        }
-        if (match == Match.Tail) {
-            if (!wordList.isEmpty() && wordList.get(wordList.size()-1).equalsIgnoreCase(text)) {
-                return Match.Tail;
-            }
-        }
-        if (match == Match.Body) {
-
-            //For Keywords Match!
-            if (text.contains(",")) {
-                String[] tokens = text.toLowerCase().split(",");
-                for (String token : tokens) {
-                    if (input.equalsIgnoreCase(token)) {
-                        return Match.All;
-                    }
-                    if (wordList.contains(token)) {
-                        return Match.Body;
-                    }
-                }
-            }
-            if (wordList.contains(text.toLowerCase())) {
-                return Match.Body;
-            }
-        }
-        if (match == Match.GreaterThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(wordList);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number>targetNumber)
-                    result = true;
-            }
-            if (result) {
-                return Match.GreaterThan;
-            }
-        }
-        if (match == Match.GreaterEqualThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(wordList);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number>=targetNumber)
-                    result = true;
-            }
-            if (result) {
-                return Match.GreaterEqualThan;
-            }
-        }
-        if (match == Match.LowerThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(wordList);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number<targetNumber)
-                    result = true;
-            }
-            if (result) {
-                return Match.LowerThan;
-            }
-        }
-        if (match == Match.LowerEqualThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(wordList);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number<=targetNumber)
-                    result = true;
-            }
-            if (result) {
-                return Match.LowerEqualThan;
-            }
-        }
-
-        Object modeObject = messageObject.attributes.get("mode");
-        if (modeObject!=null && modeObject.toString().equalsIgnoreCase(text)) {
-            return Match.Mode;
-        }
-
-        return null;
-    }
-
-    boolean matchedCommand(MessageObject messageObject) {
-
+    public boolean matched(MessageObject messageObject) {
         String input = messageObject.toString().toLowerCase();
-        Object modeObject = messageObject.attributes.get("mode");
 
         if (match == Match.All)
             return input.equalsIgnoreCase(text);
@@ -224,84 +67,10 @@ public class Hook implements Serializable {
         if (match == Match.Tail)
             return input.endsWith(text.toLowerCase());
         if (match == Match.Body) {
-            //For Keywords Match!
-            if (text.contains(",")) {
-                String [] tokens = text.toLowerCase().split(",");
-                for (String token:tokens) {
-                    if (input.contains(token)) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-
             return input.contains(text.toLowerCase());
         }
-        if (match == Match.GreaterThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
 
-            List<Float> inputNumberList = numberList(input);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number>targetNumber)
-                    result = true;
-            }
-            return result;
-        }
-        if (match == Match.GreaterEqualThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(input);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number>=targetNumber)
-                    result = true;
-            }
-            return result;
-        }
-        if (match == Match.LowerThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(input);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number<targetNumber)
-                    result = true;
-            }
-            return result;
-        }
-        if (match == Match.LowerEqualThan) {
-            Float targetNumber;
-            try {
-                targetNumber = Float.parseFloat(text);
-            } catch (Exception e) {
-                targetNumber = 0f;
-            }
-
-            List<Float> inputNumberList = numberList(input);
-            boolean result = false;
-            for (Float number:inputNumberList) {
-                if (number<=targetNumber)
-                    result = true;
-            }
-            return result;
-        }
-
+        Object modeObject = messageObject.attributes.get("mode");
         return modeObject!=null && modeObject.toString().equalsIgnoreCase(text);
     }
 
@@ -323,6 +92,8 @@ public class Hook implements Serializable {
             return "<"+text;
         if (match == Match.LowerEqualThan)
             return "<="+text;
+        if (match == Match.Words)
+            return "\"" + text + "\"";
 
         //Match
         return "["+text+"]";
@@ -342,25 +113,18 @@ public class Hook implements Serializable {
         return false;
     }
 
+    @Deprecated
+    /**
+     * Use Node.build instead
+     */
     public static List<Hook> build(String [] hooks) {
-
         List<Hook> hookList = new ArrayList<>();
-
         if (hooks!=null) {
             String hook;
             for (int i=0; i<hooks.length; i++) {
                 hook = hooks[i].trim();
                 if (!hook.isEmpty()) {
-
-                    if (hook.startsWith(">="))
-                        hookList.add(new Hook(hook.replace(">=",""), Match.GreaterEqualThan));
-                    else if (hook.startsWith(">"))
-                        hookList.add(new Hook(hook.replace(">", ""), Match.GreaterThan));
-                    else if (hook.startsWith("<="))
-                        hookList.add(new Hook(hook.replace("<=", ""), Match.LowerEqualThan));
-                    else if (hook.startsWith("<"))
-                        hookList.add(new Hook(hook.replace("<", ""), Match.LowerThan));
-                    else if (i==0)
+                    if (i==0)
                         hookList.add(new Hook(hook, Match.Head));
                     else if (i==hooks.length-1)
                         hookList.add(new Hook(hook, Match.Tail));
@@ -369,7 +133,6 @@ public class Hook implements Serializable {
                 }
             }
         }
-
         return hookList;
     }
 
@@ -382,7 +145,7 @@ public class Hook implements Serializable {
             for (int i=0; i<hooks.length; i++) {
                 hook = hooks[i].trim();
                 if (!hook.isEmpty()) {
-                    hookList.add(new Hook(hook, match));
+                    hookList.add(build(hook, match, match.initWeight));
                 }
             }
         }
@@ -394,6 +157,18 @@ public class Hook implements Serializable {
         String text = jsonObject.getString("text");
         Match match = Match.valueOf(jsonObject.getString("match"));
         double weight = jsonObject.getDouble("weight");
+        return build(text, match, weight);
+    }
+
+    private static Hook build(String text, Match match, double weight) {
+        if (match==Match.Words) {
+            return new KeywordsHook(text, match, weight);
+        }
+
+        if (match==Match.GreaterThan||match==Match.GreaterEqualThan||match==Match.LowerThan||match==Match.LowerEqualThan) {
+            return new NumberHook(text, match, weight);
+        }
+
         return new Hook(text, match, weight);
     }
 

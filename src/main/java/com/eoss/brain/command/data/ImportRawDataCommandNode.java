@@ -71,7 +71,7 @@ public class ImportRawDataCommandNode extends CommandNode {
                     newNodeList.add(newNode);
                 }
 
-                newNode = new Node(Hook.build(session.context.split(sentence)));
+                newNode = Node.build(session.context.split(sentence));
             }
 
             /**

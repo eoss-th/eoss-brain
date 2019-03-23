@@ -280,7 +280,7 @@ public abstract class Context implements Serializable {
 
         String input = messageObject.toString();
 
-        Node node = new Node(Hook.build(split(input)));
+        Node node = Node.build(split(input));
 
         Object mode = messageObject.attributes.get("mode");
 
@@ -323,13 +323,19 @@ public abstract class Context implements Serializable {
 
                 wordBoundaryIndex = breakIterator.first();
                 prevIndex         = 0;
-
+                int subWordCount  = 0;
                 while(wordBoundaryIndex != BreakIterator.DONE) {
                     subHook = hook.substring(prevIndex, wordBoundaryIndex).trim();
-                    if (!subHook.isEmpty())
+                    if (!subHook.isEmpty()) {
                         result.add(subHook);
+                        subWordCount ++;
+                    }
                     prevIndex = wordBoundaryIndex;
                     wordBoundaryIndex = breakIterator.next();
+                }
+
+                if (subWordCount>1) {
+                    result.add(hook);
                 }
 
             }

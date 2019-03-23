@@ -71,7 +71,7 @@ public class ImportQADataCommandNode extends CommandNode {
                     sb = new StringBuilder(line.replace(qKey, ""));
                 } else if (line.startsWith(aKey)) {
                     if (!sb.toString().trim().isEmpty()) {
-                        newNode = new Node(Hook.build(session.context.split(sb.toString().trim())));
+                        newNode = Node.build(session.context.split(sb.toString().trim()));
                         newNodeList.add(newNode);
                     }
                     sb = new StringBuilder(line.replace(aKey, ""));

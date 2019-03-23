@@ -19,11 +19,12 @@ public class ContextTest {
         context.admin(adminIdList);
 
         String [] tokens = context.split("สวัสดีครับคุณครู");
-        assertEquals(4, tokens.length);
+        assertEquals(5, tokens.length);
         assertEquals("สวัสดี", tokens[0]);
         assertEquals("ครับ", tokens[1]);
         assertEquals("คุณ", tokens[2]);
         assertEquals( "ครู", tokens[3]);
+        assertEquals( "สวัสดีครับคุณครู", tokens[4]);
 
     }
 

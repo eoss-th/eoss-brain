@@ -33,7 +33,7 @@ public class ExportRawDataCommandNode extends CommandNode {
          */
         for (Node node:session.context.nodeList) {
             lastInput = Hook.toString(node.hookList());
-            if (lastResponse==null || !Hook.toString(Hook.build(session.context.split(lastResponse))).equals(lastInput)) {
+            if (lastResponse==null || !Hook.toString(Node.build(session.context.split(lastResponse)).hookList()).equals(lastInput)) {
                 sb.append(lastInput);
                 sb.append(System.lineSeparator());
             }

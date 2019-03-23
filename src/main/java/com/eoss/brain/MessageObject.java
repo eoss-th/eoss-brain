@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class MessageObject implements Serializable {
 
@@ -49,18 +50,20 @@ public class MessageObject implements Serializable {
         return attributes.get("wordList") != null;
     }
 
-    public void split() {
+    public MessageObject split() {
         String text = attributes.get("text").toString();
         List<String> wordList = Arrays.asList(text.toLowerCase().split(" "));
         attributes.put("wordList", wordList);
         attributes.put("wordCount", wordList.size());
+        return this;
     }
 
-    public void split(Context context) {
+    public MessageObject split(Context context) {
         String text = attributes.get("text").toString();
         List<String> wordList = Arrays.asList(context.split(text.toLowerCase()));
         attributes.put("wordList", wordList);
         attributes.put("wordCount", wordList.size());
+        return this;
     }
 
     public MessageObject copy() {

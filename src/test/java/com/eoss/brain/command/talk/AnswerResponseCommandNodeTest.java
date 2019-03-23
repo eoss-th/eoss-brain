@@ -29,19 +29,17 @@ public class AnswerResponseCommandNodeTest {
 
         assertEquals("Done!", session.parse(MessageObject.build(messageObject,"ใส่ข้อมูลถามตอบ\n" +
                 "Q: hello\n" +
-                "A: what is your fav web?, name?\n" +
-                "Q: name Pantip\n" +
+                "A: what is your fav web?, Web?\n" +
+                "Q: Web Pantip\n" +
                 "A: wow https://www.pantip.com\n" +
-                "Q: name Manager\n" +
+                "Q: Web Manager\n" +
                 "A: https://logo.JPG wow haha ha https://www.manager.com \n" +
-                "Q: name Wayobot\n" +
+                "Q: Web Wayobot\n" +
                 "A: https://wayologo.png \n" +
-                "Q: name Zoo\n" +
+                "Q: Web Zoo\n" +
                 "A: https://zoo.jpeg zoolander \n" +
-                "Q: name XMen\n" +
-                "A: xmen \n" +
-                "Q: name\n" +
-                "A: default \n"
+                "Q: Web XMen\n" +
+                "A: xmen \n"
         )));
 
         assertEquals("what is your fav web?", session.parse(MessageObject.build(messageObject,"hello")));
@@ -68,7 +66,7 @@ public class AnswerResponseCommandNodeTest {
 
         assertNull(c1.imageURL);
 
-        assertEquals("Pantip", c1.label);
+        assertEquals("Web Pantip", c1.label);
 
         assertEquals("https://www.pantip.com", c1.linkURL);
 
@@ -79,7 +77,7 @@ public class AnswerResponseCommandNodeTest {
 
         assertEquals("https://logo.JPG", c2.imageURL);
 
-        assertEquals("Manager", c2.label);
+        assertEquals("Web Manager", c2.label);
 
         assertEquals("https://www.manager.com", c2.linkURL);
 
@@ -90,7 +88,7 @@ public class AnswerResponseCommandNodeTest {
 
         assertEquals("https://wayologo.png", c3.imageURL);
 
-        assertEquals("Wayobot", c3.label);
+        assertEquals("Web Wayobot", c3.label);
 
         assertEquals("https://wayologo.png", c3.linkURL);
 
@@ -101,7 +99,7 @@ public class AnswerResponseCommandNodeTest {
 
         assertEquals("https://zoo.jpeg", c4.imageURL);
 
-        assertEquals("Zoo", c4.label);
+        assertEquals("Web Zoo", c4.label);
 
         assertNull(c4.linkURL);
 
@@ -112,7 +110,7 @@ public class AnswerResponseCommandNodeTest {
 
         assertNull(c5.imageURL);
 
-        assertEquals("XMen", c5.label);
+        assertEquals("Web XMen", c5.label);
 
         assertNull(c5.linkURL);
 
