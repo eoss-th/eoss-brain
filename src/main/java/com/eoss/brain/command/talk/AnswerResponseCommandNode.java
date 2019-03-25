@@ -153,7 +153,7 @@ public class AnswerResponseCommandNode extends ResponseCommandNode {
     public String execute(MessageObject messageObject) {
 
         //Replace parent @xyz if any
-        String params = messageObject.toString().replace(responseText, "");
+        String params = messageObject.toString().replace(responseText, "").trim();
 
         MessageObject questionMessageObject = MessageObject.build(messageObject, responseText + " " + params);
         questionMessageObject.split();
