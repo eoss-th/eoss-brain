@@ -228,7 +228,7 @@ public class AnswerResponseCommandNodeTest {
 
         )));
 
-        assertEquals("Cousural", session.parse(MessageObject.build(messageObject, "hello")));
+        assertEquals("..", session.parse(MessageObject.build(messageObject, "hello")));
 
     }
 

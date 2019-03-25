@@ -151,7 +151,11 @@ public class AnswerResponseCommandNode extends ResponseCommandNode {
 
     @Override
     public String execute(MessageObject messageObject) {
-        MessageObject questionMessageObject = MessageObject.build(messageObject, responseText + " " + messageObject.toString());
+
+        //Replace parent @xyz if any
+        String params = messageObject.toString().replace(responseText, "");
+
+        MessageObject questionMessageObject = MessageObject.build(messageObject, responseText + " " + params);
         questionMessageObject.split();
         return new TalkCommandNode(session, WakeupCommandNode.KEY).execute(questionMessageObject);
     }

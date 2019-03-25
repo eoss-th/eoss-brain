@@ -71,22 +71,21 @@ public class MenuTalkCommandNode extends CommandNode {
             //Could it be Question Menu?
             if (maxActiveNodes.size()>1) {
 
-                boolean isCarousel = true;
+                List<Node> questionNodes = new ArrayList<>();
                 for (Node node:maxActiveNodes) {
-                    if (!node.response().endsWith("?")) {
-                        isCarousel = false;
-                        break;
+                    if (node.response().endsWith("?")) {
+                        questionNodes.add(node);
                     }
                 }
 
                 //Generate Questions
-                if (isCarousel) {
+                if (!questionNodes.isEmpty()) {
 
                     List<AnswerResponseCommandNode.Question> questionList = new ArrayList<>();
 
                     String title, params;
                     List<AnswerResponseCommandNode.Choice> choiceList;
-                    for (Node node:maxActiveNodes) {
+                    for (Node node:questionNodes) {
 
                         title = node.response();
                         int lastIndexOfComma = title.lastIndexOf(",");
@@ -103,7 +102,7 @@ public class MenuTalkCommandNode extends CommandNode {
                         session.listener.callback(new NodeEvent(null, messageObject, NodeEvent.Event.Question));
                     }
 
-                    return "Cousural";
+                    return "..";
                 }
 
                 //Random Pickup!
