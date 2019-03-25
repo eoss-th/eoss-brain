@@ -228,6 +228,27 @@ public abstract class Context implements Serializable {
         return maxActiveNodeList.get(random.nextInt(maxActiveNodeList.size()));
     }
 
+    public static List<Node> findMaxActiveNodes(Set<Node> activeNodeSet) {
+
+        if (activeNodeSet==null || activeNodeSet.isEmpty()) return null;
+
+        TreeMap<Float, List<Node>> nodeMap = new TreeMap<>();
+
+        Float confidence;
+        List nodeList;
+        for (Node node:activeNodeSet) {
+            confidence = node.active();
+            nodeList = nodeMap.get(confidence);
+            if (nodeList==null) nodeList = new ArrayList();
+            nodeList.add(node);
+            nodeMap.put(confidence, nodeList);
+        }
+
+        Map.Entry<Float, List<Node>> maxActiveEntry = nodeMap.lastEntry();
+        return maxActiveEntry.getValue();
+    }
+
+
     public Set<Node> feed(MessageObject messageObject) {
         return feed(messageObject, 1);
     }

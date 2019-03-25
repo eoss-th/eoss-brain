@@ -16,7 +16,8 @@ public class NodeEvent {
         Wakeup,
         NewNodeAdded,
         ContextSaved,
-        ReservedWords
+        ReservedWords,
+        Question
     }
 
     public final Node node;

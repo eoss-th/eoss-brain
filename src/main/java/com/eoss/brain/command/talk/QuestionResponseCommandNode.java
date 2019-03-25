@@ -1,10 +1,10 @@
 package com.eoss.brain.command.talk;
 
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.NodeEvent;
 import com.eoss.brain.Session;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class QuestionResponseCommandNode extends ResponseCommandNode {
 
@@ -24,7 +24,15 @@ public class QuestionResponseCommandNode extends ResponseCommandNode {
             generatedOutput = generatedOutput.substring(0, lastIndexOfComma);
         }
 
-        session.insert(new AnswerResponseCommandNode(session, forwardMessage));
+        AnswerResponseCommandNode answerResponseCommandNode = new AnswerResponseCommandNode(session, forwardMessage);
+        session.insert(answerResponseCommandNode);
+        if (session.listener != null) {
+            List<AnswerResponseCommandNode.Question> questionList = new ArrayList<>();
+            questionList.add(answerResponseCommandNode.createQuestion(generatedOutput));
+            messageObject.attributes.put("Question", questionList);
+            session.listener.callback(new NodeEvent(null, messageObject, NodeEvent.Event.Question));
+        }
+
         return generatedOutput;
     }
 

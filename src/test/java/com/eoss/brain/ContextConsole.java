@@ -39,6 +39,19 @@ public class ContextConsole {
                     //System.out.println("Bot:>>" + Hook.toString(nodeEvent.node.hookList()) + "?");
                     return;
                 }
+                if (nodeEvent.event == NodeEvent.Event.Question) {
+
+                    List<AnswerResponseCommandNode.Question> questionList = (List<AnswerResponseCommandNode.Question>) nodeEvent.messageObject.attributes.get("Question");
+                    for (AnswerResponseCommandNode.Question question:questionList) {
+                        System.out.println(question.label);
+                        for (AnswerResponseCommandNode.Choice choice: question.choices) {
+                            System.out.print("\t");
+                            System.out.println(choice.label);
+                        }
+                    }
+                    return;
+                }
+
             }
         });
         new WakeupCommandNode(session).execute(null);
@@ -56,12 +69,6 @@ public class ContextConsole {
             System.out.print("You:>>");
             reply = session.parse(MessageObject.build(template, scanner.nextLine()));
             System.out.println("Bot:>>" + reply);
-            choiceList = session.getChoices();
-            if (choiceList!=null && !choiceList.isEmpty()) {
-                for (AnswerResponseCommandNode.Choice choice:choiceList) {
-                    System.out.println(choice.label);
-                }
-            }
         }
 
     }

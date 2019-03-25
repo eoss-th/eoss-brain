@@ -6,6 +6,7 @@ import com.eoss.brain.command.*;
 import com.eoss.brain.command.data.*;
 import com.eoss.brain.command.talk.FeedbackCommandNode;
 import com.eoss.brain.command.talk.Key;
+import com.eoss.brain.command.talk.MenuTalkCommandNode;
 import com.eoss.brain.command.talk.TalkCommandNode;
 
 import java.util.Arrays;
@@ -64,7 +65,8 @@ public class WakeupCommandNode extends CommandNode {
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4D"}, "\uD83D\uDE0A", 0.1f));
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4E"}, "\uD83D\uDE1F", -0.1f, KEY));
         session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, KEY));
-        session.commandList.add(new TalkCommandNode(session, KEY));
+        //session.commandList.add(new TalkCommandNode(session, KEY));
+        session.commandList.add(new MenuTalkCommandNode(session, KEY));
 
         return "...";
     }
