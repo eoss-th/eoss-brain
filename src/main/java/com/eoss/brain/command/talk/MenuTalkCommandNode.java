@@ -102,7 +102,7 @@ public class MenuTalkCommandNode extends CommandNode {
                         session.listener.callback(new NodeEvent(null, messageObject, NodeEvent.Event.Question));
                     }
 
-                    return "..";
+                    return "";
                 }
 
                 //Random Pickup!

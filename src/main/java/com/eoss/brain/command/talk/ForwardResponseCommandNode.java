@@ -27,11 +27,11 @@ public class ForwardResponseCommandNode extends ResponseCommandNode {
         if ( lastIndexOfComma!=-1 && lastIndexOfComma<generatedOutput.length()-1 ) {
             forwardMessage = generatedOutput.substring(lastIndexOfComma + 1).trim();
             String previousMessage = generatedOutput.substring(0, lastIndexOfComma);
-            generatedOutput = previousMessage.isEmpty()?"":previousMessage + ",";
+            generatedOutput = previousMessage.isEmpty()?"":previousMessage;
         }
 
         MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardMessage);
         forwardMessageObject.split();
-        return generatedOutput + " " + new MenuTalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
+        return generatedOutput + "\n" + new MenuTalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
     }
 }
