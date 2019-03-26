@@ -157,6 +157,6 @@ public class AnswerResponseCommandNode extends ResponseCommandNode {
 
         MessageObject questionMessageObject = MessageObject.build(messageObject, responseText + " " + params);
         questionMessageObject.split();
-        return new TalkCommandNode(session, WakeupCommandNode.KEY).execute(questionMessageObject);
+        return new MenuTalkCommandNode(session, WakeupCommandNode.KEY).execute(questionMessageObject);
     }
 }
