@@ -8,6 +8,7 @@ import com.eoss.brain.command.talk.ResponseCommandNode;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
+import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.function.Consumer;
 
 public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
 
@@ -51,7 +53,7 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
         if (question!=null) {
 
             final Set<Node> activeNodeSet = new HashSet<>();
-            session.context.matched(messageObject, new ContextListener() {
+            session.context.matched(messageObject, question.nodeSet, new ContextListener() {
                 @Override
                 public void callback(NodeEvent nodeEvent) {
                     nodeEvent.node.feed(messageObject);
@@ -60,6 +62,14 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
             });
 
             List<Node> maxActiveNodes = Context.findMaxActiveNodes(activeNodeSet);
+
+            //Retry with Default Choices if any
+            if (maxActiveNodes==null) {
+
+                maxActiveNodes = question.defaultChoices;
+
+            }
+
             if (maxActiveNodes!=null && maxActiveNodes.size()==1) {
 
                 Node maxActiveNode = maxActiveNodes.get(0);

@@ -1,18 +1,18 @@
 package com.eoss.brain.command.talk;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class Question {
     public final String imageURL;
     public final String label;
     public final List<Choice> choices;
-    public List<Node> nodes;
+    public Set<Node> nodeSet;
+    public List<Node> defaultChoices;
 
     public Question(List<Node> nodeList, String title, String params) {
 
@@ -27,7 +27,8 @@ public class Question {
         }
 
         choices = new ArrayList<>();
-        nodes = new ArrayList<>();
+        nodeSet = new HashSet<>();
+        defaultChoices = new ArrayList<>();
 
         nodeList.forEach(new Consumer<Node>() {
             @Override
@@ -84,7 +85,9 @@ public class Question {
                     }
 
                     choices.add(new Choice(parent, label, imageURL, linkURL));
-                    nodes.add(node);
+                    nodeSet.add(node);
+                } else if (node.hookList().size()==1&&node.hookList().get(0).matched(MessageObject.build(params))) {
+                    defaultChoices.add(node);
                 }
             }
         });

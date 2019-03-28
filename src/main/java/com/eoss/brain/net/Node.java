@@ -71,6 +71,10 @@ public class Node implements Serializable {
 
     public boolean matched(MessageObject messageObject) {
         for (Hook hook:hookList) {
+            if (messageObject.toString().equals("@93d71f5e-3a2d-775a-a8d7-31c788f1e81e")) {
+                System.out.println(hook+":"+messageObject);
+
+            }
             if (hook.matched(messageObject)) {
                 return true;
             }
