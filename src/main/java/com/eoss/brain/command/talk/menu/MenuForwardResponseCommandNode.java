@@ -1,12 +1,13 @@
-package com.eoss.brain.command.talk;
+package com.eoss.brain.command.talk.menu;
 
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
+import com.eoss.brain.command.talk.ResponseCommandNode;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
 
-public class ForwardResponseCommandNode extends ResponseCommandNode {
+public class MenuForwardResponseCommandNode extends ResponseCommandNode {
 
-    public ForwardResponseCommandNode(Session session, String question) {
+    public MenuForwardResponseCommandNode(Session session, String question) {
         super(session, question);
     }
 
@@ -28,16 +29,10 @@ public class ForwardResponseCommandNode extends ResponseCommandNode {
             forwardMessage = generatedOutput.substring(lastIndexOfComma + 1).trim();
             String previousMessage = generatedOutput.substring(0, lastIndexOfComma);
             generatedOutput = previousMessage.isEmpty()?"":previousMessage;
-        } else {
-            generatedOutput = "";
-        }
-
-        if (!generatedOutput.isEmpty()) {
-            generatedOutput += ", ";
         }
 
         MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardMessage);
         forwardMessageObject.split();
-        return generatedOutput + new TalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
+        return generatedOutput + "\n" + new MenuTalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
     }
 }

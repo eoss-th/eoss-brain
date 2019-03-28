@@ -1,19 +1,27 @@
-package com.eoss.brain.command.talk;
+package com.eoss.brain.command.talk.menu;
 
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.CommandNode;
+import com.eoss.brain.command.talk.Key;
+import com.eoss.brain.command.talk.LowConfidenceProblemCommandNode;
+import com.eoss.brain.command.talk.Question;
+import com.eoss.brain.command.talk.ResponseCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
 
 import java.util.*;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by eossth on 7/31/2017 AD.
  */
 public class MenuTalkCommandNode extends CommandNode {
+
+    protected ReadWriteLock lock = new ReentrantReadWriteLock();
 
     private final Key lowConfidenceKey;
 
@@ -81,10 +89,17 @@ public class MenuTalkCommandNode extends CommandNode {
                 //Generate Questions
                 if (!questionNodes.isEmpty()) {
 
-                    List<AnswerResponseCommandNode.Question> questionList = new ArrayList<>();
+                    List<Node> nodeList;
+                    lock.writeLock().lock();
+                    try {
+                        nodeList = new ArrayList<>(session.context.nodeList);
+                    } finally {
+                        lock.writeLock().unlock();
+                    }
+
+                    List<Question> questionList = new ArrayList<>();
 
                     String title, params;
-                    List<AnswerResponseCommandNode.Choice> choiceList;
                     for (Node node:questionNodes) {
 
                         title = node.response();
@@ -92,7 +107,7 @@ public class MenuTalkCommandNode extends CommandNode {
                         if (lastIndexOfComma!=-1) {
                             params = title.substring(lastIndexOfComma + 1, title.length()-1).trim();
                             title = title.substring(0, lastIndexOfComma);
-                            questionList.add(new AnswerResponseCommandNode.Question(session.context.nodeList, title, params));
+                            questionList.add(new Question(nodeList, title, params));
                         }
 
                     }
@@ -169,7 +184,7 @@ public class MenuTalkCommandNode extends CommandNode {
             String input = messageObject.toString();
             StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
             MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
-            return ResponseCommandNode.build(session, responseText).execute(forwardMessageObject);
+            return MenuResponseCommandNode.build(session, responseText).execute(forwardMessageObject);
         }
 
         return responseText;

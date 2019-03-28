@@ -3,6 +3,7 @@ package com.eoss.brain.command.talk;
 import com.eoss.brain.MessageObject;
 import com.eoss.brain.NodeEvent;
 import com.eoss.brain.Session;
+import com.eoss.brain.command.wakeup.MenuWakeupCommandNode;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.context.MemoryContext;
 import com.eoss.brain.net.Context;
@@ -26,23 +27,23 @@ public class AnswerResponseCommandNodeTest {
             @Override
             public void callback(NodeEvent nodeEvent) {
                 if (nodeEvent.event == NodeEvent.Event.Question) {
-                    List<AnswerResponseCommandNode.Question> questionList = (List<AnswerResponseCommandNode.Question>) nodeEvent.messageObject.attributes.get("Question");
+                    List<Question> questionList = (List<Question>) nodeEvent.messageObject.attributes.get("Question");
 
-                    List<AnswerResponseCommandNode.Choice> choices = questionList.get(0).choices;
+                    List<Choice> choices = questionList.get(0).choices;
 
                     assertNotNull(choices);
 
                     assertEquals(5, choices.size());
 
-                    AnswerResponseCommandNode.Choice c1 = choices.get(0);
+                    Choice c1 = choices.get(0);
 
-                    AnswerResponseCommandNode.Choice c2 = choices.get(1);
+                    Choice c2 = choices.get(1);
 
-                    AnswerResponseCommandNode.Choice c3 = choices.get(2);
+                    Choice c3 = choices.get(2);
 
-                    AnswerResponseCommandNode.Choice c4 = choices.get(3);
+                    Choice c4 = choices.get(3);
 
-                    AnswerResponseCommandNode.Choice c5 = choices.get(4);
+                    Choice c5 = choices.get(4);
                     /**
                      * Null Image
                      */
@@ -137,9 +138,9 @@ public class AnswerResponseCommandNodeTest {
             public void callback(NodeEvent nodeEvent) {
                 if (nodeEvent.event == NodeEvent.Event.Question) {
 
-                    List<AnswerResponseCommandNode.Question> questionList = (List<AnswerResponseCommandNode.Question>) nodeEvent.messageObject.attributes.get("Question");
+                    List<Question> questionList = (List<Question>) nodeEvent.messageObject.attributes.get("Question");
 
-                    List<AnswerResponseCommandNode.Choice> choices = questionList.get(0).choices;
+                    List<Choice> choices = questionList.get(0).choices;
 
                     assertNotNull(choices);
 
@@ -195,7 +196,7 @@ public class AnswerResponseCommandNodeTest {
             public void callback(NodeEvent nodeEvent) {
                 if (nodeEvent.event == NodeEvent.Event.Question) {
 
-                    List<AnswerResponseCommandNode.Question> questionList = (List<AnswerResponseCommandNode.Question>) nodeEvent.messageObject.attributes.get("Question");
+                    List<Question> questionList = (List<Question>) nodeEvent.messageObject.attributes.get("Question");
 
                     assertEquals(2, questionList.size());
 
@@ -205,7 +206,7 @@ public class AnswerResponseCommandNodeTest {
             }
         });
 
-        new WakeupCommandNode(session).execute(null);
+        new MenuWakeupCommandNode(session).execute(null);
 
         MessageObject messageObject = MessageObject.build();
         messageObject.attributes.put("userId", "Uee73cf96d1dbe69a260d46fc03393cfd");
@@ -228,7 +229,7 @@ public class AnswerResponseCommandNodeTest {
 
         )));
 
-        assertEquals("..", session.parse(MessageObject.build(messageObject, "hello")));
+        assertEquals("", session.parse(MessageObject.build(messageObject, "hello")));
 
     }
 

@@ -26,12 +26,6 @@ public class QuestionResponseCommandNode extends ResponseCommandNode {
 
         AnswerResponseCommandNode answerResponseCommandNode = new AnswerResponseCommandNode(session, forwardMessage);
         session.insert(answerResponseCommandNode);
-        if (session.listener != null) {
-            List<AnswerResponseCommandNode.Question> questionList = new ArrayList<>();
-            questionList.add(answerResponseCommandNode.createQuestion(generatedOutput));
-            messageObject.attributes.put("Question", questionList);
-            session.listener.callback(new NodeEvent(null, messageObject, NodeEvent.Event.Question));
-        }
 
         return generatedOutput;
     }

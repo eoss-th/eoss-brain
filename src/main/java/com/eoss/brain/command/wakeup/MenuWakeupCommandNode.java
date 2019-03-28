@@ -14,15 +14,15 @@ import java.util.Arrays;
 /**
  * Created by eossth on 7/31/2017 AD.
  */
-public class WakeupCommandNode extends CommandNode {
+public class MenuWakeupCommandNode extends CommandNode {
 
     public static final Key KEY = new Key("\uD83D\uDE0A", "?", Arrays.asList("\uD83D\uDC4D", "\uD83D\uDC4E", "ไม่"));
 
-    public WakeupCommandNode(Session session) {
+    public MenuWakeupCommandNode(Session session) {
         this (session, null);
     }
 
-    public WakeupCommandNode(Session session, String [] hooks) {
+    public MenuWakeupCommandNode(Session session, String [] hooks) {
         super(session, hooks);
     }
 
@@ -65,7 +65,7 @@ public class WakeupCommandNode extends CommandNode {
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4D"}, "\uD83D\uDE0A", 0.1f));
         session.commandList.add(new FeedbackCommandNode(session, new String[]{"\uD83D\uDC4E"}, "\uD83D\uDE1F", -0.1f, KEY));
         session.commandList.add(new ForwardCommandNode(session, new String[]{"Next"}, KEY));
-        session.commandList.add(new TalkCommandNode(session, KEY));
+        session.commandList.add(new MenuTalkCommandNode(session, KEY));
 
         return "...";
     }

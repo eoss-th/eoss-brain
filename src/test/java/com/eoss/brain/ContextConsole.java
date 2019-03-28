@@ -1,6 +1,9 @@
 package com.eoss.brain;
 
 import com.eoss.brain.command.talk.AnswerResponseCommandNode;
+import com.eoss.brain.command.talk.Choice;
+import com.eoss.brain.command.talk.Question;
+import com.eoss.brain.command.wakeup.MenuWakeupCommandNode;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.context.FileContext;
 import com.eoss.brain.net.*;
@@ -13,11 +16,13 @@ public class ContextConsole {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("jook").admin(adminIdList).locale(new Locale("th"));
+        Context context = new FileContext("eoss-th").admin(adminIdList).locale(new Locale("th"));
 
         context.load();
 
-        Session session = new Session(context).callback(new SessionListener() {
+        Session session = new Session(context);
+
+        session.callback(new SessionListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
                 if (nodeEvent.event == NodeEvent.Event.NewNodeAdded) {
@@ -32,7 +37,33 @@ public class ContextConsole {
                     return;
                 }
                 if (nodeEvent.event == NodeEvent.Event.LowConfidence) {
-                    System.out.println("Low confidence:" + nodeEvent.messageObject);
+
+                    String unknown = session.context.properties.get("unknown");
+
+                    if (unknown.endsWith("!")) {
+                        int startSubIndex;
+                        int lastIndexOfComma = unknown.lastIndexOf(",");
+                        if (lastIndexOfComma==-1) {
+                            startSubIndex = 0;//Start Substring at Zero;
+                        } else {
+                            startSubIndex = lastIndexOfComma + 1;
+                        }
+
+                        unknown = unknown.substring(startSubIndex, unknown.length()-1);
+                    } else {
+                        System.out.println(unknown);
+                        return;
+                    }
+
+                    List<String> parameters = new ArrayList<>();
+                    parameters.add(nodeEvent.messageObject.toString());
+                    nodeEvent.messageObject.attributes.put("parameters", parameters);
+
+                    session.clearProblem();
+                    String responseText = session.parse(MessageObject.build(nodeEvent.messageObject, unknown.trim()));
+
+                    System.out.println(responseText);
+
                     return;
                 }
                 if (nodeEvent.event == NodeEvent.Event.HesitateConfidence) {
@@ -41,10 +72,13 @@ public class ContextConsole {
                 }
                 if (nodeEvent.event == NodeEvent.Event.Question) {
 
-                    List<AnswerResponseCommandNode.Question> questionList = (List<AnswerResponseCommandNode.Question>) nodeEvent.messageObject.attributes.get("Question");
-                    for (AnswerResponseCommandNode.Question question:questionList) {
+                    List<Question> questionList = (List<Question>) nodeEvent.messageObject.attributes.get("Question");
+                    for (Question question:questionList) {
+                        if (question.hasImage()) {
+                            System.out.println(question.imageURL);
+                        }
                         System.out.println(question.label);
-                        for (AnswerResponseCommandNode.Choice choice: question.choices) {
+                        for (Choice choice: question.choices) {
                             System.out.print("\t");
                             System.out.println(choice.label);
                         }
@@ -54,7 +88,7 @@ public class ContextConsole {
 
             }
         });
-        new WakeupCommandNode(session).execute(null);
+        new MenuWakeupCommandNode(session).execute(null);
 
         Scanner scanner = new Scanner(System.in, "UTF-8");
 
@@ -64,7 +98,7 @@ public class ContextConsole {
         //session.learning=true;
 
         String reply;
-        List<AnswerResponseCommandNode.Choice> choiceList;
+        List<Choice> choiceList;
         while(true) {
             System.out.print("You:>>");
             reply = session.parse(MessageObject.build(template, scanner.nextLine()));
