@@ -46,8 +46,6 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
-        session.clearProblem();
-
         if (question!=null) {
 
             final Set<Node> activeNodeSet = new HashSet<>();
