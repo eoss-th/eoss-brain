@@ -8,7 +8,6 @@ import com.eoss.brain.command.talk.ResponseCommandNode;
 import com.eoss.brain.command.wakeup.WakeupCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
-import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.function.Consumer;
 
 public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
 

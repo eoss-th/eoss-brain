@@ -26,6 +26,16 @@ public class Question {
             label = title;
         }
 
+        final String parent;
+        List<String> paramList = Arrays.asList(params.split(" "));
+        String foundParent = null;
+        for(String param:paramList) {
+            if (param.startsWith("@")) {
+                foundParent = param;
+            }
+        }
+        parent = foundParent;
+
         choices = new ArrayList<>();
         nodeSet = new HashSet<>();
         defaultChoices = new ArrayList<>();
@@ -33,62 +43,66 @@ public class Question {
         nodeList.forEach(new Consumer<Node>() {
             @Override
             public void accept(Node node) {
-                if (node.hookList().size()>1) {
 
-                    String parent = null;
-                    List<Hook> hookList = node.hookList();
-                    List<String> paramList = Arrays.asList(params.split(" "));
+                List<Hook> hookList = node.hookList();
 
-                    /**
-                     * Intersection Matched Check!
-                     */
-                    boolean matched = false;
-                    for (Hook hook:hookList) {
-                        if (paramList.contains(hook.text)) {
-                            matched = true;
-                            break;
-                        }
+                /**
+                 * Intersection Matched Check!
+                 */
+                boolean matched = false;
+                for (Hook hook:hookList) {
+                    if (paramList.contains(hook.text)) {
+                        matched = true;
+                        break;
                     }
-                    if (!matched) return;
-
-                    String label = "";
-                    for (Hook hook:hookList) {
-                        if (hook.text.startsWith("@")) {
-                            parent = hook.text;
-                            continue;
-                        }
-                        if (hook.text.contains(",")) {
-                            continue;
-                        }
-                        label += hook.text + " ";
-                    }
-                    label = label.trim();
-                    if (label.isEmpty()) return;
-
-                    String [] responses = node.response().split(" ");
-
-                    String imageURL = responses[0].trim().toLowerCase();
-
-                    if (imageURL.startsWith("https://") &&
-                            (imageURL.endsWith("png") ||
-                                    imageURL.endsWith("jpg") ||
-                                    imageURL.endsWith("jpeg"))) {
-                        imageURL = responses[0].trim();
-                    } else {
-                        imageURL = null;
-                    }
-
-                    String linkURL = responses[responses.length-1].trim();
-
-                    if (!linkURL.startsWith("https://") && !linkURL.startsWith("tel:")) {
-                        linkURL = null;
-                    }
-
-                    choices.add(new Choice(parent, label, imageURL, linkURL));
-                    nodeSet.add(node);
-                } else if (node.hookList().size()==1&&node.hookList().get(0).matched(MessageObject.build(params))) {
-                    defaultChoices.add(node);
                 }
+
+                if (!matched) return;
+
+                boolean isDefaultChoice = true;
+                String label = "";
+                for (Hook hook:hookList) {
+                    if (hook.text.startsWith("@")) {
+                        continue;
+                    }
+
+                    isDefaultChoice = false;
+                    if (hook.text.contains(",")) {
+                        continue;
+                    }
+                    label += hook.text + " ";
+                }
+
+                if (isDefaultChoice) {
+                    defaultChoices.add(node);
+                    return;
+                }
+
+                label = label.trim();
+                if (label.isEmpty()) return;
+
+                String [] responses = node.response().split(" ");
+
+                String imageURL = responses[0].trim().toLowerCase();
+
+                if (imageURL.startsWith("https://") &&
+                        (imageURL.endsWith("png") ||
+                                imageURL.endsWith("jpg") ||
+                                imageURL.endsWith("jpeg"))) {
+                    imageURL = responses[0].trim();
+                } else {
+                    imageURL = null;
+                }
+
+                String linkURL = responses[responses.length-1].trim();
+
+                if (!linkURL.startsWith("https://") && !linkURL.startsWith("tel:")) {
+                    linkURL = null;
+                }
+
+                choices.add(new Choice(parent, label, imageURL, linkURL));
+                nodeSet.add(node);
+
             }
         });
 
