@@ -47,6 +47,7 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
     public String execute(MessageObject messageObject) {
 
         if (question!=null) {
+            messageObject.split();
 
             final Set<Node> activeNodeSet = new HashSet<>();
             session.context.matched(messageObject, question.nodeSet, new ContextListener() {
