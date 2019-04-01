@@ -106,6 +106,10 @@ public class Node implements Serializable {
             }
         }
 
+        //Protect from Zero hookCount
+        if (hookCount==0&&!hookList.isEmpty()) {
+            hookCount = 1;
+        }
 
         //active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
 
