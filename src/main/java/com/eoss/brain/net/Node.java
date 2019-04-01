@@ -94,6 +94,7 @@ public class Node implements Serializable {
         }
 
         int hookCount = 0;
+        int parentCount = 0;
         int matchedCount = 0;
         float totalResponseActive = 0;
         for (Hook hook:hookList) {
@@ -101,14 +102,11 @@ public class Node implements Serializable {
                 totalResponseActive += hook.weight;
                 matchedCount ++;
             }
-            if (!hook.text.startsWith("@")) {
+            if (hook.text.startsWith("@")) {
+                parentCount = 1;//Maximum Parent Count is 1
+            } else {
                 hookCount ++;
             }
-        }
-
-        //Protect from Zero hookCount
-        if (hookCount==0) {
-            hookCount = 1;
         }
 
         //active += totalResponseActive / (hookList.size() + wordCount - matchedCount);
@@ -118,8 +116,9 @@ public class Node implements Serializable {
          * words = hello
          * 1 / (2 + 1 - 1) = 0.5
          */
+        int allCount = (hookCount + parentCount + wordCount - matchedCount);
 
-        active = totalResponseActive / (hookCount + wordCount - matchedCount);
+        active = totalResponseActive / allCount;
 
         /*
         if (active>0.2) {
