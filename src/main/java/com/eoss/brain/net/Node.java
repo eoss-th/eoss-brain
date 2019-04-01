@@ -93,13 +93,16 @@ public class Node implements Serializable {
             wordCount = 0;
         }
 
-        int hookCount = hookList.size();
+        int hookCount = 0;
         int matchedCount = 0;
         float totalResponseActive = 0;
         for (Hook hook:hookList) {
             if (hook.matched(messageObject)) {
                 totalResponseActive += hook.weight;
                 matchedCount ++;
+            }
+            if (!hook.text.startsWith("@")) {
+                hookCount ++;
             }
         }
 

@@ -76,7 +76,7 @@ public class GetHTTPExpressionTest {
             )));
 
         assertEquals("ฝันว่าอะไร", session.parse(MessageObject.build("ฝัน")));
-        assertEquals("เลขท้ายสองตัวคือ 5 6 7 9", session.parse(MessageObject.build("ทอง")));
+        assertEquals("เลขท้ายสองตัวคือ 4 6 7", session.parse(MessageObject.build("ทอง")));
 
     }
 
