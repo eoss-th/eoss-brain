@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.1.4-beta">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.1.5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" afterDir="false" />
     </list>
@@ -117,14 +117,14 @@
           <entry key="dummy" value="20" />
           <entry key="gradle" value="5" />
           <entry key="java" value="32733" />
-          <entry key="txt" value="842" />
+          <entry key="txt" value="843" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="5" />
           <entry key="JAVA" value="32733" />
-          <entry key="PLAIN_TEXT" value="866" />
+          <entry key="PLAIN_TEXT" value="867" />
         </counts>
       </usages-collector>
     </session>
@@ -173,8 +173,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="327">
+              <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -656,11 +656,6 @@
               <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
               <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -670,7 +665,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554097770144" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554099274230" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -892,13 +887,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510122838184</updated>
-    </task>
-    <task id="LOCAL-00016" summary=" Fuckkkkkkk">
-      <created>1524630073638</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1524630073638</updated>
     </task>
     <task id="LOCAL-00017" summary="Minor Bug from TalkCommand Node by Forwarding">
       <created>1534837615688</created>
@@ -1236,13 +1224,17 @@
       <option name="project" value="LOCAL" />
       <updated>1554097131995</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="v1.1.5">
+      <created>1554097799641</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1554097799642</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AnswerResponseCommandNodeTest_multiQuestionTest - 2019.03.28 at 13h 23m 19s.xml">
-      <configuration name="AnswerResponseCommandNodeTest.multiQuestionTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AnswerResponseCommandNodeTest_multiQuestionTest - 2019.03.28 at 13h 24m 12s.xml">
       <configuration name="AnswerResponseCommandNodeTest.multiQuestionTest" configurationId="JUnit" />
     </history-entry>
@@ -1270,6 +1262,9 @@
     <history-entry file="All_in_eoss-brain_test - 2019.04.01 at 12h 38m 33s.xml">
       <configuration name="All in eoss-brain_test" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_eoss-brain_test_(1) - 2019.04.01 at 12h 49m 42s.xml">
+      <configuration name="All in eoss-brain_test (1)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1294,7 +1289,7 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.27586207" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3370253" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3370253" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39873418" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1356,7 +1351,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Attributes for Diagram Support" />
     <MESSAGE value="- Override Question Message&#10;- Insert Message Before Forward" />
     <MESSAGE value="Weight Adjustment" />
     <MESSAGE value="Throw error for backup cmd" />
@@ -1381,7 +1375,8 @@
     <MESSAGE value="v1.1.4" />
     <MESSAGE value="v1.1.4-alpha" />
     <MESSAGE value="v1.1.4-beta" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.4-beta" />
+    <MESSAGE value="v1.1.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1.5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1731,8 +1726,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="327">
+          <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
         </state>
       </provider>
     </entry>

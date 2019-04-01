@@ -107,7 +107,7 @@ public class Node implements Serializable {
         }
 
         //Protect from Zero hookCount
-        if (hookCount==0&&!hookList.isEmpty()) {
+        if (hookCount==0) {
             hookCount = 1;
         }
 
