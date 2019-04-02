@@ -10,16 +10,11 @@ import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
-
-    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     private Question question;
 
@@ -28,13 +23,8 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
     }
 
     public Question createQuestion(String title) {
-        lock.writeLock().lock();
-        try {
-            question = new Question(new ArrayList<>(session.context.nodeList), title, responseText);
-            return question;
-        } finally {
-            lock.writeLock().unlock();
-        }
+        question = new Question(session, title, responseText);
+        return question;
     }
 
     @Override
@@ -47,7 +37,8 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
     public String execute(MessageObject messageObject) {
 
         if (question!=null) {
-            messageObject.split();
+
+            messageObject.split(session.context);
 
             final Set<Node> activeNodeSet = new HashSet<>();
             session.context.matched(messageObject, question.nodeSet, new ContextListener() {

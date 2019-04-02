@@ -1,6 +1,6 @@
 package com.eoss.brain.command.talk;
 
-import com.eoss.brain.MessageObject;
+import com.eoss.brain.Session;
 import com.eoss.brain.net.Hook;
 import com.eoss.brain.net.Node;
 
@@ -8,13 +8,16 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class Question {
+
     public final String imageURL;
     public final String label;
     public final List<Choice> choices;
     public Set<Node> nodeSet;
     public List<Node> defaultChoices;
 
-    public Question(List<Node> nodeList, String title, String params) {
+    public Question(Session session, String title, String params) {
+
+        List<Node> nodeList = session.context.nodeList;
 
         String [] titles = title.split(" ");
         String firstTitles = titles[0].toLowerCase();
@@ -47,7 +50,7 @@ public class Question {
                 List<Hook> hookList = node.hookList();
 
                 /**
-                 * Intersection Matched Check!
+                 * Is Child
                  */
                 boolean matched = false;
                 for (Hook hook:hookList) {
@@ -101,7 +104,11 @@ public class Question {
                 }
 
                 choices.add(new Choice(parent, label, imageURL, linkURL));
-                nodeSet.add(node);
+
+                //Resplit Hook by Locale
+                Node tempNode = Node.build(session.context.split(Hook.toString(hookList)));
+                tempNode.setResponse(node.response());
+                nodeSet.add(tempNode);
 
             }
         });

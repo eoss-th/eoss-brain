@@ -89,14 +89,6 @@ public class MenuTalkCommandNode extends CommandNode {
                 //Generate Questions
                 if (!questionNodes.isEmpty()) {
 
-                    List<Node> nodeList;
-                    lock.writeLock().lock();
-                    try {
-                        nodeList = new ArrayList<>(session.context.nodeList);
-                    } finally {
-                        lock.writeLock().unlock();
-                    }
-
                     List<Question> questionList = new ArrayList<>();
 
                     String title, params;
@@ -107,7 +99,7 @@ public class MenuTalkCommandNode extends CommandNode {
                         if (lastIndexOfComma!=-1) {
                             params = title.substring(lastIndexOfComma + 1, title.length()-1).trim();
                             title = title.substring(0, lastIndexOfComma);
-                            questionList.add(new Question(nodeList, title, params));
+                            questionList.add(new Question(session, title, params));
                         }
 
                     }
