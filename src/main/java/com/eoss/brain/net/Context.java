@@ -324,6 +324,8 @@ public abstract class Context implements Serializable {
 
         List<String> variableHooks = new ArrayList<>();
 
+        List<String> parentHooks = new ArrayList<>();
+
         String [] tokens = input.split(" ");
         String hook, subHook;
         int wordBoundaryIndex, prevIndex;
@@ -336,6 +338,8 @@ public abstract class Context implements Serializable {
                 conditionHooks.add(hook);
             } else if (hook.startsWith("#")) {
                 variableHooks.add(hook);
+            } else if (hook.startsWith("@")) {
+                parentHooks.add(hook);
             } else {
                 /**
                  * Sentence
@@ -364,6 +368,7 @@ public abstract class Context implements Serializable {
 
         result.addAll(conditionHooks);
         result.addAll(variableHooks);
+        result.addAll(parentHooks);
 
         return result.toArray(new String[result.size()]);
     }

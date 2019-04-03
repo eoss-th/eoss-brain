@@ -10,6 +10,7 @@ import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,35 +41,47 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
 
             messageObject.split(session.context);
 
-            final Set<Node> activeNodeSet = new HashSet<>();
-            session.context.matched(messageObject, question.nodeSet, new ContextListener() {
-                @Override
-                public void callback(NodeEvent nodeEvent) {
-                    nodeEvent.node.feed(messageObject);
-                    activeNodeSet.add(nodeEvent.node);
+            List<String> parentList = new ArrayList<>();
+            List<String> wordList = (List<String>) messageObject.attributes.get("wordList");
+            for (String word:wordList) {
+                if (word.startsWith("@")) {
+                    parentList.add(word);
                 }
-            });
-
-            List<Node> maxActiveNodes = Context.findMaxActiveNodes(activeNodeSet);
-
-            //Retry with Default Choices if any
-            if (maxActiveNodes==null) {
-
-                maxActiveNodes = question.defaultChoices;
-
             }
 
-            if (maxActiveNodes!=null && maxActiveNodes.size()==1) {
+            boolean isParent = question.parent!=null && parentList.contains(question.parent);
 
-                Node maxActiveNode = maxActiveNodes.get(0);
-                session.setLastEntry(messageObject, maxActiveNode);
-                session.route(maxActiveNode);
+            if (parentList.isEmpty() || isParent) {
+                final Set<Node> activeNodeSet = new HashSet<>();
+                session.context.matched(messageObject, question.nodeSet, new ContextListener() {
+                    @Override
+                    public void callback(NodeEvent nodeEvent) {
+                        nodeEvent.node.feed(messageObject);
+                        activeNodeSet.add(nodeEvent.node);
+                    }
+                });
 
-                //Clean MessageObject
-                String input = messageObject.toString();
-                StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
-                MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
-                return MenuResponseCommandNode.build(session, maxActiveNode.response()).execute(forwardMessageObject);
+                List<Node> maxActiveNodes = Context.findMaxActiveNodes(activeNodeSet);
+
+                //Retry with Default Choices if any
+                if (maxActiveNodes==null) {
+
+                    maxActiveNodes = question.defaultChoices;
+
+                }
+
+                if (maxActiveNodes!=null && maxActiveNodes.size()==1) {
+
+                    Node maxActiveNode = maxActiveNodes.get(0);
+                    session.setLastEntry(messageObject, maxActiveNode);
+                    session.route(maxActiveNode);
+
+                    //Clean MessageObject
+                    String input = messageObject.toString();
+                    StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));
+                    MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardInput.toString().trim());
+                    return MenuResponseCommandNode.build(session, maxActiveNode.response()).execute(forwardMessageObject);
+                }
             }
 
         }

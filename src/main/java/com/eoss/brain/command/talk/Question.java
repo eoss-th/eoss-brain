@@ -9,6 +9,7 @@ import java.util.function.Consumer;
 
 public class Question {
 
+    public final String parent;
     public final String imageURL;
     public final String label;
     public final List<Choice> choices;
@@ -29,7 +30,6 @@ public class Question {
             label = title;
         }
 
-        final String parent;
         List<String> paramList = Arrays.asList(params.split(" "));
         String foundParent = null;
         for(String param:paramList) {
