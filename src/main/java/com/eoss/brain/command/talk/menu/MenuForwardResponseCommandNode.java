@@ -33,6 +33,6 @@ public class MenuForwardResponseCommandNode extends ResponseCommandNode {
 
         MessageObject forwardMessageObject = MessageObject.build(messageObject, forwardMessage);
         forwardMessageObject.split();
-        return generatedOutput + "\n" + new MenuTalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
+        return generatedOutput + "\n\n\n" + new MenuTalkCommandNode(session, WakeupCommandNode.KEY).execute(forwardMessageObject);
     }
 }
