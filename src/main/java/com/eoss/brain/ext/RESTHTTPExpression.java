@@ -65,12 +65,13 @@ public class RESTHTTPExpression extends HTTPExpression {
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while ((line = reader.readLine()) != null) {
                 response.append(line);
+                response.append(System.lineSeparator());
             }
             reader.close();
 
         } catch (Exception e) {
             response.append(e.getMessage());
         }
-        return response.toString();
+        return response.toString().trim();
     }
 }
