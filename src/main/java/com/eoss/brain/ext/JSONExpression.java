@@ -19,7 +19,8 @@ public class JSONExpression extends Expression {
 
         String [] args = parameterized(messageObject, arguments);
         if (args.length==3) {
-            return jsonPath(args[1], args[2]);
+            super.updateParameters(messageObject, jsonPath(args[1], args[2]));
+            return "";
         }
 
         return super.execute(messageObject);
