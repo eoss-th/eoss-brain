@@ -29,7 +29,7 @@ public class ResponseCommandNode extends ProblemCommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
-        Pattern pattern = Pattern.compile("\\`.*?\\`");
+        Pattern pattern = Pattern.compile("\\`(.|\\n|\\r|\\t)*?\\`", Pattern.MULTILINE);
         Matcher matcher = pattern.matcher(responseText);
 
         String evaluatedText = responseText;
