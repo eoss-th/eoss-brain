@@ -42,6 +42,8 @@ public class FeedbackCommandNode extends CommandNode {
 
         Node targetNode = session.context.get(lastActiveEntry.node.hookList());
 
+        if (targetNode==null) return messageObject.toString();
+
         if (rejectKey!=null) {
 
             if (session.learning) {

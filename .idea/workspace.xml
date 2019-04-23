@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.1.7-alpha&#10;&#10;- Fix Http Expression to support multi lines">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.1.7-beta&#10;&#10;- Fix VarExpression to support multi lines variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,12 +63,12 @@
     <session id="2026097572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="145" />
+          <entry key="project.closed" value="146" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="9" />
           <entry key="project.open.time.11" value="29" />
           <entry key="project.open.time.12" value="24" />
-          <entry key="project.open.time.13" value="4" />
+          <entry key="project.open.time.13" value="5" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="1" />
@@ -95,7 +94,7 @@
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="145" />
+          <entry key="project.opened" value="146" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -103,13 +102,13 @@
           <entry key="context" value="55" />
           <entry key="gradle" value="3" />
           <entry key="gradlew" value="1" />
-          <entry key="java" value="588" />
+          <entry key="java" value="590" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="588" />
+          <entry key="JAVA" value="590" />
           <entry key="PLAIN_TEXT" value="56" />
         </counts>
       </usages-collector>
@@ -118,30 +117,21 @@
           <entry key="context" value="4" />
           <entry key="dummy" value="20" />
           <entry key="gradle" value="5" />
-          <entry key="java" value="33682" />
-          <entry key="txt" value="1071" />
+          <entry key="java" value="33713" />
+          <entry key="txt" value="1087" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="5" />
-          <entry key="JAVA" value="33682" />
-          <entry key="PLAIN_TEXT" value="1095" />
+          <entry key="JAVA" value="33713" />
+          <entry key="PLAIN_TEXT" value="1111" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/Expression.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="135" column="41" lean-forward="true" selection-start-line="135" selection-start-column="41" selection-end-line="135" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/men.context">
           <provider selected="true" editor-type-id="text-editor">
@@ -154,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="699">
-              <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+            <state relative-caret-position="1395">
+              <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -163,7 +153,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/VarExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="345">
               <caret line="28" column="22" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="22" />
               <folding>
                 <element signature="e#209#210#0" expanded="true" />
@@ -176,17 +166,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RESTHTTPExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
+            <state relative-caret-position="450">
               <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/JSoupExpression.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -200,11 +181,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="555">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4380">
+              <caret line="314" column="42" selection-start-line="314" selection-start-column="42" selection-end-line="314" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -212,8 +211,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/GetHTTPExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="56" selection-start-line="55" selection-end-line="56" />
+            <state relative-caret-position="720">
+              <caret line="57" selection-start-line="55" selection-end-line="55" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -239,8 +238,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>เข้าใจละ</find>
-      <find>c</find>
       <find>key</find>
       <find>listener.callback</find>
       <find>activeNodePool</find>
@@ -269,6 +266,8 @@
       <find>home</find>
       <find>\n</find>
       <find>&quot;\n&quot;</find>
+      <find>\\`</find>
+      <find>Pattern.compile</find>
     </findStrings>
     <replaceStrings>
       <replace>.active</replace>
@@ -284,11 +283,11 @@
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/src/main/java</dir>
-      <dir>$PROJECT_DIR$/src/main/java/com/eoss</dir>
       <dir>$PROJECT_DIR$/src/main/java/com/eoss/brain</dir>
       <dir>$PROJECT_DIR$/src/test</dir>
-      <dir>$PROJECT_DIR$/src/main</dir>
       <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/main/java/com/eoss</dir>
+      <dir>$PROJECT_DIR$/src/main</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -485,7 +484,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6191017869000" />
+        <entry key="$PROJECT_DIR$" value="6191006379000" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
         <entry key="$PROJECT_DIR$/build.gradle" value="1411223734" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="1061797022" />
@@ -597,7 +596,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextTestCaseNoom.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ImportRawDataCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/WebContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/VarExpression.java" />
@@ -648,10 +646,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RESTHTTPExpression.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="111" />
     <option name="y" value="23" />
     <option name="width" value="1799" />
@@ -662,7 +661,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -724,6 +722,17 @@
               <item name="eoss" type="462c0819:PsiDirectoryNode" />
               <item name="brain" type="462c0819:PsiDirectoryNode" />
               <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
               <item name="talk" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -761,11 +770,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555645180261" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555645406960" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -992,13 +1002,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510122838184</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Update Weight Calculation">
-      <created>1546165132760</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1546165132760</updated>
     </task>
     <task id="LOCAL-00027" summary="Mark Deprecated">
       <created>1546178350393</created>
@@ -1336,7 +1339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555516937842</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="v1.1.7-beta&#10;&#10;- Fix VarExpression to support multi lines variable">
+      <created>1555645398974</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1555645398975</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1381,10 +1391,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="111" y="23" width="1799" height="1048" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20432556" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20759289" />
       <window_info id="Structure" order="1" weight="0.24968314" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -1393,8 +1403,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.27531645" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33577406" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.27531645" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33577406" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39873418" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1456,7 +1466,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="FIX Hook Matching" />
     <MESSAGE value="FIX Hook Matching with Variable" />
     <MESSAGE value="FIX Minor Bug" />
     <MESSAGE value="v1.1.1 Alpha-Release" />
@@ -1481,7 +1490,8 @@
     <MESSAGE value="v1.1.6-gramma&#10;&#10;- Triple \n forwarding separator" />
     <MESSAGE value="v1.1.7&#10;&#10;- JSONExpression to %1..%N" />
     <MESSAGE value="v1.1.7-alpha&#10;&#10;- Fix Http Expression to support multi lines" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.7-alpha&#10;&#10;- Fix Http Expression to support multi lines" />
+    <MESSAGE value="v1.1.7-beta&#10;&#10;- Fix VarExpression to support multi lines variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1.7-beta&#10;&#10;- Fix VarExpression to support multi lines variable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1504,13 +1514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="57" column="47" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1728,13 +1731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4920">
-          <caret line="350" column="38" selection-start-line="350" selection-start-column="38" selection-end-line="350" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
@@ -1770,38 +1766,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuQuestionResponseCommandNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/GetHTTPExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="56" selection-start-line="55" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3195">
-          <caret line="247" column="77" selection-start-line="247" selection-start-column="77" selection-end-line="247" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RESTHTTPExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/Expression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="135" column="41" lean-forward="true" selection-start-line="135" selection-start-column="41" selection-end-line="135" selection-end-column="41" />
+        <state relative-caret-position="1965">
+          <caret line="135" column="41" selection-start-line="135" selection-start-column="41" selection-end-line="135" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1814,14 +1782,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+        <state relative-caret-position="1395">
+          <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/VarExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="345">
           <caret line="28" column="22" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="22" />
           <folding>
             <element signature="e#209#210#0" expanded="true" />
@@ -1830,10 +1798,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RESTHTTPExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuQuestionResponseCommandNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4380">
+          <caret line="314" column="42" selection-start-line="314" selection-start-column="42" selection-end-line="314" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/GetHTTPExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="57" selection-start-line="55" selection-end-line="55" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3195">
+          <caret line="247" column="77" selection-start-line="247" selection-start-column="77" selection-end-line="247" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="555">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
