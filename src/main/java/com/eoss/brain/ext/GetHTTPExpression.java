@@ -19,16 +19,22 @@ public class GetHTTPExpression extends HTTPExpression {
     public String execute(MessageObject messageObject) {
 
         String [] args = parameterized(messageObject, arguments);
+
+        Map<String, String> headerMap = signatureMap(messageObject);
+
         if (args.length==3) {
 
             String url = "https://" + args[2];
-            super.updateParameters(messageObject, get(url, createParamMapFromQueryString(args[1])));
+
+            headerMap.putAll(createParamMapFromQueryString(args[1]));
+
+            super.updateParameters(messageObject, get(url, headerMap));
             return "";
 
         } else if (args.length==2) {
 
             String url = "https://" + args[1];
-            super.updateParameters(messageObject, get(url, null));
+            super.updateParameters(messageObject, get(url, headerMap));
             return "";
         }
 

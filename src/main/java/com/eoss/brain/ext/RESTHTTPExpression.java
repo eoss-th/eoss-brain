@@ -23,16 +23,22 @@ public class RESTHTTPExpression extends HTTPExpression {
     public String execute(MessageObject messageObject) {
 
         String [] args = parameterized(messageObject, arguments);
+
+        Map<String, String> headerMap = signatureMap(messageObject);
+
         if (args.length==4) {
 
             String url = "https://" + args[3];
-            super.updateParameters(messageObject, request(url, createParamMapFromQueryString(args[1]), args[2]));
+
+            headerMap.putAll(createParamMapFromQueryString(args[1]));
+
+            super.updateParameters(messageObject, request(url, headerMap, args[2]));
             return "";
 
         } else if (args.length==3) {
 
             String url = "https://" + args[2];
-            super.updateParameters(messageObject, request(url, null, args[1]));
+            super.updateParameters(messageObject, request(url, headerMap, args[1]));
             return "";
         }
 

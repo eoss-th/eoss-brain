@@ -1,5 +1,6 @@
 package com.eoss.brain.ext;
 
+import com.eoss.brain.MessageObject;
 import com.eoss.brain.Session;
 
 import java.util.HashMap;
@@ -9,6 +10,18 @@ public abstract class HTTPExpression extends Expression {
 
     public HTTPExpression(Session session, String[] arguments) {
         super(session, arguments);
+    }
+
+    protected final Map<String, String> signatureMap(MessageObject messageObject) {
+        Map<String, String> signatureMap = new HashMap<>();
+
+        String signatureType = (String) messageObject.attributes.get("signatureType");
+        if (signatureType!=null) {
+            String signatureValue = (String) messageObject.attributes.get("signatureValue");
+            signatureMap.put(signatureType, signatureValue);
+        }
+
+        return signatureMap;
     }
 
     protected final Map<String, String> createParamMapFromQueryString(String queryString) {
