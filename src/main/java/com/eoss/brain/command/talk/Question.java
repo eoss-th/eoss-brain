@@ -10,11 +10,19 @@ import java.util.function.Consumer;
 public class Question {
 
     public final String parent;
-    public final String imageURL;
     public final String label;
+    public final String imageURL;
     public final List<Choice> choices;
+
     public Set<Node> nodeSet;
     public List<Node> defaultChoices;
+
+    public Question(String parent, String label, String imageURL, List<Choice> choices) {
+        this.parent = parent;
+        this.label = label;
+        this.imageURL = imageURL;
+        this.choices = choices;
+    }
 
     public Question(Session session, String title, String params) {
 
