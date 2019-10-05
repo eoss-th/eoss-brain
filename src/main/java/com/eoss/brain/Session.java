@@ -10,6 +10,8 @@ import com.eoss.brain.net.Node;
 import com.eoss.brain.net.SessionListener;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -256,6 +258,12 @@ public class Session implements Serializable {
 
         for (int i=0;i<params.length;i++) {
             paramMap.put("#" + (i+1), params[i]);
+        }
+
+        try {
+            paramMap.put("%%", URLEncoder.encode(input, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            paramMap.put("%%", input);
         }
 
         List<String> parameters = (List<String>) messageObject.attributes.get("parameters");
