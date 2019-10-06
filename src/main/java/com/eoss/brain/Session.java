@@ -251,7 +251,7 @@ public class Session implements Serializable {
 
         String input = messageObject.toString();
 
-        String [] params = context.split(input);
+        String [] params = context.split(input, Locale.US);
 
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("##", input);

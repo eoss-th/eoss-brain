@@ -313,6 +313,10 @@ public abstract class Context implements Serializable {
     }
 
     public String [] split(String input) {
+        return split(input, locale);
+    }
+
+    public String [] split(String input, Locale locale) {
 
         BreakIterator breakIterator = BreakIterator.getWordInstance(locale);
         List<String> result = new ArrayList<>();
