@@ -1,6 +1,7 @@
 package com.eoss.brain.net;
 
 import com.eoss.brain.MessageObject;
+import com.eoss.brain.ext.VarExpression;
 import com.eoss.brain.hook.KeywordsHook;
 import com.eoss.brain.hook.NumberHook;
 import org.json.JSONObject;
@@ -68,6 +69,21 @@ public class Hook implements Serializable {
             return input.endsWith(text.toLowerCase());
         if (match == Match.Body) {
             return input.contains(text.toLowerCase());
+        }
+
+        //Number Compare
+        if (VarExpression.isNumeric(input) && VarExpression.isNumeric(text)) {
+            double inputNumber = Double.parseDouble(input);
+            double hookNumber = Double.parseDouble(text);
+
+            if (match == Match.GreaterEqualThan)
+                return inputNumber >= hookNumber;
+            if (match == Match.GreaterThan)
+                return inputNumber > hookNumber;
+            if (match == Match.LowerEqualThan)
+                return inputNumber <= hookNumber;
+            if (match == Match.LowerThan)
+                return inputNumber < hookNumber;
         }
 
         Object modeObject = messageObject.attributes.get("mode");
