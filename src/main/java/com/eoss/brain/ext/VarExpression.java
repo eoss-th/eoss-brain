@@ -5,6 +5,8 @@ import com.eoss.brain.Session;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 public class VarExpression extends Expression {
 
@@ -36,10 +38,11 @@ public class VarExpression extends Expression {
         return "";
     }
 
-    public static boolean isNumeric(String strNum) {
+    public static boolean isNumeric(String strNum, Locale locale) {
         try {
-            Double.parseDouble(strNum);
-        } catch (NumberFormatException | NullPointerException nfe) {
+            NumberFormat formatter = NumberFormat.getInstance(locale);
+            formatter.parse(strNum);
+        } catch (Exception e) {
             return false;
         }
         return true;
@@ -54,97 +57,101 @@ public class VarExpression extends Expression {
          */
         if (newValue.startsWith("+") || newValue.startsWith("-") || newValue.startsWith("*") || newValue.startsWith("/")) {
 
-            String opt = newValue.substring(0, 1);
-            newValue = newValue.substring(1).trim();
+            try {
+                String opt = newValue.substring(0, 1);
+                newValue = newValue.substring(1).trim();
 
-
-            /**
-             * If new variable, just set
-             */
-            if (oldValue==null) return newValue;
-
-            NumberFormat formatter = NumberFormat.getInstance(session.context.locale());
-
-            if (isNumeric(oldValue) && isNumeric(newValue)) {
 
                 /**
-                 * Supports + - * /
+                 * If new variable, just set
                  */
+                if (oldValue==null) return newValue;
 
-                double oldNumber = Double.parseDouble(oldValue);
-                double newNumber = Double.parseDouble(newValue);
+                NumberFormat formatter = NumberFormat.getInstance(session.context.locale());
 
-                if (opt.equals("+"))
-                    return formatter.format(oldNumber + newNumber);
+                if (isNumeric(oldValue, session.context.locale()) && isNumeric(newValue, session.context.locale())) {
 
-                if (opt.equals("-"))
-                    return formatter.format(oldNumber - newNumber);
+                    /**
+                     * Supports + - * /
+                     */
 
-                if (opt.equals("*"))
-                    return formatter.format(oldNumber * newNumber);
+                    double oldNumber = formatter.parse(oldValue).doubleValue();
+                    double newNumber = formatter.parse(newValue).doubleValue();
 
-                if (opt.equals("/"))
-                    return formatter.format(oldNumber / newNumber);
+                    if (opt.equals("+"))
+                        return formatter.format(oldNumber + newNumber);
 
-            } else if (isNumeric(oldValue)) {
+                    if (opt.equals("-"))
+                        return formatter.format(oldNumber - newNumber);
 
-                /**
-                 * Support + - *
-                 */
+                    if (opt.equals("*"))
+                        return formatter.format(oldNumber * newNumber);
 
-                if (opt.equals("+"))
-                    return oldValue + newValue;
+                    if (opt.equals("/"))
+                        return formatter.format(oldNumber / newNumber);
 
-                if (opt.equals("-"))
-                    return oldValue.replace(newValue, "");
+                } else if (isNumeric(oldValue, session.context.locale())) {
 
-                if (opt.equals("*")) {
-                    double oldNumber = Double.parseDouble(oldValue);
-                    int round = (int) Math.round(oldNumber);
-                    StringBuilder result = new StringBuilder();
-                    for (int i=0;i<round;i++) {
-                        result.append(newValue);
-                        result.append(System.lineSeparator());
+                    /**
+                     * Support + - *
+                     */
+
+                    if (opt.equals("+"))
+                        return oldValue + newValue;
+
+                    if (opt.equals("-"))
+                        return oldValue.replace(newValue, "");
+
+                    if (opt.equals("*")) {
+                        double oldNumber = formatter.parse(oldValue).doubleValue();
+                        int round = (int) Math.round(oldNumber);
+                        StringBuilder result = new StringBuilder();
+                        for (int i=0;i<round;i++) {
+                            result.append(newValue);
+                            result.append(System.lineSeparator());
+                        }
+                        return result.toString().trim();
                     }
-                    return result.toString().trim();
-                }
 
-                return newValue;
+                    return newValue;
 
-            } else if (isNumeric(newValue)) {
+                } else if (isNumeric(newValue, session.context.locale())) {
 
-                /**
-                 * Support + - *
-                 */
+                    /**
+                     * Support + - *
+                     */
 
-                if (opt.equals("+"))
-                    return oldValue + newValue;
+                    if (opt.equals("+"))
+                        return oldValue + newValue;
 
-                if (opt.equals("-"))
-                    return oldValue.replace(newValue, "");
+                    if (opt.equals("-"))
+                        return oldValue.replace(newValue, "");
 
-                if (opt.equals("*")) {
-                    double newNumber = Double.parseDouble(newValue);
-                    int round = (int) Math.round(newNumber);
-                    StringBuilder result = new StringBuilder();
-                    for (int i=0;i<round;i++) {
-                        result.append(oldValue);
-                        result.append(System.lineSeparator());
+                    if (opt.equals("*")) {
+                        double newNumber = formatter.parse(newValue).doubleValue();
+                        int round = (int) Math.round(newNumber);
+                        StringBuilder result = new StringBuilder();
+                        for (int i=0;i<round;i++) {
+                            result.append(oldValue);
+                            result.append(System.lineSeparator());
+                        }
+                        return result.toString().trim();
                     }
-                    return result.toString().trim();
+
+                    return newValue;
+
+                } else {
+
+                    /**
+                     * Only support +
+                     */
+                    if (opt.equals("+"))
+                        return oldValue + newValue;
+
+                    return newValue;
                 }
-
-                return newValue;
-
-            } else {
-
-                /**
-                 * Only support +
-                 */
-                if (opt.equals("+"))
-                    return oldValue + newValue;
-
-                return newValue;
+            } catch (ParseException e) {
+              e.printStackTrace();
             }
 
         }

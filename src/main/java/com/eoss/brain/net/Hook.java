@@ -7,8 +7,11 @@ import com.eoss.brain.hook.NumberHook;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -71,19 +74,31 @@ public class Hook implements Serializable {
             return input.contains(text.toLowerCase());
         }
 
-        //Number Compare
-        if (VarExpression.isNumeric(input) && VarExpression.isNumeric(text)) {
-            double inputNumber = Double.parseDouble(input);
-            double hookNumber = Double.parseDouble(text);
+        Locale locale = Locale.getDefault();
 
-            if (match == Match.GreaterEqualThan)
-                return inputNumber >= hookNumber;
-            if (match == Match.GreaterThan)
-                return inputNumber > hookNumber;
-            if (match == Match.LowerEqualThan)
-                return inputNumber <= hookNumber;
-            if (match == Match.LowerThan)
-                return inputNumber < hookNumber;
+        //Number Compare
+        if (VarExpression.isNumeric(input, locale) && VarExpression.isNumeric(text, locale)) {
+
+            try {
+
+                NumberFormat formatter = NumberFormat.getInstance(locale);
+
+                double inputNumber = formatter.parse(input).doubleValue();
+                double hookNumber = formatter.parse(text).doubleValue();
+
+                if (match == Match.GreaterEqualThan)
+                    return inputNumber >= hookNumber;
+                if (match == Match.GreaterThan)
+                    return inputNumber > hookNumber;
+                if (match == Match.LowerEqualThan)
+                    return inputNumber <= hookNumber;
+                if (match == Match.LowerThan)
+                    return inputNumber < hookNumber;
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
 
         Object modeObject = messageObject.attributes.get("mode");
