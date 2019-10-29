@@ -50,9 +50,13 @@ public class MessageObject implements Serializable {
         return attributes.get("wordList") != null;
     }
 
+    private String clean(String text) {
+        return text.replace(", ", " ").replace("@", "").replace("?", "").replace("!", "").toLowerCase();
+    }
+
     public MessageObject split() {
         String text = attributes.get("text").toString();
-        List<String> wordList = Arrays.asList(text.toLowerCase().split(" "));
+        List<String> wordList = Arrays.asList(clean(text).split(" "));
         attributes.put("wordList", wordList);
         attributes.put("wordCount", wordList.size());
         return this;
@@ -60,7 +64,7 @@ public class MessageObject implements Serializable {
 
     public MessageObject split(Context context) {
         String text = attributes.get("text").toString();
-        List<String> wordList = Arrays.asList(context.split(text.toLowerCase()));
+        List<String> wordList = Arrays.asList(context.split(clean(text)));
         attributes.put("wordList", wordList);
         attributes.put("wordCount", wordList.size());
         return this;
