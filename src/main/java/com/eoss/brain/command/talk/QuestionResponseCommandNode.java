@@ -18,7 +18,7 @@ public class QuestionResponseCommandNode extends ResponseCommandNode {
 
         //Override Question
         String forwardMessage = generatedOutput;
-        int lastIndexOfComma = generatedOutput.lastIndexOf(",");
+        int lastIndexOfComma = generatedOutput.lastIndexOf(", ");
         if (lastIndexOfComma!=-1 && lastIndexOfComma<generatedOutput.length()-1) {
             forwardMessage = generatedOutput.substring(lastIndexOfComma + 1).trim();
             generatedOutput = generatedOutput.substring(0, lastIndexOfComma);
