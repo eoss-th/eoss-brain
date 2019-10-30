@@ -55,7 +55,7 @@ public class VarExpression extends Expression {
         /**
          * Check there is prefix operand or not?
          */
-        if (newValue.startsWith("+") || newValue.startsWith("-") || newValue.startsWith("*") || newValue.startsWith("/")) {
+        if (newValue.startsWith("+") || newValue.startsWith("-") || newValue.startsWith("*") || newValue.startsWith("/") || newValue.startsWith("^")) {
 
             try {
                 String opt = newValue.substring(0, 1);
@@ -89,6 +89,9 @@ public class VarExpression extends Expression {
 
                     if (opt.equals("/"))
                         return formatter.format(oldNumber / newNumber);
+
+                    if (opt.equals("^"))
+                        return formatter.format(Math.pow(oldNumber, newNumber));
 
                 } else if (isNumeric(oldValue, session.context.locale())) {
 
