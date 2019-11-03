@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class Session implements Serializable {
 
-    public static final int MAX_LOOP = 10;
+    public static final int MAX_LOOP = 99;
 
     public static class Entry implements Serializable {
         public final MessageObject messageObject;
