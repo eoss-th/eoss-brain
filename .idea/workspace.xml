@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.2.5&#10;&#10;Support ^ operator for power">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.2.5-beta&#10;&#10;Support Loop with 99 maximum">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java" afterDir="false" />
@@ -118,15 +118,15 @@
           <entry key="context" value="4" />
           <entry key="dummy" value="20" />
           <entry key="gradle" value="5" />
-          <entry key="java" value="35880" />
-          <entry key="txt" value="1465" />
+          <entry key="java" value="35976" />
+          <entry key="txt" value="1506" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="5" />
-          <entry key="JAVA" value="35880" />
-          <entry key="PLAIN_TEXT" value="1489" />
+          <entry key="JAVA" value="35976" />
+          <entry key="PLAIN_TEXT" value="1530" />
         </counts>
       </usages-collector>
     </session>
@@ -158,13 +158,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="138">
+              <caret line="233" column="40" lean-forward="true" selection-start-line="233" selection-start-column="40" selection-end-line="233" selection-end-column="40" />
               <folding>
                 <element signature="e#5738#5739#0" expanded="true" />
                 <element signature="e#5779#5780#0" expanded="true" />
-                <element signature="e#5821#5822#0" expanded="true" />
-                <element signature="e#5868#5869#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,8 +189,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+            <state relative-caret-position="258">
+              <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -252,7 +250,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>api/</find>
       <find>lastEntry</find>
       <find>System.out.print</find>
       <find>wordCount</find>
@@ -281,6 +278,7 @@
       <find>&quot;, &quot;</find>
       <find>= &quot;, &quot;</find>
       <find>canRoute</find>
+      <find>clearR</find>
       <find>alreadyRoutedNodeList</find>
     </findStrings>
     <replaceStrings>
@@ -659,8 +657,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/QuestionResponseCommandNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/MessageObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/VarExpression.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java" />
       </list>
     </option>
   </component>
@@ -1017,20 +1015,6 @@
       <option name="presentableId" value="Default" />
       <updated>1510122838184</updated>
     </task>
-    <task id="LOCAL-00040" summary="Weight Adjustment">
-      <created>1547867429302</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1547867429302</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Throw error for backup cmd">
-      <created>1548651290129</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1548651290129</updated>
-    </task>
     <task id="LOCAL-00042" summary="Add Hook Keywords Support (,) for Body Matched">
       <created>1548833392556</created>
       <option name="number" value="00042" />
@@ -1360,7 +1344,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572417640637</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="v1.2.5-beta&#10;&#10;Support Loop with 10 maximum">
+      <created>1572783280888</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1572783280890</updated>
+    </task>
+    <task id="LOCAL-00090" summary="v1.2.5-beta&#10;&#10;Support Loop with 99 maximum">
+      <created>1572783394814</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1572783394814</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1408,7 +1406,7 @@
     <frame x="0" y="23" width="1280" height="727" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2641357" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26332796" />
       <window_info id="Structure" order="1" weight="0.24968314" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -1417,7 +1415,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.27401575" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.27401575" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33577406" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39873418" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1446,8 +1444,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.1.4-alpha" />
-    <MESSAGE value="v1.1.4-beta" />
     <MESSAGE value="v1.1.5" />
     <MESSAGE value="v1.1.5.1&#10;Hook Calculation" />
     <MESSAGE value="v1.1.5.2&#10;Fix Hook Calculation" />
@@ -1471,7 +1467,9 @@
     <MESSAGE value="v1.2.2&#10;&#10;Clean Input from reserved words" />
     <MESSAGE value="v1.2.4" />
     <MESSAGE value="v1.2.5&#10;&#10;Support ^ operator for power" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.5&#10;&#10;Support ^ operator for power" />
+    <MESSAGE value="v1.2.5-beta&#10;&#10;Support Loop with 10 maximum" />
+    <MESSAGE value="v1.2.5-beta&#10;&#10;Support Loop with 99 maximum" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.5-beta&#10;&#10;Support Loop with 99 maximum" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1824,20 +1822,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+        <state relative-caret-position="258">
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="138">
+          <caret line="233" column="40" lean-forward="true" selection-start-line="233" selection-start-column="40" selection-end-line="233" selection-end-column="40" />
           <folding>
             <element signature="e#5738#5739#0" expanded="true" />
             <element signature="e#5779#5780#0" expanded="true" />
-            <element signature="e#5821#5822#0" expanded="true" />
-            <element signature="e#5868#5869#0" expanded="true" />
           </folding>
         </state>
       </provider>

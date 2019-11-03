@@ -152,7 +152,7 @@ public class MenuTalkCommandNode extends CommandNode {
                 session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
             }
 
-        } else if (!alreadyRoutedNodeList.isEmpty() && alreadyRoutedNodeList.size() > Session.MAX_LOOP) {
+        } else if (!alreadyRoutedNodeList.isEmpty()) {
 
             responseText = session.lastEntry().node.response();
 
