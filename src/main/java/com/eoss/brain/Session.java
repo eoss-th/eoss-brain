@@ -231,9 +231,15 @@ public class Session implements Serializable {
         return routeSet.add(node);
     }
 
+    public boolean reachMaximumRoute() {
+        return routeSet.size() > MAX_ROUTE;
+    }
+
+    /**
+     * @Depredicated
+     */
     public boolean canRoute(Node node) {
-        return routeSet.size() < MAX_ROUTE;
-        //return !routeSet.contains(node);
+        return !routeSet.contains(node);
     }
 
     public void setVariable(String name, String value) {

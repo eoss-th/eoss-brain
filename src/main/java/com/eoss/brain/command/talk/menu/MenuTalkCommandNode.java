@@ -25,8 +25,6 @@ public class MenuTalkCommandNode extends CommandNode {
 
     private final Key lowConfidenceKey;
 
-    private boolean canRoute;
-
     public MenuTalkCommandNode(Session session, Key lowConfidenceKey) {
         super(session);
         this.lowConfidenceKey = lowConfidenceKey;
@@ -50,25 +48,13 @@ public class MenuTalkCommandNode extends CommandNode {
 
         final Set<Node> activeNodeSet = new HashSet<>();
 
-        //List<Node> alreadyRoutedNodeList = new ArrayList<>();
-
         session.context.matched(messageObject, new ContextListener() {
             @Override
             public void callback(NodeEvent nodeEvent) {
-                /**
-                 * Protect from Cyclic Forwarding
-                 */
 
-                canRoute = session.canRoute(nodeEvent.node);
-                if (canRoute) {
-                    nodeEvent.node.feed(messageObject);
-                    activeNodeSet.add(nodeEvent.node);
-                }
-                /*
-                else {
-                    alreadyRoutedNodeList.add(nodeEvent.node);
-                }
-                */
+                nodeEvent.node.feed(messageObject);
+                activeNodeSet.add(nodeEvent.node);
+
             }
         });
 
@@ -159,10 +145,7 @@ public class MenuTalkCommandNode extends CommandNode {
                 session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
             }
 
-        }
-
-        //else if (!alreadyRoutedNodeList.isEmpty()) {
-        else if (!canRoute) {
+        } else if (session.reachMaximumRoute()) {
 
             responseText = session.lastEntry().node.response();
 
