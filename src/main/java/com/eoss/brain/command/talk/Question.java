@@ -107,7 +107,7 @@ public class Question {
 
                 String linkURL = responses[responses.length-1].trim();
 
-                if (!linkURL.startsWith("https://") && !linkURL.startsWith("tel:") && !linkURL.startsWith("mailto:")) {
+                if ( (!linkURL.startsWith("https://") || !linkURL.contains("://") /*For App*/) && !linkURL.startsWith("tel:") && !linkURL.startsWith("mailto:")) {
                     linkURL = null;
                 }
 
