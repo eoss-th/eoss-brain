@@ -28,7 +28,7 @@ public class RESTHTTPExpression extends HTTPExpression {
 
         if (args.length==4) {
 
-            String url = "https://" + args[3];
+            String url = super.unsecureURLSupport(args[3]);
 
             headerMap.putAll(createParamMapFromQueryString(args[1]));
 
@@ -37,7 +37,8 @@ public class RESTHTTPExpression extends HTTPExpression {
 
         } else if (args.length==3) {
 
-            String url = "https://" + args[2];
+            String url = super.unsecureURLSupport(args[2]);
+
             super.updateParameters(messageObject, request(url, headerMap, args[1]));
             return "";
         }

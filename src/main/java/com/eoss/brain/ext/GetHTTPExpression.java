@@ -24,7 +24,7 @@ public class GetHTTPExpression extends HTTPExpression {
 
         if (args.length==3) {
 
-            String url = "https://" + args[2];
+            String url = super.unsecureURLSupport(args[2]);
 
             headerMap.putAll(createParamMapFromQueryString(args[1]));
 
@@ -33,7 +33,8 @@ public class GetHTTPExpression extends HTTPExpression {
 
         } else if (args.length==2) {
 
-            String url = "https://" + args[1];
+            String url = super.unsecureURLSupport(args[1]);
+
             super.updateParameters(messageObject, get(url, headerMap));
             return "";
         }

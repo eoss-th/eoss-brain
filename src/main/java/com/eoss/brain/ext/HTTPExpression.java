@@ -8,6 +8,8 @@ import java.util.Map;
 
 public abstract class HTTPExpression extends Expression {
 
+    private final String unsecureURLOption = "-nonsecure";
+
     public HTTPExpression(Session session, String[] arguments) {
         super(session, arguments);
     }
@@ -34,6 +36,18 @@ public abstract class HTTPExpression extends Expression {
             paramMap.put(keyValue[0], keyValue[1]);
         }
         return paramMap;
+    }
+
+    protected final String unsecureURLSupport(String uri) {
+
+        /**
+         * Convert to http and remove unsecure option
+         */
+        if (uri.endsWith(unsecureURLOption)) {
+            return "http://" + uri.replace(unsecureURLOption, "");
+        }
+
+        return "https://" + uri;
     }
 
 }
