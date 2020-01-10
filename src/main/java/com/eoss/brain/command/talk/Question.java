@@ -109,6 +109,11 @@ public class Question {
 
                 if ( (!linkURL.startsWith("https://") || !linkURL.contains("://") /*For App*/) && !linkURL.startsWith("tel:") && !linkURL.startsWith("mailto:")) {
                     linkURL = null;
+                } else {
+                    /**
+                     * Variable Supported for Link
+                     */
+                    linkURL = session.parameterized(null, linkURL);
                 }
 
                 choices.add(new Choice(parent, label, imageURL, linkURL));

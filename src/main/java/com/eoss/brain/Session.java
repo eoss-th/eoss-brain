@@ -258,6 +258,8 @@ public class Session implements Serializable {
 
     private final Map<String, String> paramMap(MessageObject messageObject) {
 
+        if (messageObject==null) return null;
+
         String input = messageObject.toString();
 
         String [] params = context.split(input, Locale.US);
@@ -286,6 +288,7 @@ public class Session implements Serializable {
     }
 
     private final String parameterized(Map<String, String> paramMap, String text) {
+        if (paramMap==null) return text;
         String output = text;
         for (Map.Entry<String, String> entry:paramMap.entrySet()) {
             output = output.replace(entry.getKey(), entry.getValue());
