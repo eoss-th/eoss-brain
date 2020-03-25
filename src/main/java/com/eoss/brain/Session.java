@@ -295,6 +295,12 @@ public class Session implements Serializable {
         /**
          * Clean Unresolved Variables
          */
+        parameterizedText = cleanUnresolvedVariables(parameterizedText);
+
+        return parameterizedText.trim();
+    }
+
+    private String cleanUnresolvedVariables(String parameterizedText) {
         Pattern pattern = Pattern.compile("#\\w+");
         Matcher matcher = pattern.matcher(parameterizedText);
 
@@ -312,8 +318,7 @@ public class Session implements Serializable {
             }
             parameterizedText = parameterizedText.replace(unresolvedVar, replacer);
         }
-
-        return parameterizedText.trim();
+        return parameterizedText;
     }
 
 }
