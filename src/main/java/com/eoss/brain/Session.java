@@ -1,11 +1,8 @@
 package com.eoss.brain;
 
 import com.eoss.brain.command.*;
-import com.eoss.brain.command.talk.AnswerResponseCommandNode;
 import com.eoss.brain.command.talk.ProblemCommandNode;
-import com.eoss.brain.command.talk.TalkCommandNode;
 import com.eoss.brain.net.Context;
-import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.Node;
 import com.eoss.brain.net.SessionListener;
 
@@ -16,6 +13,8 @@ import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  * Created by eossth on 7/14/2017 AD.
  */
@@ -292,6 +291,28 @@ public class Session implements Serializable {
          * Session Variables
          */
         parameterizedText = parameterized(variableMap, parameterizedText);
+
+        /**
+         * Clean Unresolved Variables
+         */
+        Pattern pattern = Pattern.compile("#\\w+");
+        Matcher matcher = pattern.matcher(parameterizedText);
+
+        String unresolvedVar;
+        String replacer;
+        while (matcher.find())
+        {
+            unresolvedVar = matcher.group();
+            if (unresolvedVar.startsWith("#i_")) {
+                replacer = "0";//Integer
+            } else if (unresolvedVar.startsWith("#s_")) {
+                replacer = "";//Empty String
+            } else {
+                replacer = unresolvedVar; //Do nothing
+            }
+            parameterizedText = parameterizedText.replace(parameterizedText, replacer);
+        }
+
         return parameterizedText.trim();
     }
 
