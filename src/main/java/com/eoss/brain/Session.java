@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class Session implements Serializable {
 
-    public static final int MAX_ROUTE = 10;
+    public static final int MAX_ROUTE = 100;
 
     public static class Entry implements Serializable {
         public final MessageObject messageObject;
@@ -48,7 +48,7 @@ public class Session implements Serializable {
 
     private final Set<Node> activeNodePool = new HashSet<>();
 
-    private final Set<Node> routeSet = new HashSet<>();
+    private final List<Node> routeList = new ArrayList<>();
 
     public final Map<String, String> variableMap = new HashMap<>();
 
@@ -224,22 +224,15 @@ public class Session implements Serializable {
     }
 
     private void clearRoute() {
-        routeSet.clear();
+        routeList.clear();
     }
 
     public boolean route(Node node) {
-        return routeSet.add(node);
+        return routeList.add(node);
     }
 
     public boolean reachMaximumRoute() {
-        return routeSet.size() > MAX_ROUTE;
-    }
-
-    /**
-     * @Depredicated
-     */
-    public boolean canRoute(Node node) {
-        return !routeSet.contains(node);
+        return routeList.size() > MAX_ROUTE;
     }
 
     public void setVariable(String name, String value) {

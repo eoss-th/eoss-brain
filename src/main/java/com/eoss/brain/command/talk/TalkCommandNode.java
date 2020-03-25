@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 /**
  * Created by eossth on 7/31/2017 AD.
  */
+@Deprecated
 public class TalkCommandNode extends CommandNode {
 
     private final Key lowConfidenceKey;
@@ -51,7 +52,7 @@ public class TalkCommandNode extends CommandNode {
                 /**
                  * Protect from Cyclic Forwarding
                  */
-                if (session.canRoute(nodeEvent.node)) {
+                if (session.reachMaximumRoute()==false) {
                     nodeEvent.node.feed(messageObject);
                     activeNodeSet.add(nodeEvent.node);
                 } else {

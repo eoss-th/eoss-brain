@@ -161,7 +161,7 @@ public class MenuTalkCommandNode extends CommandNode {
 
             if (session.reachMaximumRoute()) {
 
-                return session.lastEntry().node.response() + System.lineSeparator() + "Reach Maximum Cyclic, Please review your graph to fix this problem!";
+                return "Cyclic Problem!, Please review your graph.";
             }
 
             session.route(maxActiveNode);

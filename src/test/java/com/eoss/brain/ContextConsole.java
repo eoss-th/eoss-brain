@@ -16,7 +16,7 @@ public class ContextConsole {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("men").admin(adminIdList).locale(new Locale("th"));
+        Context context = new FileContext("cyclic-test").admin(adminIdList).locale(new Locale("th"));
 
         context.load();
 
