@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.3.5-release">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.3.6-alpha&#10;&#10;Clean unresolved variables&#10;#i_ for Integer replace by 0&#10;#s_ for String replace by empty string">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" afterDir="false" />
     </list>
@@ -144,27 +144,27 @@
         <counts>
           <entry key="gradle" value="3" />
           <entry key="java" value="1274" />
-          <entry key="txt" value="187" />
+          <entry key="txt" value="315" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
           <entry key="JAVA" value="1274" />
-          <entry key="PLAIN_TEXT" value="187" />
+          <entry key="PLAIN_TEXT" value="315" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="context" value="1" />
           <entry key="gradle" value="1" />
-          <entry key="java" value="16" />
+          <entry key="java" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="16" />
+          <entry key="JAVA" value="17" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -172,15 +172,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="174" column="5" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -226,8 +217,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+            <state relative-caret-position="264">
+              <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -235,8 +226,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="297" column="51" selection-start-line="297" selection-start-column="51" selection-end-line="297" selection-end-column="51" />
+            <state relative-caret-position="330">
+              <caret line="312" column="71" selection-start-line="312" selection-start-column="71" selection-end-line="312" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5431#5432#0" expanded="true" />
@@ -244,6 +235,15 @@
                 <element signature="e#6070#6071#0" expanded="true" />
                 <element signature="e#6110#6111#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -287,7 +287,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>System.out</find>
       <find>&quot;Question&quot;</find>
       <find>AnswerResponseCommandNode.</find>
       <find>hello</find>
@@ -317,6 +316,7 @@
       <find>getVariable</find>
       <find>#</find>
       <find>Pattern</find>
+      <find>session.parameterized</find>
     </findStrings>
     <replaceStrings>
       <replace>.active</replace>
@@ -716,41 +716,6 @@
               <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
               <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="eoss" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="eoss" type="462c0819:PsiDirectoryNode" />
-              <item name="brain" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -987,13 +952,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510122838184</updated>
-    </task>
-    <task id="LOCAL-00056" summary="v1.1.2 Alpha Release">
-      <created>1553557094643</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1553557094643</updated>
     </task>
     <task id="LOCAL-00057" summary="v1.1.2 Beta Release">
       <created>1553557159116</created>
@@ -1331,7 +1289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585121136349</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="v1.3.6-alpha&#10;&#10;Clean unresolved variables&#10;#i_ for Integer replace by 0&#10;#s_ for String replace by empty string">
+      <created>1585125387772</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1585125387773</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1388,7 +1353,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.27401575" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.27401575" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33543307" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39873418" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1451,7 +1416,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2&#10;&#10;- Support Operator + - * / for variable setting" />
     <MESSAGE value="v1.2.1&#10;&#10;- Support Number Compare" />
     <MESSAGE value="v1.2.1-beta&#10;&#10;- Support Local Number for Calculation" />
     <MESSAGE value="v1.2.1-gamma&#10;&#10;- Fix , input bug" />
@@ -1476,7 +1440,8 @@
     <MESSAGE value="v1.3.4-beta&#10;&#10;Prevent Stack Overflow from recursive calling (MAX=10 times)." />
     <MESSAGE value="v1.3.5&#10;&#10;Prevent Stack Overflow from recursive calling (MAX=100 times).&#10;Update Gradle for json-path and jsoup" />
     <MESSAGE value="v1.3.5-release" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.3.5-release" />
+    <MESSAGE value="v1.3.6-alpha&#10;&#10;Clean unresolved variables&#10;#i_ for Integer replace by 0&#10;#s_ for String replace by empty string" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.3.6-alpha&#10;&#10;Clean unresolved variables&#10;#i_ for Integer replace by 0&#10;#s_ for String replace by empty string" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1732,13 +1697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1590">
-          <caret line="111" column="24" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/AnswerResponseCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1812,13 +1770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuAnswerResponseCommandNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -1840,10 +1791,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="297" column="51" selection-start-line="297" selection-start-column="51" selection-end-line="297" selection-end-column="51" />
+        <state relative-caret-position="330">
+          <caret line="312" column="71" selection-start-line="312" selection-start-column="71" selection-end-line="312" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5431#5432#0" expanded="true" />

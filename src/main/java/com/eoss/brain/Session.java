@@ -310,7 +310,7 @@ public class Session implements Serializable {
             } else {
                 replacer = unresolvedVar; //Do nothing
             }
-            parameterizedText = parameterizedText.replace(parameterizedText, replacer);
+            parameterizedText = parameterizedText.replace(unresolvedVar, replacer);
         }
 
         return parameterizedText.trim();
