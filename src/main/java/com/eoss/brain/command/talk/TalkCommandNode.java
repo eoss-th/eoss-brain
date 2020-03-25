@@ -120,8 +120,6 @@ public class TalkCommandNode extends CommandNode {
 
             session.setLastEntry(messageObject, maxActiveNode);
 
-            session.route(maxActiveNode);
-
             //Clean MessageObject
             String input = messageObject.toString();
             StringBuilder forwardInput = new StringBuilder(maxActiveNode.clean(input));

@@ -135,10 +135,6 @@ public class ThinkableTalkCommandNode extends CommandNode {
         if (maxActiveNode!=null) {
 
             session.setLastEntry(messageObject, maxActiveNode);
-
-            if (session.route(maxActiveNode)) {
-                //
-            }
         }
 
         return responseText;

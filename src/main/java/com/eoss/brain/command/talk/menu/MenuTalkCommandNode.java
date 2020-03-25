@@ -161,10 +161,8 @@ public class MenuTalkCommandNode extends CommandNode {
 
             if (session.reachMaximumRoute()) {
 
-                return "Cyclic Problem!, Please review your graph.";
+                return "Too many forwarding :(, Please review your graph.";
             }
-
-            session.route(maxActiveNode);
 
             //Clean MessageObject
             String input = messageObject.toString();

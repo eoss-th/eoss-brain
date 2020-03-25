@@ -48,8 +48,6 @@ public class Session implements Serializable {
 
     private final Set<Node> activeNodePool = new HashSet<>();
 
-    private final List<Node> routeList = new ArrayList<>();
-
     public final Map<String, String> variableMap = new HashMap<>();
 
     public final List<Node> protectedList = new ArrayList<>();
@@ -61,6 +59,8 @@ public class Session implements Serializable {
     protected ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public SessionListener listener;
+
+    private int routeCount;
 
     public Session() { }
 
@@ -80,7 +80,7 @@ public class Session implements Serializable {
 
     public String parse(MessageObject messageObject) {
 
-        clearRoute();
+        routeCount = 0;
 
         boolean isAdminCommandExecuted = false;
         String result = null;
@@ -208,6 +208,7 @@ public class Session implements Serializable {
 
     public void setLastEntry(MessageObject messageObject, Node node) {
         lastEntry = new Entry(messageObject, node);
+        routeCount ++;
     }
 
     public void clearLastEntry() {
@@ -223,16 +224,8 @@ public class Session implements Serializable {
         problemSolved = false;
     }
 
-    private void clearRoute() {
-        routeList.clear();
-    }
-
-    public boolean route(Node node) {
-        return routeList.add(node);
-    }
-
     public boolean reachMaximumRoute() {
-        return routeList.size() > MAX_ROUTE;
+        return routeCount > MAX_ROUTE;
     }
 
     public void setVariable(String name, String value) {

@@ -74,7 +74,6 @@ public class MenuAnswerResponseCommandNode extends ResponseCommandNode {
 
                     Node maxActiveNode = maxActiveNodes.get(0);
                     session.setLastEntry(messageObject, maxActiveNode);
-                    session.route(maxActiveNode);
 
                     //Clean MessageObject
                     String input = messageObject.toString();
