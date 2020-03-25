@@ -38,6 +38,11 @@ public class MenuTalkCommandNode extends CommandNode {
     @Override
     public String execute(MessageObject messageObject) {
 
+        if (session.reachMaximumRoute()) {
+
+            return session.lastEntry().node.response() + System.lineSeparator() + "Maximum cyclic warning, Please review your graph to fix this problem!";
+        }
+
         if (session.mode!=null && !session.mode.trim().isEmpty()) {
             messageObject.attributes.put("mode", session.mode.trim());
         }
@@ -144,10 +149,6 @@ public class MenuTalkCommandNode extends CommandNode {
             if (session.listener != null) {
                 session.listener.callback(new NodeEvent(maxActiveNode, messageObject, NodeEvent.Event.HesitateConfidence));
             }
-
-        } else if (session.reachMaximumRoute()) {
-
-            responseText = session.lastEntry().node.response();
 
         } else {
 
