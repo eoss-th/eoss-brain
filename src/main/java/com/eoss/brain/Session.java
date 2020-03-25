@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class Session implements Serializable {
 
-    public static final int MAX_ROUTE = 99;
+    public static final int MAX_ROUTE = 10;
 
     public static class Entry implements Serializable {
         public final MessageObject messageObject;
