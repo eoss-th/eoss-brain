@@ -210,6 +210,10 @@ public class Session implements Serializable {
         routeCount ++;
     }
 
+    public int getRoundCount() {
+        return routeCount;
+    }
+
     public void clearLastEntry() {
         lastEntry = null;
     }

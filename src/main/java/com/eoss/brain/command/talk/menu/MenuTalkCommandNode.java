@@ -161,7 +161,7 @@ public class MenuTalkCommandNode extends CommandNode {
 
             if (session.reachMaximumRoute()) {
 
-                return "Too many forwarding :(, Please review your graph.";
+                return "Too many forwarding :(, Please review your graph. [Round=" + session.getRoundCount() + "]";
             }
 
             //Clean MessageObject
