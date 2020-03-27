@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  */
 public class Session implements Serializable {
 
-    public static final int MAX_ROUTE = 100;
+    public static final int MAX_ROUTE = 200;
 
     public static class Entry implements Serializable {
         public final MessageObject messageObject;
