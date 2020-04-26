@@ -24,8 +24,6 @@ public class Draw2DContextBuilder {
             this.node.setResponse(response);
 
             this.node.attributes.put("id", UUID.randomUUID().toString());
-            this.node.attributes.put("x", 0);
-            this.node.attributes.put("y", 0);
             this.node.attributes.put("isQuestion", isQuestion);
         }
 
@@ -39,7 +37,11 @@ public class Draw2DContextBuilder {
 
     public final Entity SILENT;
 
-    public Draw2DContextBuilder(Context context, String title) {
+    private int x;
+    private int y;
+    private final int shift;
+
+    public Draw2DContextBuilder(Context context, String title, int shift) {
 
         this.context = context;
 
@@ -59,6 +61,11 @@ public class Draw2DContextBuilder {
         this.context.properties.put("borderColor", "#64c583");
         this.context.properties.put("language", "th");
 
+        this.shift = shift;
+
+        x = shift;
+        y = shift;
+
     }
 
     /**
@@ -68,6 +75,9 @@ public class Draw2DContextBuilder {
     public Entity newEntity(Entity [] parentEntities, String keyword, String response, boolean isQuestion) {
 
         Entity newEntity = new Entity(keyword, response, isQuestion);
+
+        newEntity.node.attributes.put("x", x);
+        newEntity.node.attributes.put("y", y);
 
         if (parentEntities!=null) {
 
@@ -108,6 +118,14 @@ public class Draw2DContextBuilder {
         this.context.add(newEntity.node);
 
         return newEntity;
+    }
+
+    public void nextColumn() {
+        x += shift;
+    }
+
+    public void nextRow() {
+        y += shift;
     }
 
 }
