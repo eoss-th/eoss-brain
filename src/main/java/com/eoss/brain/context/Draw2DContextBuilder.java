@@ -39,32 +39,38 @@ public class Draw2DContextBuilder {
 
     private int x;
     private int y;
-    private final int shift;
 
     public Draw2DContextBuilder(Context context, String title, int shift) {
 
         this.context = context;
 
+        x = shift;
+        y = shift;
+
         GREETING = new Entity("GREETING", "", false);
+        GREETING.node.attributes.put("x", x);
+        GREETING.node.attributes.put("y", y);
         this.context.attributes.put("start", new JSONObject(GREETING.node.attributes));
         this.context.properties.put("greeting", "");
+        y += shift;
 
         UNKNOWN = new Entity("UNKNOWN", "", false);
+        UNKNOWN.node.attributes.put("x", x);
+        UNKNOWN.node.attributes.put("y", y);
         this.context.attributes.put("end", new JSONObject(UNKNOWN.node.attributes));
         this.context.properties.put("unknown", "");
+        y += shift;
 
         SILENT = new Entity("SILENT", "", false);
+        SILENT.node.attributes.put("x", x);
+        SILENT.node.attributes.put("y", y);
         this.context.attributes.put("silent", new JSONObject(SILENT.node.attributes));
         this.context.properties.put("silent", "");
+        y += shift;
 
         this.context.properties.put("title", title);
         this.context.properties.put("borderColor", "#64c583");
         this.context.properties.put("language", "th");
-
-        this.shift = shift;
-
-        x = shift;
-        y = shift;
 
     }
 
@@ -120,11 +126,11 @@ public class Draw2DContextBuilder {
         return newEntity;
     }
 
-    public void nextColumn() {
+    public void nextColumn(int shift) {
         x += shift;
     }
 
-    public void nextRow() {
+    public void nextRow(int shift) {
         y += shift;
     }
 
