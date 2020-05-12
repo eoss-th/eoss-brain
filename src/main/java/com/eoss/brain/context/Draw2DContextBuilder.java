@@ -110,9 +110,22 @@ public class Draw2DContextBuilder {
 
                     this.context.properties.put("unknown", ", @" + parentEntity.node.attributes.get("id") + "!");
 
-                } else if (!parentEntity.node.response().endsWith(", @" + parentEntity.node.attributes.get("id") + "!")) {
+                } else {
 
-                    parentEntity.node.setResponse(parentEntity.node.response() + ", @" + parentEntity.node.attributes.get("id") + "!");
+                    //Mark isQuestion Flag to the parent entities
+                    if (isQuestion) {
+
+                        if (!parentEntity.node.response().endsWith(", @" + parentEntity.node.attributes.get("id") + "?")) {
+                            parentEntity.node.setResponse(parentEntity.node.response() + ", @" + parentEntity.node.attributes.get("id") + "?");
+                        }
+
+                    } else {
+
+                        if (!parentEntity.node.response().endsWith(", @" + parentEntity.node.attributes.get("id") + "!")) {
+                            parentEntity.node.setResponse(parentEntity.node.response() + ", @" + parentEntity.node.attributes.get("id") + "!");
+                        }
+
+                    }
 
                 }
 
