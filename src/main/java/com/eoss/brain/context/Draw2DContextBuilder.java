@@ -27,6 +27,13 @@ public class Draw2DContextBuilder {
             this.node.attributes.put("isQuestion", isQuestion);
         }
 
+        public boolean isQuestion() {
+            if (node.attributes.get("isQuestion")!=null) {
+                return (boolean) node.attributes.get("isQuestion");
+            }
+            return false;
+        }
+
     }
 
     public final Context context;
@@ -113,7 +120,7 @@ public class Draw2DContextBuilder {
                 } else {
 
                     //Mark isQuestion Flag to the parent entities
-                    if (isQuestion) {
+                    if (parentEntity.isQuestion()) {
 
                         if (!parentEntity.node.response().endsWith(", @" + parentEntity.node.attributes.get("id") + "?")) {
                             parentEntity.node.setResponse(parentEntity.node.response() + ", @" + parentEntity.node.attributes.get("id") + "?");

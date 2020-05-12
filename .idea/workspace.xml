@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.3.9-beta&#10;&#10;Draw2DContextBuilder (Basic Layout)">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.4-beta&#10;&#10;Fix mark as question flag of Draw2DContextBuilder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/Draw2DContextBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/Draw2DContextBuilder.java" afterDir="false" />
     </list>
@@ -147,28 +147,28 @@
         <counts>
           <entry key="dummy" value="35" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="4200" />
-          <entry key="txt" value="416" />
+          <entry key="java" value="4446" />
+          <entry key="txt" value="516" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="4200" />
-          <entry key="PLAIN_TEXT" value="451" />
+          <entry key="JAVA" value="4446" />
+          <entry key="PLAIN_TEXT" value="551" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="context" value="3" />
           <entry key="gradle" value="1" />
-          <entry key="java" value="28" />
+          <entry key="java" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="28" />
+          <entry key="JAVA" value="30" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
@@ -179,11 +179,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+            <state relative-caret-position="-2262">
+              <caret line="67" column="42" lean-forward="true" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
               <folding>
                 <element signature="e#522#523#0" expanded="true" />
                 <element signature="e#569#570#0" expanded="true" />
+                <element signature="e#1640#1641#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -192,8 +193,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/context/Draw2DContextBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="42" column="75" lean-forward="true" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+            <state relative-caret-position="1920">
+              <caret line="128" column="28" lean-forward="true" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -202,22 +203,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/programatic.context">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/context/FileContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="35" selection-start-column="35" selection-end-column="35" />
+            <state relative-caret-position="390">
+              <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/context/Draw2DContextBuilderTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="241">
+              <caret line="185" column="32" lean-forward="true" selection-start-line="185" selection-start-column="32" selection-end-line="185" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -288,9 +286,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>AnswerResponseCommandNode.</find>
-      <find>hello</find>
-      <find>home</find>
       <find>\n</find>
       <find>&quot;\n&quot;</find>
       <find>\\`</find>
@@ -318,6 +313,9 @@
       <find>Pattern</find>
       <find>session.parameterized</find>
       <find>setLastEntry</find>
+      <find>?</find>
+      <find>isQuestion</find>
+      <find>&quot;!&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>.active</replace>
@@ -334,10 +332,10 @@
       <dir>$PROJECT_DIR$/src/main/java/com/eoss/brain</dir>
       <dir>$PROJECT_DIR$/src/test</dir>
       <dir>$PROJECT_DIR$/src/main/java/com/eoss</dir>
-      <dir>$PROJECT_DIR$/src</dir>
       <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/src/main/java</dir>
       <dir>$PROJECT_DIR$/src/main</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/main/java</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -709,10 +707,69 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eoss" type="462c0819:PsiDirectoryNode" />
+              <item name="brain" type="462c0819:PsiDirectoryNode" />
+              <item name="context" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587376306468" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589269936218" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
@@ -948,20 +1005,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510122838184</updated>
-    </task>
-    <task id="LOCAL-00063" summary="v1.1.4-alpha">
-      <created>1553841482755</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1553841482755</updated>
-    </task>
-    <task id="LOCAL-00064" summary="v1.1.4-beta">
-      <created>1554097131993</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1554097131995</updated>
     </task>
     <task id="LOCAL-00065" summary="v1.1.5">
       <created>1554097799641</created>
@@ -1292,7 +1335,21 @@
       <option name="project" value="LOCAL" />
       <updated>1587885790565</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="v1.4&#10;&#10;Fix shift &amp; x,y for start, unknown, silent">
+      <created>1589264830954</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1589264830955</updated>
+    </task>
+    <task id="LOCAL-00113" summary="v1.4-beta&#10;&#10;Fix mark as question flag of Draw2DContextBuilder">
+      <created>1589269230663</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1589269230663</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1340,7 +1397,7 @@
     <frame x="0" y="23" width="1280" height="727" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.33602583" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3352181" />
       <window_info id="Structure" order="1" weight="0.24968314" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -1375,7 +1432,7 @@
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32956383" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33602583" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3352181" />
       <window_info id="Structure" order="1" weight="0.24968314" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -1414,8 +1471,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.4" />
-    <MESSAGE value="v1.2.5&#10;&#10;Support ^ operator for power" />
     <MESSAGE value="v1.2.5-beta&#10;&#10;Support Loop with 10 maximum" />
     <MESSAGE value="v1.2.5-beta&#10;&#10;Support Loop with 99 maximum" />
     <MESSAGE value="v1.2.5-gamma&#10;&#10;Change from cyclic to limite the maximum route to 99" />
@@ -1439,7 +1494,9 @@
     <MESSAGE value="v1.3.8&#10;&#10;MAXROUTE = 200" />
     <MESSAGE value="v1.3.9&#10;&#10;Draw2DContextBuilder" />
     <MESSAGE value="v1.3.9-beta&#10;&#10;Draw2DContextBuilder (Basic Layout)" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.3.9-beta&#10;&#10;Draw2DContextBuilder (Basic Layout)" />
+    <MESSAGE value="v1.4&#10;&#10;Fix shift &amp; x,y for start, unknown, silent" />
+    <MESSAGE value="v1.4-beta&#10;&#10;Fix mark as question flag of Draw2DContextBuilder" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.4-beta&#10;&#10;Fix mark as question flag of Draw2DContextBuilder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1458,13 +1515,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/WakeupCommandNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/AnswerResponseCommandNodeTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2625">
@@ -1700,13 +1750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/context/MemoryContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1780,21 +1823,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/context/FileContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="185" column="32" lean-forward="true" selection-start-line="185" selection-start-column="32" selection-end-line="185" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+        <state relative-caret-position="-2262">
+          <caret line="67" column="42" lean-forward="true" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
           <folding>
             <element signature="e#522#523#0" expanded="true" />
             <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#1640#1641#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/context/Draw2DContextBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="42" column="75" lean-forward="true" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+        <state relative-caret-position="1920">
+          <caret line="128" column="28" lean-forward="true" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
