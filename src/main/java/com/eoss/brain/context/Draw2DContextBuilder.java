@@ -28,10 +28,7 @@ public class Draw2DContextBuilder {
         }
 
         public boolean isQuestion() {
-            if (node.attributes.get("isQuestion")!=null) {
-                return (boolean) node.attributes.get("isQuestion");
-            }
-            return false;
+            return (boolean) node.attributes.get("isQuestion");
         }
 
     }
