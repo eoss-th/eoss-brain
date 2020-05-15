@@ -279,8 +279,13 @@ public class Session implements Serializable {
     private final String parameterized(Map<String, String> paramMap, String text) {
         if (paramMap==null) return text;
         String output = text;
-        for (Map.Entry<String, String> entry:paramMap.entrySet()) {
-            output = output.replace(entry.getKey(), entry.getValue());
+        for (Map.Entry<String, String> entry : paramMap.entrySet()) {
+            try {
+                //if (entry.getValue()==null) continue; //Hot Fix for NullPointerException
+                output = output.replace(entry.getKey(), entry.getValue());
+            } catch (NullPointerException e) {
+                throw new RuntimeException(e + "[" + entry.getKey() + "=" + entry.getValue() + "]");
+            }
         }
         return output;
     }

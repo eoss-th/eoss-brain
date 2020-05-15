@@ -12,7 +12,7 @@ public class Draw2DContextBuilderTest {
 
         Context context = new FileContext("programatic");
 
-        Draw2DContextBuilder builder = new Draw2DContextBuilder(context, "Test");
+        Draw2DContextBuilder builder = new Draw2DContextBuilder(context, "Test", 100);
 
         Draw2DContextBuilder.Entity hello = builder.newEntity(new Draw2DContextBuilder.Entity[] {builder.GREETING, builder.UNKNOWN}, "Hello", "Test", false);
 
