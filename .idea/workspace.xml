@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.5-alpha&#10;&#10;Try to catch bug from NullPointerException by parameterized session">
+    <list default="true" id="c9ac2a58-279d-4423-ad37-e097c013317c" name="Default" comment="v1.5-beta&#10;&#10;Skip Null Variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -132,30 +132,30 @@
     <session id="-826486782">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="23" />
+          <entry key="project.closed" value="24" />
           <entry key="project.open.time.10" value="6" />
-          <entry key="project.open.time.11" value="5" />
+          <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="8" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="35" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="4779" />
-          <entry key="txt" value="602" />
+          <entry key="java" value="4781" />
+          <entry key="txt" value="631" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="4779" />
-          <entry key="PLAIN_TEXT" value="637" />
+          <entry key="JAVA" value="4781" />
+          <entry key="PLAIN_TEXT" value="666" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -221,11 +221,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="284" column="9" lean-forward="true" selection-start-line="284" selection-start-column="9" selection-end-line="284" selection-end-column="9" />
+            <state relative-caret-position="226">
+              <caret line="280" column="29" selection-start-line="280" selection-start-column="29" selection-end-line="280" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -239,11 +239,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="116" column="17" lean-forward="true" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
+            <state relative-caret-position="159">
+              <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -677,7 +677,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/VarExpression.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/HTTPExpression.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/GetHTTPExpression.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuAnswerResponseCommandNode.java" />
@@ -690,6 +689,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/eoss/brain/context/Draw2DContextBuilderTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RESTHTTPExpression.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java" />
       </list>
     </option>
   </component>
@@ -703,7 +703,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -865,6 +864,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1105,13 +1105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510122838184</updated>
-    </task>
-    <task id="LOCAL-00068" summary="v1.1.5.2&#10;Fix Hook Calculation">
-      <created>1554100999909</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1554100999910</updated>
     </task>
     <task id="LOCAL-00069" summary="v1.1.5.3&#10;Fix Feed Calculation">
       <created>1554101980023</created>
@@ -1449,7 +1442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589523235555</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="v1.5-beta&#10;&#10;Skip Null Variable">
+      <created>1589610735054</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1589610735054</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1497,7 +1497,7 @@
     <frame x="0" y="23" width="1280" height="727" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3634895" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36914378" />
       <window_info id="Structure" order="1" weight="0.24968314" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -1536,7 +1536,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.6&#10;&#10;Change from cyclic to limite the maximum route to 99" />
     <MESSAGE value="v1.2.7" />
     <MESSAGE value="v1.2.7-beta" />
     <MESSAGE value="v1.3 &#10;&#10;Support Link to App" />
@@ -1561,7 +1560,8 @@
     <MESSAGE value="v1.4.1&#10;&#10;Fix mark as question flag of Draw2DContextBuilder" />
     <MESSAGE value="v1.4.1-beta&#10;&#10;Fix mark as question flag of Draw2DContextBuilder" />
     <MESSAGE value="v1.5-alpha&#10;&#10;Try to catch bug from NullPointerException by parameterized session" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.5-alpha&#10;&#10;Try to catch bug from NullPointerException by parameterized session" />
+    <MESSAGE value="v1.5-beta&#10;&#10;Skip Null Variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.5-beta&#10;&#10;Skip Null Variable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1909,17 +1909,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="116" column="17" lean-forward="true" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
+        <state relative-caret-position="226">
+          <caret line="280" column="29" selection-start-line="280" selection-start-column="29" selection-end-line="280" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="284" column="9" lean-forward="true" selection-start-line="284" selection-start-column="9" selection-end-line="284" selection-end-column="9" />
+        <state relative-caret-position="159">
+          <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
         </state>
       </provider>
     </entry>

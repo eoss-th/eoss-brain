@@ -90,7 +90,13 @@ public class Question {
                 }
 
                 label = label.trim();
+
                 if (label.isEmpty()) return;
+
+                /**
+                 * Variable Supported for label
+                 */
+                label = session.parameterized(null, label);
 
                 String [] responses = node.response().split(" ");
 
