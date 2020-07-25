@@ -16,7 +16,7 @@ public class ContextConsole {
 
         List<String> adminIdList = new ArrayList<>(Arrays.asList("Uee73cf96d1dbe69a260d46fc03393cfd"));
 
-        Context context = new FileContext("mall").admin(adminIdList).locale(new Locale("th"));
+        Context context = new FileContext("./examples/mall").admin(adminIdList).locale(new Locale("th"));
 
         context.load();
 
