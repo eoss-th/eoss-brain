@@ -5,8 +5,12 @@
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="brainy_main" target="1.8" />
+      <module name="brainy_test" target="1.8" />
       <module name="eoss-brain_main" target="1.8" />
       <module name="eoss-brain_test" target="1.8" />
+      <module name="eoss-brainy_main" target="1.8" />
+      <module name="eoss-brainy_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
