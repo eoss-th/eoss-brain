@@ -1,5 +1,5 @@
-group 'com.brainy'
-version '1.0.1'
+group 'com.eoss.brain'
+version '1.5.4'
 
 apply plugin: 'findbugs'
 apply plugin: 'java'

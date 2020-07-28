@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/brainy.iml" filepath="$PROJECT_DIR$/.idea/modules/brainy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/brainy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/brainy_main.iml" group="brainy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/brainy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/brainy_test.iml" group="brainy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eoss-brain.iml" filepath="$PROJECT_DIR$/.idea/modules/eoss-brain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eoss-brain_main.iml" filepath="$PROJECT_DIR$/.idea/modules/eoss-brain_main.iml" group="eoss-brain" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eoss-brain_test.iml" filepath="$PROJECT_DIR$/.idea/modules/eoss-brain_test.iml" group="eoss-brain" />
     </modules>
   </component>
 </project>

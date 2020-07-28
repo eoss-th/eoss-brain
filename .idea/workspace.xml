@@ -2,158 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6f740c7-6284-414c-8b1f-4ce0e1141c96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_restfb_restfb_2_24_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_9_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_9_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_2_28_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_objenesis_objenesis_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/brainy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/brainy_main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/brainy_test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/GreetingCommandNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/net/SessionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/Endpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/RequestObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/ResponseObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/console/ConsoleEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/http/HttpEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/WAYOBotHttpEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/facebook/FacebookSignatureValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINEHttpEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINESignatureValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/QuestionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/brainy/service/ResponseObjectTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/brainy/service/console/ConsoleEndpointTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpointTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/line/LINEHttpEndpointTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_web_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/eoss-brain.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/eoss-brain_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/eoss-brain_test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/brainy.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/brainy_main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/brainy_test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/MessageObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/MessageTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/MessageTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/NodeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/NodeEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/AdminCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/AdminCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/CommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/CommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/DebugCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/DebugCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/DisableModeCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/DisableModeCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/DisableTeacherCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/DisableTeacherCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/EnableModeCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/EnableModeCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/EnableTeacherCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/EnableTeacherCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/ForwardCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/ForwardCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/LeaveCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/LeaveCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/RecursiveCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/RecursiveCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/RegisterAdminCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/RegisterAdminCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/SilentCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/SilentCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/SpeakCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/SpeakCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/BackupDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/BackupDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ClearDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ClearDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/CreateWebIndexCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/CreateWebIndexCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportJSONDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ExportJSONDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportMermaidDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ExportMermaidDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportQADataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ExportQADataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ExportRawDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ExportRawDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ImportJSONDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ImportJSONDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ImportQADataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ImportQADataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ImportRawDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ImportRawDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/ImportRawDataFromWebCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/ImportRawDataFromWebCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/LoadDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/LoadDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/RestoreDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/RestoreDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/data/SaveDataCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/data/SaveDataCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/http/GetCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/http/GetCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/http/GoogleCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/http/GoogleCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/http/ReadCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/http/ReadCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/AnswerResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/AnswerResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/Choice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/FeedbackCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/FeedbackCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ForwardResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/ForwardResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/Key.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/LowConfidenceProblemCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/LowConfidenceProblemCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ProblemCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/ProblemCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/QuestionResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/QuestionResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/RejectProblemCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/RejectProblemCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/ResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/TalkCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/TalkCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/ThinkableTalkCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/ThinkableTalkCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuAnswerResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/menu/MenuAnswerResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuForwardResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/menu/MenuForwardResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuQuestionResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/menu/MenuQuestionResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuResponseCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/menu/MenuResponseCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/talk/menu/MenuTalkCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/talk/menu/MenuTalkCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/MenuWakeupCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/wakeup/MenuWakeupCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/SleepCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/wakeup/SleepCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/command/wakeup/WakeupCommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/command/wakeup/WakeupCommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/Draw2DContextBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/Draw2DContextBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/FileContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/FileContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/FileIndexSupportContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/FileIndexSupportContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/GAEStorageContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/GAEStorageContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/GAEWebIndexSupportContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/GAEWebIndexSupportContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/MemoryContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/MemoryContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/context/WebContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/context/WebContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/GetHTTPExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/GetHTTPExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/HTTPExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/HTTPExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/JSONExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/JSONExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/JSoupExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/JSoupExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RESTHTTPExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/RESTHTTPExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/RegularExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/RegularExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/ext/VarExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/ext/VarExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/hook/KeywordsHook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/hook/KeywordsHook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/hook/NumberHook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/hook/NumberHook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/net/Context.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/net/ContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Hook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/net/Hook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/net/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/brain/net/SessionListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/service/http/CallbackEndpoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/service/http/HttpRequestAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/util/FileStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/util/FileStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/util/GAEWebStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/util/GAEWebStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/util/Secure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/util/Secure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/util/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/util/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eoss/util/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brainy/util/Stream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ContextConsole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/MessageObjectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/MessageObjectTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/SessionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/SessionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/AdminCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/AdminCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/BackupDataCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/data/BackupDataCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ExportMermaidDataCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/data/ExportMermaidDataCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ImportQADataCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/data/ImportQADataCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/ImportRawDataCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/data/ImportRawDataCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/LoadDataCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/data/LoadDataCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/data/RestoreDataCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/data/RestoreDataCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/http/GoogleCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/http/GoogleCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/AnswerResponseCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/AnswerResponseCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/FeedbackCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/FeedbackCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/ForwardResponseCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/ForwardResponseCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/LowConfidenceProblemCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/LowConfidenceProblemCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/QuestionResponseCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/QuestionResponseCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/RejectProblemCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/RejectProblemCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/ResponseCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/ResponseCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/command/talk/TalkCommandNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/command/talk/TalkCommandNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/context/Draw2DContextBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/context/Draw2DContextBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/context/FileContextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/context/FileContextTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/context/GAEStorageContextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/context/GAEStorageContextTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/context/WebContextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/context/WebContextTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/ExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/ExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/GetHTTPExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/GetHTTPExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/JSONExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/JSONExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/JSoupExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/JSoupExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/RESTHTTPExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/RESTHTTPExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/RegularExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/RegularExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/ext/VarExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/ext/VarExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/net/ContextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/net/ContextTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/eoss/brain/net/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/brainy/net/NodeTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -229,16 +84,17 @@
     <session id="-1118860422">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="7" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="22" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -263,16 +119,25 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="64" />
-          <entry key="gradle" value="18" />
+          <entry key="gradle" value="24" />
           <entry key="java" value="11984" />
           <entry key="md" value="26" />
+          <entry key="txt" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="18" />
+          <entry key="Groovy" value="24" />
           <entry key="JAVA" value="11984" />
-          <entry key="PLAIN_TEXT" value="90" />
+          <entry key="PLAIN_TEXT" value="128" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-826486782">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -282,7 +147,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2897">
+            <state relative-caret-position="3090">
               <caret line="234" column="23" selection-start-line="234" selection-start-column="23" selection-end-line="234" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -294,7 +159,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/WAYOBotHttpEndpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
+            <state relative-caret-position="960">
               <caret line="72" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -306,7 +171,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINEHttpEndpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="7560">
               <caret line="530" column="1" selection-start-line="530" selection-start-column="1" selection-end-line="530" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -317,14 +182,19 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="31" selection-start-column="31" selection-end-column="31" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="38" column="14" lean-forward="true" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -332,8 +202,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+            <state relative-caret-position="195">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -341,7 +211,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/line/LINEHttpEndpointTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="375">
               <caret line="35" column="78" selection-start-line="35" selection-start-column="78" selection-end-line="35" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -350,11 +220,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/console/ConsoleEndpointTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="19" lean-forward="true" selection-start-line="10" selection-end-line="19" />
+            <state relative-caret-position="195">
+              <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -362,7 +232,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpointTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
+            <state relative-caret-position="525">
               <caret line="45" selection-start-line="41" selection-end-line="45" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -374,7 +244,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINESignatureValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
+            <state relative-caret-position="540">
               <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -422,14 +292,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="brainy" />
+              <option name="name" value="eoss-brain" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="brainy" />
+                <option name="name" value="eoss-brain" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
@@ -443,7 +313,7 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'brainy'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'eoss-brain'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
@@ -453,7 +323,7 @@
                 <option name="name" value="buildDependents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'brainy'." />
+                <option name="description" value="Displays the sub-projects of root project 'eoss-brain'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
@@ -463,12 +333,12 @@
                 <option name="name" value="classes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'brainy'. [incubating]" />
+                <option name="description" value="Displays the dependent components of components in root project 'eoss-brain'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependentComponents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'brainy'." />
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'eoss-brain'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
               </ExternalTaskPojo>
@@ -498,7 +368,7 @@
                 <option name="name" value="jar" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'brainy'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'eoss-brain'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
@@ -508,7 +378,7 @@
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'brainy'." />
+                <option name="description" value="Displays the tasks runnable from root project 'eoss-brain'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -533,7 +403,7 @@
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'brainy'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'eoss-brain'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -558,7 +428,7 @@
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'brainy'." />
+                <option name="description" value="Displays all dependencies declared in root project 'eoss-brain'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
@@ -583,7 +453,7 @@
                 <option name="name" value="buildNeeded" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'brainy'." />
+                <option name="description" value="Displays the properties of root project 'eoss-brain'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
@@ -594,11 +464,11 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6357587283000" />
+        <entry key="$PROJECT_DIR$" value="6357785358000" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="85079316" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="1874405017" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="615277776" />
-        <entry key="$PROJECT_DIR$/settings.gradle" value="3420666074" />
+        <entry key="$PROJECT_DIR$/settings.gradle" value="3657408413" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -617,7 +487,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="brainy" />
+              <option name="name" value="eoss-brain" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-3.5-rc-2-all/c0k4lbl8pjtnoeqme5ekch4re/gradle-3.5-rc-2/src/ide" />
@@ -772,7 +642,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/brainy/command/data/ImportQADataCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/brainy/command/data/RestoreDataCommandNodeTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/brainy/SessionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/brainy/context/FileContextTest.java" />
@@ -821,8 +690,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/WAYOBotHttpEndpoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINEHttpEndpoint.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
@@ -843,38 +713,51 @@
         <subPane>
           <expand>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -882,8 +765,8 @@
               <item name="brainy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -892,8 +775,8 @@
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="brainy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brainy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="eoss-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eoss-brain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -909,7 +792,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1595922004072" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1595923986602" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -952,80 +835,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LINEHttpEndpointTest.createRequestObject">
+  <component name="RunManager">
     <configuration name="ConsoleEndpointTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.brainy.service.console.ConsoleEndpointTest" />
-      <module name="brainy_test" />
+      <module name="eoss-brain_test" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.brainy.service.console.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConsoleEndpointTest.run" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brainy_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.brainy.service.console.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.brainy.service.console" />
-      <option name="MAIN_CLASS_NAME" value="com.brainy.service.console.ConsoleEndpointTest" />
-      <option name="METHOD_NAME" value="run" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FacebookHttpEndpointTest.createRequestObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brainy_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.brainy.service.http.ext.facebook.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.brainy.service.http.ext.facebook" />
-      <option name="MAIN_CLASS_NAME" value="com.brainy.service.http.ext.facebook.FacebookHttpEndpointTest" />
-      <option name="METHOD_NAME" value="createRequestObject" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LINEHttpEndpointTest.createRequestObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brainy_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.brainy.service.http.ext.line.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.brainy.service.http.ext.line" />
-      <option name="MAIN_CLASS_NAME" value="com.brainy.service.http.ext.line.LINEHttpEndpointTest" />
-      <option name="METHOD_NAME" value="createRequestObject" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="QuestionTest.toString1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brainy_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.brainy.command.talk.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.brainy.command.talk" />
-      <option name="MAIN_CLASS_NAME" value="com.brainy.command.talk.QuestionTest" />
-      <option name="METHOD_NAME" value="toString1" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -1077,20 +896,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="JUnit.QuestionTest.toString1" />
-      <item itemvalue="JUnit.ConsoleEndpointTest.run" />
-      <item itemvalue="Application.ConsoleEndpointTest" />
-      <item itemvalue="JUnit.FacebookHttpEndpointTest.createRequestObject" />
-      <item itemvalue="JUnit.LINEHttpEndpointTest.createRequestObject" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LINEHttpEndpointTest.createRequestObject" />
-        <item itemvalue="JUnit.FacebookHttpEndpointTest.createRequestObject" />
         <item itemvalue="Application.ConsoleEndpointTest" />
-        <item itemvalue="JUnit.ConsoleEndpointTest.run" />
-        <item itemvalue="JUnit.QuestionTest.toString1" />
       </list>
     </recent_temporary>
   </component>
@@ -1105,6 +913,14 @@
       <option name="presentableId" value="Default" />
       <updated>1595712093385</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial project Brainy (branch from eoss-brain (LIMZ))">
+      <created>1595922300078</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1595922300078</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1141,8 +957,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="727" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28513733" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29402262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1161,6 +978,9 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32913387" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.32913387" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32913387" />
+      <window_info anchor="bottom" id="Log Viewer" order="12" />
+      <window_info anchor="bottom" id="Anonymous Apex" order="13" />
+      <window_info anchor="bottom" id="SOQL Query" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1204,6 +1024,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial project Brainy (branch from eoss-brain (LIMZ))" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial project Brainy (branch from eoss-brain (LIMZ))" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/ext/GetHTTPExpressionTest.java">
@@ -1408,11 +1232,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="28" column="60" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-            <element signature="e#680#681#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1449,9 +1268,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="28" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1459,9 +1275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1488,45 +1301,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
           <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpointTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="45" selection-start-line="41" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINESignatureValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/line/LINEHttpEndpointTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="35" column="78" selection-start-line="35" selection-start-column="78" selection-end-line="35" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2897">
+        <state relative-caret-position="3090">
           <caret line="234" column="23" selection-start-line="234" selection-start-column="23" selection-end-line="234" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1536,7 +1316,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/WAYOBotHttpEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
+        <state relative-caret-position="960">
           <caret line="72" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1546,7 +1326,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINEHttpEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="7560">
           <caret line="530" column="1" selection-start-line="530" selection-start-column="1" selection-end-line="530" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1554,27 +1334,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="38" column="14" lean-forward="true" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/line/LINEHttpEndpointTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        <state relative-caret-position="375">
+          <caret line="35" column="78" selection-start-line="35" selection-start-column="78" selection-end-line="35" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/http/ext/facebook/FacebookHttpEndpointTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="45" selection-start-line="41" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brainy/service/http/ext/line/LINESignatureValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/console/ConsoleEndpointTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" lean-forward="true" selection-start-line="10" selection-end-line="19" />
+        <state>
+          <caret column="31" selection-start-column="31" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="38" column="14" lean-forward="true" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/brainy/service/console/ConsoleEndpointTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1630,7 +1450,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>brainy</last-edited>
+          <last-edited>eoss-brain</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
